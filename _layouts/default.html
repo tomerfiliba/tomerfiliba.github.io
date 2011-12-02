@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>{{ page.title }}</title>
+    <meta name="author" content="Tomer Filiba" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+    function selectSection(sect) {
+    	var elem = document.getElementById("navbar-section-" + sect);
+    	elem.style.background="#F8F8F8";
+    	elem.style.color="#000";
+    }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="nav-wrapper">
+            <div id="nav2">
+                <div id="navigation">
+                   <ul>
+                        <li><a id="navbar-section-home" href="/">Home</a></li>
+                        <li><a id="navbar-section-blog" href="/blog">Blog</a></li>
+                        <li><a id="navbar-section-projects" href="/projects">Projects</a></li>
+                        <li><a id="navbar-section-about" href="/about">About</a></li>
+                        <li><a id="navbar-section-consulting" href="/consulting">Consulting</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="body-wrapper">
+            <div id="header">
+                <a href="/" title="Home"><img src="/static/fish-logo.png" style="vertical-align:middle;"></a>
+                <a href="/" title="Home" id="site-name-link">&nbsp;tomer filiba</a>
+            </div>
+            <div id="content">
+                <h1>{{ page.title }}</h1>
+                {{ content }}
+            </div>
+            <div id="sidebar">
+                <h1>Social</h1>
+                <p>Hi there</p>
+            </div>
+            <div id="footer">
+                The content of this site is published under 
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+                <img title="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
+                    alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" style="border-width:0" 
+                    src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-21128099-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>    
+</body>
+</html>
+

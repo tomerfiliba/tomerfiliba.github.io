@@ -1,0 +1,14 @@
+---
+layout: default
+title: Blog Posts
+---
+
+<script type="text/javascript">
+selectSection("blog");
+</script>
+
+
+{% for post in paginator.posts %}
+  <a href="{{ post.url }}">{{ post.title }}</a> <em>posted on {{ post.date | date: '%B %d, %Y' }}</em>
+  <div class="post-content">{{ post.content }}</div>
+{% endfor %}

@@ -1,0 +1,4 @@
+markdown: rdiscount
+pygments: true
+paginate: 10
+exclude: [README.md]

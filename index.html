@@ -1,8 +1,26 @@
-<html>
-<head>
-<title>hi there</title>
-</head>
-<body>
-<p>foo bar</p>
-</body>
-</html>
+---
+layout: default
+title: Welcome
+---
+
+<script type="text/javascript">
+selectSection("home");
+</script>
+
+<p>This is my site</p>
+
+<p>Latest blog entries:
+<table style="border:none; width:100%;">
+{% for post in site.posts limit:5 %}
+<tr>
+<td><h2><a href="{{ post.url }}">{{ post.title }}</a></h2></td>
+<td><em>Posted on {{ post.date | date_to_string }}.</em></td>
+</tr>
+<tr>
+<td colspan="2">
+{{ post.content }}
+</td>
+</tr>
+{% endfor %}
+</table>
+</p>
