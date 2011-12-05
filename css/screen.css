@@ -56,11 +56,11 @@ body
     color: black;
 }
 
-/*#navigation li a.the-one
+#navigation li a.selected
 {
     background: #F8F8F8; 
     color: black;
-}*/
+}
 
 #header
 {

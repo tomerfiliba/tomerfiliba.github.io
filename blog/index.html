@@ -3,17 +3,14 @@ layout: default
 section: blog
 title: Blog Posts
 ---
-<script type="text/javascript">
-selectSection("blog");
-</script>
 
 <br/>
 
 {% for post in paginator.posts %}
     <div style="padding: 5px; border-bottom: 1px dashed #b1b1b1;">
-    <div style="float:left;"><a href="{{ post.url }}"><h2>{{ post.title }}</h2></a></div>
-    <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>
-    <div style="clear:both;">{{ post.content }}</div>
+        <div style="float:left;"><a href="{{ post.url }}"><h2>{{ post.title }}</h2></a></div>
+        <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>
+        <div style="clear:both;">{{ post.content }}</div>
     </div>
 {% endfor %}
 

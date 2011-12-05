@@ -6,14 +6,6 @@
     <meta name="author" content="Tomer Filiba" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
-    
-    <script type="text/javascript">
-    function selectSection(sect) {
-    	var elem = document.getElementById("navbar-section-" + sect);
-    	elem.style.background="#F8F8F8";
-    	elem.style.color="#000";
-    }
-    </script>
 </head>
 <body>
     <div id="container">
@@ -21,11 +13,35 @@
             <div id="nav2">
                 <div id="navigation">
                    <ul>
-                        <li><a id="navbar-section-home" href="/">Home</a></li>
-                        <li><a id="navbar-section-blog" href="/blog">Blog</a></li>
-                        <li><a id="navbar-section-projects" href="/projects">Projects</a></li>
-                        <li><a id="navbar-section-about" href="/about">About</a></li>
-                        <li><a id="navbar-section-consulting" href="/consulting">Consulting</a></li>
+                        {% if page.section == "home" %}
+                            <li><a class="selected" href="/">Home</a></li>
+                        {% else %}
+                            <li><a href="/">Home</a></li>
+                        {% endif %}
+
+                        {% if page.section == "blog" %}
+                            <li><a class="selected" href="/blog">Blog</a></li>
+                        {% else %}
+                            <li><a href="/blog">Blog</a></li>
+                        {% endif %}
+
+                        {% if page.section == "projects" %}
+                            <li><a class="selected" href="/projects">Projects</a></li>
+                        {% else %}
+                            <li><a href="/projects">Projects</a></li>
+                        {% endif %}
+
+                        {% if page.section == "about" %}
+                            <li><a class="selected" href="/about">About</a></li>
+                        {% else %}
+                            <li><a href="/about">About</a></li>
+                        {% endif %}
+
+                        {% if page.section == "consulting" %}
+                            <li><a class="selected" href="/consulting">Consulting</a></li>
+                        {% else %}
+                            <li><a id="navbar-section-home" href="/consulting">Consulting</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -58,10 +74,6 @@
                     alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" style="border-width:0" 
                     src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
                 </a>
-                
-                {% if page.section == "blog" %}
-                    <h1>BLOG SECTION</h1>
-                {% endif %}
             </div>
         </div>
     </div>
