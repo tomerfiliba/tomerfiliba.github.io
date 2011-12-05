@@ -1,10 +1,7 @@
 ---
 layout: default
 title: About
+section: about
 ---
-
-<script type="text/javascript">
-selectSection("about");
-</script>
 
 This is my site
