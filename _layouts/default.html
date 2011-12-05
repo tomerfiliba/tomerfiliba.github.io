@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }} - tomerfiliba.com</title>
     <meta name="author" content="Tomer Filiba" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
@@ -41,7 +41,15 @@
             </div>
             <div id="sidebar">
                 <h1>Social</h1>
-                <p>Hi there</p>
+                <div>
+                <p><a href="https://github.com/tomerfiliba" target="_blank"><img src="/static/github-logo.png" title="GitHub"></a></p>
+                <p>
+                <a href="http://il.linkedin.com/in/tomerfiliba" target="_blank"><img src="/static/linkedin-logo.png" width="48" height="48" title="My profile on LinkedIn"></a> &nbsp;&nbsp;&nbsp;
+                <a href="http://twitter.com/tomerfiliba" target="_blank"><img src="/static/twitter-logo.png" title="My tweets" width="48" height="48"></a> &nbsp;&nbsp;&nbsp;
+                <a href="http://facebook.com/tomerfiliba" target="_blank"><img src="/static/facebook-logo.png" title="My Facebook profile" width="48" height="48"></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                <!--a href="/blog/1/feed" target="_blank"><img src="/static/rss-logo.png" title="My blog's RSS feed" width="46" height="46"></a-->
+                </p>
+                </div>
             </div>
             <div id="footer">
                 The content of this site is published under 
@@ -50,6 +58,10 @@
                     alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" style="border-width:0" 
                     src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
                 </a>
+                
+                {% if page.section == "blog" %}
+                    <h1>BLOG SECTION</h1>
+                {% endif %}
             </div>
         </div>
     </div>
