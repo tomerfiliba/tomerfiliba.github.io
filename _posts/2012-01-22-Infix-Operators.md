@@ -17,8 +17,8 @@ mean we have to give up!
 
 Haskell, for instance, allows you to define custom operators and set their precedence, as well 
 as invoking "normal" functions as infix operators. Suppose you have a function `f(x,y)` — you 
-can invoke it like `f 5 6` or <code>5 `f` 6</code> (using backticks). This allows us to turn 
-our previous expression, `add(add(add(5,6),7),8)`, into <code>5 `add` 6 `add` 7 `add` 8</code>, 
+can invoke it like `f 5 6` or <code>5 \`f\` 6</code> (using backticks). This allows us to turn 
+our previous expression, `add(add(add(5,6),7),8)`, into <code>5 \`add\` 6 \`add\` 7 \`add\` 8</code>, 
 which is much more readable. But how can we do this in Python?
 
 Well, there’s this [Cookbook recipe](http://code.activestate.com/recipes/384122-infix-operators/) 
