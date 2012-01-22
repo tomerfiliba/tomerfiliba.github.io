@@ -41,7 +41,7 @@ class Infix(object):
 Using instances of this peculiar class, we can now use a new "syntax" for calling functions as 
 infix operators:
 
-{% highlight python %}
+{% highlight pycon %}
 >>> @Infix
 ... def add(x, y):
 ...     return x + y
@@ -53,7 +53,7 @@ infix operators:
 Surrounding decorated functions with pipes (bitwise ORs) allows them to take their parameters 
 infix-ly. Using this, we can do all sorts of cool things:
 
-{% highlight python %}
+{% highlight pycon %}
 >>> instanceof = Infix(isinstance)
 >>>
 >>> if 5 |instanceof| int:
@@ -64,7 +64,7 @@ yes
 
 And even [curry](http://en.wikipedia.org/wiki/Currying) functions:
 
-{% highlight python %}
+{% highlight pycon %}
 >>> curry = Infix(partial)
 >>>
 >>> def f(x, y, z):
