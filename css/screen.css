@@ -11,7 +11,8 @@ body
 a img {
 	border: none;
 }
-code {
+
+p code {
     background: #eeeeee;
 }
 
@@ -29,6 +30,10 @@ a:hover {
 
 a.borderless:active, a.borderless:visited, a.borderless:link, a.borderless:hover {
     border: none;
+}
+
+a.blog-title {
+    font-size: 20px;
 }
 
 #nav-wrapper
@@ -163,6 +168,7 @@ div.separator {
 div.blog-post {
 	padding: 5px; 
 	border-bottom: 1px dashed #b1b1b1;
+	margin-bottom: 25px;
 }
 
 
