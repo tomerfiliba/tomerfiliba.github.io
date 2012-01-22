@@ -4,7 +4,7 @@ title: Infix Operators in Python
 ---
 
 As you may already know, there are 3 kinds of operators calling-notations: **prefix** (`+ 3 5`), 
-**infix** (``3 + 5``), and **postfix** (`3 5 +`). Prefix (as well as postfix) operators are used 
+**infix** (`3 + 5`), and **postfix** (`3 5 +`). Prefix (as well as postfix) operators are used 
 in languages like LISP/Scheme, and have the nice property of not requiring parenthesis — 
 there’s only one way to read an expression like `3 5 + 2 *`, unlike `3 + 5 * 2`. 
 On the other hand, it reduces code readability and the locality of operators and their arguments.
@@ -17,9 +17,9 @@ mean we have to give up!
 
 Haskell, for instance, allows you to define custom operators and set their precedence, as well 
 as invoking "normal" functions as infix operators. Suppose you have a function `f(x,y)` — you 
-can invoke it like `f 5 6` or `5 \`f\` 6` (using backticks). This allows us to turn our previous 
-expression, `add(add(add(5,6),7),8)`, into `5 \`add\` 6 \`add\` 7 \`add\` 8`, which is much 
-more readable. But how can we do this in Python?
+can invoke it like `f 5 6` or <code>5 `f` 6</code> (using backticks). This allows us to turn 
+our previous expression, `add(add(add(5,6),7),8)`, into <code>5 `add` 6 `add` 7 `add` 8</code>, 
+which is much more readable. But how can we do this in Python?
 
 Well, there’s this [Cookbook recipe](http://code.activestate.com/recipes/384122-infix-operators/) 
 that provides a very nice way to achieving the same functionality in Python (adapted a little by me):
@@ -78,3 +78,4 @@ And even [curry](http://en.wikipedia.org/wiki/Currying) functions:
 {% endhighlight %}
 
 Ain’t that cool?
+
