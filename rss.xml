@@ -1,0 +1,28 @@
+---
+layout: nil
+---
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tomerfiliba.com</title>
+    <link>http://tomerfiliba.com/</link>
+    <atom:link href="http://tomerfiliba.com/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Tomer Filiba's Blog</description>
+    <language>en-us</language>
+    <updated>{{ site.time | date_to_xmlschema }}</updated>
+    <pubDate>{{ site.time | date_to_xmlschema }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_xmlschema }}</lastBuildDate>
+
+    {% for post in site.posts %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>http://tomerfiliba.com{{ post.url }}</link>
+      <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+      <author>tomerfiliba@gmail.com (Tomer Filiba)</author>
+      <guid>http://tomerfiliba.com{{ post.url }}</guid>
+      <description>{{ post.content | xml_escape }}</description>
+    </item>
+    {% endfor %}
+
+  </channel> 
+</rss>
