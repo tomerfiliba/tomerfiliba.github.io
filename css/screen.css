@@ -12,6 +12,10 @@ a img {
 	border: none;
 }
 
+p {
+    line-height: 150%;
+}
+
 p code {
     background: #eeeeee;
 }
