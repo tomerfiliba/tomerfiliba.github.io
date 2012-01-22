@@ -55,7 +55,7 @@ in your `site.py`, so it would happen every time you run a Python process), and 
 This was the first time I wrote an import hook, and I really liked how I easy it was to change 
 the import mechanism. So today I had another idea -- **lazy imports**. Of course there's 
 [PEAK's lazyModule](http://peak.telecommunity.com/DevCenter/Importing#lazy-imports) and this 
-[|quite complicated recipe](http://code.activestate.com/recipes/473888-lazy-module-imports/),
+[quite complicated recipe](http://code.activestate.com/recipes/473888-lazy-module-imports/),
 but I thought, why not combine the two. Writing code like `from peak... import lazyModule; foo = lazyModule("foo")` 
 is cumbersome, while the recipe attempts is too make everything lazy. 
 

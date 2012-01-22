@@ -28,6 +28,7 @@ you'll find it interesting.
         <div style="float:left;"><h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2></div>
         <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>
         <div class="blog-text" style="clear:both;">{{ post.content }}</div>
+        <div style="float:right;"><h2><a href="{{ post.url }}">Comment on the post's page</a></h2></div>
     </div>
 {% endfor %}
 
