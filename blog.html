@@ -8,7 +8,7 @@ title: Blog Posts
 
 <table style="border:none; width:100%;">
 {% for post in site.posts %}
-<tr>
+<tr style="height: 3.5em;">
     <td style="text-align:left"><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></td>
     <td style="text-align:right"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></td>
 </tr>
