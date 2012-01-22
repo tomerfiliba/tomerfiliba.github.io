@@ -25,56 +25,56 @@ Well, there’s this [Cookbook recipe](http://code.activestate.com/recipes/38412
 that provides a very nice way to achieving the same functionality in Python (adapted a little by me):
 
 {% highlight python %}
-    from functools import partial
-    
-    class Infix(object):
-        def __init__(self, func):
-            self.func = func
-        def __or__(self, other):
-            return self.func(other)
-        def __ror__(self, other):
-            return Infix(partial(self.func, other))
-        def __call__(self, v1, v2):
-            return self.func(v1, v2)
+from functools import partial
+
+class Infix(object):
+    def __init__(self, func):
+        self.func = func
+    def __or__(self, other):
+        return self.func(other)
+    def __ror__(self, other):
+        return Infix(partial(self.func, other))
+    def __call__(self, v1, v2):
+        return self.func(v1, v2)
 {% endhighlight %}
 
 Using instances of this peculiar class, we can now use a new "syntax" for calling functions as 
 infix operators:
 
 {% highlight python %}
-    >>> @Infix
-    ... def add(x, y):
-    ...     return x + y
-    ...
-    >>> 5 |add| 6
-    11
+>>> @Infix
+... def add(x, y):
+...     return x + y
+...
+>>> 5 |add| 6
+11
 {% endhighlight %}
 
 Surrounding decorated functions with pipes (bitwise ORs) allows them to take their parameters 
 infix-ly. Using this, we can do all sorts of cool things:
 
 {% highlight python %}
-    >>> instanceof = Infix(isinstance)
-    >>>
-    >>> if 5 |instanceof| int:
-    ...     print "yes"
-    ...
-    yes
+>>> instanceof = Infix(isinstance)
+>>>
+>>> if 5 |instanceof| int:
+...     print "yes"
+...
+yes
 {% endhighlight %}
 
 And even [curry](http://en.wikipedia.org/wiki/Currying) functions:
 
 {% highlight python %}
-    >>> curry = Infix(partial)
-    >>>
-    >>> def f(x, y, z):
-    ...     return x + y + z
-    ...
-    >>> f |curry| 3
-    <functools.partial object at 0xb7733dec>
-    >>> g = f |curry| 3 |curry| 4 |curry| 5
-    >>> g()
-    12
+>>> curry = Infix(partial)
+>>>
+>>> def f(x, y, z):
+...     return x + y + z
+...
+>>> f |curry| 3
+<functools.partial object at 0xb7733dec>
+>>> g = f |curry| 3 |curry| 4 |curry| 5
+>>> g()
+12
 {% endhighlight %}
 
 Ain’t that cool?
