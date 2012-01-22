@@ -45,6 +45,12 @@
                             <li><a href="/projects">Projects</a></li>
                         {% endif %}
 
+                        {% if page.section == "etc" %}
+                            <li><a class="selected" href="/etc">/etc</a></li>
+                        {% else %}
+                            <li><a href="/etc">/etc</a></li>
+                        {% endif %}
+
                         {% if page.section == "about" %}
                             <li><a class="selected" href="/about">About</a></li>
                         {% else %}
