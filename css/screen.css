@@ -83,13 +83,13 @@ a.blog-title {
 {
     background: #e56515; 
     color: black;
-    font-weight: bold;
 }
 
 #navigation li a.selected
 {
     background: #F8F8F8; 
     color: black;
+    font-weight: bold;
 }
 
 #header
