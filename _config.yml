@@ -1,4 +1,4 @@
 markdown: rdiscount
 pygments: true
-paginate: 3
+paginate: 5
 exclude: [README.md]
