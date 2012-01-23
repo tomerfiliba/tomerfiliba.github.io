@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Recipe: Property Classes
+title: Property Classes
 section: recipes
 ---
 
