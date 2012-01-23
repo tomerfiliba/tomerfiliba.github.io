@@ -1,6 +1,6 @@
 ---
 layout: blogpost
-title: Infix Operators in Python
+title: All Systems are Go
 ---
 
 At last, I finished migrating the old `drupal` site to github pages. Everything is now fully
