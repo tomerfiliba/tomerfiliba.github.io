@@ -1,4 +1,4 @@
 markdown: rdiscount
 pygments: true
-paginate: 5
-exclude: [README.md]
+permalink: /:categories/:title
+exclude: [README.md, CNAME, favicon.ico]

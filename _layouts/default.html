@@ -27,47 +27,13 @@
             <div id="nav2">
                 <div id="navigation">
                    <ul>
-                        {% if page.section == "home" %}
-                            <li><a class="selected" href="/">home</a></li>
-                        {% else %}
-                            <li><a href="/">home</a></li>
-                        {% endif %}
-
-                        {% if page.section == "blog" %}
-                            <li><a class="selected" href="/blog">blog</a></li>
-                        {% else %}
-                            <li><a href="/blog">blog</a></li>
-                        {% endif %}
-
-                        {% if page.section == "projects" %}
-                            <li><a class="selected" href="/projects">projects</a></li>
-                        {% else %}
-                            <li><a href="/projects">projects</a></li>
-                        {% endif %}
-
-                        {% if page.section == "recipes" %}
-                            <li><a class="selected" href="/recipes">recipes</a></li>
-                        {% else %}
-                            <li><a href="/recipes">recipes</a></li>
-                        {% endif %}
-
-                        {% if page.section == "etc" %}
-                            <li><a class="selected" href="/etc">/etc</a></li>
-                        {% else %}
-                            <li><a href="/etc">/etc</a></li>
-                        {% endif %}
-
-                        {% if page.section == "about" %}
-                            <li><a class="selected" href="/etc/about">about</a></li>
-                        {% else %}
-                            <li><a href="/etc/about">about</a></li>
-                        {% endif %}
-
-                        {% if page.section == "consulting" %}
-                            <li><a class="selected" href="/etc/consulting">consulting</a></li>
-                        {% else %}
-                            <li><a href="/etc/consulting">consulting</a></li>
-                        {% endif %}
+                        <li><a {% if page.section == "home" %}class="selected"{% endif %} href="/">home</a></li>
+                        <li><a {% if page.section == "blog" %}class="selected"{% endif %} href="/blog">blog</a></li>
+                        <li><a {% if page.section == "projects" %}class="selected"{% endif %} href="/projects">projects</a></li>
+                        <li><a {% if page.section == "recipes" %}class="selected"{% endif %} href="/recipes">recipes</a></li>
+                        <li><a {% if page.section == "etc" %}class="selected"{% endif %} href="/etc">etc</a></li>
+                        <li><a {% if page.section == "about" %}class="selected"{% endif %} href="/about">about</a></li>
+                        <li><a {% if page.section == "consulting" %}class="selected"{% endif %} href="/consulting">consulting</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,6 +46,22 @@
             <div id="content">
                 <h1>{{ page.title }}</h1>
                 {{ content }}
+                
+                {% if page.comments %}
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'tomerfiliba'; // required: replace example with your forum shortname
+                
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                {% endif %}
             </div>
             <div id="sidebar">
                 <h1>Social</h1>
