@@ -10,3 +10,8 @@ hahaha
 
 bababa
 
+{{ filtered_posts }}
+
+gagaga
+
+{{ site.categories.recipes }}
