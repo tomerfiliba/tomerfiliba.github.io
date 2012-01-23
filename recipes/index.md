@@ -6,5 +6,5 @@ title: Recipes
 
 {% assign filtered_posts = site.categories.recipes %}
 
-{% include pagelist %}
+{% include pagelist.html %}
 
