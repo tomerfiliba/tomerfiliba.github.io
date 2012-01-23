@@ -2,13 +2,8 @@
 layout: pagelist
 section: recipes
 title: Recipes
+filtered_posts: site.categories.recipes
 ---
 
 hahaha
-
-{% assign filtered_posts = site.categories.recipes %}
-
-bababa
-
-{{ filtered_posts }}
 
