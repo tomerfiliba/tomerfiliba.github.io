@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Recipe: Property Classes
-permalink: /recipes/Property-Classes
+section: recipes
 ---
 
 Tired of creating properties the old way? Python 3 brings an improvement in the form of 
