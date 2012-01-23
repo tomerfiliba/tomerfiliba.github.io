@@ -23,7 +23,7 @@ you'll find it interesting.
 
 <h2>Latest blog posts</h2>
 
-{% for post in site.categories.blog limit: 5 %}
+{% for post in site.categories.blog limit: 4 %}
     <div class="blog-post">
         <div style="float:left;"><h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2></div>
         <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>

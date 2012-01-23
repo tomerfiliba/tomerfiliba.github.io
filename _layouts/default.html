@@ -82,11 +82,11 @@ layout: nil
                 <a href="/atom.xml" target="_blank" class="borderless"><img src="/static/rss-logo.png" width="48" height="48" title="ATOM feed"></a> &nbsp;&nbsp;&nbsp;
                 </p>
                 </div>
-                <h1>News</h1>
+                <h1>Recent Pages</h1>
                 <div>
                 {% for p in site.posts limit: 10 %}
                     <p>
-                    <a href="{{ p.url }}">{{ p.title }}</a> 
+                    <a href="{{ p.url }}">{{ p.title }}</a> ({{ p.categories | first }})
                     <br/>
                     <small>{{ p.date | date_to_string }}</small> 
                     </p>
