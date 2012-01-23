@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blogpost
 title: RPyC Moves to a New Site 
 ---
 

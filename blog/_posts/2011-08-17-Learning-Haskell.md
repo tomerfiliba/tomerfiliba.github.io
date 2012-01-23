@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blogpost
 title: Learning Me a Haskell
 ---
 

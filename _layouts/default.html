@@ -1,3 +1,7 @@
+---
+layout: nil
+---
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -7,6 +11,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
+
+    <meta name="description" content="Tomer Filiba's blog" />
 
     <!-- Google Analytics -->
     <script type="text/javascript">
@@ -78,7 +84,13 @@
                 </div>
                 <h1>News</h1>
                 <div>
-                {% include news.html %}
+                {% for p in site.posts limit: 10 %}
+                    <p>
+                    <a href="{{ p.url }}">{{ p.title }}</a> 
+                    <br/>
+                    <small>{{ p.date | date_to_string }}</small> 
+                    </p>
+                {% endfor %}
                 </div>
             </div>
             <div id="footer">

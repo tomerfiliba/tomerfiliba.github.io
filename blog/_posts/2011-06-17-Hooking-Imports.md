@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blogpost
 title: Hooking Imports for Fun and Profit
 ---
 

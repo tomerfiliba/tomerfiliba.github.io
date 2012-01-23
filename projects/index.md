@@ -4,10 +4,8 @@ section: projects
 title: Projects
 ---
 
-* RPyC
-* Agnos
-* Construct
-* Microactor
-* Layer5
-* [sock2](/projects/sock2)
+{% assign filtered_posts = site.categories.projects %}
+
+{% include pagelist.html %}
+
 

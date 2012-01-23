@@ -1,8 +1,11 @@
 ---
 layout: default
-title: Miscellaneous
 section: etc
+title: Miscellaneous
 ---
 
-* [Foxx0rz](/etc/foxx0rz)
+{% assign filtered_posts = site.categories.etc %}
+
+{% include pagelist.html %}
+
 

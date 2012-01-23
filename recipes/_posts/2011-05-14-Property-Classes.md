@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: recipe-page
 title: Property Classes
-section: recipes
 ---
 
 Tired of creating properties the old way? Python 3 brings an improvement in the form of 
