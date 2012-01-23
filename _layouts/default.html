@@ -86,7 +86,7 @@ layout: nil
                 <div>
                 {% for p in site.posts limit: 10 %}
                     <p>
-                    <a href="{{ p.url }}">{{ p.title }}</a> ({{ p.categories | first }})
+                    <a href="{{ p.url }}">{{ p.title }}</a> <small>(under <em>{{ p.categories | first | upcase}}</em>)</small>
                     <br/>
                     <small>{{ p.date | date_to_string }}</small> 
                     </p>
