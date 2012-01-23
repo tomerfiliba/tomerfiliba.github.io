@@ -77,7 +77,7 @@ Using it is really simple:
 >>> minidom
 <OnDemandModule 'xml.dom.minidom'>
 >>> minidom.parseString   # forces loading
->>> <function parseString at 0x01659CF0>
+<function parseString at 0x01659CF0>
 >>> minidom
 <module 'xml.dom.minidom' from 'C:\Python27\lib\xml\dom\minidom.pyc'>
 {% endhighlight %}

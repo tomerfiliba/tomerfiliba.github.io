@@ -13,10 +13,12 @@ layout: nil
     <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
 
     {% if page.feed_link %}
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ page.feed_link }}" />
+        {% assign feed_link = page.feed_link %}
     {% else %}
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+        {% assign feed_link = "/atom.xml" %}
     {% endif %}
+
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ feed_link }}" />
 
     <meta name="description" content="Tomer Filiba's homepage and blog" />
 
@@ -85,7 +87,7 @@ layout: nil
                 <a href="http://facebook.com/tomerfiliba" target="_blank" class="borderless"><img src="/static/facebook-logo.png" title="My Facebook profile" width="48" height="48"></a> &nbsp;&nbsp;&nbsp;&nbsp;
                 </p>
                 <p>
-                <a href="/atom.xml" target="_blank" class="borderless"><img src="/static/rss-logo.png" width="48" height="48" title="ATOM feed"></a> &nbsp;&nbsp;&nbsp;
+                <a href="{{ feed_link }}" target="_blank" class="borderless"><img src="/static/rss-logo.png" width="48" height="48" title="ATOM feed"></a> &nbsp;&nbsp;&nbsp;
                 </p>
                 </div>
                 <h1>Recent Pages</h1>
@@ -94,7 +96,7 @@ layout: nil
                     <p>
                     <a href="{{ p.url }}">{{ p.title }}</a>
                     <br/>
-                    <small><em>{{ p.categories | first | upcase}}</em> / {{ p.date | date_to_string }}</small> 
+                    <small><em>{{ p.categories | first | upcase}}</em> | {{ p.date | date_to_string }}</small> 
                     </p>
                 {% endfor %}
                 </div>

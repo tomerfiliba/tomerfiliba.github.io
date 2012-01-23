@@ -6,9 +6,9 @@ layout: nil
  
  <title>Tomer Filiba's Blog</title>
  <link href="http://tomerfiliba.com/blog/atom.xml" rel="self"/>
- <link href="http://tomerfiliba.com/"/>
+ <link href="http://tomerfiliba.com/blog/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://tomerfiliba.com/</id>
+ <id>http://tomerfiliba.com/blog/</id>
  <author>
    <name>Tomer Filiba</name>
    <email>tomerfiliba@gmail.com</email>
