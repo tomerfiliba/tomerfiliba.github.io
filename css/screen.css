@@ -2,8 +2,8 @@ body
 {
 	margin: 0;
 	padding: 0;
-    font-family: "Trebuchet MS","Myriad Pro","Bitstream Vera Sans",FreeSans,sans-serif;
-    font-size: 14px;
+	font-family: "Trebuchet MS","Myriad Pro","Bitstream Vera Sans",FreeSans,sans-serif;
+	font-size: 14px;
 	color: #2E2E2E;
 	background: #F8F8F8;
 }
@@ -43,8 +43,8 @@ a.blog-title {
 #nav-wrapper
 {
 	width: 100%;
-    background: #2E2E2E;
-    margin: 0 auto;
+	background: #2E2E2E;
+	margin: 0 auto;
 }
 
 #body-wrapper, #nav2
@@ -114,27 +114,27 @@ a.blog-title {
 
 #content
 {
-    background: #fff;
-    padding: 20px;
-    border-radius: 6px;
-    border: 1px solid #E1E1E1;
+	background: #fff;
+	padding: 20px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
 	float: left;
 	width: 600px;
 }
 
 #sidebar
 {
-    padding: 20px 20px 0 0;
+	padding: 20px 20px 0 0;
 	float: right;
-    width: 220px;
+	width: 220px;
 }
 
 #sidebar h1
 {
-    color:#779125;
+	color:#779125;
 	text-transform: uppercase;
-    font-size: 130%;
-    margin: 0 0 .5em;
+	font-size: 130%;
+	margin: 0 0 .5em;
 }
 
 #content h1
@@ -169,16 +169,9 @@ div.separator {
 }
 
 div.blog-post {
-	padding: 5px; 
+	padding: 5px 5px 25px 5px; 
 	border-bottom: 1px dashed #b1b1b1;
 	margin-bottom: 25px;
+	margin-top: 25px;
 }
-
-
-
-
-
-
-
-
 
