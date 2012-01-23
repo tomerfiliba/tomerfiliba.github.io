@@ -6,7 +6,7 @@
 </tr>
 <tr>
     <td colspan="2" style="blog-excerpt">
-    {{ post.content | split:</p> | first }}</p>
+    {{ post.content | split:"</p>" | first }}</p>
     </td>
 </tr>
 {% endfor %}
