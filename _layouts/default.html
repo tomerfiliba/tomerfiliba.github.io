@@ -12,7 +12,13 @@ layout: nil
     <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
 
-    <meta name="description" content="Tomer Filiba's blog" />
+    {% if page.feed_link %}
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ page.feed_link }}" />
+    {% else %}
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/atom.xml" />
+    {% endif %}
+
+    <meta name="description" content="Tomer Filiba's homepage and blog" />
 
     <!-- Google Analytics -->
     <script type="text/javascript">

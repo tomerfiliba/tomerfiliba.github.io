@@ -6,7 +6,7 @@
 </tr>
 <tr>
     <td colspan="2" style="blog-excerpt">
-    {{ post.content | truncate 50 }}
+    {{ post.content | strip_html | truncatewords: 40 }}
     </td>
 </tr>
 {% endfor %}

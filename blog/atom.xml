@@ -5,7 +5,7 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Tomer Filiba's Blog</title>
- <link href="http://tomerfiliba.com/atom.xml" rel="self"/>
+ <link href="http://tomerfiliba.com/blog/atom.xml" rel="self"/>
  <link href="http://tomerfiliba.com/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>http://tomerfiliba.com/</id>
@@ -14,12 +14,12 @@ layout: nil
    <email>tomerfiliba@gmail.com</email>
  </author>
 
- {% for post in site.posts limit: 50 %}
+ {% for post in site.categories.blog limit:50 %}
  <entry>
    <title>{{ post.title }}</title>
    <link href="http://tomerfiliba.com{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://tomerfiliba.github.com{{ post.id }}</id>
+   <id>http://tomerfiliba.com{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
