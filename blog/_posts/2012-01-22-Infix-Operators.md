@@ -10,6 +10,9 @@ there’s only one way to read an expression like `3 5 + 2 *`, unlike `3 + 5 * 2
 On the other hand, it reduces code readability and the locality of operators and their arguments.
 This is why we all love infix operators.
 
+<img src="http://imgs.xkcd.com/comics/rps.png" title="Thanks go to Oren Held; and XKCD, of course"
+style="float:right;">
+
 Now imagine I have a function, `add(x,y)`, and I have an expression like `add(add(add(5,6),7),8)`...
 wouldn’t it be cool if I could use infix notation here? Sadly though, Python won’t allow you to 
 define new operators or change how functions take their arguments... but that doesn’t 
