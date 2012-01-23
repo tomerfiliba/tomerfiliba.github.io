@@ -45,6 +45,12 @@
                             <li><a href="/projects">projects</a></li>
                         {% endif %}
 
+                        {% if page.section == "recipes" %}
+                            <li><a class="selected" href="/recipes">recipes</a></li>
+                        {% else %}
+                            <li><a href="/projects">recipes</a></li>
+                        {% endif %}
+
                         {% if page.section == "etc" %}
                             <li><a class="selected" href="/etc">/etc</a></li>
                         {% else %}
@@ -52,15 +58,15 @@
                         {% endif %}
 
                         {% if page.section == "about" %}
-                            <li><a class="selected" href="/about">about</a></li>
+                            <li><a class="selected" href="/etc/about">about</a></li>
                         {% else %}
-                            <li><a href="/about">about</a></li>
+                            <li><a href="/etc/about">about</a></li>
                         {% endif %}
 
                         {% if page.section == "consulting" %}
-                            <li><a class="selected" href="/consulting">consulting</a></li>
+                            <li><a class="selected" href="/etc/consulting">consulting</a></li>
                         {% else %}
-                            <li><a id="navbar-section-home" href="/consulting">consulting</a></li>
+                            <li><a href="/etc/consulting">consulting</a></li>
                         {% endif %}
                     </ul>
                 </div>
