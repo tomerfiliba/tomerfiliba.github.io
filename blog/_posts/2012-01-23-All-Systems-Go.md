@@ -7,6 +7,10 @@ At last, I finished migrating the old `drupal` site to github pages. Everything 
 revisioned and statically-generated (using Disqus for comments). Jekyll is so cool! I wrote all 
 the HTML and forged the stylesheets myself... hope you like it. 
 
+<a href='http://cheezburger.com/View/2825781504'>
+<img src='http://images.cheezburger.com/completestore/2009/11/10/129023584835271858.jpg' 
+style="float:right; width:300px;"/></a>
+
 Anyhow, I'm happy with the design now, and I'll start blogging more regularly. I still have 
 plenty of pages to complete (projects, about-page, etc.), and a few partially-written blogs
 posts to polish up, but other generally speaking, we're up.
