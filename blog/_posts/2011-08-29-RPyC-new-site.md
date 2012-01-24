@@ -8,6 +8,8 @@ location at <http://rpyc.sourceforge.net>. Wikidot had served us well, and was e
 but they started displaying way to many ads and didn't support `rsync` or `SSH` access, 
 which meant I couldn't upload the generated API reference automatically. 
 
+<img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" style="float:right" />
+
 The new site is written entirely in ReST using [sphinx](http://sphinx.pocoo.org/) and large parts 
 of it are auto-generated from docstrings in the source code. It's all now part of the 
 [git repository](http://http://github.com/tomerfiliba/rpyc), and I only have to run 
