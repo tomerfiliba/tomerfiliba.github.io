@@ -7,6 +7,10 @@ title: Learning Me a Haskell
 up my ever-so-long backlog. Here goes nothing: I'll start by posting something here, 
 after this long while of neglect. 
 
+<a href="http://learnyouahaskell.com/">
+<img src="http://nostarch.com/sites/default/files/imagecache/product_full/lyah.png" title="LYAH"
+style="width:250px; float:right;"></a>
+
 As I'm sure you already know, I'm a long-time Pythonista, and I'm confident enough in calling 
 myself a "native speaker" of that language. Although python is my expertise, I'd say I'm 
 fluent in most other prominent programming languages (say, C, C++, Java, C#, VB), and with 
