@@ -43,7 +43,7 @@ approach); and generally, finding better ways to automate and generalize mundane
 On my less geeky side, I enjoy (at no particular order): hanging around good people, 
 reading books (mostly fiction), traveling the world, beer and wine, music (ranges from Fiona Apple
 to *Tool*), learning new random things (spending hours wandering around Wikipedia),
-working out, Italian cooking (and Italy in general), growing plants, and my lovely wife.
+working out, Italian cooking (and Italy in general), growing plants, xkcd, and my lovely wife.
 
 ## Contact ##
 
