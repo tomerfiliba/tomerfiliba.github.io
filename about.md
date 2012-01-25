@@ -4,7 +4,7 @@ title: About Me
 section: about
 ---
 
-<img src="/static/res/about-me.jpg" style="float:right;"/>
+<!-- img src="/static/res/about-me.jpg" style="float:right;"/ -->
 
 Some background: I'm 26 years old, married, living in Tel Aviv. I'll be graduating this year from 
 the Tel Aviv University, where I study Computer Science and Generative Linguistics (aiming at
