@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: RPyC Moves to a New Site 
+tags: [rpyc]
 ---
 
 RPyC is in the process of migrating from <http://rpyc.wikidot.com> to it's new (and hopefully final) 
