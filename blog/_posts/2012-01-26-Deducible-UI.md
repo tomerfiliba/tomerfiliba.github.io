@@ -42,20 +42,81 @@ well-defined mapping between programmatic objects and their visual representatio
 
 ### Deducing UI ###
 
-Say you have a class, with a set of simple attributes, that you wish to display to
-your user. 
+Allow me to propose the following isomorphism/mapping: 
+1. An object is represented by a window
+2. Read-only instance attributes are represented as labels
+3. Writable instance attributes are represented as textboxes
+4. Methods are represented by buttons. If a method requires arguments,
+   it would be preceded by textboxes
 
-{% highlight java %}
+Of course we could change textboxes and labels to reflect the attribute or argument type -- 
+for instance, `DateTime` would be represented by a `DatePicker`, `int` could be represented
+by a number box with up/down arrows, etc. But I'll call them textboxes, for simplicity.
+
+So an instance of a class like the following:
+
+{% highlight c# %}
 class Person {
 	public String firstName;
 	public String lastName;
-	public Date birthdate;
+	public DateTime birthdate;
 	
-	public void 
+	public void dance() {...}
+	
+	public void eat(String foodstuff) {...}
 }
 {% endhighlight %}
 
-OK. 
+Would turn into
+
+    +-----------------------------------------+
+    | Person                            |X|^|_|
+    +-----------------------------------------+
+    | firstName: | John       |               |
+    | lastname:  | Smith      |               |
+    | birthdate: | 1-APR-1899 |               |
+    |                                         |
+    | /-------\                               |
+    | | dance |                               |
+    | \-------/                               |
+    |                                         |
+    |  ________   /-----\                     |
+    | |________|  | eat |                     |
+    |             \-----/                     |
+    |                                         |
+    +-----------------------------------------+
+
+Simple, isn't it? You can already begin to see the benefits. This framework would require 
+(naturally) some sort of decoration (annotations in Java, attributes in C#) on class members as 
+to specify which of them we wish to expose, and perhaps add some extra metadata, like showing 
+a picture instead of a method's name, or some layout information, etc. And it can even turn out
+good-looking (unlike my ASCII art example), but using better UI primitives. But it's not
+the eye-candy we're after, at least not at this stage.
+
+I wrote a a simple prototype of this and lo and behold, it actually worked! But when you try to
+use it in a real-life application, things get rougher: things are updated behind the scenes (not 
+through our UI framework), and we need to reflect these changes (e.g., an element is
+added to a list and we want it to show up on the GUI as well). Using the classic, synchronous
+model of programming quickly comes to a screeching halt... it just doesn't fit. We must use 
+some reactor to juggle things around
+
+
+
+Observable objects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
