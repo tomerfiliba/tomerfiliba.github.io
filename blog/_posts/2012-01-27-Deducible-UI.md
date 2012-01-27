@@ -64,11 +64,12 @@ programming toolkit.
 The UI needn't be an eye-candy, at least at the beginning; **it just has to be good-enough**. 
 It won't work for games or complex applications like Office, but for it would be just fine for a 
 chat client. Let's assume the following mapping: 
-1. An object is represented by a window
-2. Read-only instance attributes are represented as labels
-3. Writable instance attributes are represented as textboxes
-4. Methods are represented by buttons. If a method requires arguments,
-   it would be preceded by textboxes
+
+1.  An object is represented by a window
+2.  Read-only instance attributes are represented as labels
+3.  Writable instance attributes are represented as textboxes
+4.  Methods are represented by buttons. If a method requires arguments,
+    it would be preceded by textboxes
 
 Of course we could change textboxes and labels to reflect the attribute's or argument's type -- 
 `DateTime` would be represented by a `DatePicker`, `int` could be represented by a number box with 
