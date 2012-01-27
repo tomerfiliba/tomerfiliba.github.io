@@ -94,7 +94,7 @@ class Person {
 
 would turn into 
 
-<img src="/static/res/2012-01-27-render.jpg" title="Created using http://ditaa.org/ditaa/"/>
+<img src="/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
 
 <!--
     +-----------------------------------------+
