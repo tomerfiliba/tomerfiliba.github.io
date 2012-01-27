@@ -13,7 +13,7 @@ This is one reason, for instance, why I hate expressions like
 `ArrayList<String> x = new ArrayList<String>();`... it always makes me feel like I'm talking to a 
 retard (compiler).
 
-<a href="/static/res/2012-01-27-sketch.jpg">
+<a href="https://ccrma.stanford.edu/~sangwlee/256a/SharePhone/">
 <img src="/static/res/2012-01-27-sketch.jpg" style="float:right; width:250px;" /></a>
 
 In 2006/7, I wrote some demos for [RPyC](http://rpyc.sf.net) to show how easy network-related 
