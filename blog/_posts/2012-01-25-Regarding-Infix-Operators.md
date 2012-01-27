@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: Regarding Infix Operators
+description: Some more thoughts regarding the 'infix operators' post
 ---
 
 I got some reactions to the [Infix Operators](/blog/Infix-Operators) post, and wanted to point

@@ -1,6 +1,8 @@
 ---
 layout: blogpost
 title: Deducible UI
+description: A sketch of how to automatically deduce a good-enough user interface, 
+             given a programmatic API and some extra metadata
 ---
 
 ### A Brief History ###

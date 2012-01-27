@@ -6,7 +6,7 @@ title: HTML Codec
 A very simple and straight-forward text/HTML codec. When encoding text, it escapes all 
 HTML-delimiters (`<` becomes `&lt;`, etc.), so the encoded text can be safely viewed by an 
 HTML renderer (browser) or safely embedded into an HTML document. When decoding HTML, it 
-un-escapes the formatters into plain text (so that `&gt;` becomes `>` again, etc.).
+unescapes the formatters into plain text (so that `&gt;` becomes `>` again, etc.).
 
 ## Code ##
 

@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: Learning Me a Haskell
+description: Thoughts regarding Haskell and the implications on software development in general
 ---
 
 *Phew!* Finally the semester's over (just submitted my last project), and it's time to clean 

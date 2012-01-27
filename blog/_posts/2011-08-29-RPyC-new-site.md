@@ -2,6 +2,7 @@
 layout: blogpost
 title: RPyC Moves to a New Site 
 tags: [rpyc]
+description: RPyC's home page returns to sourceforge
 ---
 
 RPyC is in the process of migrating from <http://rpyc.wikidot.com> to it's new (and hopefully final) 

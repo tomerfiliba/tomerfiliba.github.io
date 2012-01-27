@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: Infix Operators in Python
+description: Discussing a nice hack which adds support for infix operators in python
 ---
 
 As you may already know, there are 3 kinds of operators calling-notations: **prefix** (`+ 3 5`), 

@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: All Systems are Go
+description: The new site is up and running!
 ---
 
 At last, I finished migrating the old `drupal` site to github pages. Everything is now fully

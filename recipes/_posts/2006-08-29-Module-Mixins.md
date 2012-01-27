@@ -9,6 +9,7 @@ no implementation). Another solution is mix-in classes, which add functionality 
 to the class, but do not affect the inheritance tree.
 
 Mixins differ from regular classes mostly by their semantics (after all, they are just classes):
+
 * They would never derive from any class in the inheritance tree of the defined class
 * They would never define an `__init__` method
 
