@@ -94,6 +94,9 @@ class Person {
 
 would turn into 
 
+<img src="/static/res/2012-01-27-render.jpg" title="Created using http://ditaa.org/ditaa/"/>
+
+<!--
     +-----------------------------------------+
     | Person                            |X|^|_|
     +-----------------------------------------+
@@ -110,6 +113,7 @@ would turn into
     |             \-----/                     |
     |                                         |
     +-----------------------------------------+
+-->
 
 with just a little bit of binding in the form of:
 
