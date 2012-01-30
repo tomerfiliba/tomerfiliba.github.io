@@ -1,15 +1,18 @@
 ---
 layout: blogpost
 title: Code Generation using Context Managers
+description: Introducing a code generation toolkit that achieves correlation between the
+             generator code and the generated code, using context managers
+published: false
 ---
+
+<img src="/static/res/2012-01-31-matrix.jpg" style="float:right;" />
 
 When I was working on [Agnos](https://github.com/tomerfiliba/agnos), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 
 At the early stages, I just appended strings to a list. It was quick and dirty, and it's got the 
 job done... but that wasn't enough, of course. I've lost the original code already, but it looked 
 something like this:
-
-<img src="/static/res/2012-01-31-matrix.jpg" style="float:right;" />
 
 {% highlight python %}
 def generate_proxy(typeinfo):
