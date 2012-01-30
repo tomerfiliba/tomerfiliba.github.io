@@ -87,7 +87,7 @@ def generate_proxy(m, typeinfo):
     
     with BLOCK("public class {0}Proxy", typeinfo.name):
         STMT("private int uid")
-        BLOCK("public {0}Proxy(int uid)", typeinfo.name):
+        with BLOCK("public {0}Proxy(int uid)", typeinfo.name):
             STMT("this.uid = uid")
     
         for attr in typeinfo.attributes:
