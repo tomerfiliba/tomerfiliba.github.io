@@ -5,7 +5,7 @@ description: Introducing a code generation toolkit that achieves correlation bet
              generator code and the generated code, using context managers
 ---
 
-<img src="/static/res/2012-01-31-code.jpg" style="float:right; width:250px;" />
+<img src="/static/res/2012-01-31-code.jpg" style="float:right; width:217px;" />
 
 When I was working on [Agnos](https://github.com/tomerfiliba/agnos), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 
