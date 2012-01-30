@@ -127,7 +127,7 @@ It might look like this:
 def generate_proxy(m, typeinfo):
     with m.CLASS(typeinfo.name + "Proxy", ["public"]):
         m.FIELD("int", "uid", ["private"])
-        m.CTOR(["int uid"]):   # CTOR gets the name of the current class
+        with m.CTOR(["int uid"]):   # CTOR gets the name of the current class
             STMT("this.uid = uid")
 {% endhighlight %}
 
