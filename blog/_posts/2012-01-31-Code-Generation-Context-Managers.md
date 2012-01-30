@@ -3,10 +3,9 @@ layout: blogpost
 title: Code Generation using Context Managers
 description: Introducing a code generation toolkit that achieves correlation between the
              generator code and the generated code, using context managers
-published: false
 ---
 
-<img src="/static/res/2012-01-31-matrix.jpg" style="float:right;" />
+<img src="/static/res/2012-01-31-code.jpg" style="float:right;" />
 
 When I was working on [Agnos](https://github.com/tomerfiliba/agnos), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 
@@ -25,11 +24,13 @@ def generate_proxy(typeinfo):
     ]
     for attr in typeinfo.attributes:
         if attr.get:
-            lines.append("    public %s get%s() {" % (attr.typename, attr.name,))
+            lines.append("    public %s get%s() {" % (attr.typename, 
+                                                    attr.name,))
             lines.append("        // ...")
             lines.append("    }")
         if attr.set:
-            lines.append("    public void set%s(%s value) {" % (attr.name, attr.typename))
+            lines.append("    public void set%s(%s value) {" % (attr.name, 
+                                                            attr.typename))
             lines.append("        // ...")
             lines.append("    }")
     lines.append("}")
@@ -94,7 +95,8 @@ def generate_proxy(m, typeinfo):
                 with BLOCK("public {0} get{1}()", attr.typename, attr.name):
                     pass
             if attr.set:
-                with BLOCK("public void set{0}({1} value)", attr.name, attr.typename):
+                with BLOCK("public void set{0}({1} value)", attr.name, 
+                                                            attr.typename):
                     pass
 # ...
 
@@ -129,8 +131,9 @@ def generate_proxy(m, typeinfo):
             STMT("this.uid = uid")
 {% endhighlight %}
 
-However, there's a question of where we "cut the cord", or we'll end up writing *Java Combinators 
-for Python*... and then we'll be writing Java in Python. No need for that, thank you very much.
+However, there's a question of where we "put our foot down", or we'll end up writing *Java 
+Combinators for Python*... and then we'll be writing Java in Python. No need for that, 
+thank you very much.
 
 The full source code can be found in the 
 [Agnos repository](https://github.com/tomerfiliba/agnos/blob/master/compiler/src/agnos_compiler/langs/clike.py)
