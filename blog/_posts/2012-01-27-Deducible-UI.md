@@ -80,7 +80,7 @@ to achieve better, more coherent representation. The mapping above is just a rou
 
 Now, instances of a class like the following:
 
-{% highlight csharp %}
+{% highlight java %}
 class Person {
 	public String firstName;
 	public String lastName;
@@ -117,7 +117,7 @@ would turn into
 
 with just a little bit of binding in the form of:
 
-{% highlight csharp %}
+{% highlight java %}
 class Main {
     static public void Main(String[] args) {
         Person p = new Person(...);
