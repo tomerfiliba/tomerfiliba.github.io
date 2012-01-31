@@ -3,8 +3,10 @@ layout: default
 section: blog
 comments: true
 feed_link: /blog/atom.xml
-social: true
+social: false
 ---
+
+<p><small><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></small></p>
 
 {{ content }}
 
