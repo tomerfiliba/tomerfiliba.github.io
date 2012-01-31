@@ -16,7 +16,7 @@ description: A list of my active and inactive projects
 ## Small-Scale Projects ##
 
 * [Cmdline](https://github.com/tomerfiliba/cmdline) - A command-line toolkit that provides both 
-  sides of the coin: easy parsing of command-line switches (like `optpars` and `argparse`, 
+  sides of the coin: easy parsing of command-line switches (like `optparse` and `argparse`, 
   but much nicer), and the easy invocation of command-line programs as if they were functions
   (like [pbs](https://github.com/amoffat/pbs), but offering a cleaner approach)
 
