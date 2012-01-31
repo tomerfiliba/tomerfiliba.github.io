@@ -24,10 +24,10 @@ navigation {
     line-height: 190%;
 }
 
-p code {
-    font-family: Consolas, monospace;
+code {
+    font-family: Consolas,monospace;
     background: #eeeeee;
-}
+} 
 
 a:active, a:visited, a:link {
     color: #086782;
