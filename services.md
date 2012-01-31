@@ -1,6 +1,6 @@
 ---
 layout: default
-section: consulting
+section: services
 title: Consulting Services
 ---
 
