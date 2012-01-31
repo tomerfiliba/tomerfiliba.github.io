@@ -6,7 +6,11 @@ feed_link: /blog/atom.xml
 social: false
 ---
 
-<p><small><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></small></p>
+{% for post in site.posts %}
+    {% if post.url == page.url %} 
+        <p><small><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></small></p>
+    {% endif %}
+{% endif %}
 
 {{ content }}
 
