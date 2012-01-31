@@ -9,6 +9,7 @@ layout: nil
     <title>{{ page.title }} - tomerfiliba.com</title>
     <meta name="author" content="Tomer Filiba" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="canonical" href="http://tomerfiliba.com/{{page.url}}" />
     <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="screen" />
 
@@ -40,6 +41,7 @@ layout: nil
     </script>
 </head>
 <body>
+    <div id="fb-root"></div>
     <div id="container">
         <div id="nav-wrapper">
             <div id="nav2">
@@ -63,10 +65,12 @@ layout: nil
             </div>
             <div id="content">
                 <h1>{{ page.title }}</h1>
-                {% if page.use_gplus %}
-                <div style="float:right">
-                <g:plusone annotation="inline" width="300"></g:plusone>
-                </div>
+                {% if page.social %}
+                <p>
+                <div class="g-plusone"></div>
+                <div class="fb-like" data-send="false" data-layout="button_count" 
+                data-show-faces="false"></div>
+                </p>
                 {% endif %}
                 
                 {{ content }}
@@ -122,7 +126,7 @@ layout: nil
         </div>
     </div>
     
-    {% if page.use_gplus %}
+    {% if page.social %}
     <!-- Place this render call where appropriate -->
     <script type="text/javascript">
       (function() {
@@ -131,6 +135,13 @@ layout: nil
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
     </script>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>    
     {% endif %}
 </body>
 </html>
