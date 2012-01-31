@@ -18,9 +18,11 @@ as only single instance exists:
 [5, 5]
 >>> f()
 [5, 5, 5]
-[[code]]
+{% endhighlight %}
+
 Sometimes it's the desired behavior, but mostly it's a bug. To solve that bug, we use
-[[code]]
+
+{% highlight pycon %}
 >>> def f(x = None):
 ...     if x is None:
 ...         x = []
@@ -37,7 +39,7 @@ Sometimes it's the desired behavior, but mostly it's a bug. To solve that bug, w
 
 But this idiom adds lots of boilerplate code into functions. The following little decorator solves that problem elegantly.
 
-==Code==
+## Code ##
 {% highlight python %}
 from copy import deepcopy
 

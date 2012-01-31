@@ -25,6 +25,7 @@ navigation {
 }
 
 p code {
+    font-family: Consolas, monospace;
     background: #eeeeee;
 }
 

@@ -20,7 +20,7 @@ It still feels very awkward. I can't say my solution is pure elegance, but I fin
 
 ## Code ##
 
-{% highlight pycon %}
+{% highlight python %}
 import types
 
 def property_class(cls):
