@@ -3,15 +3,7 @@ layout: default
 section: blog
 comments: true
 feed_link: /blog/atom.xml
-social: false
 ---
-
-{% for post in site.posts %}
-    {{post.url}}, {{page.url}} <br/>
-    {% if post.url == page.url %} 
-        <p><small><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></small></p>
-    {% endif %}
-{% endif %}
 
 {{ content }}
 
