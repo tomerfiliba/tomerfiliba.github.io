@@ -2,7 +2,8 @@
 layout: default
 section: blog
 title: RPyC Development Blog
-feed_link: /blog/atom.xml
+description: RPyC Development Blog 
+feed_link: /blog/rpyc-atom.xml
 ---
 
 {% assign filtered_posts = site.categories.blog %}

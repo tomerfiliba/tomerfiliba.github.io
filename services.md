@@ -2,6 +2,7 @@
 layout: default
 section: services
 title: Consulting Services
+description: Contact me about consulting services
 ---
 
 I'm pretty much overbooked with my day-job, university, and life in general, but I might be 

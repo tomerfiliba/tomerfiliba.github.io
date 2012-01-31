@@ -2,6 +2,7 @@
 layout: default
 title: About Me
 section: about
+description: About Me
 ---
 
 <!-- img src="/static/res/about-me.jpg" style="float:right;"/ -->
