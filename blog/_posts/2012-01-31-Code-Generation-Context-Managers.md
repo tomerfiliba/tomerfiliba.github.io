@@ -7,7 +7,7 @@ description: Introducing a code generation toolkit that achieves correlation bet
 
 <img src="/static/res/2012-01-31-code.jpg" style="float:right; width:217px;" />
 
-When I was working on [Agnos](https://github.com/tomerfiliba/agnos), a cross-language RPC framework,
+When I was working on [Agnos](http://agnos.sourceforge.net), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 
 At the early stages, I just appended strings to a list. It was quick and dirty, and it's got the 
 job done... but that wasn't enough, of course. I've lost the original code already, but it looked 
@@ -59,7 +59,7 @@ obvious they should be correlated.
 In order to solve this, I turned to [context managers](http://www.python.org/dev/peps/pep-0343/),
 a feature I highly value. Conceptually, context managers provide a way to bind beginning-and-end
 into a single entity; this is normally used for resource management -- but we can leverage this 
-construction further (which I'll review in a different post). Here, I've used them to create 
+construction further (I'll this review in a different post). Here, I've used them to create 
 *nested blocks*, which allowed me to reflect the structure of the generated code in the code 
 generator.
 
@@ -107,7 +107,7 @@ m.render_to_file("foo.java")
 {% endhighlight %} 
 
 So what have we gained?
- 
+
 *   The code is much shorter and more concise
 *   Brackets, semicolons and indentation come out-of-the-box
 *   We're no longer working with flat lists of strings -- we're working with hierarchal entities

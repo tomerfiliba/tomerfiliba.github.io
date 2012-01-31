@@ -13,7 +13,15 @@ a img {
 }
 
 p {
-    line-height: 170%;
+    line-height: 180%;
+}
+
+#content li {
+    line-height: 180%;
+}
+
+navigation {
+    line-height: 190%;
 }
 
 p code {
