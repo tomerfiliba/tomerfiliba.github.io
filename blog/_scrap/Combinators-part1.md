@@ -3,7 +3,7 @@ layout: blogpost
 title: Introduction to Combinators, Part 1
 ---
 
-### With Great Power Comes Great Complexity ### 
+### With Great Power Comes Undecidability ### 
 
 First of all, allow me to clarify that I'm no mathematician, let alone a logician. I'm merely
 interested in the [expressive power](http://en.wikipedia.org/wiki/Expressive_power) of various
@@ -15,24 +15,25 @@ some *language*, and this, in turn, brings us to the domain of complexity and co
 <img src="http://2.bp.blogspot.com/_9UxHwUfG2qQ/THakYJh98aI/AAAAAAAACqE/ntDoCfzhk7s/s1600/spiderman1.jpg"
 style="float: right; width: 250px;"></a>
 
-Starting at the bottom, think of good-old *regular expressions*. You can use them to define "patterns" 
-and match them on strings, but what kinds of patterns can you define? How far-reaching is your 
-expressive power? In this case, it's easy: regular expressions define the class of *regular
-languages*, which have well-studied mathematical properties; for once, you cannot define a regular 
-expression that will match parenthesis. On the other hand, it's easy to match them: regular 
-languages are *decidable* by a *Finite State Automaton*, which means they can be matched in O(n)
-time, where 'n' is the length of the input. If we try to increase our expressive power, by going up
-to *context-free* languages, using formalisms such as [BNF](http://en.wikipedia.org/wiki/Backus_normal_form),
-we require O(n^3) time to parse. Climbing higher still in the [Chomsky Hierarchy](http://en.wikipedia.org/wiki/Chomsky_hierarchy)
+Starting at the bottom of the power-scale, think of good-old *regular expressions*. You can use them 
+to define "patterns" and match them on strings, but what kinds of patterns can you define? How 
+far-reaching is your expressive power? In this case, it's easy: regular expressions define the 
+class of *regular languages*, which have well-studied mathematical properties; for once, you 
+cannot define a regular expression that will match parenthesis. On the other hand, it's easy to 
+match them: regular languages are *decidable* by a *Finite State Automaton*, which means they 
+can be matched in O(n) time, where 'n' is the length of the input. If we try to increase our 
+expressive power, by going up to *context-free* languages, using formalisms such as 
+[BNF](http://en.wikipedia.org/wiki/Backus_normal_form), we require O(n^3) time to parse. Climbing 
+higher still in the [Chomsky Hierarchy](http://en.wikipedia.org/wiki/Chomsky_hierarchy) 
 will buy us more power, but will increase the complexity even further... up until the parsing itself 
 becomes *undecidable*.
 
 There's a tradeoff between how strong a formalism is and how much reasoning you can do about it.
 For example, given a regular expression, and you could describe what it does or write the equivalent
-C code; given a boolean expression such as `x AND (NOT x)`, you could say it always evaluates to 
-`FALSE`. However, if I gave you a magical machine and told you it makes pizza, there's no way for
-you to know (read: prove) that it actually does. It could one day make fudge brownies, or even 
-enrich uranium, if it felt like it. 
+C code; given a boolean expression such as `x AND (NOT x)`, you could say it's a contradiction. 
+However, if I gave you a magical machine and told you it makes pizza, there's no way for you to 
+know (read: prove) that it actually does. It could one day make fudge brownies, or even enrich 
+uranium, if it felt like it. 
 
 ### Great Power ###
 
@@ -46,7 +47,7 @@ The problem itself is quite meaningless, especially since Turing had proved (193
 but the idea behind it is important: it's a proof that *more power = less reasoning*. Many problems
 are [reducible](http://en.wikipedia.org/wiki/Reduction_(complexity%29) to the halting problem; for 
 instance, there could never be a program that validates the correctness of that another program,
-meaning, you cannot (mechanically) prove that a piece of code is free of bugs (in the general case, 
+meaning, you cannot mechanically prove that a piece of code is free of bugs (in the general case, 
 of course). 
 
 And now we get to a very interesting question: what is a "computer program", from a well-defined,
@@ -58,10 +59,10 @@ This "thesis" is vague by nature, as it tries to capture the vague notion of wha
 but it finally gives us a mathematical model to work with.
 
 A Turing machine comprises of a "movable head" that slides on an endless tape, made of cells. Each
-such cell contain an alphabet symbols (say, `0` or `1`), and the head can move left or right, 
+such cell contain an alphabet symbol (say, `0` or `1`), and the head can move left or right, 
 read the symbol it currently stands on, or rewrite it. It's a surprisingly simple and *mechanical* 
-description -- but it's stronger than any (finite) computer we'll ever have. You may already notice
-the resemblance between Turing machines and the way von-Neumann computers work, but this 
+description -- but it's stronger than any (finite) computer we'll ever have. You may have already 
+noticed the resemblance between Turing machines and the way von-Neumann computers work, but this 
 formalism seems too "technical" or "low level"... is there another formalism we can use, of a 
 more mathematical nature? Are there other *models of computation* that are equivalent in power?
 
@@ -69,9 +70,9 @@ The answer came at about the same time as the invention of the Turing machine: *
 which looks at computability from a different angle: mathematical functions. Λ-calculus is 
 concerned with λ-abstractions, which provide easy syntax and semantics for the definition of 
 functions, such as `λx. x + 2` (a function that adds 2 to `x`). Since, these functions may be 
-recursive, their power is equivalent to Turing machines, so that any program that can be expressed
-in one formalism can be converted to the other (and in fact, this exact conversion is performed by 
-compilers and interpreters of *functional languages*). 
+recursive, their power is equivalent to that of Turing machines, thus that any program that can be 
+expressed in one formalism can be converted to the other (and in fact, that's exactly what compilers
+of *functional languages* do). 
 
 The term "λ abstraction" is also very accurate, as it implies the notion of the black-box we 
 discussed earlier: the only thing you can do with a λ function is apply it to arguments. 

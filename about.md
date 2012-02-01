@@ -5,7 +5,10 @@ section: about
 description: About Me
 ---
 
-<!-- img src="/static/res/about-me.jpg" style="float:right;"/ -->
+<a href="http://www.facebook.com/ronsho">
+<img src="http://a2.sphotos.ak.fbcdn.net/hphotos-ak-ash4/383804_10150547482383336_630468335_10951226_1913160519_n.jpg" 
+width="100%" title="A photograph of Tel Aviv by Ronsho, (C) 2012" 
+alt="A photograph of Tel Aviv by Ronsho, (C) 2012"/></a>
 
 Some background: I'm 26 years old, married, living in Tel Aviv. I'll be graduating this year from 
 the Tel Aviv University, where I study Computer Science and Generative Linguistics (aiming at
