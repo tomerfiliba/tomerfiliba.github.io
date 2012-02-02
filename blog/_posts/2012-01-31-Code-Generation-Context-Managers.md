@@ -3,6 +3,7 @@ layout: blogpost
 title: Code Generation using Context Managers
 description: Introducing a code generation toolkit that achieves correlation between the
              generator code and the generated code, using context managers
+tags: [python]
 ---
 
 <img src="/static/res/2012-01-31-code.jpg" style="float:right; width:217px;" />
@@ -24,12 +25,12 @@ def generate_proxy(typeinfo):
     ]
     for attr in typeinfo.attributes:
         if attr.get:
-            lines.append("    public %s get%s() {" % (attr.typename, 
+            lines.append("    public %s get%s() {" % (attr.typename,
                                                     attr.name,))
             lines.append("        // ...")
             lines.append("    }")
         if attr.set:
-            lines.append("    public void set%s(%s value) {" % (attr.name, 
+            lines.append("    public void set%s(%s value) {" % (attr.name,
                                                             attr.typename))
             lines.append("        // ...")
             lines.append("    }")

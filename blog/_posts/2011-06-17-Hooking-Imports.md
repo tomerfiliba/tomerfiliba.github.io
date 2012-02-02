@@ -2,6 +2,7 @@
 layout: blogpost
 title: Hooking Imports for Fun and Profit
 description: Introducing 'nimp' and some discussion on python's import mechanism
+tags: [python]
 ---
 
 I really love Python... it's so hackable that it just calls for hacking, inspiring your 

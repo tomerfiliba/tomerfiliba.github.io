@@ -1,0 +1,29 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>tomerfiliba.com | Python Blog</title>
+ <link href="http://tomerfiliba.com/blog/python-atom.xml" rel="self"/>
+ <link href="http://tomerfiliba.com/blog"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://tomerfiliba.com/blog/python-atom.xml</id>
+ <author>
+   <name>Tomer Filiba</name>
+   <email>tomerfiliba@gmail.com</email>
+ </author>
+
+ {% for post in site.categories.blog limit:50 %}
+ {% if post.tags contains "python" %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://tomerfiliba.com{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://tomerfiliba.com{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endif %}
+ {% endfor %}
+ 
+</feed>
