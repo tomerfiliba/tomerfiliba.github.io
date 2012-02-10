@@ -85,12 +85,12 @@ we'll use the `TerminalDialogRunner`.
 And how does it look like? When running on a terminal:
 
 <a href="/static/res/2012-02-11-wizard-terminal.png"><img src="/static/res/2012-02-11-wizard-terminal.png" 
-title="Running as a GTK application" /></a>
+title="Running as a GTK application" width="100%" /></a>
 
 And with a single command-line switch, we run as GTK application:
 
 <a href="/static/res/2012-02-11-wizard-gtk.png"><img src="/static/res/2012-02-11-wizard-gtk.png" 
-title="Running in a terminal" /></a>
+title="Running in a terminal" width="100%" /></a>
 
 So of course it's far from perfect, but then again, it's a small research project I've only put
 ~15 hours into. It suffers from some of the problems I've listed in the deducible UI post, for 
@@ -103,8 +103,8 @@ Another benefit this design brings along is the ability to automate testing by u
 runners. Since our business logic is only exposed to the returned dictionary, we can use a
 dialog runner that actually displays nothing and returns a scripted scenario. We can even go 
 further: because our business logic "talks" in high-level primitives like `Choice`, we can compute 
-the Cartesian product of all choice-space and run through each of them. We can show that we've 
-covered all paths! And we can do this automatically... no more need for QA monkeys to hit buttons 
+the Cartesian product of all choices and run through each of them. We can show that we've 
+covered all paths! And we can do this automatically... no more need for people to hit buttons 
 and keep logs of their progress.
 
 Anyway, I just wanted to show that it's feasible.
