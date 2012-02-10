@@ -90,13 +90,13 @@ And how does it look like? When running on a terminal:
 
 <a href="http://tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png">
 <img src="http://tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png" 
-title="Running as a GTK application" width="100%" /></a>
+title="Running in a terminal" width="100%" /></a>
 
 And with a single command-line switch, we run as a GTK application:
 
 <a href="http://tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png">
 <img src="http://tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png" 
-title="Running in a terminal" width="100%" /></a>
+title="Running as a GTK application" width="100%" /></a>
 
 So of course it's far from perfect, but then again, it's a small research project I've only put
 ~15 hours into. It suffers from some of the problems I've listed in the deducible UI post, for 
