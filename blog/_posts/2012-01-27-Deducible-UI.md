@@ -14,7 +14,7 @@ This is one reason, for instance, why I hate expressions like
 retard (compiler).
 
 <a href="https://ccrma.stanford.edu/~sangwlee/256a/SharePhone/">
-<img src="/static/res/2012-01-27-sketch.jpg" style="float:right; width:250px;" /></a>
+<img src="http://tomerfiliba.com/static/res/2012-01-27-sketch.jpg" style="float:right; width:250px;" /></a>
 
 In 2006/7, I wrote some demos for [RPyC](http://rpyc.sf.net) to show how easy network-related 
 tasks become. I chose something rather complex, a chat client, to show that all the code sums
@@ -94,7 +94,7 @@ class Person {
 
 would turn into 
 
-<img src="/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
+<img src="http://tomerfiliba.com/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
 
 <!--
     +-----------------------------------------+

@@ -4,7 +4,7 @@ title: Wizard Toolkit
 tags: [python]
 ---
 
-Following my [Deducible UI post](/blog/Deducible-UI), and following some of the criticism it had 
+Following my [Deducible UI post](http://tomerfiliba.com/blog/Deducible-UI), and following some of the criticism it had 
 received, I'd like to share something I've been working on (read: *experimenting with*) at my work 
 place. You see, we have some "interactive wizards" that storage admins use to connect storage arrays 
 to their hosts (say, a DB server). These wizards prompt you with questions like your username,
@@ -84,12 +84,14 @@ we'll use the `TerminalDialogRunner`.
 
 And how does it look like? When running on a terminal:
 
-<a href="/static/res/2012-02-11-wizard-terminal.png"><img src="/static/res/2012-02-11-wizard-terminal.png" 
+<a href="http://tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png">
+<img src="http://tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png" 
 title="Running as a GTK application" width="100%" /></a>
 
 And with a single command-line switch, we run as GTK application:
 
-<a href="/static/res/2012-02-11-wizard-gtk.png"><img src="/static/res/2012-02-11-wizard-gtk.png" 
+<a href="http://tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png">
+<img src="http://tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png" 
 title="Running in a terminal" width="100%" /></a>
 
 So of course it's far from perfect, but then again, it's a small research project I've only put

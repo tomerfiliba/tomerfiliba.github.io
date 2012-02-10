@@ -5,7 +5,7 @@ description: Some more thoughts regarding the 'infix operators' post
 tags: [python]
 ---
 
-I got some reactions to the [Infix Operators](/blog/Infix-Operators) post, and wanted to point
+I got some reactions to the [Infix Operators](http://tomerfiliba.com/blog/Infix-Operators) post, and wanted to point
 out some things. First of all, I'm not the one who came up with it -- it's a recipe from the 
 Python Cookbook that's been posted in 2005. I'm not taking credit for it or anything, I just
 said I loved the idea and I adapted the code a little. 
