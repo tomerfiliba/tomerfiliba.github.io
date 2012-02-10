@@ -4,10 +4,10 @@ title: Wizard Toolkit
 tags: [python]
 ---
 
-Following my [/blog/Deducible-UI] post, and following some of the criticism it had received, I'd
-like to share something I've been working on (read: *experimenting with*) at my work place. You see,
-we have some "interactive wizards" that storage admins use to connect storage arrays to their
-hosts (say, a DB server). These wizards prompt you with questions like your username,
+Following my [Deducible UI post](/blog/Deducible-UI), and following some of the criticism it had 
+received, I'd like to share something I've been working on (read: *experimenting with*) at my work 
+place. You see, we have some "interactive wizards" that storage admins use to connect storage arrays 
+to their hosts (say, a DB server). These wizards prompt you with questions like your username,
 the name of the pool/volume, whether it's an iSCSI or a Fiber Channel connection, etc., and then
 they go and perform what you've asked for.
 
@@ -22,7 +22,7 @@ have a pretty rigid and repetitive structure, thus we can find some abstraction 
 "expressing" wizards more compactly. This has also led to the realization that once the business 
 logic and presentation are separate, there's no reason to limit ourselves to terminal-based interaction: 
 our wizard-toolkit could do the plumbing and work with terminals, GUIs, web-browsers, etc. 
-Our business logic would remain oblivious of this -- we could have a nice GUI at zero-cost! 
+The business logic would remain oblivious of this, and we could have a nice GUI at zero-cost! 
 And last but not least, there was also the issue of *styling*, i.e., printing colored text, 
 that I wanted to get rid of.
 
@@ -31,9 +31,9 @@ structure (semantics) of the text from its styling. Instead of printing a banner
 we'll display a `Title` object, whose exact appearance is determined by a "style sheet". 
 For instance, when we're using a color-enabled terminal, the title would be printed in bold and 
 followed by an empty line; but if our terminal is color-blind, we'll render the text centered and 
-followed by line of '=' marks. Another example is error-handling: instead of printing error message 
+surrounded by `=` marks. Another example is error-handling: instead of printing error message 
 in red every time, we'll display an `Error` object; on a terminal, this would be rendered as 
-red text, but when running over a GUI, rendering this object would pop up a message box. 
+red text, but when running in a GUI, rendering this object would pop up a message box. 
 I'm going to ignore this for the rest of this post, as this is really a solved issue.
 
 Now let's get to expressing wizards, or more generally, *dialogs*. A dialog is a "container object"
@@ -85,12 +85,12 @@ we'll use the `TerminalDialogRunner`.
 And how does it look like? When running on a terminal:
 
 <a href="/static/res/2012-02-11-wizard-terminal.png"><img src="/static/res/2012-02-11-wizard-terminal.png" 
-title="Running as a GTK application" width="100%" /></a>
+title="Running as a GTK application" /></a>
 
 And with a single command-line switch, we run as GTK application:
 
 <a href="/static/res/2012-02-11-wizard-gtk.png"><img src="/static/res/2012-02-11-wizard-gtk.png" 
-title="Running in a terminal" width="100%" /></a>
+title="Running in a terminal" /></a>
 
 So of course it's far from perfect, but then again, it's a small research project I've only put
 ~15 hours into. It suffers from some of the problems I've listed in the deducible UI post, for 
