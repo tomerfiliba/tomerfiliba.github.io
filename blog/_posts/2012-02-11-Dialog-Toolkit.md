@@ -29,11 +29,12 @@ logic and presentation are separate, there's no reason to limit ourselves to ter
 our wizard-toolkit could do the plumbing and work with terminals, ncurses, GUIs, web-browsers, etc. 
 The business logic would remain oblivious, and we could have a nice GUI at zero-cost! 
 
-The was also a second issue of *styling*, i.e., printing text in color, that I wanted to get rid of.
-This part was easy: I thought, why not employ the model of HTML and CSS? Let's separate the 
+There was also a second issue of *styling*, i.e., printing text in color, that I wanted to get r
+id of. This part was easy: I thought, why not employ the model of HTML and CSS? Let's separate the 
 structure (semantics) of the text from its styling. Instead of printing a banner for titles, 
 we'll display a `Title` object, whose exact appearance is determined by a "style sheet" (a class,
 of course, not actually a text document). 
+
 For instance, when we're using a color-enabled terminal, the title would be printed in bold and 
 followed by an empty line; but if our terminal is color-blind, we'll render the text centered and 
 surrounded by `=` marks. Another example is error-handling: instead of printing error message 
@@ -74,7 +75,7 @@ if len(sys.argv) == 2 and sys.argv[1] == "--gtk":
     MyApp.run(GtkDialogRunner("My App"))
 else:
     MyApp.run(TerminalDialogRunner(ANSIRenderer))
-{% endhighligt %}
+{% endhighlight %}
 
 It's a short and incomplete snippet of course, as I'm only going to cover the big picture. The 
 `main` function creates a dialog object `d` and passes it to `ui.run`, which "runs" the dialog
