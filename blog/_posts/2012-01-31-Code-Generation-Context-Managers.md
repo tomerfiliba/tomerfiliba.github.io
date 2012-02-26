@@ -53,7 +53,7 @@ have to know the indentation level you're calling them at, or the generated code
 unreadable. This might seem negligible, but think of languages where indentation matters, like
 Python...
 
-The fundamental problem with this approah (and similar ones) is that the **code generator does 
+The fundamental problem with this approach (and similar ones) is that the **code generator does 
 not reflect the structure of the generated code**. The two are diseparate, while it's quite 
 obvious they should be correlated.  
 
