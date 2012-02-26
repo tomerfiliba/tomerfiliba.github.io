@@ -33,10 +33,33 @@ popped. This is how we take care of indentation, curly-braces, etc.
 But of course this pattern is much more useful. Consider something like this:
 
 {% highlight python %}
+class Env(object):
+    def __init__(self):
+        self._envstack = [os.environ]
+    @contextmanager
+    def new(self, **kwargs):
+        self._envstack.append(self._envstack[-1].copy())
+        self._envstack[-1].update(kwargs)
+        yield
+        self._envstack.pop(-1)
+env = Env()
 
+with env.new(PATH = "/tmp/foo/bin", SHELL = "zsh"):
+    # processes created here will use the modified environment
 {% endhighlight %}
 
+We can also leverage this concept to run commands as different users. Here's a sketch:
 
+{% highlight python %}
+cmd.run("ls")                       # as current user
+with cmd.as_user("root"):
+    cmd.run("ls", "/proc")          # as `root`
+    with cmd.as_user("mallory"):
+        cmd.run("rm", "-rf", "/")   # as `mallory`
+    cmd.run("cat", "/etc/passwd")   # back as `root` again
+{% endhighlight %}
+
+In essence, every time you want to make temporary/local changes or change the 
 
 ## Contextbacks ##
 Many times it's useful to pass two functions
