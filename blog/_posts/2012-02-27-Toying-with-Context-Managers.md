@@ -2,6 +2,7 @@
 layout: blogpost
 title: Toying with Context Managers
 description: Highlights some rather surprising use-cases of context managers
+tags: [python]
 ---
 
 <a href="http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg">
@@ -9,7 +10,7 @@ description: Highlights some rather surprising use-cases of context managers
 title="Very Demotivational" style="width: 250px; float: right" /></a>
 
 As I promised in the [code-generation using context managers post](http://tomerfiliba.com/blog/Code-Generation-Context-Managers),
-I wanted to review some more, rather surprising, examples where context managers prove very handy.
+I wanted to review some more, rather surprising, examples where context managers prove handy.
 So we all know we can use context managers for resource life-time management: before entering the
 `with`-suite we allocate (open) the resource, and when we leave the suite, we free (close) it --
 but there's much more to context managers than meets the eye.
@@ -71,7 +72,7 @@ helpful.
 
 ## Contextbacks ##
 
-*Contextbacks*, a pun on *callbacks*, are contexts you pass as an argument to other functions. Many
+*Contextbacks*, a pun on *callbacks*, are contexts you pass as arguments to other functions. Many
 times it's useful to pass a before-function and an after-function, and contextbacks are a nice 
 way to encapsulate this. So instead of this:
 
@@ -132,21 +133,23 @@ operation, e.g.
 {% highlight python %}
 with format_disk("/dev/sda1") as d1, format_disk("/dev/sdb1") as d2:
     while not d1.is_done() or not d2.is_done():
-        print "%s is being formatted, %d%% completed" % (d1.devfile, d1.get_progress())
-        print "%s is being formatted, %d%% completed" % (d2.devfile, d2.get_progress())
+        print "%s is being formatted, %d%% completed" % (d1.devfile, 
+                d1.get_progress())
+        print "%s is being formatted, %d%% completed" % (d2.devfile, 
+                d2.get_progress())
 {% endhighlight %}
 
-And voila! You have thread-less, light-weight asynchronous framework at hand... a bit like 
+And voila! You have a thread-less, light-weight asynchronous framework at hand... a bit like 
 using a reactor, but without rewriting your code.
 
-And last, if you can't tweak the blocking parts of the code (e.g., third party library), you can 
+And last, if you can't tweak the blocking parts of the code (e.g., third party libraries), you can 
 use the "defer to thread" or "defer to process" approach, a la [twisted](http://twistedmatrix.com/trac/):
 
 {% highlight python %}
 @contextmanager
 def defer_to_thread(func):
-    thd = Thread(target = func)  # better use a thread-pool
-    thd.start()
+    thd = Thread(target = func)  # it would be smarter to use a 
+    thd.start()                  # thread-pool
     yield thd
     thd.join()
 
