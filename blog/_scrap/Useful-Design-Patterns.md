@@ -56,6 +56,4 @@ Python's `file` type is an excellent example of this: you cannot just create an 
 * Null, State, Strategy, RAII 
 * Reactor
 * Observer
-* Visitor
-* Generic functions and [Parameteric Polymorphism](http://en.wikipedia.org/wiki/Parametric_polymorphism)
 
