@@ -14,7 +14,7 @@ So we all know we can use context managers for resource life-time management: be
 `with`-suite we allocate (open) the resource, and when we leave the suite, we free (close) it --
 but there's much more to context managers than meets the eye.
 
-## Stacks, for Fun and Profit ##
+### Stacks, for Fun and Profit ###
 
 We've seen this one in the code-generation post, but we can generalize this notion a bit. Every time
 we enter a `with` block, we'd append an element to a list, which we'd pop on exit. Consider this 
@@ -69,7 +69,7 @@ with cmd.as_user("root"):
 In essence, every time you want to make local/undoable changes to your state, this pattern proves
 helpful. 
 
-## Contextbacks ##
+### Contextbacks ###
 
 *Contextbacks*, a pun on *callbacks*, are contexts you pass as arguments to other functions. Many
 times it's useful to pass a before-function and an after-function, and contextbacks are a nice 
@@ -92,7 +92,7 @@ def f(ctxback):
 
 Not a ground-breaking change, but I prefer it as it's more concise.
 
-## Lightweight Asynchronism ##
+### Lightweight Asynchronism ###
 
 This is probably my favorite use case for contexts: you can use them to *pipeline* or *interleave*
 long-lasting tasks. You can think of contexts are degenerate forms of [coroutines](http://en.wikipedia.org/wiki/Coroutine),
