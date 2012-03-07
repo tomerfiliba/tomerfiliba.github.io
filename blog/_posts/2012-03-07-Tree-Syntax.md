@@ -5,6 +5,8 @@ tags: [python]
 description: Demonstrates a quick and readable way to represents trees in python code
 ---
 
+<img src="http://tomerfiliba.com/static/res/2012-03-07-tag.jpg" title="TAG trees" style="float:right" width="250px" />
+
 I'm working on a parser for [Tree Adjoining Grammar (TAG)](http://en.wikipedia.org/wiki/Tree-adjoining_grammar) 
 for this seminar I'm taking. TAG is an extension of context-free grammar (CFG) that's more powerful
 while still being polynomially-parsable. Anyhow, TAG makes use of "tree production rules" instead of 
@@ -12,8 +14,6 @@ the "linear" production rules of CFG: instead of `S -> NP VP`, you'd have a smal
 which being `S`, having `NP` and `VP` as its children. Of course these trees can be more than 
 two-level deep, and they go all sorts of operations such as substitution and adjunction, but that's
 for the parser.
-
-<img src="http://tomerfiliba.com/static/res/2012-03-07-tag.jpg" title="TAG trees" style="float:right" width="250px" />
 
 So I needed a compact and (hopefully) readable way to express such trees in my code. At first I 
 used lots of parenthesis, which was ugly and cumbersome, but then I devised this:
