@@ -13,6 +13,8 @@ which being `S`, having `NP` and `VP` as its children. Of course these trees can
 two-level deep, and they go all sorts of operations such as substitution and adjunction, but that's
 for the parser.
 
+<img src="http://tomerfiliba.com/static/res/2012-03-07-tag.jpg" title="TAG trees" style="float:right" width="250px" />
+
 So I needed a compact and (hopefully) readable way to express such trees in my code. At first I 
 used lots of parenthesis, which was ugly and cumbersome, but then I devised this:
 
