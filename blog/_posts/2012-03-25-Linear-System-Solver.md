@@ -50,7 +50,8 @@ resolved to constant values, variables will be assigned *dependent expressions*:
 >>>
 >>> sol = solve(m2, ["x", "y", "z"])
 >>> print sol
-{'y': <BinExpr (2.0 - (-6.0 * z))>, 'x': <BinExpr (-2.0 - (16.0 * z))>, 'z': <FreeVar z>}
+{'y': <BinExpr (2.0 - (-6.0 * z))>, 'x': <BinExpr (-2.0 - (16.0 * z))>, 
+    'z': <FreeVar z>}
 {% endhighlight %}
 
 As you can see now, `z` is a *free variable* and `x` and `y` are *dependent* on it. Of course more
@@ -65,7 +66,7 @@ for `z` is known, we can "fully evaluate" the dependent expressions:
 The code is available on my [github page](https://github.com/tomerfiliba/tau/blob/850ff76bf59c80cd9eb18100986205276125508e/sadna/linear_solver.py).
 Note: all numbers are represented as `Decimals`, to avoid loss of precision as much as possible, 
 and I'm using an "epsilon" value of `1E-20` to equate numbers to each other (meaning, `x == y` iff 
-`abs(x-y) < epsilon`).
+`abs(x-y) <= epsilon`).
 
 
 
