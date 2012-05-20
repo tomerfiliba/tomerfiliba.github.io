@@ -64,7 +64,7 @@ Construct 2.5
 I had to do some Construct work recently, and I missed the conciseness of ``this`` expressions,
 so I took the time to back-port them to Construct 2. I sent a pull request to Corbin, but he's 
 a bit too busy to maintain the library on a regular basis now, so he's created a github 
-*organization* and [moved the repository to there](https://github.com/construct/construct); 
+*organization* and [moved the repository there](https://github.com/construct/construct); 
 this is where Construct will be developed from now on.
 
 Tinkering with the old code again got me sentimental, and I started to do some long-awaited 
