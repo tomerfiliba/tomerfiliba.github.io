@@ -184,3 +184,6 @@ div.blog-post {
 	margin-top: 25px;
 }
 
+div.highlight pre {
+	overflow-x: scroll;
+}
