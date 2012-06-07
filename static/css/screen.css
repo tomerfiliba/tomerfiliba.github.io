@@ -185,5 +185,5 @@ div.blog-post {
 }
 
 div.highlight pre {
-	overflow-x: scroll;
+	overflow-x: auto;
 }
