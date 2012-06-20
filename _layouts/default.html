@@ -73,6 +73,16 @@ layout: nil
                 data-show-faces="false"></div>
                 </p>
                 {% endif %}
+
+                {% if page.side_image %}
+                    {% if page.side_image_link %}
+                        <a href="{{ page.side_image_link }}">
+                    {% endif %}
+                    <img src="{{ page.side_image }}" style="float: right; width: 250px" />
+                    {% if page.side_image_link %}
+                        </a>
+                    {% endif %}
+                {% endif %}
                 
                 {{ content }}
                 
