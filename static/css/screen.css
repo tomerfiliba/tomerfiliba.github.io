@@ -20,6 +20,10 @@ p {
     line-height: 180%;
 }
 
+#content p+p {
+    text-indent: 1.5em;
+}
+
 navigation {
     line-height: 190%;
 }
@@ -150,14 +154,16 @@ a.blog-title {
 {
 	color:#000;
 	font-size: 180%;
-	margin: 0 0 .5em;
+	margin: 0 0 1em 0;
 }
 
 #content h2
 {
-    color:#000;
+    color:#66B;
     font-size: 150%;
-    margin: 0 0 .5em;
+    margin: .5em 0 .5em 0;
+    padding: .5em 0 2px 0;
+    border-bottom: 1px dotted #DDD;
 }
 
 #footer

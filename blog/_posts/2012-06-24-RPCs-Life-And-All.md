@@ -7,17 +7,16 @@ side_image: 2012-06-24-duckface.jpg
 ---
 
 A colleague of mine, [Gavrie Philipson](https://twitter.com/#!/gavrieph), has written an 
-interesting [blog post](http://philipson.co.il/blog/2012/06/20/why-i-dont-like-rpc/) titled 
-*"Why I Don't Like RPC"*, in which he explains that transparent/seamless RPCs (a la 
-[RPyC](http://rpyc.sf.net)) make debugging and reasoning efforts hard. For instance,
-you might work with an object (a proxy) that points to an object on the server process,
-which, in turn, is also a proxy that points to an object on yet another server process,
-and ideally, your local code shouldn't be aware of the complexity ("number of hops") or 
-the details.
+interesting blog post titled [Why I Don't Like RPC]((http://philipson.co.il/blog/2012/06/20/why-i-dont-like-rpc/)), 
+in which he explains that transparent/seamless RPCs (a la [RPyC](http://rpyc.sf.net)) make 
+debugging and reasoning efforts hard. For instance, you might work with an object (a proxy) that 
+points to an object on the server process, which, in turn, is also a proxy that points to an 
+object on yet another server process, and ideally, your local code shouldn't be aware of the 
+complexity ("number of hops") or the details.
 
 Well, he won't allow commenting on his blog, so I'm forced to formulate my response here :)
 Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover some 
-broader aspects of the issue (at least the ones I find relevant).
+broader aspects of the issue... turned out much longer than I anticipated
 
 ## On Transparency ##
 
@@ -134,8 +133,8 @@ if the network layer knew how to reconnect and resume the session, or automatica
 request after some timeout (all configurable, of course), there would be no need for the 
 application to be aware of anything. And, once you "lift" your code up from the socket layer,
 you can enable things like "moving targets", where you may switch an IP address (wifi/3G) and the 
-connection will just "follow you"; the *session* would not be bound to an endpoint. These are 
-just some of the issues layer5 attempted to solve.
+connection will just "follow you"; the *session* would not be bound to a "physical endpoint". 
+These are just some of the issues that layer5 attempted to solve.
 
 ## On RPCs ##
 
@@ -179,12 +178,13 @@ framing, serialization, negotiation/versioning, discovery, you name it (*Filiba'
 This observation has brought me to the conclusion that doing network programming at the 
 "byte level" is wrong, and that a **general-purpose RPC layer** is the **right primitive** for this.
 
-A general purpose RPC would be language-agnostic, support only by-value types, such as strings,
-integers and lists (anything more complex can be built on top of that). If would also make no 
-assumptions on how remote functions operate, if would only care for their signature. You can think
-of it as a more structured message-passing protocol, but one that can straight-forwardly emulate 
-any message-passing protocol, RPC, etc. It's f***ing 2012, I want to 
-``GET("/index.html", Agent="Chrome")``, not formulate ``\r\n``-separated strings or 
+A general purpose RPC would be *language-agnostic*, support only simple by-value types, such 
+as strings, integers and lists (anything more complex can be built on top of that). If would also 
+make no assumptions on how remote functions operate, if would only care for their signature. 
+You can think of it as a more structured message-passing protocol, where you replace the notion
+of "message codes" by "function names". This way, it's easy to see that one can straight-forwardly 
+emulate any message-passing protocol or more advanced RPC, over this layer. Heck, it's f***ing 
+2012, I want to ``GET("/index.html", Agent="Chrome")``, not formulate ``\r\n``-separated strings or 
 care about XML/JSON.
 
 Layer5 (mentioned in the previous section) was to expose such a generic RPC, upon which 
