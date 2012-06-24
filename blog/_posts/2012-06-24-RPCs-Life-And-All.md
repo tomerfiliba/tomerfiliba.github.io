@@ -16,8 +16,8 @@ complexity ("number of hops") or the details -- but that's not always the case.
 
 Well, he won't allow commenting on his blog, so I'm forced to formulate my response here :)
 Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover some 
-broader aspects of the issue... and it kept getting longer and longer, until I got this behemoth 
-of a blog post. So I'm attaching a short *tl;dr info box*:
+broader aspects of the issue... and it kept getting longer and longer, until I got this 
+OMG-behemoth of a blog post. So I'm attaching a **TL;DR info box**:
 
 > * Transparent object proxying is only the logical way to extend RPCs to duck-typed languages
 > * Asking for a *clear distinction* between local and remote objects ultimately means you're
@@ -304,8 +304,8 @@ proxies would be invalidated.
 But all is not lost: if you only need references to serializable objects, you might as well keep
 this dictionary as a DB table. Since the data, including object IDs, would not be lost when the 
 server gets restarted, resuming a dropped session is easy. So, if you could live with limited 
-functionality, you can be backed by a DB -- but it's not like HTTP offers any alternative to
-that. At least keep the code pythonic and not full of HTTP curses.
+functionality, you can be backed by a DB -- but it's not that HTTP offers a better solution.
+At least keep your code pythonic and not full of HTTP curses.
 
 Another alternative, which I'll demonstrate in the next section, is making the changes directly
 "in the real world": instead of *storing* state, make the changes on long-living entities, and 
@@ -314,9 +314,60 @@ restarted, you'll never use stale data.
 
 ## On Testing ##
 
-TAAS from a bird's eye view
+I'm working now on a testing framework of quite a complicated nature: first, it serves as a 
+resource-allocator for hosts and other testing equipment; second, in order to run tests, it must 
+create a suitable environment for them. But this is where it gets fun: in order to do set up the 
+environment, I must use the utilities that I set out to test... because that's exactly what they 
+do. Chicken and egg, anybody?
 
+After a couple of days to toying with it, I settled for the following architecture: 
 
+* Tests are written normally using ``unittest``, but they also make use of a little module (8 LoC 
+  or so) that provides them with a means to connect to the resource allocator; this module 
+  basically hides the details of setting up an RPyC connection (as the server is well known, etc).
+* The resource allocator exposes a simple service, with methods like ``get_system(version = 17)``. 
+  It collects the information about the systems from a third-party service and caches it in-memory, 
+  so finding a matching system is quick and efficient. Basically, the resource allocator only 
+  takes care of distributing systems randomly (we do want to allow for two tests to run on the 
+  same system, but wish to avoid unnecessary contention).
+* The object returned by ``get_system`` is an instance of a peculiar class called 
+  ``HostViewOfSystem``. It basically represents a how the host (running the test) views the system 
+  that's been allocated to it, and it has methods like ``get_resource_from_system()`` that look 
+  for an unused resource (or create one) and take care of *making it usable by the host*. 
 
+There are quite a few details, but I hope I managed to make the design clear. On the other hand, 
+it doesn't seem particularly interesting -- until we get to the last bullet-point -- making the
+resource usable by the host. In order to do that, the server (resource allocator) creates a 
+temporary directory on the host, onto which it copies (over RPyC) several python packages that
+are required for the task. It then fires up a new RPyC server on the host, and sets its 
+``PYTHONPATH`` to this temporary location. This RPyC server is based on the fresh-from-the-oven 
+``OneShotServer``, which is capable of serving a single client and then quits. The server chooses 
+a random port and reports it over stdout, to the resource allocator, who then connects to it.
+Then, the ``HostViewOfSystem`` object is given a reference to the newly created RPyC service,
+and it uses it to manipulate the host machine in order to set up the environment. Here's a sketch:
 
+    +---Test Host---+            +---ResAlloc Server---+
+    |               |            |                     |
+    |  -----------  |  .-----------> HostViewOfSystem  |
+    |  | Test    |____/          |     |               |
+    |  | process |  |            |     |               |
+    |  -----------  |     _____________/               |
+    |               |    /       |                     |
+    |  -----------  |   /        |                     |
+    |  | Newly   <-----*         |                     |
+    |  | started |  |            |                     |
+    |  | RPyC    |  |            +---------------------+ 
+    |  | server  |  |
+    |  -----------  |
+    |               |
+    +---------------+
+
+This quite tiresome setup actually takes only ~30 lines of code (and around one second to build), 
+and it allows the tested utilities to rely on *stable versions* of themselves. The stable versions
+are fetched from the resource allocator server, thus we make absolutely no assumptions on the 
+state of the host. Moreover, when we "allocate" a resource for a specific test, we *mark* the 
+resource on the system as "in used": it's neither stored in-memory, nor in a DB -- it's marked 
+directly on the resource, as metadata. This way, if the resource allocator is restarted, 
+no state is lost -- the new instance will read the most up-to-date state from the "real world".
+There -- a semi-stateless testing framework based on RPyC... and now I go to bed.
 
