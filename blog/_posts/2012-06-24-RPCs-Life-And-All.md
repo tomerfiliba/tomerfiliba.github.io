@@ -11,12 +11,25 @@ interesting blog post titled [Why I Don't Like RPC]((http://philipson.co.il/blog
 in which he explains that transparent/seamless RPCs (a la [RPyC](http://rpyc.sf.net)) make 
 debugging and reasoning efforts hard. For instance, you might work with an object (a proxy) that 
 points to an object on the server process, which, in turn, is also a proxy that points to an 
-object on yet another server process, and ideally, your local code shouldn't be aware of the 
-complexity ("number of hops") or the details.
+object on yet another server process. Ideally, your local code shouldn't be aware of the 
+complexity ("number of hops") or the details -- but that's not always the case.
 
 Well, he won't allow commenting on his blog, so I'm forced to formulate my response here :)
 Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover some 
-broader aspects of the issue... turned out much longer than I anticipated
+broader aspects of the issue... and it kept getting longer and longer, until I got this behemoth 
+of a blog post. So I'm attaching a short *tl;dr info box*:
+
+> * Transparent object proxying is only the logical way to extend RPCs to duck-typed languages
+> * Asking for a *clear distinction* between local and remote objects ultimately means you're
+>   asking for a statically-typed language; it doens't make sense to ask for it in python
+> * Network programming is hard, and it's a pity we still work at the socket level; we should 
+>   strive for a decent fifth layer that would eliminate all the unnecessary complexity
+> * General-purpose RPCs are the **right primitive** over which network programming should be
+>   abstracted: it's the missing fifth layer, which every network application reinvents
+> * HTTP is a half-baked, broken alternative to a fifth layer; I'm glad ZeroMQ and others are
+>   starting to loosen its grasp.
+> * RPyC **can** be used efficiently and correctly, it's not an impossible feat. Also, a show 
+>   case of how I'm using RPyC to build a testing environment.
 
 ## On Transparency ##
 
@@ -227,72 +240,77 @@ Coming back to Gavrie's post, he brings up two additional points. The first:
 > forth all the time, and tens of implicit network round-trips introduce latency all around the code.
 
 Performance is a tricky thing. First, RPyC is mostly ever used on local, secure networks, where 
-latency and round-trip time are low (so unless you build a self-resonanting dependency graph, 
-there shouldn't be any problem). Second, the only places that do suffer from RTT are tight-loops,
-and to that end, RPyC [has solutions](http://rpyc.sourceforge.net/api/utils_classic.html#rpyc.utils.helpers.buffiter).
-Thirdly, transparency and abstraction layer simplify your life, but they always hide incurred 
-complexity. That's the price your have to pay for being ignorant of the network behind.
+latency and round-trip time (RTT) are low -- so unless you do something really flawed, you shouldn't 
+experience noticeable degradation. Second, the only places that do suffer from RTT are tight-loops,
+and to that end, RPyC [already has solutions](http://rpyc.sourceforge.net/api/utils_classic.html#rpyc.utils.helpers.buffiter).
+And thirdly, transparency (like any form of abstraction) hides the underlying complexity, which 
+means you won't be able to optimize all the way. RPyC makes a choice for simplicity and pythonicity
+every time, at the expense of performance.
 
-From my many years of using RPyC, I've never experienced performance issues that didn't originate
-from (a) the use of threading and locks in python (b) really bad code. And you can always apply
-lightweight caching techniques, such as ``myfunc = conn.modules["foo.bar.spam"].myfunc``, to save 
-lookups.
+From my many years of using RPyC, I must say I've never experienced performance **issues** that 
+didn't originate from the use of threading and locks in python, or really bad code. And if the times
+are tough, you can always apply lightweight optimization techniques, such as locally "caching" 
+remote objects that were obtained through a series of lookups, in variables (e.g., 
+``myfunc = conn.modules["foo.bar.spam"].myfunc``)... it's normally not that hard. I'm sure Gavrie
+has experienced performance issues with RPyC, but I can hardly imagine it could not be solved by
+reasonable amounts of refactoring.
 
 Which brings us to the last point Gavrie makes: 
 
 > I don’t like RPC, especially not stateful RPC that supports access of remote objects by reference
 
-I hope we already agreed that a general-purpose RPC equivalent (if not better than) to any 
-reasonable network protocol, so it's really not RPCs that Gavrie hates but stateful/object-proxying
-ones. This invites another, rather philosophic, question: what is *state*? What does it mean that
-a protocol is *stateless*? I'd guess philosophies like [REST](http://en.wikipedia.org/wiki/REST) 
-come to mind, but the question still remains. From the broadest Turing-machine perspective, if 
-REST or any other protocol were truly stateless, they would have no *effect* on the world and 
-they would of little significance (you could call them *read-only* protocols). Just to make it 
-clear -- ``POST``-ing to a REST interface to add a record to some database table is clearly 
-*stateful*: a new row has been created (previously, queries on its key would fail, while now 
-they'd succeed). 
+I hope we already agreed that a general-purpose RPC is equivalent (if not better than) to any 
+"normal" network protocol, so it's really not RPCs that Gavrie hates but stateful/object-proxying
+sessions. This invites another, rather philosophic, question: what is *state*? What does it mean 
+that a protocol is *stateless*? I'd guess philosophies like [REST](http://en.wikipedia.org/wiki/REST) 
+come to mind, but that's just a buzzword. From the broadest Turing-machine perspective, if REST 
+or any other protocol were truly stateless, they would have no *effect* on the world and thus would 
+be of little significance (they'd be *read-only* protocols). Just to stress this point -- 
+``PUT/POST``-ing to a RESTful interface, adding/altering a record in a database table, is clearly 
+*stateful*: you changed the state of the DB. 
 
-Therefore, all of these just boast themselves with the term *stateless*, while they mean something 
-very different. In lack of a better term, I'd use **atomicity, durability, and reboot-ability** --
-which we'll discuss in a moment. Just a note on REST: in REST, there's also a sort of idempotency, 
-as GET requests should always return the same result for the same URI (but even that's no 
-guaranteed). Anyway, the [CRUD model](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+Therefore, these buzzword-rich protocols boast themselves with the term *stateless*, while they 
+mean something very different. In lack of a better term, I'd use **atomicity, durability, 
+and reboot-ability** -- which we'll discuss next. And just a last bit of REST: REST has a notion
+of idempotency, as GET requests for the same URI should always return the same result (but that's 
+not guaranteed). Anyway, the [CRUD model](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 which REST employs is quite limited and fits only so many real-life problems (many other problems 
-can be *reduced* to CRUD, but I don't suppose people consider that the "right way").
+can be *reduced* to CRUD, but I don't suppose people would consider this the "right way").
 
-Atomicity and durability come from the [ACID](http://en.wikipedia.org/wiki/ACID) philosophy of 
+*Atomicity* and *durability* come from the [ACID](http://en.wikipedia.org/wiki/ACID) philosophy of 
 databases, and are granted to you freely, assuming you use a DB (who doesn't?). They basically mean 
-that a transaction either fully happens (and then its safely/permanently stored), or nothing happens 
-(no partial results are allowed). Reboot-ability is a term I just made up, and it means your server 
-might crash and be restarted, and the client shouldn't be able to detect any difference (other 
-than unavailability, which may be compensated for by a cluster). Inherently, it means you don't 
-trust your server to survive over long periods of time, and therefore prefer to make it (the 
-server **process**) stateless. In effect, it means the server will never make changes to the 
-"world" outside of DB transaction, so that a failed transaction could be rolled back, and a new
-server process could resume from where the previous one failed. But note the difference: the 
-server process is stateless, not the protocol. 
+that a transaction either fully happens (and then its permanently stored), or nothing happens 
+(so that no partial results may exist). Reboot-ability is a term I just made up, and it means 
+your server might crash and be restarted, or your entire lab might burn away, and the client 
+shouldn't be able to detect any difference (other than temporal unavailability, which may be 
+compensated for by a cluster). Inherently, it means you don't trust your server to survive over 
+long periods of time, and therefore prefer to make it (the server **process**) stateless. 
+In effect, it means the server will never make "changes to the world" outside of DB transaction, 
+so that a failed transaction could be rolled back, and a new server process could resume where the 
+previous one failed. But note the difference: **the server process is stateless, not the protocol**. 
 
 HTTP originally was a connection-less protocol (albeit over TCP), where each request was treated 
-separately from the rest and there's hardly any notion of a session. This means that every request 
-should carry with it any stateful information it requires. Normally, in order to prevent requests 
-from growing wildly, cookies are used -- which means the server has to store a lot of data, into 
-which the cookie serves as a key. With time, HTTP 1.1 added more state, and nowadays, websockets 
-break the concept completely.
+separately from the rest and there was hardly any notion of a session. This meant that every 
+request had to carry along with it any state information it required. In order to prevent requests 
+from growing wildly in size and choking the network, cookies were invented -- which meant the 
+server had to store session data, and the cookie was only a key. This already dents the notion
+of statelessness, and nowadays, things like websockets break it completely.
 
-RPyC, on the other hand, has a clear notion of a session: the connection holds a dictionary on 
-each end, which holds "referred objects", which are accessible to the other party according to
-their ID. This means that if a connection is dropped, there's little chance of restoring the
-lost session: the dictionaries were cleared, and object IDs may turn out different next time. 
+RPyC, on the other hand, has a clear notion of a *session*: on each end of the the connection 
+there's a dictionary of objects referred to by the other side. This means that should a connection 
+drop, there's little chance of restoring the lost session: the dictionaries are lost, and all 
+proxies would be invalidated.
+
 But all is not lost: if you only need references to serializable objects, you might as well keep
-the referred objects dictionary in a DB table. Since the data, including object IDs, would not 
-be lost when the server gets restarted, resuming a dropped session is easy. So we're limiting the 
-RPyC's functionality, but if you're backed by a DB, you have to use only serializable objects
-anyway... let's at least keep them pythonic.
+this dictionary as a DB table. Since the data, including object IDs, would not be lost when the 
+server gets restarted, resuming a dropped session is easy. So, if you could live with limited 
+functionality, you can be backed by a DB -- but it's not like HTTP offers any alternative to
+that. At least keep the code pythonic and not full of HTTP curses.
 
 Another alternative, which I'll demonstrate in the next section, is making the changes directly
-"in the world": instead of storing state, make the changes on long-living objects, and then read 
-it back from them.
+"in the real world": instead of *storing* state, make the changes on long-living entities, and 
+then read the info back from them. This way, you're always synchronized, and should you be 
+restarted, you'll never use stale data.
 
 ## On Testing ##
 
