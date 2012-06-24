@@ -26,19 +26,20 @@ and I hope you'll find it interesting.
 <h2>Latest blog posts</h2>
 
 {% for post in site.categories.blog limit: 4 %}
+{% unless post.draft %}
+
     <div class="blog-post">
         <div style="float:left;"><h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2></div>
         <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>
         <div class="blog-text" style="clear:both;">{{ post.content }}</div>
         <p><a href="{{ post.url }}">Comment on the post's page</a></p>
     </div>
+    
+{% endunless %}
 {% endfor %}
 
 <br/>
 
 <div style="text-align: right"><a href="/blog"><em>All blog posts &rarr;</em></a></div>
 
-<!--a href="http://github.com/tomerfiliba/tomerfiliba.github.com" target="_blank">
-<img style="position: absolute; top: 0; right: 0; border: 0;" 
-src="http://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub">
-</a-->
+

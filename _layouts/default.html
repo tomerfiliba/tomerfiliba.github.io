@@ -74,16 +74,6 @@ layout: nil
                 </p>
                 {% endif %}
 
-                {% if page.side_image %}
-                    {% if page.side_image_link %}
-                        <a href="{{ page.side_image_link }}">
-                    {% endif %}
-                    <img src="{{ page.side_image }}" class="blog_post_image" />
-                    {% if page.side_image_link %}
-                        </a>
-                    {% endif %}
-                {% endif %}
-                
                 {{ content }}
                 
                 {% if page.comments %}
@@ -118,11 +108,13 @@ layout: nil
                 <h1>Recent Pages</h1>
                 <div>
                 {% for p in site.posts limit: 15 %}
+                {% unless p.draft %}
                     <p>
                     <a href="{{ p.url }}">{{ p.title }}</a>
                     <br/>
                     <small><em>{{ p.categories | first | upcase}}</em> | {{ p.date | date_to_string }}</small> 
                     </p>
+                {% endunless %}
                 {% endfor %}
                 </div>
             </div>

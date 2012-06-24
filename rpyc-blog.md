@@ -11,6 +11,7 @@ feed_link: http://tomerfiliba.com/blog/rpyc-atom.xml
 <table style="border:none; width:100%;">
 {% for post in filtered_posts %}
 {% if post.tags contains "rpyc" %}
+{% unless post.draft %}
 <tr style="height: 4.5em;">
     <td style="text-align:left"><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></td>
     <td style="text-align:right"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></td>
@@ -20,6 +21,7 @@ feed_link: http://tomerfiliba.com/blog/rpyc-atom.xml
     {{ post.content | strip_html | truncatewords: 30 }}
     </td>
 </tr>
+{% endunless %}
 {% endif %}
 {% endfor %}
 </table>
