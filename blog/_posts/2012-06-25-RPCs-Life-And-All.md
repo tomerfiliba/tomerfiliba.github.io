@@ -1,9 +1,8 @@
 ---
 layout: blogpost
 title: RPCs, Life and All
-draft: true
 description: A response to Gavrie Philipson's "Why I Don't Like RPC" post
-side_image: 2012-06-24-duckface.jpg
+side_image: 2012-06-25-duckface.jpg
 ---
 
 A colleague of mine, [Gavrie Philipson](https://twitter.com/#!/gavrieph), has written an 
@@ -15,9 +14,9 @@ object on yet another server process. Ideally, your local code shouldn't be awar
 complexity ("number of hops") or the details -- but that's not always the case.
 
 Well, he won't allow commenting on his blog, so I'm forced to formulate my response here :)
-Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover some 
-broader aspects of the issue... and it kept getting longer and longer, until I got this 
-OMG-behemoth of a blog post. So I'm attaching a **TL;DR info box**:
+Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover the 
+broader aspects of the issue... However, it just kept getting longer and longer, until I got this 
+behemoth of a blog post, so I'm attaching a **TL;DR info box**:
 
 > * Transparent object proxying is only the logical way to extend RPCs to duck-typed languages
 > * Asking for a *clear distinction* between local and remote objects ultimately means you're
