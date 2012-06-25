@@ -5,7 +5,7 @@ tags: [python]
 description: Demonstrates a quick and readable way to represents trees in python code
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-03-07-tag.jpg" title="TAG trees" style="float:right" width="250px" />
+<img src="http://tomerfiliba.com/static/res/2012-03-07-tag.jpg" title="TAG trees" class="blog_post_image" />
 
 I'm working on a parser for [Tree Adjoining Grammar (TAG)](http://en.wikipedia.org/wiki/Tree-adjoining_grammar) 
 for this seminar I'm taking. TAG is an extension of context-free grammar (CFG) that's more powerful

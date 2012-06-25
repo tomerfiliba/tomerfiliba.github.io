@@ -1,0 +1,30 @@
+#sidebar
+{
+    display: none;
+}
+
+#footer
+{
+    text-align: right;
+}
+
+#content
+{
+    width: auto;
+    float: none;
+}
+
+#body-wrapper, #nav2
+{
+    width: auto;
+}
+
+img.blog_post_image {
+    max-width: 180px;
+}
+
+#navigation li a {
+    line-height: 40px;
+    border-radius: 6px;
+}
+

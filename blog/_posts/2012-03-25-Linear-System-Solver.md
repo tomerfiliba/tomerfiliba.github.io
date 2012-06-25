@@ -5,7 +5,7 @@ tags: [python]
 description: A simple and complete solver for systems of linear equations
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-03-25-gauss.png" title="Carl Friedrich" style="float:right" width="250px" />
+<img src="http://tomerfiliba.com/static/res/2012-03-25-gauss.png" title="Carl Friedrich" class="blog_post_image" />
 
 Yet another university-related post, but I really enjoyed it so I thought I'd share: for a GUI-
 workshop I'm taking, we are given GUI-layout constraints as a system of linear equations, which 

@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', "Trebuchet MS", "Myriad Pro", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2E2E2E;
+    background: #F8F8F8;
+}
+
+a img {
+    border: none;
+}
+
+p {
+    line-height: 180%;
+}
+
+code {
+    font-family: Consolas,monospace;
+}
+
+pre {
+    overflow-x: auto;
+    font-weight: normal;
+}
+
+a:active, a:visited, a:link {
+    color: #086782;
+    text-decoration: none;
+    border-bottom: 1px solid #CFDDE5;
+}
+
+a:hover {
+    color: #e56515;
+    text-decoration: none;
+    border-bottom: 1px solid #e56515;
+}
+
+a.borderless:active, a.borderless:visited, a.borderless:link, a.borderless:hover {
+    border: none;
+}
+
+a.blog-title {
+    font-size: 20px;
+}
+
+/***********************************************************************/
+/***********************************************************************/
+
+#nav-wrapper
+{
+    width: 100%;
+    background: #2E2E2E;
+    margin: 0 auto;
+}
+
+#body-wrapper, #nav2
+{
+    margin: 0 auto;
+    width: 1000px;
+}
+
+#navigation
+{
+    padding: 15px 0px 8px 0px;
+}
+
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#navigation ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+#navigation li a
+{
+    display: inline;
+    padding: 8px 20px;
+    margin-right: 4px;
+    color:#fff;
+    text-decoration: none;
+    font-weight: normal;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border: none;
+}
+
+#navigation li a:hover 
+{
+    background: #e56515; 
+    color: black;
+}
+
+#navigation li a.selected
+{
+    background: #F8F8F8; 
+    color: black;
+    font-weight: bold;
+}
+
+#header
+{
+    padding: 50px 0px 40px 0px;
+}
+
+#header, h1, h2, h3 {
+    font-family: 'Telex', "Trebuchet MS", "Myriad Pro", sans-serif;
+    -webkit-text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -moz-text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+#site-name-link
+{
+    margin: 0;
+    font-weight: 200;
+    text-decoration: none;
+    font-size: 70px;
+    letter-spacing: -3px;
+    color: #2E2E2E;
+    vertical-align: middle;
+}
+
+#sidebar
+{
+    padding: 20px 20px 0 0;
+    float: right;
+    width: 220px;
+}
+
+#sidebar h1
+{
+    color:#779125;
+    text-transform: uppercase;
+    font-size: 130%;
+    margin: 0 0 .5em;
+}
+
+#footer
+{
+    clear:both;
+    padding: 20px;
+    height: 1%;
+}
+
+/***********************************************************************/
+/***********************************************************************/
+
+#content
+{
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #E1E1E1;
+    float: left;
+    width: 700px;
+}
+
+#content p {
+    text-align: justify;
+}
+
+#content h1
+{
+    color:#000;
+    font-size: 180%;
+    margin: 0 0 1em 0;
+}
+
+#content h2
+{
+    color:#66B;
+    font-size: 150%;
+    margin: .5em 0 .5em 0;
+    padding: .5em 0 2px 0;
+    border-bottom: 1px dotted #DDD;
+}
+
+#content p>code {
+    background: #eeeeee;
+}
+
+#content li {
+    line-height: 180%;
+}
+
+#content p+p {
+    text-indent: 1em;
+}
+
+#content blockquote {
+    margin: 0em 0em 0em 2em;
+    padding-left: 4px;
+    background-color: #fff3d5;
+    border-top: 2px solid #e1cc89;
+    border-bottom: 2px solid #e1cc89;
+}
+
+#content pre
+{
+    background-color: #222;
+    color: #DDD;
+    display: block;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+/***********************************************************************/
+/***********************************************************************/
+
+div.highlight>pre { 
+    background-color: #222;
+    color: #DDD;
+    display: block;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+img.blog_post_image {
+    float: right;
+    max-width: 250px;
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+div.separator {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    width: 80%;
+    padding: 5px;
+    border-bottom: 1px solid #b1b1b1;
+}
+
+div.blog-post {
+    padding: 5px 5px 25px 5px; 
+    border-bottom: 1px dashed #b1b1b1;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+

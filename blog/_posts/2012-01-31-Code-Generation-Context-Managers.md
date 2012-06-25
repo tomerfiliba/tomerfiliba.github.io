@@ -6,7 +6,7 @@ description: Introducing a code generation toolkit that achieves correlation bet
 tags: [python]
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-01-31-code.jpg" style="float:right; width:217px;" />
+<img src="http://tomerfiliba.com/static/res/2012-01-31-code.jpg" class="blog_post_image" />
 
 When I was working on [Agnos](http://agnos.sourceforge.net), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 

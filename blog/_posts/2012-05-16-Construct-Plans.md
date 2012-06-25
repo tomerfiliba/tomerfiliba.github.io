@@ -5,7 +5,7 @@ tags: [construct]
 description: Discussing future plans for Construct
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" style="float:right" />
+<img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" class="blog_post_image" />
 
 It's been a long while since I've put time into [Construct](http://construct.wikispaces.com).
 I gave up on it somewhere in 2007, right after the release of v2.0... I think I just got bored, 
