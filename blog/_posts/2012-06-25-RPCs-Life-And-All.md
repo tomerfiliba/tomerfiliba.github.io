@@ -7,7 +7,7 @@ description: A response to Gavrie Philipson's "Why I Don't Like RPC" post
 <img src="http://tomerfiliba.com/static/res/2012-06-25-duckface.jpg" class="blog_post_image" />
 
 A colleague of mine, [Gavrie Philipson](https://twitter.com/#!/gavrieph), has written an 
-interesting blog post titled [Why I Don't Like RPC]((http://philipson.co.il/blog/2012/06/20/why-i-dont-like-rpc/)), 
+interesting blog post titled [Why I Don't Like RPC](http://philipson.co.il/blog/2012/06/20/why-i-dont-like-rpc/), 
 in which he explains that transparent/seamless RPCs (a la [RPyC](http://rpyc.sf.net)) make 
 debugging and reasoning efforts hard. For instance, you might work with an object (a proxy) that 
 points to an object on the server process, which, in turn, is also a proxy that points to an 
