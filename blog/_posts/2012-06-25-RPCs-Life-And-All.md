@@ -251,9 +251,9 @@ From my many years of using RPyC, I must say I've never experienced performance 
 didn't originate from the use of threading and locks in python, or really bad code. And if the times
 are tough, you can always apply lightweight optimization techniques, such as locally "caching" 
 remote objects that were obtained through a series of lookups, in variables (e.g., 
-``myfunc = conn.modules["foo.bar.spam"].myfunc``)... it's normally not that hard. I'm sure Gavrie
-has experienced performance issues with RPyC, but I can hardly imagine it could not be solved by
-reasonable amounts of refactoring.
+``myfunc = w.x.y.z.myfunc``)... it's normally not that hard. I'm sure Gavrie has experienced 
+performance issues with RPyC, but I can hardly imagine it could not be solved by reasonable 
+amounts of such refactoring.
 
 Which brings us to the last point Gavrie makes: 
 
