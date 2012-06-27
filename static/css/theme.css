@@ -186,7 +186,11 @@ a.blog-title {
 }
 
 #content p>code {
-    background: #eeeeee;
+    background: #EEE;
+}
+
+#content li>code {
+    background: #EEE;
 }
 
 #content li {
