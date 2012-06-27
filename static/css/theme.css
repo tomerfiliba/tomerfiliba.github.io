@@ -244,7 +244,7 @@ div.blog-post {
     margin-top: 25px;
 }
 
-@media handheld,print,only screen and (max-width:730px) {
+@media handheld, print, only screen and (max-width:730px), only screen and (max-device-width: 730px){
 
     #sidebar
     {
