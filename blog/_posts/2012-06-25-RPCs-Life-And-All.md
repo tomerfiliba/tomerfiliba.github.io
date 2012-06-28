@@ -14,7 +14,7 @@ points to an object on the server process, which, in turn, is also a proxy that 
 object on yet another server process. Ideally, your local code shouldn't be aware of the 
 complexity ("number of hops") or the details -- but that's not always the case.
 
-Well, he won't allow commenting on his blog, so I'm forced to formulate my response here :)
+Well, he won't allow commenting on his blog, so I'm forced to formulate my response here&nbsp;:)
 Naturally, I'm biased about this subject, but I thought if I'm on it, why not also cover the 
 broader aspects of the issue... However, it just kept getting longer and longer, until I got this 
 behemoth of a blog post, so I'm attaching a **TL;DR info box**:
