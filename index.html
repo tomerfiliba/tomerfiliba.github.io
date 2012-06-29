@@ -30,7 +30,7 @@ and I hope you'll find it interesting.
     <div class="blog-post">
         <div style="float:left;"><h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2></div>
         <div style="float:right;"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></div>
-        <div class="blog-text" style="clear:both;">{{ post.content | summarize }}</div>
+        <div class="blog-text" style="clear:both;">{{ post.content }}</div>
         <p><a href="{{ post.url }}">Comment on the post's page</a></p>
     </div>
     
