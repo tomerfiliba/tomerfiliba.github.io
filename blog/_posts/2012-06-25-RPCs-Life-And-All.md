@@ -31,6 +31,8 @@ behemoth of a blog post, so I'm attaching a **TL;DR info box**:
 > * RPyC **can** be used efficiently and correctly, it's not an impossible feat. Also, a show 
 >   case of how I'm using RPyC to build a testing environment.
 
+<div id="extended"/>
+
 ## On Transparency ##
 
 Gavrie's main point is that transparency opens the door to (possibly) unplanned and undesired 
