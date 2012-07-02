@@ -81,7 +81,8 @@ I'd guess most people agree that the second and third options are "inherently ba
 diverge on the first. I will try to show that *exception-wrapping* (translating exceptions) 
 is just as bad -- at least when it comes to Python. 
 
-<div class="section" id="do-not-wrap">
+<div class="section" id="do-not-wrap" />
+
 ## Do Not Wrap Exceptions ##
 
 Up until Python 3, raising an exception during the handling of a previous one, meant the traceback
