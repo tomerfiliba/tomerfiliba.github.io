@@ -36,7 +36,7 @@ concrete example would help me make my point:
   the constructor). Why? Because that's the way Java did it.
 * Also, you first *instantiate* the thread, then ``start()`` it... where's the sense in that?
   What can you *do* with an *unstarted* thread object (other than calling ``setDaemon``)? 
-  Consider ``Popen`` or ``file()`` -- the *obvious way* in python is following
+  Consider ``Popen`` or ``file()`` -- the *obvious way* in python is to follow
   [resource instantiation is acquisition](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization).
   Why introduce such transient, useless states in the lifetime of the object? The answer is that 
   in Java, there's no way to create "deferred" objects (lambda functions or 
@@ -78,10 +78,11 @@ produce (suppressible) *warnings* when you don't follow conventions. It's more o
 property, like idempotence or thread-safety... you wouldn't expect the compiler to *enforce* that.
 
 I'd guess most people agree that the second and third options are "inherently bad", but opinions
-diverge on the first. I will try to prove that *exception-wrapping* (translating exceptions) 
+diverge on the first. I will try to show that *exception-wrapping* (translating exceptions) 
 is just as bad -- at least when it comes to Python. 
 
 ## Do Not Wrap Exceptions ##
+<a class="headerlink" href="#do-not-wrap" title="Permalink to this headline">¶</a>
 
 Up until Python 3, raising an exception during the handling of a previous one, meant the traceback
 was lost. This has been finally solved, but Python 2 still accounts for the majority of the code 
