@@ -242,6 +242,10 @@ img.blog_post_image {
     margin-bottom: 0.5em;
 }
 
+div.hebrew img.blog_post_image {
+    float: left;
+}
+
 div.separator {
     margin-left: auto;
     margin-right: auto;
