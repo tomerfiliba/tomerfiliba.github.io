@@ -244,6 +244,8 @@ img.blog_post_image {
 
 #content[dir="rtl"] img.blog_post_image {
     float: left;
+    margin-right: 1.5em;
+    margin-left: 0;
 }
 
 div.separator {
