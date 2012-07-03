@@ -81,7 +81,7 @@ I'd guess most people agree that the second and third options are "inherently ba
 diverge on the first. I will try to show that *exception-wrapping* (translating exceptions) 
 is just as bad -- at least when it comes to Python. 
 
-## <a id="do-no-wrap"></a> Do Not Wrap Exceptions
+## <a id="do-no-wrap"></a> Do Not Wrap Exceptions <a href="#do-not-wrap" class="headerlink">&sect;</a> ##
 
 Up until Python 3, raising an exception during the handling of a previous one, meant the traceback
 was lost. This has been finally solved, but Python 2 still accounts for the majority of the code 
@@ -93,7 +93,7 @@ Every time you use ``except``, pause for a while and think what are you really d
 normally. 
 
 <a href="http://www.apartmenttherapy.com/there-i-fixed-it-89037">
-<img src="http://tomerfiliba.com/static/res/2012-07-05-i-fixed.png" class="blog_post_image" /></a>
+<img src="http://tomerfiliba.com/static/res/2012-07-05-i-fixed.jpg" class="blog_post_image" /></a>
 
 And even if the traceback is preserved, you have to ask yourself **why** would your wrap
 one exception by another? What good does it serve? And more generally, **why** do you even handle

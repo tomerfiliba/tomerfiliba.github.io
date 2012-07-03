@@ -36,6 +36,25 @@ a:hover {
     border-bottom: 1px solid #e56515;
 }
 
+a.headerlink {
+    /*font-family: Arial, sans-serif;*/
+    font-weight: thin;
+    visibility: hidden;
+    color: #A7CE38;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+h2:hover > a.headerlink {
+    visibility: visible;
+}
+
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink {
+    visibility: visible;
+}
+
 a.borderless:active, a.borderless:visited, a.borderless:link, a.borderless:hover {
     border: none;
 }
@@ -183,10 +202,7 @@ a.blog-title {
     border-bottom: 1px dotted #DDD;
 }
 
-#content p>code {
-    background: #EEE;
-}
-
+#content p>code,
 #content li>code {
     background: #EEE;
 }
