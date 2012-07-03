@@ -1,0 +1,59 @@
+
+### Do Not Wrap Exceptions ##
+
+Up until Python 3, raising an exception during the handling of a previous one, meant the traceback
+was lost. This has been finally solved, but Python 2.x still accounts for the majority of the code 
+base. And even if the traceback is preserved, you have to ask yourself **why** would your wrap
+an exception by another? What good does it serve?
+
+
+
+### Do Not Handle Exceptions ###
+Every time you use ``except``, pause for a while and think what are you really doing. Are you
+*handling* the exception? Handling means you **fixed** the problem, and execution can continue
+normally. 
+
+<a href="http://www.apartmenttherapy.com/there-i-fixed-it-89037">
+<img src="http://tomerfiliba.com/static/res/2012-07-05-i-fixed.jpg" class="blog_post_image" /></a>
+
+### Do Not Be Overprotective ##
+
+
+### Do Not ``except`` Broadly ##
+
+
+
+
+## <a id="granularity"></a> On the Granularity of Exception Classes <a href="#granularity" class="headerlink">&sect;</a> ##
+
+Some people follow a rather laconic methodology of throwing a single exception class with a 
+different message (string) every time. Heck, I even found people who were too lazy to define their 
+own exception class, so they just raise ``Exception`` directly (or worse, ``RuntimeError``!). Then,
+in case you wish to handle specific exceptions, you need to ``except Exception`` and inspect
+the exception object... this brings up memories of the dreaded string exceptions. We're passed 
+that! Defining an exception class is a one-liner: ``class MyException(Exception): pass``, so
+don't be lazy.
+
+Others go in the opposite direction and define very specific exception classes for every single
+case. You end up with a huge hierarchy of exceptions, and after a while, you can't even remember 
+which exception you should use in this case or that case. You might even end up with 
+logically-overlapping exceptions -- I've seen this happen.
+
+As a rule of thumb, the granularity of exception classes should match the granularity at which
+exception handling is done. If you can handle ``ConnectionError`` differently from 
+``InvalidCredentials``, it means the two are disparate: for the first, you'd display an error 
+message, but for the second, you may prompt the user to enter his/her credentials once more. 
+On the other hand, if there's no reason to handle ``ConnectionFailedServerNotListeningOnPort`` 
+differently from ``ConnectioFailedServerCrashed``, why make them separate classes? A single 
+``ConnectionError`` is good enough, and the application may either abort upon receiving it,
+or attempt to reconnect. **Note:** of course the message may (and should) be different in each
+case, but it's only meaningful for logging/diagnostic purposes.
+
+At any point you think of defining a custom exception class, ask yourself:
+ 
+1. Is there already a good-enough standard exception? Many times ``TypeError`` or ``ValueError``
+   make sense (but don't be laconic!)
+2. Will I (or my users) wish to handle this exception differently from a broader one? Would they
+   be able to *act differently* on ``XError`` than on ``YError``? 
+
+End of part 1.
