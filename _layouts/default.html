@@ -58,6 +58,7 @@ layout: nil
                    <ul>
                         <li><a {% if page.section == "home" %}class="selected"{% endif %} href="/">home</a></li>
                         <li><a {% if page.section == "blog" %}class="selected"{% endif %} href="/blog">blog</a></li>
+                        <li><a {% if page.section == "opinions" %}class="selected"{% endif %} href="/opinions">opinions</a></li>
                         <li><a {% if page.section == "projects" %}class="selected"{% endif %} href="/projects">projects</a></li>
                         <li><a {% if page.section == "recipes" %}class="selected"{% endif %} href="/recipes">recipes</a></li>
                         <li><a {% if page.section == "etc" %}class="selected"{% endif %} href="/etc">etc</a></li>
@@ -78,7 +79,12 @@ layout: nil
             {% else %}
             <div id="content">
             {% endif %}
-                <h1>{{ page.title }}</h1>
+                
+                <h1>{{ page.title }}
+                {% if page.date %}
+                <br/><span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
+                {% endif %}
+                </h1>
                 {% if page.social %}
                 <p>
                 <div class="g-plusone"></div>
