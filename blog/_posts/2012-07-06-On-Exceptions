@@ -1,0 +1,106 @@
+---
+layout: blogpost
+title: "Javaism, Exceptions, and Logging: Part 2"
+tags: [python]
+description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 2 of 3"
+---
+
+<img src="http://tomerfiliba.com/static/res/2012-07-06-i-fixed2.jpg" class="blog_post_image" title="Nesting Exceptions..." />
+
+Considering the reactions to the [previous post](http://tomerfiliba.com/static/Javaism) in this 
+series, my intent was obviously misunderstood and I take the blame for that. Please allow me to 
+clarify that **I was not attacking Java or Python**: Java is popular and has proven to be productive, 
+both as a language and as an ecosystem; the stylistic and semantics choices it makes are none of my 
+concerns (although I must admit I'm not a big fan). And as for Python, I was only saying that it
+**copied Java's implementation** (nearly one-to-one) in some modules (and I think I've shown that
+pretty well in the last post). I said that it's silly, because **Python is not subject to the same 
+limitations** that Java has, which dictate how the Java implementation looks and works. I'm not 
+going to open the discussion over whether OOP is good or bad, or mixins vs. interfaces, etc. -- 
+I'm simply saying that "Java concepts" (which I called *Javaisms*) seem to enter Python **for no 
+good reason**. Meaning, in Python we have better (more Pythonic) ways to do it. I hope the scope 
+of my discussion is clear now.
+
+In this part, I'm going to discuss how to **properly work with exceptions**, based on my long 
+experience with large Python projects. In fact, this series was born after I got frustrated with
+the code quality of a certain library that my team develops, the details of which aren't really 
+relevant. Naturally I can't include code snippets here, and besides, a detailed examination of
+each would make this post endless; instead, let me introduce the two most frequent **symptoms** 
+I encounter every time I reach a new corner:
+
+* You call a function, say, ``get_device_info()`` and it returns ``None``. It obviously failed, 
+  but there's no telling why or what went wrong.
+
+* You use a function such as ``open_device(devfile)``, and you pass a nonexistent device, say 
+  ``"/dev/nonexistent"``. You get back a ``SCSIError``. Or 
+
+Yes, only two symptoms, but they arise from at least four different problems, which we'll discuss 
+in detail
+
+
+!-- not root, AttributeError, 
+
+
+
+
+### Do Not Wrap Exceptions ##
+
+Until Python 3, raising an exception during the handling of one, meant the original traceback
+was lost. This has been finally solved, but Python 2.x still accounts for the majority of the code 
+base. For this purpose, I devised a function called ``chained`` which embeds the current traceback
+into a new exception object
+
+
+
+And even if the traceback is preserved, you have to ask yourself **why** would your wrap
+an exception by another? What good does it serve?
+
+
+
+### Do Not Handle Exceptions ###
+Every time you use ``except``, pause for a while and think what are you really doing. Are you
+*handling* the exception? Handling means you **fixed** the problem, and execution can continue
+normally. 
+
+
+### Do Not Be Overprotective ##
+
+
+### Do Not ``except`` Broadly ##
+
+
+
+
+## On the Granularity of Exception Classes ##
+
+Some people follow a rather laconic methodology of throwing a single exception class with a 
+different message (string) every time. Heck, I even found people who were too lazy to define their 
+own exception class, so they just raise ``Exception`` directly (or worse, ``RuntimeError``!). Then,
+in case you wish to handle specific exceptions, you need to ``except Exception`` and inspect
+the exception object... this brings up memories of the dreaded string exceptions. We're passed 
+that! Defining an exception class is a one-liner: ``class MyException(Exception): pass``, so
+don't be lazy.
+
+Others go in the opposite direction and define very specific exception classes for every single
+case. You end up with a huge hierarchy of exceptions, and after a while, you can't even remember 
+which exception you should use in this case or that case. You might even end up with 
+logically-overlapping exceptions -- I've seen this happen.
+
+As a rule of thumb, the granularity of exception classes should match the granularity at which
+exception handling is done. If you can handle ``ConnectionError`` differently from 
+``InvalidCredentials``, it means the two are disparate: for the first, you'd display an error 
+message, but for the second, you may prompt the user to enter his/her credentials once more. 
+On the other hand, if there's no reason to handle ``ConnectionFailedServerNotListeningOnPort`` 
+differently from ``ConnectioFailedServerCrashed``, why make them separate classes? A single 
+``ConnectionError`` is good enough, and the application may either abort upon receiving it,
+or attempt to reconnect. **Note:** of course the message may (and should) be different in each
+case, but it's only meaningful for logging/diagnostic purposes.
+
+At any point you think of defining a custom exception class, ask yourself:
+
+1. Is there already a good-enough standard exception? Many times ``TypeError`` or ``ValueError``
+   make sense. For instance, if your function only takes strings of even length, a ``ValueError`` 
+   seems legit. On the other hand, don't be lazy! 
+2. Will I (or my users) wish to handle this exception differently from a broader one? Would they
+   be able to *act differently* on ``XError`` than on ``YError``? 
+
+

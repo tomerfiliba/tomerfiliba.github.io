@@ -1,7 +1,7 @@
 ---
-layout: opinion-page
+layout: etc-page
 title: "כולם מדברים על גיוס, אף אחד לא מדבר בשכל"
-description: "קצת פוליטיקה"
+description: "A bit of politics regarding conscription of orthodox Jews (Hebrew)"
 draft: true
 rtl: true
 ---
