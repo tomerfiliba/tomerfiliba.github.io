@@ -7,7 +7,7 @@ draft: true
 
 <img src="http://tomerfiliba.com/static/res/2012-07-06-i-fixed2.jpg" class="blog_post_image" title="Nesting Exceptions..." />
 
-Considering the reactions to the [previous post](http://tomerfiliba.com/static/Javaism) in this 
+Considering the reactions to the [previous post](http://tomerfiliba.com/blog/Javaism) in this 
 series, my intent was obviously misunderstood and I take the blame for that. Please allow me to 
 clarify that **I was not attacking Java or Python**: Java is popular and has proven to be productive, 
 both as a language and as an ecosystem; the stylistic and semantics choices it makes are none of my 
@@ -79,14 +79,14 @@ even terminate it gracefully, take the extra step and use ``except Exception:``.
 
 A tendency I find in many programmers is being overprotective towards their users, to the points 
 where it seems like paternalism. It's as if they try to "take care of everything that might go 
-wrong", so the user "won't have to deal with anything bad"... sounds childish, I know.
+wrong", so the user "won't have to deal with the real world"... sounds childish, I know.
 
 When I pass a filename to a function, and that function can't open the file for whatever reason,
 there's no need to *mask out* the underlying ``IOError`` in favor of a user-friendlier 
 ``FileDoesNotExistError`` -- as the saying goes, **"we're all consenting adults here"**. You should
-expect your users (programmers) to have sufficient background as a prerequisite. He/she shouln't 
-have to be kernel hackers just to open a file, but they surely should know what ``ENOENT`` or 
-``EPERM`` are (or be able to look them up). The "raw" ``IOError`` looks like
+expect your users (programmers) to have sufficient background. They don't have to be kernel hackers 
+just to open a file, but they surely should know what ``ENOENT`` or ``EPERM`` are (or be able to 
+look them up). The "raw" ``IOError`` looks like
 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
@@ -97,32 +97,70 @@ and anyone with common sense would be able to cope with it.
 Put it differently, ask yourself what **useful information** are you adding here? How does a
 ``FileDoesNotExistError`` help the user (again, a programmer) solve the issue better? You're only 
 adding clutter: now he/she would have to **catch both** ``FileDoesNotExistError`` and 
-``IOError`` -- you might have dealt with ``ENOENT``, but what about ``EPERM`` or ``EISDIR``?
-The error message already includes all the required information, you have nothing to add to that;
-so instead of treating your user like a baby -- just propagate the "scary" ``IOError`` up.
+``IOError``, as you might have dealt with ``ENOENT``, but what about ``EPERM`` or ``EISDIR``?
+The error message already includes all the required information and you have nothing meaningful 
+to add to that. Instead of treating your user like a baby, just let the raw ``IOError`` 
+propagate up.
 
-I must this phenomena virtually doesn't exist in open-source code, but in closed-source projects 
-I find it all over the place: I'd guess corporate-employed programmers make the worst parents :)
+I must say this phenomena **virtually doesn't exist in open-source code**, but in closed-source 
+projects I find it all over the place: I'd guess corporate-employed programmers make the worst 
+parents :-)
 
 ### A Note On Real Users ###
 
-A question then arises: **what about non-programmer end-users?** What if my product's a GUI and 
-a nasty stack trace suddenly shows up?
+A question then arises: **what about non-programmer end-users?** What if my product's a GUI/CLI 
+and a nasty stack trace suddenly shows up?
 
-Well, first of all, this rule only deals with **libraries**, or products whose end users are 
-programmers. But on second thought, what does it matter? If you're going to pop up an error box
-to the screen, saying "No such file or directory", does it really matter if it's an ``IOError`` or
-a ``FileDoesNotExistError``? Either way, you log the traceback to a file and show a message box 
-to informs the user of the issue and ask him/her what to do. What's the added value?
+Well, first of all, **this rule only deals with libraries**, or products whose end users are 
+programmers. But on second thought, does it matter if it's an ``IOError`` or a 
+``FileDoesNotExistError``? Either way, you'd log the traceback to a file and show an error box 
+to informs the user of the issue and ask him/her what to do. The user would only care for the error
+*message*, not the traceback or the name of the exception, so where's the added value?
 
 Then again, when it comes to non-programmers, I don't want to get into generalizations. They might
 as well **not be** consenting adults...
 
 ## Do Not Wrap Exceptions ##
 
-Until Python 3, raising an exception during the handling of one meant the original traceback
+Until Python 3, raising an exception during the handling of one, meant the original traceback
 was lost. This has been finally solved, but Python 2.x still accounts for the majority of the code 
-base. 
+base. Once you loose the traceback, the odds of successfully debugging the problem are much lower 
+(especially when it happens off-site, at a customer's lab).
+
+Some people think that if they develop FooLibrary, all exceptions that would ever be thrown from
+their code must derive from ``FooError``. That's a reasonable approach -- but only when it comes
+to exceptions that are actually **originate in FooLibrary**. For instance, a queuing library might 
+raise ``QueueFull`` or ``QueueEmpty``, both of which derive from ``QueueError``.
+
+On the other hand, should an ``OSError``/``IOError`` happen internally, from which you can't recover, 
+**do not wrap it** by a ``FooError``. Recalling the queuing library, if it can't save the queue to 
+a file because the file's permissions are wrong or the partition is out of space -- that's **not** 
+a ``QueueError``. Your user wouldn't want to ``except QueueError: retry()`` in this case -- he/she 
+should be made aware of it and fix the problem.
+
+Likewise, if you're developing an HTTP library, don't wrap ``socket.error(ECONNRESET)`` with
+an ``HTTPError``... that's not your library's fault, and it's clearly not an HTTP error. Besides,
+there are so many possible errors that might occur (including ``AttributeErrors``) that it simply 
+doesn't make sense to wrap all of them.
+
+This rule has a lot in common with the previous one, but the two serve different purposes. In this
+case, it originates with Java's checked exceptions: since you won't be able to raise ``IOException``
+in a function whose signature specifies only ``HTTPException``, the common practice is to wrap 
+the ``IOException`` inside an ``HTTPException``. This is a form of Javaism that is simply not 
+necessary in Python and ruins the traceback (again, prior to Python 3).
+
+It only makes sense to wrap an underlying exception by a "higher" one when you can provide more 
+information on the source/reason for the error. For instance, if a connection-reset occurred when
+the server rejected your SSL certificate, it makes sense to raise ``ServerHungUpOnMe``.
+Another reasonable place to wrap exceptions is when to allow retry of some sort. Suppose you're
+given a list of endpoints to connect to, and any one of them will do. It might be that the first 
+few are down but the last one is up, in which case it would succeed. On the other hand, they might 
+all be down; in such a case, I would accumulate all individual errors into a list and raise some 
+sort of ``ConnectionError(list_of_individual_errors)``.
+
+Bottom line: **only wrap if you add useful information** to the original exception.
+
+
 
 
 ## Do not Handle Exceptions ###
@@ -136,35 +174,34 @@ base.
 
 ## On the Granularity of Exception Classes ##
 
-Some people follow a rather laconic methodology of throwing a single exception class with a 
-different message (string) every time. Heck, I even found people who were too lazy to define their 
-own exception class, so they just raise ``Exception`` directly (or worse, ``RuntimeError``!). Then,
-in case you wish to handle specific exceptions, you need to ``except Exception`` and inspect
-the exception object... this brings up memories of the dreaded string exceptions. We're passed 
-that! Defining an exception class is a one-liner: ``class MyException(Exception): pass``, so
-don't be lazy.
+Some people are rather laconic and use a single exception for everything. I've even people who were
+so lazy that they used ``raise Exception("foo")`` directly, instead of deriving an exception class 
+of their own... In order to handle such an exception, you'd have to ``except Exception`` and 
+introspect the exception object... that's terrible! It only takes one line to derive an exception 
+class; there's no excuse for being **that** lazy! 
 
-Others go in the opposite direction and define very specific exception classes for every single
-case. You end up with a huge hierarchy of exceptions, and after a while, you can't even remember 
-which exception you should use in this case or that case. You might even end up with 
-logically-overlapping exceptions -- I've seen this happen.
+On the other hand, some people are way too verbose: they define a specific exception that 
+represents every minute detail. They end up with dozens of exception classes, many of which are 
+logically overlapping (I've seen this happen), which makes the implementation cumbersome (as your 
+have to remember the dozens of exceptions you've defined). Also, it makes little sense for your 
+users, as they generally don't care for such granularity -- they'd mostly only ask for meaningful 
+exception message that they can print/log. 
 
-As a rule of thumb, the granularity of exception classes should match the granularity at which
-exception handling is done. If you can handle ``ConnectionError`` differently from 
-``InvalidCredentials``, it means the two are disparate: for the first, you'd display an error 
-message, but for the second, you may prompt the user to enter his/her credentials once more. 
+The conclusion is that **the granularity at which exception classes are defined should match the 
+granularity at which exception handling is done**: define separate exceptions (only) where it 
+makes sense to handle one differently than the other.
+
+For example, it makes sense to handle a ``ConnectionError`` differently from an 
+``InvalidCredentials`` error, so the two are disparate: In the first case, you'd probably just
+display an error message and quit. In the second case, you might prompt the user for his/her 
+credentials once more.
+ 
 On the other hand, if there's no reason to handle ``ConnectionFailedServerNotListeningOnPort`` 
-differently from ``ConnectioFailedServerCrashed``, why make them separate classes? A single 
-``ConnectionError`` is good enough, and the application may either abort upon receiving it,
-or attempt to reconnect. **Note:** of course the message may (and should) be different in each
-case, but it's only meaningful for logging/diagnostic purposes.
+differently from ``ConnectioFailedServerCrashedAcceptingSocket``, why make the distinction? 
+A single ``ConnectionError`` is enough. 
 
-At any point you think of defining a custom exception class, ask yourself:
-
-1. Is there already a good-enough standard exception? Many times ``TypeError`` or ``ValueError``
-   make sense. For instance, if your function only takes strings of even length, a ``ValueError`` 
-   seems legit. On the other hand, don't be lazy! 
-2. Will I (or my users) wish to handle this exception differently from a broader one? Would they
-   be able to *act differently* on ``XError`` than on ``YError``? 
+**Note:** the error message may (and should) be different in each case -- always include all the
+available information. But note that it's only meaningful for logging/diagnostic purposes -- 
+not for recovery.
 
 
