@@ -1,8 +1,8 @@
 ---
 layout: blogpost
 title: "Javaism, Exceptions, and Logging: Part 2"
-tags: [python]
 description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 2 of 3"
+draft: true
 ---
 
 <img src="http://tomerfiliba.com/static/res/2012-07-06-i-fixed2.jpg" class="blog_post_image" title="Nesting Exceptions..." />
@@ -20,52 +20,116 @@ I'm simply saying that "Java concepts" (which I called *Javaisms*) seem to enter
 good reason**. Meaning, in Python we have better (more Pythonic) ways to do it. I hope the scope 
 of my discussion is clear now.
 
-In this part, I'm going to discuss how to **properly work with exceptions**, based on my long 
-experience with large Python projects. In fact, this series was born after I got frustrated with
-the code quality of a certain library that my team develops, the details of which aren't really 
-relevant. Naturally I can't include code snippets here, and besides, a detailed examination of
-each would make this post endless; instead, let me introduce the two most frequent **symptoms** 
-I encounter every time I reach a new corner:
+## When Life Serves You Lemons ##
 
-* You call a function, say, ``get_device_info()`` and it returns ``None``. It obviously failed, 
-  but there's no telling why or what went wrong.
+In this installment, I'm going to discuss how to **properly work with exceptions**, based on my long 
+experience with large-scale Python projects. In fact, this series was born after I got frustrated 
+with the code quality of a certain library that my team develops, the details of which aren't really 
+relevant. Naturally I can't include code snippets here, and a detailed examination of each would 
+make this post endless; instead, I wish to share a some representative examples that I encountered:
 
-* You use a function such as ``open_device(devfile)``, and you pass a nonexistent device, say 
-  ``"/dev/nonexistent"``. You get back a ``SCSIError``. Or 
+* I used a function in the spirit of ``open_device(devfile)``, and passed a nonexistent device file 
+  (for testing purposes or by mistake), say, ``"/dev/nonexistent"``. The underlying error is 
+  obviously ``IOError(ENOENT)``, but what I got back is a cryptic ``DeviceError``.
 
-Yes, only two symptoms, but they arise from at least four different problems, which we'll discuss 
-in detail
+* I called ``get_device_info()`` and it simply returned ``None``. Digging into the code, it
+  turned out this function catches ``DeviceError`` and returns ``None`` in this case. 
+  Further investigation showed that my machine had installed on it a more recent version of a 
+  dependency, in which some method's name had changed. At some point (deep into the stack), the 
+  code used ``except Exception`` (which, of course, swallowed this ``AttributeError``) and 
+  translated it into a ``DeviceError``.
 
+* I called a function such as ``enumerate_all_devices()`` and it returned an empty list.
+  At first I was told "Of course, this library isn't supposed to work on Ubuntu, only on RHEL". 
+  Further (and very tedious) investigation showed it just needs to run as ``root``. 
 
-!-- not root, AttributeError, 
+This kind of stuff happens to me every time I get to an unexplored corner of the code, I'm not 
+kidding. I've already devised a method for debugging it: I comment-out all exception handling code 
+in any function along the way, until I find the actual error -- which is basically the treatment 
+that I'm about to suggest here: 
 
+> **The first rule of exception handling is: Don't handle exceptions**
 
+## Do Not Catch Broadly ##
 
+I believe this bullet point is very obvious in theory but not-so-obvious in practice: **always catch
+only the most-derived/most-specific exception**. Many times, the number of possible erroneous 
+cases is large and their handling is similar... Another issue is programmer's laziness: you have to 
+*import the specific exception* class from this library you're using, and you might not feel like 
+reading docs or code just to find that one exception. It also exposes you to implementation detail,
+which you normally wish to avoid. Just as well, that library you're using might not be perfect 
+either -- perhaps they use many exceptions that don't derive from one common base class.
+All in all, you might have attenuating circumstances, but try to stick to this rule as much as 
+possible. 
 
-### Do Not Wrap Exceptions ##
+On the other hand, **never use an empty** ``except:``
 
-Until Python 3, raising an exception during the handling of one, meant the original traceback
+{% highlight python %}
+try:
+    ...
+except:
+    ...
+{% endhighlight %}
+
+Such an ``except`` clause will catch **all exceptions**, including ``SystemExit`` and 
+``KeyboardInterrupt``. So unless you plan to loose the ability to Ctrl-C a running program, or
+even terminate it gracefully, take the extra step and use ``except Exception:``.
+
+## Do Not Be Overprotective ##
+
+A tendency I find in many programmers is being overprotective towards their users, to the points 
+where it seems like paternalism. It's as if they try to "take care of everything that might go 
+wrong", so the user "won't have to deal with anything bad"... sounds childish, I know.
+
+When I pass a filename to a function, and that function can't open the file for whatever reason,
+there's no need to *mask out* the underlying ``IOError`` in favor of a user-friendlier 
+``FileDoesNotExistError`` -- as the saying goes, **"we're all consenting adults here"**. You should
+expect your users (programmers) to have sufficient background as a prerequisite. He/she shouln't 
+have to be kernel hackers just to open a file, but they surely should know what ``ENOENT`` or 
+``EPERM`` are (or be able to look them up). The "raw" ``IOError`` looks like
+
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    IOError: [Errno 2] No such file or directory: '/dev/nonexistent'
+
+and anyone with common sense would be able to cope with it. 
+
+Put it differently, ask yourself what **useful information** are you adding here? How does a
+``FileDoesNotExistError`` help the user (again, a programmer) solve the issue better? You're only 
+adding clutter: now he/she would have to **catch both** ``FileDoesNotExistError`` and 
+``IOError`` -- you might have dealt with ``ENOENT``, but what about ``EPERM`` or ``EISDIR``?
+The error message already includes all the required information, you have nothing to add to that;
+so instead of treating your user like a baby -- just propagate the "scary" ``IOError`` up.
+
+I must this phenomena virtually doesn't exist in open-source code, but in closed-source projects 
+I find it all over the place: I'd guess corporate-employed programmers make the worst parents :)
+
+### A Note On Real Users ###
+
+A question then arises: **what about non-programmer end-users?** What if my product's a GUI and 
+a nasty stack trace suddenly shows up?
+
+Well, first of all, this rule only deals with **libraries**, or products whose end users are 
+programmers. But on second thought, what does it matter? If you're going to pop up an error box
+to the screen, saying "No such file or directory", does it really matter if it's an ``IOError`` or
+a ``FileDoesNotExistError``? Either way, you log the traceback to a file and show a message box 
+to informs the user of the issue and ask him/her what to do. What's the added value?
+
+Then again, when it comes to non-programmers, I don't want to get into generalizations. They might
+as well **not be** consenting adults...
+
+## Do Not Wrap Exceptions ##
+
+Until Python 3, raising an exception during the handling of one meant the original traceback
 was lost. This has been finally solved, but Python 2.x still accounts for the majority of the code 
-base. For this purpose, I devised a function called ``chained`` which embeds the current traceback
-into a new exception object
+base. 
+
+
+## Do not Handle Exceptions ###
 
 
 
-And even if the traceback is preserved, you have to ask yourself **why** would your wrap
-an exception by another? What good does it serve?
 
-
-
-### Do Not Handle Exceptions ###
-Every time you use ``except``, pause for a while and think what are you really doing. Are you
-*handling* the exception? Handling means you **fixed** the problem, and execution can continue
-normally. 
-
-
-### Do Not Be Overprotective ##
-
-
-### Do Not ``except`` Broadly ##
 
 
 
