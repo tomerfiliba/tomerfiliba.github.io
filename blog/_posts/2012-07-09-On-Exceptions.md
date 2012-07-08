@@ -8,72 +8,62 @@ draft: true
 <img src="http://tomerfiliba.com/static/res/2012-07-09-i-fixed2.jpg" class="blog_post_image" title="Nesting Exceptions..." />
 
 Considering the reactions to the [previous post](http://tomerfiliba.com/blog/Javaism) in this 
-series, my intent was obviously misunderstood and I take the blame for that. Please allow me to 
-clarify that **I was not attacking Java or Python**: Java is popular and has proven to be productive, 
-both as a language and as an ecosystem; the stylistic and semantics choices it makes are none of my 
-concerns (although I must admit I'm not a big fan). And as for Python, I was only saying that it
-**copied Java's implementation** (nearly one-to-one) in some modules (and I think I've shown that
-pretty well in the last post). I said that it's silly, because **Python is not subject to the same 
-limitations** that Java has, which dictate how the Java implementation looks and works. I'm not 
-going to open the discussion over whether OOP is good or bad, or mixins vs. interfaces, etc. -- 
-I'm simply saying that "Java concepts" (which I called *Javaisms*) seem to enter Python **for no 
-good reason**. Meaning, in Python we have better (more Pythonic) ways to do it. I hope the scope 
-of my discussion is clear now.
+series, my intent was obviously misunderstood. Please allow me to clarify that **I was not 
+attacking Java or Python**: Java is popular and has proven to be productive, 
+both as a language and as an ecosystem; the stylistic and semantic choices it makes are none of my 
+concerns (although I'm not a big fan). And as for Python, I was saying that it **copied Java's 
+implementation** in some modules (and I think I've proved the correlation pretty well). 
+I said that it's silly, because **Python is not subject to the same limitations** of Java, 
+which dictate how the Java implementation works. I'm not going to open the discussion over 
+whether OOP is good or bad, or mix-ins vs. interfaces, etc. -- I'm simply saying that "Java 
+concepts" (which I called *Javaisms*) seem to enter Python **for no good reason**. Meaning, in 
+Python we have better (more Pythonic) ways to do it. I hope the scope of my discussion is clear now.
 
 ## When Life Serves You Lemons ##
 
 In this installment, I'm going to discuss how to **properly work with exceptions**, based on my long 
 experience with large-scale Python projects. In fact, this series was born after I got frustrated 
-with the code quality of a certain library that my team develops, the details of which aren't really 
-relevant. Naturally I can't include code snippets here, and a detailed examination of each would 
-make this post endless; instead, I wish to share a some representative examples that I encountered:
+with the code quality of a certain library that my team develops. Naturally I can't include code
+snippets here (and there would be too many of them); instead, I wish to share a some 
+representative examples that I encountered:
 
 * I used a function in the spirit of ``open_device(devfile)``, and passed a nonexistent device file 
-  (for testing purposes or by mistake), say, ``"/dev/nonexistent"``. The underlying error is 
-  obviously ``IOError(ENOENT)``, but what I got back is a cryptic ``DeviceError``.
+  (for testing purposes or by mistake), say, ``"/dev/nonexistent"``. Knowing how the library works,
+  the underlying error surely was ``IOError(ENOENT)``, but what I got back was a troubling 
+  ``DeviceDoesNotExistError``.
 
 * I called ``get_device_info()`` and it simply returned ``None``. Digging into the code, it
-  turned out this function catches ``DeviceError`` and returns ``None`` in this case. 
-  Further investigation showed that my machine had installed on it a more recent version of a 
-  dependency, in which some method's name had changed. At some point (deep into the stack), the 
-  code used ``except Exception`` (which, of course, swallowed this ``AttributeError``) and 
-  translated it into a ``DeviceError``.
+  turned out this function catches ``DeviceError`` and returns ``None``. Further investigation 
+  showed that my machine had a more recent version of a dependency installed on it, where some 
+  method's name had changed. At some point (deep into the stack), the code used ``except 
+  Exception`` (which, of course, caught this ``AttributeError``) and translated it into a 
+  ``DeviceError``.
 
 * I called a function such as ``enumerate_all_devices()`` and it returned an empty list.
   At first I was told "Of course, this library isn't supposed to work on Ubuntu, only on RHEL". 
-  Further (and very tedious) investigation showed it just needs to run as ``root``. 
+  Further (and very tedious) investigation showed it simply needs to run as ``root``. 
 
-This kind of stuff happens to me every time I get to an unexplored corner of the code, I'm not 
-kidding. I've already devised a method for debugging it: I comment-out all exception handling code 
-in any function along the way, until I find the actual error -- which is basically the treatment 
-that I'm about to suggest here: 
+This kind of stuff happens to me every time I get to an unexplored corner of the code, I kid you
+not. I've already devised a method for debugging such cases: I comment-out all exception handling
+code in any function along the way, until I find the actual error -- which is basically the 
+treatment that I'm about to suggest here: 
 
-> **The first rule of exception handling is: Don't handle exceptions**
+<span style="display: block; width=100%; background: #FFA"> 
+The first rule of exception handling is: **Don't handle exceptions**</span>
 
 ## Do Not Catch Broadly ##
 
-I believe this bullet point is very obvious in theory but not-so-obvious in practice: **always catch
-only the most-derived/most-specific exception**. Many times, the number of possible erroneous 
-cases is large and their handling is similar... Another issue is programmer's laziness: you have to 
-*import the specific exception* class from this library you're using, and you might not feel like 
-reading docs or code just to find that one exception. It also exposes you to implementation detail,
-which you normally wish to avoid. Just as well, that library you're using might not be perfect 
-either -- perhaps they use many exceptions that don't derive from one common base class.
-All in all, you might have attenuating circumstances, but try to stick to this rule as much as 
-possible. 
+*Always catch only the most-derived/most-specific exception.* I believe this rule is very obvious
+in theory, but harder to follow in practice: the number of exceptions might be large and their 
+handling similar; you have to *import* specific exceptions from libraries, which tightly-couples
+your code with implementation details; some libraries don't use a common exception base class for
+all of their exceptions, which leads to many isolated ``except``-clauses.
 
-On the other hand, **never use an empty** ``except:``
-
-{% highlight python %}
-try:
-    ...
-except:
-    ...
-{% endhighlight %}
-
-Such an ``except`` clause will catch **all exceptions**, including ``SystemExit`` and 
-``KeyboardInterrupt``. So unless you plan to loose the ability to Ctrl-C a running program, or
-even terminate it gracefully, take the extra step and use ``except Exception:``.
+All in all, you might have attenuating circumstances, but try to stick to this rule as much 
+as possible. On the other hand, **never use an empty** (unconstrained) ``except:``! Such an 
+``except``-clause will catch **all exceptions**, including ``SystemExit`` and ``KeyboardInterrupt``. 
+So unless you plan to loose the ability to Ctrl-C a running program, or even prevent it from 
+terminating gracefully, take the extra step and use ``except Exception``.
 
 ## Do Not Be Overprotective ##
 
@@ -81,23 +71,24 @@ A tendency I find in many programmers is being overprotective towards their user
 where it seems like paternalism. It's as if they try to "take care of everything that might go 
 wrong", so the user "won't have to deal with the real world"... sounds childish, I know.
 
-When I pass a filename to a function, and that function can't open the file for whatever reason,
-there's no need to *mask out* the underlying ``IOError`` in favor of a user-friendlier 
-``FileDoesNotExistError`` -- as the saying goes, **"we're all consenting adults here"**. You should
-expect your users (programmers) to have sufficient background. They don't have to be kernel hackers 
-just to open a file, but they surely should know what ``ENOENT`` or ``EPERM`` are (or be able to 
-look them up). The "raw" ``IOError`` looks like
+When I pass a filename to a function and that function can't open it for whatever reason, there's 
+no need to *mask out* the underlying ``IOError`` in favor of a "user-friendlier" 
+``FileDoesNotExistError``, or return ``None`` or ``-1``. As the saying goes, **"we're all 
+consenting adults here"**. You should expect your users (programmers) to have sufficient 
+background: they don't have to be kernel hackers just to open a file, but they surely should 
+know what ``ENOENT`` or ``EPERM`` are (or be able to look them up). Besides, the "raw" 
+``IOError`` looks like
 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     IOError: [Errno 2] No such file or directory: '/dev/nonexistent'
 
-and anyone with common sense would be able to cope with it. 
+and anyone with some common sense would be able to cope with it. 
 
 Put it differently, ask yourself what **useful information** are you adding here? How does a
 ``FileDoesNotExistError`` help the user (again, a programmer) solve the issue better? You're only 
-adding clutter: now he/she would have to **catch both** ``FileDoesNotExistError`` and 
-``IOError``, as you might have dealt with ``ENOENT``, but what about ``EPERM`` or ``EISDIR``?
+adding clutter; and you might have dealt with ``ENOENT``, but what about ``EPERM`` or ``EISDIR``?
+
 The error message already includes all the required information and you have nothing meaningful 
 to add to that. Instead of treating your user like a baby, just let the raw ``IOError`` 
 propagate up.
@@ -111,25 +102,24 @@ parents :-)
 A question then arises: **what about non-programmer end-users?** What if my product's a GUI/CLI 
 and a nasty stack trace suddenly shows up?
 
-Well, first of all, **this rule only deals with libraries**, or products whose end users are 
-programmers. But on second thought, does it matter if it's an ``IOError`` or a 
-``FileDoesNotExistError``? Either way, you'd log the traceback to a file and show an error box 
-to informs the user of the issue and ask him/her what to do. The user would only care for the error
-*message*, not the traceback or the name of the exception, so where's the added value?
+Well, first of all, **this rule only deals with libraries** and products whose end users are 
+programmers. But on second thought, would your user care if it's ``IOError`` or  
+``FileDoesNotExistError``? Just make sure your error message descriptive and easy to understand;
+it's much more important.
 
-Then again, when it comes to non-programmers, I don't want to get into generalizations. They might
-as well **not be** consenting adults...
+But then again, when it comes to non-programmers, I don't want to get into generalizations. 
+They might as well **not be** consenting adults...
 
 ## Do Not Wrap Exceptions ##
 
-Until Python 3, raising an exception during the handling of one, meant the original traceback
+Prior to Python 3, raising an exception during the handling of one, meant the original traceback
 was lost. This has been finally solved, but Python 2.x still accounts for the majority of the code 
-base. Once you loose the traceback, the odds of successfully debugging the problem are much lower 
-(especially when it happens off-site, at a customer's lab).
+base. Once you loose the traceback, debugging the problem are much harder (especially when it 
+happens off-site, on a customer's production server).
 
 Some people think that if they develop FooLibrary, all exceptions that would ever be thrown from
 their code must derive from ``FooError``. That's a reasonable approach -- but only when it comes
-to exceptions that are actually **originate in FooLibrary**. For instance, a queuing library might 
+to exceptions that actually **originate in FooLibrary**. For instance, a queuing library might 
 raise ``QueueFull`` or ``QueueEmpty``, both of which derive from ``QueueError``.
 
 On the other hand, should an ``OSError``/``IOError`` happen internally, from which you can't recover, 
@@ -179,11 +169,13 @@ exceptions? WTF?!* Well, let me rephrase that: exceptions should be handled only
   makes sense to run the cleanup only in case of an exception; such cases should normally look 
   like so:
   
-      try:
-          do_something_that_might_fail()
-      except Exception:
-          do_cleanup()
-          raise
+  {% highligh python %}
+  try:
+      do_something_that_might_fail()
+  except Exception:
+      do_cleanup()
+      raise
+  {% endhighligh %}
 
 * **In the main function** - when all else fails, and you don't wish to crash with a traceback,
   you may catch the exception in the application's ``main`` function. You might want to log it
@@ -194,12 +186,13 @@ In other words: handle an exception only if you're actually handling the excepti
 obvious, but you'd be surprised how many times I find code that handles exceptions for no good 
 reason, and in the process causes much more trouble than it initially had. It's very easy to mask 
 the original exception or loose the traceback, and then you spend hours (if not days) trying to 
-realize what had gone wrong. And why? Why place uncalled-for ``try-except`` blocks? It doesn't
-make your code "more robust", it just helps you shoot yourself in the leg.
+realize what had gone wrong. If you're not sure whether you should catch this or that exception,
+don't. It's much easier to add exception handling later, where it's deemed necessary, than recover
+from a lost traceback.
 
 ## Closing Words ##
 
-I think the lesson to be learnt here is simple: think before you act. This is a very general
+I think the lesson to be learnt here is simple: **think before you act.** It's a very general
 lesson, of course, but people tend to act dogmatically, without stopping for a moment to ponder
 what they're doing and how (and if) it helps them.
 
