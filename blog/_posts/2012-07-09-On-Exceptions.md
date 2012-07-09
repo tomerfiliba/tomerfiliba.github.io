@@ -15,9 +15,10 @@ concerns (although I'm not a big fan). And as for Python, I was saying that it *
 implementation** in some modules (and I think I've shown the correlation pretty well). 
 I said that it's silly, because **Python is not subject to the same limitations** of Java, 
 which dictate how the Java implementation works. I'm not going to open the discussion over 
-whether OOP is good or bad, or mix-ins vs. interfaces, etc. -- I'm simply saying that "Java 
-concepts" (which I called *Javaisms*) seem to enter Python **for no good reason**, meaning, in 
-Python we have better (more Pythonic) ways to do it. I hope the scope of my discussion is clear now.
+whether OOP is good or bad, or mix-ins vs. interfaces, etc. -- <span style="background: #FFA">
+I'm simply saying that "Java concepts" (which I called *Javaisms*) seem to enter Python **for no 
+good reason**</span>, meaning, in Python we have better ways to do it. I hope the scope of my 
+discussion is clear now.
 
 ## When Life Throws Lemons At You ##
 
@@ -34,7 +35,7 @@ snippets here, I'll share a some representative examples that I encountered:
   my machine had a more recent version of a dependency installed on it, where some method's name 
   had changed. At some point (deep down the stack), the code used ``except Exception`` (catching 
   the unrelated ``AttributeError``) and translated it into a ``DeviceError``. Then, 
-  ``get_device_info`` just swallowed all ``DeviceErrors`` and returned ``None``.
+  ``get_device_info`` just swallowed ``DeviceError`` and returned ``None``.
 
 * I called a function such as ``enumerate_all_devices()`` and it returned an empty list.
   At first I was told "Of course, this library isn't supposed to work on Ubuntu, only on RHEL". 
@@ -44,10 +45,8 @@ snippets here, I'll share a some representative examples that I encountered:
 This kind of stuff happens to me every time I get to an unexplored corner of the code, and I've 
 already devised a method for debugging such cases: I comment-out all exception handling code along 
 the way, until I find the actual error. In fact, this is essentially the treatment that I'm about 
-to suggest here: 
-
-<span style="display: block; width=100%; background: #FFA"> 
-The first rule of exception handling is: **Don't handle exceptions**</span>
+to suggest here. The first rule of exception handling is <span style="background: #FFA">Don't 
+handle exceptions</span>
 
 ## Do Not Catch Broadly ##
 
@@ -108,8 +107,8 @@ code-base. Once you loose the traceback, debugging the problem is much harder as
 debugger (``pdb``) or even tell *where* the exception came from... And when it happens off-site, 
 on a customer's production server, you're screwed.
 
-I believe *exception wrapping* in Python is an uncalled-for *Javaism*. It's a sort of a Java 
-mind-set, where you'd like a library to be contractually obliged to throwing only a certain kind 
+I believe exception wrapping in Python is an **legacy of Java**. It feels like a Java mind-set, 
+where you'd like a library to be contractually obliged to throwing only a certain kind 
 of exceptions. For instance, a queue library might raise exceptions such as ``QueueFull`` and 
 ``QueueEmpty``, both of which derive from ``QueueError``. Later, support is added for dumping a 
 queue to a file, where an ``IOError`` might happen; because they're "obligated" to throwing only 
@@ -152,16 +151,16 @@ Let me rephrase that: exceptions should be handled only
   want to log the exception to a file, pop up a message box, ask the user what to do next, etc.
 
 In other words: <span style="background: #FFA">handle exceptions only where you're actually 
-**handling** them.</span>. It might seem obvious, but you'd be surprised how many times I find 
+**handling** them.</span> It might seem obvious, but you'd be surprised how many times I find 
 code that handles exceptions for no good reason. For example, people think that by swallowing
-all sorts of exceptions and returning ``None``, they make their code "more robust"; that's lying
-to yourself! You take a problem and make it worse, because it's very easy to mask the original
-exception that way, and because you're hiding real problems. 
+all sorts of exceptions and returning ``None``, they make their code "more robust"; **that's lying
+to yourself**. You take a problem and make it worse, as it's very likely you lose the exception
+details that way and you're hiding real problems. 
 
 I've encountered countless times code that follows a pattern such as ``except Exception: 
-log.error(...)``, which **hides bugs** like a misspelled variable. Logging is not handling the
-exception. In the end, nobody ever reads the log, or even takes the time to properly configure it, 
-so you ship a "very robust" product that has half the functionality you think it has.
+log.error(...)``, which **hides bugs** like a misspelled variable (``NameError``). Logging is not 
+handling the exception. In the end, nobody ever reads the log, or even takes the time to properly 
+configure it, so you ship a "very robust" product that has half the functionality you think it has.
 
 ## Closing Words ##
 
@@ -172,27 +171,27 @@ wrapping*) does not make it smell better. Files disappear, file permissions get 
 disconnect, sockets die, everybody lies. That's life.
 
 Going back to the three bullets I opened this post with, you can see how by being overprotective
-and by excessively wrapping exception, an ``AttributeError`` became a ``DeviceError``, which
-then became ``None``. And you can see now why the first thing I do is remove all exception-
-handling code along the way: most of the times it just masks the real error, making it harder to 
-diagnose while adding little or no added value at all. You don't make your code more robust by 
-sweeping problems under the carpet: good code crashes, allowing tests to uncover more bugs, 
-increasing robustness.
+and by excessively wrapping exceptions, an ``AttributeError`` became a ``DeviceError``, which
+then became ``None``. And you can see now why the first thing I do is remove all 
+exception-handling code along the way: most of the times it just masks the real error, making it 
+harder to diagnose, while adding little or no added value at all. You don't make your code more 
+robust by sweeping problems under the carpet: <span style="background: #FFA">good code crashes, 
+allowing tests to uncover more bugs, increasing robustness.</span>
 
 ## On the Granularity of Exception Classes ##
 
 Some people are rather laconic and use a single exception for everything. I've even people who were
 so lazy that they used ``raise Exception("foo")`` directly, instead of deriving an exception class 
-of their own... People, it only takes one line to derive an exception class, there's no excuse for 
-being **that lazy**! 
+of their own... People, it only takes **one line** to derive an exception class, there's no excuse 
+for being **that lazy**! 
 
 On the other hand, some people are way too verbose, defining specific exceptions for every minor 
-detail. They end up with dozens of exception classes, many of which are logically overlapping.
-This makes the implementation cumbersome, and, in fact, might not be useful at all for your users:
-they usually won't care for such granularity, and you might contaminate your interface with
-implementation details. 
+detail. They end up with dozens of exception classes for each module, many of which are logically 
+overlapping. This makes the implementation cumbersome, and, in fact, might not be useful at all 
+for your users: they usually won't care for such granularity, and you risk contaminating your 
+interface with implementation details. 
 
-The best practice here is: <span style="background: #FFA">the granularity at which exception 
+The rule to follow here is: <span style="background: #FFA">the granularity at which exception 
 are defined should match the granularity at which exception handling is done</span>; define 
 separate exceptions (only) where it makes sense to handle one differently than the other.
 
@@ -200,7 +199,5 @@ For example, it makes sense to handle a ``ConnectionError`` differently from an
 ``InvalidCredentials`` error, but there's usually little sense in making the distinction between
 "connection failed because server is not listening" to "connection failed because server crashed 
 after accepting us". Either way, **always include all the available information** in the error 
-message -- but keep in mind it's only meaningful for logging/diagnostic purposes, not for in-code
+message -- but keep in mind it's only meaningful for logging/diagnostic purposes, not for
 exception handling.
-
-
