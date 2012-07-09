@@ -130,7 +130,7 @@ you'd probably want to "accumulate" the intermediate exceptions and raise a
 ``ConnectionError("%d connection attempts failed", accum_exceptions)``.
 
 Bottom line: <span style="background: #FFA">wrap exceptions only where you **add information** to 
-it;</span> there has to be **good reason** for wrapping.
+it;</span> there has to be a **good reason** for wrapping.
 
 ## Do not Handle Exceptions ###
 
