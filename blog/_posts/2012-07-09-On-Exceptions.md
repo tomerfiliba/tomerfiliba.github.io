@@ -49,7 +49,7 @@ the way, until I find the actual error. In fact, this is essentially the treatme
 to suggest here. The first rule of exception handling is: **Don't handle exceptions**, just let
 them pass through.
 
-## Do Not Catch Broadly ##
+## Don't Catch Broadly ##
 
 <span style="background: #FFA">Always catch only the most-derived/most-specific exception.</span>
 I believe this rule is very obvious
@@ -64,7 +64,7 @@ catch **all exceptions**, including ``SystemExit`` and ``KeyboardInterrupt``, so
 to loose the ability to Ctrl-C a running program, or even prevent it from terminating gracefully, 
 take the extra step and use ``except Exception``.
 
-## Do Not Be Overprotective ##
+## Don't be Overprotective ##
 
 A tendency I find in many programmers is being *overprotective towards their users*, to the point
 where it seems like paternalism. It's as if they try to "hide away" all the complexities of life 
@@ -99,7 +99,7 @@ message**; the traceback or exception's type are mostly of interest to programme
 But then again, when it comes to non-programmers, I don't want to get into generalizations. 
 They might as well **not be** consenting adults... 
 
-## Do Not Wrap Exceptions ##
+## Don't Wrap Exceptions ##
 
 Prior to Python 3, raising an exception during the handling of one, meant the original traceback
 was lost. This has been finally solved, but Python 2.x still accounts for the majority of the 
@@ -132,7 +132,7 @@ you'd probably want to "accumulate" the intermediate exceptions and raise a
 Bottom line: <span style="background: #FFA">wrap exceptions only where you **add information** to 
 it;</span> there has to be a **good reason** for wrapping.
 
-## Do not Handle Exceptions ###
+## Don't Handle Exceptions ###
 
 Let me rephrase that: exceptions should be handled only
 
@@ -146,6 +146,9 @@ Let me rephrase that: exceptions should be handled only
   only if an exception occurs (to release resources, etc.), so a ``finally``-clause or a *context
   manager* won't do. In this case you can ``except Exception``, do the rollback, and ``raise``
   (without passing any arguments to ``raise``).
+
+  *Note: I stand corrected by Nick Coghlan -- you can use context managers for the very same
+  effect. Forgot about that.*
 
 * in the **main function**. Instead of letting the application crash with a traceback, you might 
   want to log the exception to a file, pop up a message box, ask the user what to do next, etc.
