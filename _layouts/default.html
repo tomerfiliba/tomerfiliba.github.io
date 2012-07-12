@@ -95,6 +95,7 @@ layout: nil
                 {{ content }}
                 
                 {% if page.comments %}
+                {% unless page.draft %}
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -108,6 +109,7 @@ layout: nil
                     })();
                 </script>
                 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                {% endunless %}
                 {% endif %}
             </div>
             <div id="sidebar">
