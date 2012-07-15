@@ -7,6 +7,9 @@ tags: [python]
 
 <img src="http://tomerfiliba.com/static/res/2012-07-09-i-fixed2.jpg" class="blog_post_image" title="Nesting Exceptions..." />
 
+> * [Part 1](http://tomerfiliba.com/blog/Javaism)
+> * [Part 3](http://tomerfiliba.com/blog/On-Logging)
+
 Considering the reactions to the [previous post](http://tomerfiliba.com/blog/Javaism) in this 
 series, my intent was obviously misunderstood. Please allow me to clarify that **I was not 
 attacking Java or Python**: Java is popular and has proven to be productive, 
@@ -129,8 +132,8 @@ on the cause of it, or where you want to *change the semantics* of it. A classic
 you'd probably want to "accumulate" the intermediate exceptions and raise a 
 ``ConnectionError("%d connection attempts failed", accum_exceptions)``.
 
-Bottom line: <span style="background: #FFA">wrap exceptions only where you **add information** to 
-it;</span> there has to be a **good reason** for wrapping.
+Bottom line: <span style="background: #FFA">wrap only where you **add information** to the 
+underlying exception;</span> there has to be a **good reason** for wrapping.
 
 ## Don't Handle Exceptions ###
 
