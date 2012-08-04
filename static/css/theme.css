@@ -37,7 +37,7 @@ a:hover {
     color: #ED9D13;
 }
 
-a img {
+a img, a h1, a h2, a h3, a h4, a h5 {
     border: none;
 }
 
@@ -49,7 +49,7 @@ img {
 /************************************************************************************************/
 
 
-div#sidebar {
+#sidebar {
     position: fixed;
     left: 0;
     top: 0;
@@ -123,6 +123,10 @@ div.menuitem a {
 #recent {
     font-size: 12px;
     padding: 30px 0 0 0;
+    color: #ccc;
+}
+
+#recent div.menuitem a {
     color: #ccc;
 }
 
@@ -202,34 +206,35 @@ div.menuitem a {
     padding: 0;
     background: #f8f8f8;
     border-left: 2px solid #ddd;
-}
-
-#content {
     min-width: 100px;
     max-width: 700px;
     text-align: justify;
     padding: 40px 40px 20px 40px;
 }
 
-#content div.section {
+#main div.section {
     width: 100%;
     padding: 10px 0 20px 0; 
     border-bottom: 1px solid #eee;
 }
 
-#content span.datebox {
+#main div.comments {
+    float: right;
+}
+
+#main span.datebox {
     font-size: 14px;
     display: block;
 }
 
-#content img.blog-post-image {
+#main img.blog-post-image {
     float: right;
     max-width: 250px;
     padding-left: 20px;
     padding-bottom: 10px;
 }
 
-#content[dir="rtl"] img.blog-post-image {
+#main[dir="rtl"] img.blog-post-image {
     float: left;
     padding-right: 20px;
     padding-left: 0;
@@ -237,6 +242,7 @@ div.menuitem a {
 
 #footer {
     font-size: 14px;
+    padding: 10px 0 30px 0;
 }
 
 
@@ -245,37 +251,37 @@ div.menuitem a {
 
 @media only screen and (max-width:1150px)
 {
-    div#sidebar {
+    #sidebar {
         width: 280px;
         padding: 50px 0 0 20px;
     }
 
-    div#main {
+    #main {
         left: 300px;
     }
 
-    div.article-text {
+    #content {
         max-width: 100%;
     }
     
-    div.social {
+    #sidebar #social {
         left: 0px;
     }
 }
 
 @media only screen and (max-height:770px)
 {
-    div.social {
+    #sidebar #social {
         bottom: 0px;
     }
 }
 
 @media only screen and (max-height:670px)
 {
-    div.recent {
+    #sidebar #recent {
         display: none;
     }
-    div.social {
+    #sidebar #social {
         bottom: 60px;
     }
 
@@ -283,7 +289,7 @@ div.menuitem a {
 
 @media only screen and (max-height:520px)
 {
-    div.social {
+    #sidebar #social {
         display: none;
     }
 }
@@ -295,41 +301,32 @@ div.menuitem a {
         font-size: 16px;
     }
 
-    div.recent {
+    #sidebar #recent {
         display: none;
     }
-    div.social {
+    #sidebar #social {
         display: none;
     }
     
-    div#sidebar {
+    #sidebar {
         position: relative;
         width: auto;
         padding: 20px 0 10px 0;
         border-bottom: 2px solid #ddd;
     }
 
-    div#main {
+    #main {
         position: relative;
         left: auto;
         top: auto;
         right: auto;
         border: none;
-    }
-    
-    div.article-box {
         width: auto;
-        position: relative;
         padding: 20px 10px 40px 10px;
         border: none;
-        border-bottom: 1px solid #ddd;
     }
 
-    div.menu {
-        text-align: center;
-    }
-    
-    div.menu a {
+    #navigation div.menuitem {
         display: inline;
         border: none;
         border-left: 1px solid #ddd;
@@ -337,20 +334,16 @@ div.menuitem a {
         line-height: 2em;
     }
 
-    div.menu a:last-child {
+    #navigation div.menuitem:last-child {
         border-right: 1px solid #ddd;
     }
 
-    div.menu a:hover {
+    #navigation div.menuitem:hover {
         border-left: 1px solid #ddd;
         padding: 0 3px 0 3px;
     }
 
-    div.social {
-        display: none;
-    }
-
-    div#logobox {
+    #logobox {
         padding: 10px 0 10px 0;
         text-align: center;
     }
@@ -361,7 +354,7 @@ div.menuitem a {
         padding-left: 20px;
     }
     
-    div#logobox img {
+    #logobox img {
         width: 70px;
     }
 }
