@@ -3,7 +3,6 @@ body {
     font-size: 16px;
     font-weight: normal;
     color: #1f1f1f;
-    background: white;
     padding: 0px;
     margin: 0px;
     background: #f8f8f8;
@@ -16,7 +15,7 @@ code, pre {
 pre {
     text-align: left;
     padding: 5px 0px 8px 10px;
-    background: #fff;
+    background-color: white;
     overflow-x: auto;
     border: none;
     border-left: 2px solid #ddd;
@@ -39,11 +38,11 @@ a:hover {
 
 #sidebar {
     position: fixed;
-    background: #white;
+    background-color: white;
     left: 0;
     top: 0;
     min-height: 100%;
-    width: 300px;
+    width: 350px;
     margin: 0;
     padding: 50px 10px 0 40px;
     font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
@@ -209,7 +208,7 @@ div.menuitem a {
 }
 
 #content {
-    padding: 40px 40px 20px 40px;
+    padding: 40px 40px 40px 40px;
     text-align: justify;
 }
 
@@ -260,13 +259,12 @@ div.menuitem a {
 
 #footer {
     display: none;
-    /*position: absolute;
+    position: absolute;
     bottom: 0;
     color: #ccc;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
-    padding: 10px 0 30px 0;
-    border-top: 2px solid #ddd;*/
+    padding: 0 40px 10px 40px;
 }
 
 
