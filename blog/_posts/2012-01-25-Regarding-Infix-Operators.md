@@ -10,7 +10,7 @@ out some things. First of all, I'm not the one who came up with it -- it's a rec
 Python Cookbook that's been posted in 2005. I'm not taking credit for it or anything, I just
 said I loved the idea and I adapted the code a little. 
 
-<img src="http://2.bp.blogspot.com/-dKF7ujI_yN0/TgWIk8mccWI/AAAAAAAAACI/hONGw2EoW24/s320/Funny+orkut+scraps+funny+dog+pictures+teeths.jpg" class="blog_post_image" />
+<img src="http://2.bp.blogspot.com/-dKF7ujI_yN0/TgWIk8mccWI/AAAAAAAAACI/hONGw2EoW24/s320/Funny+orkut+scraps+funny+dog+pictures+teeths.jpg" class="blog-post-image" />
 
 Second, regarding coding style or the *pythonicity* of this scheme -- let's be clear, it's a hack.
 In order for it to work, the two arguments must refuse to support `__or__` on `Infix` objects,

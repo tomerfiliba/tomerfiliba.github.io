@@ -6,7 +6,7 @@ tags: [python]
 ---
 
 <a href="http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg">
-<img src="http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg" title="Very Demotivational" class="blog_post_image" /></a>
+<img src="http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg" title="Very Demotivational" class="blog-post-image" /></a>
 
 As I promised in the [code-generation using context managers post](http://tomerfiliba.com/blog/Code-Generation-Context-Managers),
 I wanted to review some more, rather surprising, examples where context managers prove handy.

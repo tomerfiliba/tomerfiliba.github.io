@@ -9,7 +9,7 @@ up my ever-so-long backlog. Here goes nothing: I'll start by posting something h
 after this long while of neglect. 
 
 <a href="http://learnyouahaskell.com/">
-<img src="http://nostarch.com/sites/default/files/imagecache/product_full/lyah.png" title="LYAH" class="blog_post_image" /></a>
+<img src="http://nostarch.com/sites/default/files/imagecache/product_full/lyah.png" title="LYAH" class="blog-post-image" /></a>
 
 As I'm sure you already know, I'm a long-time Pythonista, and I'm confident enough in calling 
 myself a "native speaker" of that language. Although python is my expertise, I'd say I'm 

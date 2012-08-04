@@ -7,7 +7,7 @@ rtl: true
 comments: true
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-07-04-bitch.jpg" class="blog_post_image" style="width: 180px;" title="10gag.co.il"/>
+<img src="http://tomerfiliba.com/static/res/2012-07-04-bitch.jpg" class="blog-post-image" style="width: 180px;" title="10gag.co.il"/>
 
 ## כלבתא במטותא ##
 

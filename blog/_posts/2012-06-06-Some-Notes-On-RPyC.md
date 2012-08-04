@@ -5,7 +5,7 @@ tags: [rpyc]
 description: The (unplanned) development of RPyC 3.2.3 
 ---
 
-<img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog_post_image" />
+<img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog-post-image" />
 
 As I said in the previous blog post, I hoped for v3.2.2 to be the last release of the 3.2 line... 
 Naturally, I was wrong :) Turns out the fix for 
