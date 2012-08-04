@@ -67,7 +67,7 @@ a:hover {
 #sitename {
     font-family: 'Telex', sans-serif;
     font-size: 44px;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
     display: block;
     text-shadow: 1px 1px 3px #ccc; 
 }
