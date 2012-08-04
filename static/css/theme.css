@@ -6,6 +6,7 @@ body {
     background: white;
     padding: 0px;
     margin: 0px;
+    background: #f8f8f8;
 }
 
 code, pre {
@@ -38,12 +39,13 @@ a:hover {
 
 #sidebar {
     position: fixed;
+    background: #white;
     left: 0;
     top: 0;
     min-height: 100%;
     width: 300px;
     margin: 0;
-    padding: 50px 0 0 40px;
+    padding: 50px 10px 0 40px;
     font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
 }
 
@@ -199,20 +201,15 @@ div.menuitem a {
     top: 0;
     margin: 0;
     padding: 0;
-    padding-bottom: 60px;
-    background: #f8f8f8;
     border-left: 2px solid #ddd;
     min-height: 100%;
-}
-
-#content-wrapper {
     min-width: 100px;
     max-width: 700px;
-    padding: 40px 40px 20px 40px;
     border-right: 2px solid #ddd;
 }
 
 #content {
+    padding: 40px 40px 20px 40px;
     text-align: justify;
 }
 
@@ -262,13 +259,14 @@ div.menuitem a {
 }
 
 #footer {
-    position: absolute;
+    display: none;
+    /*position: absolute;
     bottom: 0;
     color: #ccc;
     font-size: 14px;
     text-align: center;
     padding: 10px 0 30px 0;
-    border-top: 2px solid #ddd;
+    border-top: 2px solid #ddd;*/
 }
 
 
@@ -284,9 +282,6 @@ div.menuitem a {
 
     #main {
         left: 300px;
-    }
-
-    #content-wrapper {
         max-width: 100%;
     }   
     
@@ -346,10 +341,9 @@ div.menuitem a {
         border: none;
     }
     
-    #content-wrapper {
+    #content {
         width: auto;
         padding: 20px 10px 40px 10px;
-        border: none;
     }
 
     #navigation {
