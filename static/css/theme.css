@@ -22,6 +22,10 @@ pre {
     border-right: 2px solid #ddd;
 }
 
+p code {
+    background-color: #ddd;
+}
+
 a, a:active, a:visited, a:link {
     color: #086782;
     text-decoration: none;
@@ -65,6 +69,7 @@ a:hover {
     font-size: 44px;
     letter-spacing: -2px;
     display: block;
+    text-shadow: 1px 1px 3px #ccc; 
 }
 
 #tagline {
@@ -97,7 +102,7 @@ div.menuitem a {
 }
 
 #navigation div.menuitem a {
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: #1f1f1f;
 }
 
@@ -202,7 +207,7 @@ div.menuitem a {
     padding: 0;
     min-height: 100%;
     min-width: 100px;
-    max-width: 700px;
+    max-width: 800px;
     border-left: 2px solid #ddd;
     /*border-right: 2px solid #ddd;*/
 }
@@ -215,6 +220,8 @@ div.menuitem a {
 #content h1, #content h2, #content h3, #content h4, #content h5 {
     font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
     text-align: left;
+    color: #232;
+    text-shadow: 0px 0px 2px #CCC;
 }
 
 #content[dir="rtl"] h1, #content[dir="rtl"] h2, #content[dir="rtl"] h3, #content[dir="rtl"] h4, #content[dir="rtl"] h5 {
