@@ -19,9 +19,9 @@ I hope you'll find it interesting.</p>
 {% unless post.draft %}
 
     <div class="section">
-        <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
+        <h2><a href="{{ post.url }}" style="border:none;">{{ post.title }}</a></h2>
+        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
     </div>
-    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
     {{ post.content }}
     <span class="comments"><a href="{{ post.url }}">Comment on the post's page</a></span>
 
