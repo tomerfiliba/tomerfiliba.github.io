@@ -94,6 +94,7 @@ div.menuitem a {
     -ms-transition: 0.2s ease;
     transition: 0.2s ease;
     border: none;
+    display: block;
 }
 
 #navigation div.menuitem {

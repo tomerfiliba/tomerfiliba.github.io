@@ -19,12 +19,12 @@ I hope you'll find it interesting.</p>
 {% unless post.draft %}
 
     <div class="section">
-        <h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2>
-        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
-        {{ post.content }}
-        <span class="comments"><a href="{{ post.url }}">Comment on the post's page</a></span>
+        <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
     </div>
-    
+    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+    {{ post.content }}
+    <span class="comments"><a href="{{ post.url }}">Comment on the post's page</a></span>
+
 {% endunless %}
 {% endfor %}
 
