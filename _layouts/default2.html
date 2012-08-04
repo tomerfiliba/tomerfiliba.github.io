@@ -72,12 +72,16 @@ layout: nil
         
         <div id="recent">
             <div id="recent-title">recent content</div>
-            {% for p in site.posts limit: 5 %}
+            {% assign cnt = 0 %}
+            {% for p in site.posts %}
             {% unless p.draft %}
+                {% if cnt < 5 %}
                 <div class="menuitem">
                     <span class="datebox">{{ p.date | date: '%B %d' }}</span>
                     <a href="{{p.url}}">{{p.title}}</a>
                 </div>
+                {% endif %}
+                {% assign cnt = cnt + 1 %}
             {% endunless %}
             {% endfor %}
         </div>

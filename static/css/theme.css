@@ -96,28 +96,29 @@ div.menuitem a {
     -o-transition: 0.2s ease;
     -ms-transition: 0.2s ease;
     transition: 0.2s ease;
+    border: none;
 }
 
 #navigation div.menuitem {
     padding: 8px 0 8px 8px;
-    border: none;
     border-left: 2px solid #5D5D5D;
 }
 
 #navigation div.menuitem a {
     font-size: 18px;
     color: #1f1f1f;
-    border: none;
 }
 
 #navigation div.menuitem:hover {
     border-left: 2px solid #ED9D13;
-    padding-left: 12px;
+    padding: 8px 0 8px 12px;
 }
 
 #navigation div.menuitem:hover a {
     color: #ED9D13;
 }
+
+/***/
 
 #recent {
     font-size: 12px;
@@ -126,16 +127,19 @@ div.menuitem a {
 }
 
 #recent #recent-title {
-    color: #ccc;
     padding: 4px 0 4px 10px;
     font-weight: bold;
     border-left: 2px solid #ccc;
 }
 
 #recent div.menuitem {
-    border: none;
     border-left: 2px solid #ccc;
     padding: 6px 0 6px 10px;
+}
+
+#recent div.menuitem:hover {
+    border-left: 2px solid #086782;
+    padding: 6px 0 6px 14px;
 }
 
 #recent div.menuitem a {
@@ -148,8 +152,6 @@ div.menuitem a {
 
 #recent div.menuitem:hover a {
     color: #086782;
-    padding: 6px 0 6px 14px;
-    border-left: 2px solid #086782;
 }
 
 #recent span.datebox {
@@ -158,6 +160,8 @@ div.menuitem a {
     padding-left: 4px;
     display: none;
 }
+
+/***/
 
 #social {
     position: fixed;
@@ -212,6 +216,11 @@ div.article-text {
     min-width: 100px;
     max-width: 700px;
     text-align: justify;
+}
+
+#content {
+    min-width: 100px;
+    max-width: 700px;
 }
 
 #content img.blog-post-image {
