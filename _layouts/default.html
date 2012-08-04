@@ -94,7 +94,9 @@ layout: nil
         <div id="content" {% if page.rtl %}dir="rtl"{% endif %} >
             <div id="socialbox"></div>
             
-            <h1>{{title}}</h1>
+            <div class="section">
+            <h1>{{page.title}}</h1>
+            </div>
 
             {{ content }}
             

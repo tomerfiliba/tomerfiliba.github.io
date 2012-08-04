@@ -5,38 +5,32 @@ title: Hi There!
 description: Welcome to Tomer Filiba's homepage
 ---
 
-<div class="section"><div class="sectiontext">
-<p>I'm Tomer Filiba, the author of several open source Python projects (most notably 
-<a href="http://rpyc.sourceforge.net">RPyC</a>, <a href="http://construct.wikispaces.com">Construct</a>,
-and <a href="http://plumbum.readthedocs.org">Plumbum</a>). After a long while of scattering my stuff 
-around the web (the <a href="http://code.activestate.com/recipes/users/2520014/">Python Cookbook</a>,
-<a href="http://sourceforge.net/users/gangesmaster">sourceforge</a>, 
-<a href="http://sebulbasvn.googlecode.com/svn/trunk/">google-code</a>, and what not), 
-I decided to "consolidate my portfolio" into a single website. This place is home to all of my 
-<a href="http://tomerfiliba.com/projects">projects</a> and personal python-oriented blog.
-I hope you'll find it interesting.
-</p>
-</div></div>
-
-<h2 style="color: #000;">Latest blog posts</h2>
+<div class="section">
+    <p>I'm Tomer Filiba, the author of several open source Python projects (most notably 
+    <a href="http://rpyc.sourceforge.net">RPyC</a>, <a href="http://construct.wikispaces.com">Construct</a>,
+    and <a href="http://plumbum.readthedocs.org">Plumbum</a>). After a long while of scattering my stuff 
+    around the web (the <a href="http://code.activestate.com/recipes/users/2520014/">Python Cookbook</a>,
+    <a href="http://sourceforge.net/users/gangesmaster">sourceforge</a>, 
+    <a href="http://sebulbasvn.googlecode.com/svn/trunk/">google-code</a>, and what not), 
+    I decided to "consolidate my portfolio" into a single website. This place is home to all of my 
+    <a href="http://tomerfiliba.com/projects">projects</a> and personal python-oriented blog.
+    I hope you'll find it interesting.</p>
+</div>
 
 {% for post in site.categories.blog limit: 4 %}
 {% unless post.draft %}
 
-    <div class="section"><div class="sectiontext">
-        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}
-    
-        <div style="float:left;"><h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2></div>
-        <div style="float:right;"><em>posted on </em></div>
-        <div class="blog-text" style="clear:both;">{{ post.content }}</div>
-        <p><a href="{{ post.url }}">Comment on the post's page</a></p>
-    </div></div>
+    <div class="section">
+        <h2><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></h2>
+        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+        {{ post.content }}
+        <span class="comments"><a href="{{ post.url }}">Comment on the post's page</a></span>
+    </div>
     
 {% endunless %}
 {% endfor %}
 
-<br/>
-
-<div style="text-align: right"><a href="/blog"><em>All blog posts &rarr;</em></a></div>
-
+<div class="section">
+<a href="http://tomerfiliba.com/blog">All blog posts »»»</a>
+</div>
 

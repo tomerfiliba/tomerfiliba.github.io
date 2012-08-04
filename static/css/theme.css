@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     color: #1f1f1f;
     background: white;
@@ -204,18 +204,22 @@ div.menuitem a {
     border-left: 2px solid #ddd;
 }
 
-#main div.section {
-    width: auto;
-    position: relative;
-    padding: 40px 40px 20px 40px;
-    border: none;
-    border-bottom: 1px solid #eee;
-}
-
-#main div.sectiontext {
+#content {
     min-width: 100px;
     max-width: 700px;
     text-align: justify;
+    padding: 40px 40px 20px 40px;
+}
+
+#content div.section {
+    width: 100%;
+    padding: 10px 0 20px 0; 
+    border-bottom: 1px solid #eee;
+}
+
+#content span.datebox {
+    font-size: 14px;
+    display: block;
 }
 
 #content img.blog-post-image {
