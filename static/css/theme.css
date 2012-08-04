@@ -1,11 +1,11 @@
 body {
-    font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
-    font-size: 16px;
+    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
+    font-size: 18px;
     font-weight: normal;
     color: #1f1f1f;
     padding: 0px;
     margin: 0px;
-    background: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
 code, pre {
@@ -45,7 +45,7 @@ a:hover {
     width: 350px;
     margin: 0;
     padding: 50px 10px 0 40px;
-    font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
+    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
 }
 
 #logobox {
@@ -97,7 +97,7 @@ div.menuitem a {
 }
 
 #navigation div.menuitem a {
-    font-size: 18px;
+    font-size: 20px;
     color: #1f1f1f;
 }
 
@@ -200,11 +200,11 @@ div.menuitem a {
     top: 0;
     margin: 0;
     padding: 0;
-    border-left: 2px solid #ddd;
     min-height: 100%;
     min-width: 100px;
     max-width: 700px;
-    border-right: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    /*border-right: 2px solid #ddd;*/
 }
 
 #content {
@@ -213,7 +213,7 @@ div.menuitem a {
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5 {
-    font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
+    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
     text-align: left;
 }
 
@@ -240,7 +240,7 @@ div.menuitem a {
 }
 
 #main span.datebox {
-    font-size: 14px;
+    font-size: 12px;
     display: block;
 }
 
@@ -316,7 +316,6 @@ div.menuitem a {
 @media print, handheld, only screen and (max-width:700px), only screen and (max-device-width: 700px)
 {
     body {
-        font-family: 'PT Serif', serif;
         font-size: 16px;
     }
 
