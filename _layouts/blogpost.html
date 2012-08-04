@@ -5,19 +5,5 @@ comments: true
 feed_link: http://tomerfiliba.com/blog/atom.xml
 ---
 
-{% if page.side_image %}
-    {% if page.side_image_link %}
-        <a href="{{ page.side_image_link }}">
-    {% endif %}
-    {% if page.side_image contains "http://" %}
-        <img src="{{ page.side_image }}" class="blog_post_image" />
-    {% else %}
-        <img src="http://tomerfiliba.com/static/res/{{ page.side_image }}" class="blog_post_image" />
-    {% endif %}
-    {% if page.side_image_link %}
-        </a>
-    {% endif %}
-{% endif %}
-
 {{ content }}
 
