@@ -205,12 +205,15 @@ div.menuitem a {
     min-height: 100%;
 }
 
-#content {
+#content-wrapper {
     min-width: 100px;
     max-width: 700px;
-    text-align: justify;
     padding: 40px 40px 20px 40px;
     border-right: 2px solid #ddd;
+}
+
+#content {
+    text-align: justify;
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5 {
@@ -222,7 +225,7 @@ div.menuitem a {
     text-align: right;
 }
 
-#content a img, a h1, a h2, a h3, a h4, a h5 {
+#content a img, #content a h1, #content a h2, #content a h3, #content a h4, #content a h5 {
     border: none;
 }
 
@@ -259,16 +262,13 @@ div.menuitem a {
 }
 
 #footer {
+    position: absolute;
+    bottom: 0;
     color: #ccc;
     font-size: 14px;
     text-align: center;
-    padding: 10px 40px 30px 40px;
-    position: absolute;
-    bottom: 0px;
+    padding: 10px 0 30px 0;
     border-top: 2px solid #ddd;
-    border-right: 2px solid #ddd;
-    width: 100%;
-    max-width: 700px;
 }
 
 
@@ -286,13 +286,9 @@ div.menuitem a {
         left: 300px;
     }
 
-    #content {
+    #content-wrapper {
         max-width: 100%;
-    }
-    
-    #footer {
-        max-width: 100%;
-    }
+    }   
     
     #sidebar #social {
         left: 0px;
@@ -346,14 +342,11 @@ div.menuitem a {
     }
 
     #main {
-        position: relative;
-        left: auto;
-        top: auto;
-        right: auto;
+        position: static;
         border: none;
     }
     
-    #content {
+    #content-wrapper {
         width: auto;
         padding: 20px 10px 40px 10px;
         border: none;
