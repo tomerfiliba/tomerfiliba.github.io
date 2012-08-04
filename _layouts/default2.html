@@ -1,0 +1,130 @@
+---
+layout: nil
+---
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>{{ page.title }} - tomerfiliba.com</title>
+    <meta name="author" content="Tomer Filiba" />
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="canonical" href="http://tomerfiliba.com{{page.url}}" />
+    <link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/static/css/theme.css" type="text/css" media="all" />
+    
+    <link href="http://fonts.googleapis.com/css?family=Cantarell:400,700,400italic|Telex|Open+Sans:400italic,400,700|Ubuntu+Mono|PT+Serif:400italic,400,700" rel="stylesheet" type="text/css">
+
+    {% if page.feed_link %}
+        {% assign feed_link = page.feed_link %}
+    {% else %}
+        {% assign feed_link = "/atom.xml" %}
+    {% endif %}
+
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ feed_link }}" />
+
+    {% if page.description %}
+    <meta name="description" content="{{ page.description | escape }}" />
+    {% else %}
+    <meta name="description" content="Tomer Filiba's homepage and blog" />
+    {% endif %}
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-21128099-1']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</head>
+<body>
+    <div id="sidebar">
+        <div id="logobox">
+            <a href="http://tomerfiliba.com/" title="Home">
+            <img src="/static/logos/fish-logo.png"/><span id="sitename">tomer filiba</span>
+            </a>
+            <div id="tagline">Tagline</div>
+        </div>
+
+        <div class="navigation">
+            <div class="menuitem">
+            <a href="http://tomerfiliba.com/blog" {% if page.section == "blog" %}class="selected"{% endif %}>blog</a></div>
+            <div class="menuitem">
+            <a href="http://tomerfiliba.com/projects" {% if page.section == "projects" %}class="selected"{% endif %}>projects</a></div>
+            <div class="menuitem">
+            <a href="http://tomerfiliba.com/about" {% if page.section == "about" %}class="selected"{% endif %}>about</a></div>
+            <div class="menuitem">
+            <a href="http://tomerfiliba.com/services" {% if page.section == "services" %}class="selected"{% endif %}>services</a></div>
+            <div class="menuitem">
+            <a href="http://tomerfiliba.com/etc" {% if page.section == "etc" %}class="selected"{% endif %}>etc</a></div>
+        </div>
+        
+        <div id="recent">
+            <div id="recent-title">recent content</div>
+            {% for p in site.posts limit: 15 %}
+            {% unless p.draft %}
+                <div class="menuitem">
+                    <span class="datebox">{{ p.date | date: '%B %d' }}</span>
+                    <a href="{{p.url}}">p.title</a>
+                </div>
+            {% endunless %}
+            {% endfor %}
+        </div>
+        
+        <div id="social">
+            <a href="/atom.xml"><img src="/static/logos/rss.png" title="rss feed"/></a>
+            <a href="http://twitter.com/tomerfiliba"><img src="/static/logos/twitter.png" title="twitter profile"/></a>
+            <a href="http://il.linkedin.com/in/tomerfiliba"><img src="/static/logos/linkedin.png" title="linkedin profile"/></a>
+            <a href="http://github.com/tomerfiliba"><img src="/static/logos/github24.png" title="github profile"/></a>
+        </div>
+    </div>
+    
+    <div id="main">
+        <div id="content" {% if page.rtl %}dir="rtl"{% endif %} >
+            <div id="socialbox"></div>
+            
+            {{ content }}
+            
+            {% if page.comments %}
+            {% unless page.draft %}
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'tomerfiliba'; // required: replace example with your forum shortname
+            
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the 
+            <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            {% endunless %}
+            {% endif %}
+        </div>
+
+        <div id="footer">
+            The content of this site is published under 
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+            <img title="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
+                alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
+                style="border: none;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
+            </a>. The design has been inspired by <a href="http://svbtle.com">svbtle</a>
+        </div>
+    </div>
+</body>
+</html>
+
