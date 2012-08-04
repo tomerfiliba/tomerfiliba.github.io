@@ -22,11 +22,6 @@ pre {
     border-right: 2px solid #ddd;
 }
 
-h1, h2, h3, h4, h5 {
-    /*font-family: 'Open Sans', 'Trebuchet MS', sans-serif;*/
-    text-align: left;
-}
-
 a, a:active, a:visited, a:link {
     color: #086782;
     text-decoration: none;
@@ -35,14 +30,6 @@ a, a:active, a:visited, a:link {
 
 a:hover {
     color: #ED9D13;
-}
-
-a img, a h1, a h2, a h3, a h4, a h5 {
-    border: none;
-}
-
-img {
-    max-width: 100%;
 }
 
 
@@ -57,11 +44,15 @@ img {
     width: 300px;
     margin: 0;
     padding: 50px 0 0 40px;
-    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
 }
 
 #logobox {
     padding-bottom: 30px;
+}
+
+#logobox a {
+    border: none;
 }
 
 #logobox a {
@@ -107,6 +98,10 @@ div.menuitem a {
 #navigation div.menuitem a {
     font-size: 18px;
     color: #1f1f1f;
+}
+
+#navigation div.menuitem a.selected {
+    font-weight: bold;
 }
 
 #navigation div.menuitem:hover {
@@ -204,12 +199,34 @@ div.menuitem a {
     top: 0;
     margin: 0;
     padding: 0;
+    padding-bottom: 60px;
     background: #f8f8f8;
     border-left: 2px solid #ddd;
+    min-height: 100%;
+}
+
+#content {
     min-width: 100px;
     max-width: 700px;
     text-align: justify;
     padding: 40px 40px 20px 40px;
+}
+
+#content h1, h2, h3, h4, h5 {
+    font-family: 'Open Sans', 'Trebuchet MS', sans-serif;
+    text-align: left;
+}
+
+#content[dir="rtl"] h1, h2, h3, h4, h5 {
+    text-align: right;
+}
+
+#content a img, a h1, a h2, a h3, a h4, a h5 {
+    border: none;
+}
+
+#content img {
+    max-width: 100%;
 }
 
 #main div.section {
@@ -234,7 +251,7 @@ div.menuitem a {
     padding-bottom: 10px;
 }
 
-#main[dir="rtl"] img.blog-post-image {
+#content[dir="rtl"] img.blog-post-image {
     float: left;
     padding-right: 20px;
     padding-left: 0;
@@ -243,6 +260,9 @@ div.menuitem a {
 #footer {
     font-size: 14px;
     padding: 10px 0 30px 0;
+    position: absolute;
+    bottom: 0px;
+    border-top: 3px solid #eee;
 }
 
 
@@ -321,9 +341,16 @@ div.menuitem a {
         top: auto;
         right: auto;
         border: none;
+    }
+    
+    #content {
         width: auto;
         padding: 20px 10px 40px 10px;
         border: none;
+    }
+
+    #navigation {
+        text-align: center;
     }
 
     #navigation div.menuitem {

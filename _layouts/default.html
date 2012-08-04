@@ -90,38 +90,40 @@ layout: nil
         </div>
     </div>
     
-    <div id="main" {% if page.rtl %}dir="rtl"{% endif %}>
-        <!--div id="socialbox"></div-->
-        
-        <div class="section">
-        <h1>{{page.title}}</h1>
-        {% if page.date %}
-        <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
-        {% endif %}
+    <div id="main">
+        <div id="content" {% if page.rtl %}dir="rtl"{% endif %}>
+            <!--div id="socialbox"></div-->
+            
+            <div class="section">
+            <h1>{{page.title}}</h1>
+            {% if page.date %}
+            <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
+            {% endif %}
+            </div>
+    
+            {{ content }}
+            
+            {% if page.comments %}
+            {% unless page.draft %}
+            <div class="section">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'tomerfiliba'; // required: replace example with your forum shortname
+            
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the 
+            <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+            {% endunless %}
+            {% endif %}
         </div>
-
-        {{ content }}
-        
-        {% if page.comments %}
-        {% unless page.draft %}
-        <div class="section">
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'tomerfiliba'; // required: replace example with your forum shortname
-        
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the 
-        <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-        {% endunless %}
-        {% endif %}
 
         <div id="footer">
             The content of this site is published under 
