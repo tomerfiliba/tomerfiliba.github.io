@@ -391,4 +391,9 @@ div.menuitem a {
     #logobox img {
         width: 70px;
     }
+    
+    #content img.blog-post-image {
+        max-width: 100%;
+        display: block;
+    }
 }
