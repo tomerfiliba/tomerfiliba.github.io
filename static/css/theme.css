@@ -283,14 +283,16 @@ div.menuitem a {
     padding: 0 40px 10px 40px;
 }
 
-div.button {
+#main a.button {
+    display: block;
+    text-transform: uppercase;
     background: #ddd;
     border: 2px solid #ccc;
     padding: 10px;
     border-radius: 5px;
 }
 
-div.button:hover {
+#main a.button:hover {
     border: 2px solid #ED9D13;
 }
 
