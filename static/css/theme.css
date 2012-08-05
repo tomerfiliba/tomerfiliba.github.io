@@ -401,7 +401,7 @@ div.menuitem a {
     }
     
     #content img.blog-post-image {
-        max-width: 100%;
+        /*max-width: 100%;*/
         display: block;
         float: none;
         margin-left: auto;
