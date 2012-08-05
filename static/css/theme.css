@@ -23,7 +23,7 @@ pre {
 }
 
 p code {
-    background-color: #ddd;
+    background-color: #e5e5e5;
 }
 
 a, a:active, a:visited, a:link {
@@ -107,7 +107,7 @@ div.menuitem a {
 }
 
 #navigation div.menuitem a {
-    /*font-size: 20px;*/
+    font-size: 18px;
     color: #1f1f1f;
 }
 
@@ -372,7 +372,6 @@ div.menuitem a {
     }
 
     #navigation div.menuitem a {
-        font-size: 18px;
         display: inline;
     }
     
