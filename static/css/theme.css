@@ -36,6 +36,10 @@ a:hover {
     color: #ED9D13;
 }
 
+a img {
+    border: none;
+}
+
 
 /************************************************************************************************/
 
@@ -229,7 +233,7 @@ div.menuitem a {
     text-align: right;
 }
 
-#content a img, #content a h1, #content a h2, #content a h3, #content a h4, #content a h5 {
+#content #content a h1, #content a h2, #content a h3, #content a h4, #content a h5 {
     border: none;
 }
 
