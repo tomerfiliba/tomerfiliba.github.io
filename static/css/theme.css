@@ -176,7 +176,7 @@ div.menuitem a {
 #social {
     position: fixed;
     left: 27px;
-    bottom: 60px;
+    bottom: 30px;
     list-style-type: none;
     margin:4px 0 0 0;
     padding: 12px 0 0 13px;
@@ -300,20 +300,20 @@ div.menuitem a {
     }
 }
 
-@media only screen and (max-height:770px)
+@media only screen and (max-height:730px)
 {
     #sidebar #social {
         bottom: 0px;
     }
 }
 
-@media only screen and (max-height:670px)
+@media only screen and (max-height:640px)
 {
     #sidebar #recent {
         display: none;
     }
     #sidebar #social {
-        bottom: 60px;
+        bottom: 30px;
     }
 
 }
@@ -400,5 +400,7 @@ div.menuitem a {
         max-width: 100%;
         display: block;
         float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
