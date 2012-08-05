@@ -363,6 +363,11 @@ div.menuitem a {
         line-height: 2em;
     }
 
+    #navigation div.menuitem a {
+        font-size: 18px;
+        display: inline;
+    }
+    
     #navigation div.menuitem:last-child {
         border-right: 1px solid #ddd;
     }
