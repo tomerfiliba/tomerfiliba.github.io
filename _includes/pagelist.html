@@ -6,7 +6,7 @@
         <td style="text-align:right"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></td>
     </tr>
     <tr>
-        <td colspan="2" {% if post.rtl %}style="dir: rtl;"{% endif %}>
+        <td colspan="2" {% if post.rtl %}dir="rtl"{% endif %} >
         {{ post.content | strip_html | truncatewords: 30 }}
         </td>
     </tr>

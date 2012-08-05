@@ -218,7 +218,7 @@ div.menuitem a {
 }
 
 #content {
-    padding: 40px 40px 40px 40px;
+    padding: 40px 40px 40px 85px;
     text-align: justify;
 }
 
@@ -293,7 +293,11 @@ div.menuitem a {
     #main {
         left: 300px;
         max-width: 100%;
-    }   
+    }
+    
+    #content {
+        padding: 40px 40px 40px 60px;
+    }
     
     #sidebar #social {
         left: 0px;
@@ -318,7 +322,7 @@ div.menuitem a {
 
 }
 
-@media only screen and (max-height:520px)
+@media only screen and (max-height:490px)
 {
     #sidebar #social {
         display: none;
