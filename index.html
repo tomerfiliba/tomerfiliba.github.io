@@ -23,12 +23,12 @@ I hope you'll find it interesting.</p>
         <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
     </div>
     {{ post.content }}
-    <span class="comments"><a href="{{ post.url }}">Comment on the post's page</a></span>
+    <a href="{{ post.url }}"><div style="float: right;" class="button">Comment on the Post's page »»»</div></a>
+    <div class="clear:both;"></div>
     <br/><br/>
 
 {% endunless %}
 {% endfor %}
 
-<a href="/blog">
-<div style="float: right; background: #ddd; border: 2px solid #ccc; padding: 10px; border-radius: 5px;">More »»»</div>
-</a>
+<a href="/blog"><div style="float: right;" class="button">Older Posts »»»</div></a>
+<div class="clear:both;"></div>

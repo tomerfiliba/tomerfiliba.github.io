@@ -22,6 +22,10 @@ pre {
     border-right: 2px solid #ddd;
 }
 
+strong {
+    font-weight: 600;
+}
+
 p code {
     background-color: #e5e5e5;
 }
@@ -279,6 +283,16 @@ div.menuitem a {
     padding: 0 40px 10px 40px;
 }
 
+div.button {
+    background: #ddd;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+div.button:hover {
+    border: 2px solid #ED9D13;
+}
 
 /************************************************************************************************/
 
