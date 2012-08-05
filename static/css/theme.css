@@ -285,7 +285,7 @@ div.menuitem a {
 
 #main a.button {
     display: block;
-    text-transform: uppercase;
+    text-transform: lowercase;
     background: #ddd;
     border: 2px solid #ccc;
     padding: 10px;
@@ -293,6 +293,7 @@ div.menuitem a {
 }
 
 #main a.button:hover {
+    background: white;
     border: 2px solid #ED9D13;
 }
 
