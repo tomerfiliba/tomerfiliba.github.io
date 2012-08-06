@@ -19,17 +19,19 @@ Naturally, I'm biased about this subject, but I thought if I'm on it, why not al
 broader aspects of the issue... However, it just kept getting longer and longer, until I got this 
 behemoth of a blog post, so I'm attaching a **TL;DR info box**:
 
-<notebox>* Transparent object proxying is only the logical way to extend RPCs to duck-typed languages
-* Asking for a *clear distinction* between local and remote objects ultimately means you're
-  asking for a statically-typed language; it doens't make sense to ask for it in python
-* Network programming is hard, and it's a pity we still work at the socket level; we should 
-  strive for a decent fifth layer that would eliminate all the unnecessary complexity
-* General-purpose RPCs are the **right primitive** over which network programming should be
-  abstracted: it's the missing fifth layer, which every network application reinvents
-* HTTP is a half-baked, broken alternative to a fifth layer; I'm glad ZeroMQ and others are
-  starting to loosen its grasp.
-* RPyC **can** be used efficiently and correctly, it's not an impossible feat. Also, a show 
-  case of how I'm using RPyC to build a testing environment.</notebox>
+<notebox><ul>
+<li>Transparent object proxying is only the logical way to extend RPCs to duck-typed languages</li>
+<li>Asking for a *clear distinction* between local and remote objects ultimately means you're
+  asking for a statically-typed language; it doens't make sense to ask for it in python</li>
+<li>Network programming is hard, and it's a pity we still work at the socket level; we should 
+  strive for a decent fifth layer that would eliminate all the unnecessary complexity</li>
+<li>General-purpose RPCs are the **right primitive** over which network programming should be
+  abstracted: it's the missing fifth layer, which every network application reinvents</li>
+<li>HTTP is a half-baked, broken alternative to a fifth layer; I'm glad ZeroMQ and others are
+  starting to loosen its grasp.</li>
+<li>RPyC **can** be used efficiently and correctly, it's not an impossible feat. Also, a show 
+  case of how I'm using RPyC to build a testing environment.</li>
+</ul></notebox>
 
 ## On Transparency ##
 
