@@ -51,7 +51,7 @@ them pass through.
 
 ## Don't Catch Broadly ##
 
-<span style="background: #FFA">Always catch only the most-derived/most-specific exception.</span>
+<highlight>Always catch only the most-derived/most-specific exception.</highlight>
 I believe this rule is very obvious
 in theory, but harder to follow in practice: the number of exceptions might be large and their 
 handling similar; you have to *import* specific exceptions from libraries, which tightly-couples
@@ -84,8 +84,8 @@ information in a very readable manner, e.g.,
     IOError: [Errno 2] No such file or directory: '/dev/nonexistent'
 
 and anyone with some common sense would be able to cope with it. 
-<span style="background: #FFA">Unless you can add meaningful information to the error, just let 
-whatever came at you propagate up cleanly</span> -- we'll take it like men (or women!).
+<highlight>Unless you can add meaningful information to the error, just let 
+whatever came at you propagate up cleanly</highlight> -- we'll take it like men (or women!).
 
 ### A Note On Real Users ###
 
@@ -129,8 +129,8 @@ on the cause of it, or where you want to *change the semantics* of it. A classic
 you'd probably want to "accumulate" the intermediate exceptions and raise a 
 ``ConnectionError("%d connection attempts failed", accum_exceptions)``.
 
-Bottom line: <span style="background: #FFA">wrap only where you **add information** to the
-underlying exception;</span> there has to be a **good reason** for wrapping.
+Bottom line: <highlight>wrap only where you **add information** to the
+underlying exception;</highlight> there has to be a **good reason** for wrapping.
 
 ## Don't Handle Exceptions ###
 
@@ -153,8 +153,8 @@ Let me rephrase that: exceptions should be handled only
 * in the **main function**. Instead of letting the application crash with a traceback, you might 
   want to log the exception to a file, pop up a message box, ask the user what to do next, etc.
 
-In other words: <span style="background: #FFA">handle exceptions only where you're actually 
-**handling** them.</span> If you're not sure, leave it that way -- you can always add 
+In other words: <highlight>handle exceptions only where you're actually 
+**handling** them.</highlight> If you're not sure, leave it that way -- you can always add 
 ``except``-clauses later. 
 
 It might seem trivial, but you'd be surprised how many times I find 
@@ -182,8 +182,8 @@ and by excessively wrapping exceptions, an ``AttributeError`` became a ``DeviceE
 then became ``None``. And you can see now why the first thing I do is remove all 
 exception-handling code along the way: most of the times it just masks the real error, making it 
 harder to diagnose, while adding little or no added value at all. You don't make your code more 
-robust by sweeping problems under the carpet: <span style="background: #FFA">good code crashes, 
-allowing tests to uncover more bugs, increasing robustness.</span>
+robust by sweeping problems under the carpet: <highlight>good code crashes, 
+allowing tests to uncover more bugs, increasing robustness.</highlight>
 
 ## On the Granularity of Exception Classes ##
 
@@ -198,8 +198,8 @@ overlapping. This makes the implementation cumbersome, and, in fact, might not b
 for your users: they usually won't care for such granularity, and you risk contaminating your 
 interface with implementation details. 
 
-The rule to follow here is: <span style="background: #FFA">the granularity at which exceptions 
-are defined should match the granularity at which exception handling is done</span>; define 
+The rule to follow here is: <highlight>the granularity at which exceptions 
+are defined should match the granularity at which exception handling is done</highlight>; define 
 separate exceptions (only) where it makes sense to handle one differently than the other.
 
 For example, it makes sense to handle a ``ConnectionError`` differently from an 
