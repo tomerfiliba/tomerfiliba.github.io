@@ -38,7 +38,7 @@ behemoth of a blog post, so I'm attaching a **TL;DR info box**:
 Gavrie's main point is that transparency opens the door to (possibly) unplanned and undesired 
 complexity. When it's "too easy" to spread around, you might be tempted to (or even unknowingly 
 end up with) creating over complicated (and cyclic) dependency graphs, stretching over several 
-processes/machines, where it would be quite a feat to see the whole picture. The nice thing is, 
+processes / machines, where it would be quite a feat to see the whole picture. The nice thing is, 
 when it works - it just works (and you're happy with your design), but when it fails, you want 
 to be able to untangle the mess. As he puts it:
 
@@ -132,7 +132,7 @@ a promising outlook.
 
 The "hardness" of network programming, on the other hand, is something we *can solve*. Good network 
 programming is hard, there's no question there, but for some reason, instead of solving the 
-problem once of for all in a generic manner, it seems that every protocol/network-oriented 
+problem once of for all in a generic manner, it seems that every protocol / network-oriented 
 application seeks to start at square one. Of course, done this way, it only handles the aspects 
 it finds relevant... doing network programming at the socket level is analogous to rewriting
 the kernel for every desktop application. It doesn't make sense.
@@ -154,7 +154,7 @@ These are just some of the issues that layer5 attempted to solve.
 ## On RPCs ##
 
 Let me make a bold claim: **everything is RPC**. So, by *everything* I mean *virtually all* 
-connection-oriented network protocols (e.g., excluding broadcasts/multicasts/streaming), 
+connection-oriented network protocols (e.g., excluding broadcasts / multicasts / streaming), 
 and I take *RPC* to its broadest sense: an RPC is any message-oriented protocol in which one side 
 makes requests that the other side fulfills: basically invoking a remote function. Naturally, 
 in order to convey a message, the RPC imposes a serialization format, and in order to tell success
@@ -189,7 +189,7 @@ encryption and proxy support... as if security is something you sprinkle on top.
 The main point I'm trying to make here is this: **virtually all protocols are basically 
 degenerate forms of RPC**. To paraphrase [Greenspun](http://en.wikipedia.org/wiki/Greenspun's_tenth_rule),
 all sufficiently complicated network protocols end up redoing compression, security, authentication,
-framing, serialization, negotiation/versioning, discovery, you name it (*Filiba's Eleventh Rule*). 
+framing, serialization, negotiation / versioning, discovery, you name it (*Filiba's Eleventh Rule*). 
 This observation has brought me to the conclusion that doing network programming at the 
 "byte level" is wrong, and that a **general-purpose RPC layer** is the **right primitive** for this.
 
@@ -262,7 +262,7 @@ Which brings us to the last point Gavrie makes:
 > I don’t like RPC, especially not stateful RPC that supports access of remote objects by reference
 
 I hope we already agreed that a general-purpose RPC is equivalent (if not better than) to any 
-"normal" network protocol, so it's really not RPCs that Gavrie hates but stateful/object-proxying
+"normal" network protocol, so it's really not RPCs that Gavrie hates but stateful / object-proxying
 sessions. This invites another, rather philosophic, question: what is *state*? What does it mean 
 that a protocol is *stateless*? I'd guess philosophies like [REST](http://en.wikipedia.org/wiki/REST) 
 come to mind, but that's just a buzzword. From the broadest Turing-machine perspective, if REST 
