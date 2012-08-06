@@ -19,7 +19,8 @@ Naturally, I'm biased about this subject, but I thought if I'm on it, why not al
 broader aspects of the issue... However, it just kept getting longer and longer, until I got this 
 behemoth of a blog post, so I'm attaching a **TL;DR info box**:
 
-<notebox><ul>
+<notebox>
+<ul>
 <li>Transparent object proxying is only the logical way to extend RPCs to duck-typed languages</li>
 <li>Asking for a *clear distinction* between local and remote objects ultimately means you're
   asking for a statically-typed language; it doens't make sense to ask for it in python</li>
@@ -31,7 +32,8 @@ behemoth of a blog post, so I'm attaching a **TL;DR info box**:
   starting to loosen its grasp.</li>
 <li>RPyC **can** be used efficiently and correctly, it's not an impossible feat. Also, a show 
   case of how I'm using RPyC to build a testing environment.</li>
-</ul></notebox>
+</ul>
+</notebox>
 
 ## On Transparency ##
 
