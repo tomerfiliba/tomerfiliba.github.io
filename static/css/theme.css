@@ -26,7 +26,7 @@ strong {
     font-weight: 600;
 }
 
-p code {
+li code, p code {
     background-color: #e5e5e5;
 }
 
