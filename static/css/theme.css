@@ -315,7 +315,7 @@ div.menuitem a {
     background: #EAEDF3;
 }
 
-#main notebox {
+#main .notebox {
     background: #EAEDF3;
     padding: 10px 40px;
     border-left: 2px solid #ddd;
@@ -395,6 +395,13 @@ div.menuitem a {
     #main {
         position: static;
         border: none;
+    }
+
+    #main blockquote {
+        padding: 1px 20px;
+    }
+    #main .notebox {
+        padding: 1px 20px;
     }
     
     #content {
