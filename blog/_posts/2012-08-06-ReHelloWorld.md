@@ -13,14 +13,14 @@ coherent theme that reacts nicely to screens of all sizes (try to resize the bro
 If you have any feedback or insights, please share them in the comments below -- it's a work 
 in progress and I'd love to improve.
 
-## A Windows Story ##
-
-<img src="http://tomerfiliba.com/static/res/2012-08-06-windows.png" class="blog-post-image" />
-
 I'm still working on the last installment of the *Javaism, Exceptions and Logging* series,
 but I'm buried in work on University projects (my [watermarking](http://tomerfiliba.com/blog/ReedSolo)
 project turned out quite interesting, I'll elaborate on it when I get the chance) and my
 day job, so it'll have to wait. 
+
+## A Windows Story ##
+
+<img src="http://tomerfiliba.com/static/res/2012-08-06-windows.png" class="blog-post-image" />
 
 Instead, I wanted to share a debugging experience I had today at work (together with the excellent
 [@RoyRothenberg](https://twitter.com/RoyRothenberg)) of an enigmatic bug that appeared all of the
@@ -67,14 +67,14 @@ be an invalid one.
 
 This, by itself, makes perfect sense, and should have happened every time. In fact, had it happened
 every time, it would have been obvious... but what on earth could ever explain the strange 
-phenomena we've seen? How could it ever have worked the second time?! If the size of the first 
-argument is wrong, all following ones are garbage. Does the kernel *learn* that our process 
-mistakenly passed a 32bit handle? Does ctypes *come to the conclusion* that the first integer 
-argument should actually be treated as a ``HANDLE`` instead of a ``DWORD`` -- after seeing 
-``Errno 6``? Is that the most sophisticated form of machine-learning ever seen, or what? And it 
-all happens inside the kernel or an FFI library? And how the hell does invoking ``code.interact()``
-*before anything took place*, could have averted the problem?! And how come it never happened on 
-previous versions of 64bit Windows (with the same version of Python and ctypes)?
+phenomena we've seen? How could it ever have worked the second time (with the very same arguments)?!
+If the size of the first argument is wrong, all following ones are garbage. Does the kernel *learn* 
+that our process mistakenly passed a 32bit handle? Does ctypes *come to the conclusion* that the 
+first integer argument should actually be treated as a ``HANDLE`` instead of a ``DWORD`` -- 
+after seeing ``Errno 6``? Is that the most sophisticated form of machine-learning ever seen, or what? 
+And it all happens inside the kernel or an FFI library? And how the hell does invoking 
+``code.interact()`` *before anything took place*, could have averted the problem?! And how come it 
+never happened on previous versions of 64bit Windows (with the same version of Python and ctypes)?
 
 Windows, you bewilder me.
 
