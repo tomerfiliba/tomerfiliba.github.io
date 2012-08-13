@@ -1,89 +1,82 @@
 ---
 layout: blogpost
-title: "Splitbrain Python"
+title: "Split-brain Python"
 tags: [rpyc, python]
-description: "Simultaneously load multiple instances of the same modules into one process"
+description: "Monkey-patching platform-specific modules over RPyC. Step 3: World domination"
 ---
 
 <img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog-post-image" />
 
-I was working together with [Shay Berman](https://github.com/shay-berman) on a distributed 
-test-automation solution on top of RPyC, when this idea struck me. The design calls for a "master"
-machine and several slave machines, where the test actually *runs* on the master, but "interfaces
-with reality" on slaves. This basically means we use the master's CPU and memory, but everything
-IO-related takes place on the slaves -- by monkey-patching Python's interfaces with the OS to
-operate over RPyC on slaves.
+I was working together with a colleague on a complex distributed test-automation solution on top 
+of RPyC, and we looked for a way to make our existing codebase RPyC-friendly (without altering it).
+The design of the framework called for a master machine and several slave machines, such that 
+the test actually *runs* on the master, but "interfaces with reality" on the slave. Basically, we
+wanted the test to use the master's CPU, but perform all IO-related actions on its slave.
 
-To illustrate what we were after, suppose we have machine A, which hosts our test, and machine B,
-which is connected to the necessary testing equipment (hardware). The test was first designed to
-run directly on machine B, so it imports ``os`` and ``subprocess`` to spawn local processes
-or read files and devices. Right after importing the test (and any of the modules it uses) on 
-machine A, but before executing it, we connect to machine B and go over all the modules in 
-``sys.modules``. We then monkey-patch each module that imported ``os``, ``subprocess``, and some
-other modules with their RPyC counterparts. Now when the test runs and calls (for instance) 
-``os.getcwd()``, it actually invokes ``conn_to_machine_b.modules["os"].getcwd()``.
+To illustrate this, suppose we have machine A, which runs our test, and machine B, which is 
+connected to the necessary hardware and testing equipment. The test was initially designed to run 
+directly on machine B, so it imports modules like ``os`` and ``subprocess`` and uses them to
+manipulate the machine. We now want the test to run on machine A - but keep using machine B's
+``os`` and ``subprocess`` modules, so whenever it spawns child processes or open device files, 
+it would take place on machine B. This allows us to reboot the machine during tests, or even 
+use Eclipse's debugger to run debug the test locally.
 
-A more elegant way to do this is pass the RPyC connection to the test -- this way, the test would 
-use ``self.conn.modules["os"].getcwd()``, where ``conn`` would either be an RPyC connection
-to the slave, or a fake connection that represents the local host, if the test is to run locally. 
-If it were only refactoring tests, I'd vote for the elegant way -- but the tests themselves rely
-on a stack of libraries that interface with the OS, and updating all of them is out of the 
-question.
+## Enter Split-brain ##
+The better-design approach would be to pass the RPyC connection as an argument to all functions;
+however, this is not practical as it requires adapting ~50,000 lines of code. The more practical 
+way is to *monkey-patch* every module that imports a platform-specific module, and replace that
+module with its remote counterpart. But this is not so simple either, as we may have several
+slaves and multiple threads... since Python loads modules only once, monkey-patching a module
+makes the change apparent to everyone.
 
-So I thought my solution was perfect for the task, until I realized that some code may need to run
-on the host machine (master), and some tests require multiple slaves. However, Python only loads
-modules once, which means we can't have several versions, each patched to a different slave.
-We need a split-brain Python.
-
-## Enter Splitbrain ##
-
-[Splitbrain](https://github.com/tomerfiliba/rpyc/tree/master/experimental) is a very early,
-*experimental* feature that I hope to incorporate into the next release of RPyC. At first I tried
-to use [Py_NewInterpreter](http://docs.python.org/c-api/init.html#Py_NewInterpreter), which
-creates a somewhat-isolated sub-interpreter with a separate copy of ``sys.modules``. However, 
-calling ``Py_NewInterpreter`` from within ``PyEval_EvalFrameEx`` (i.e., via the interpreter
-instead of via C extensions) proved flaky... the interpreter makes all sorts of assertions that 
-just stop holding once we swap the interpreter's thread state. Boo hoo.
-
-The solution I ended up with basically reimplements ``Py_NewInterpreter`` using 
-[Cython](http://www.cython.org/), without swapping the 
-[interpreter state](http://hg.python.org/cpython/file/a4d5ac78a76b/Include/pystate.h#l15): when 
-switching to a new interpreter, it saves the interpreter's ``builtins``, ``sysdict`` and 
-``modules`` and replaces them with fresh copies. When switching back, it restores the old dicts.
-It's buggy, subject to change, not meant for the faint of heart -- but heck, it works!
-
-By the way -- Cython folks -- 
-[pyximport](http://docs.cython.org/src/userguide/tutorial.html#pyximport-cython-compilation-the-easy-way) 
-is priceless!
+What we're basically after is a *split-brain Python*, i.e., support multiple instances of the 
+same modules simultaneously, so that you could patch one without affecting the others. At first,
+I tried using [Py_NewInterpreter](http://docs.python.org/c-api/init.html#Py_NewInterpreter), which
+provides this mechanism, but it's not possible to use it from within ``PyEval_EvalFrameEx`` --
+you can safely use it only from extension modules. After some failed but very interesting 
+experiments, I decided to go pure-Python and implemented 
+[splitbrain.py](https://github.com/tomerfiliba/rpyc/blob/master/rpyc/utils/splitbrain.py).  
+But enough with the talk -- here's some code.
 
 ## A Sketch ##
 
-{% highlight python %}
-import rpyc
-
-conn_win = rpyc.classic.connect("windows-box")
-conn_lin = rpyc.classic.connect("linux-box")
-
-slave_win = rpyc.Splitbrain(conn_win)
-slave_lin = rpyc.Splitbrain(conn_lin)
-
-# local `subprocess` module
-from subprocess import Popen
-
-with slave_win:
-    # this is windows-box's `Popen`
-    from subprocess import Popen
-    
-    proc = Popen(["c:\\Windows\\system32\\net", "view"])
-    out, err = proc.communicate()
-
-with slave_lin:
-    # this is linux-box's `Popen`
-    from subprocess import Popen
-    
-    proc = Popen("/bin/ls")
-    out, err = proc.communicate()
-
+{% highlight pycon %}
+>>> import rpyc
+>>> from rpyc.utils.splitbrain import patch, Splitbrain
+>>> patch()
+>>>
+>>> import platform
+>>> platform.platform()
+'Linux-2.6.38-15-generic-i686-with-Ubuntu-11.04-natty'
+>>> 
+>>> winmachine = Splitbrain(rpyc.classic.connect("my.windows.box"))
+>>> 
+>>> with winmachine:
+...     print platform.platform()
+... 
+Windows-XP-5.1.2600-SP3
+>>>
+>>> platform.platform()
+'Linux-2.6.38-15-generic-i686-with-Ubuntu-11.04-natty'
+>>> 
+>>> import win32file
+Traceback (most recent call last):
+  ...
+ImportError: No module named win32file
+>>> with winmachine:
+...     import win32file
+...     print win32file.CreateFile
+... 
+<built-in function CreateFile>
+>>> 
+>>> win32file.CreateFile
+Traceback (most recent call last):
+  ...
+AttributeError: 'NoneType' object has no attribute 'CreateFile'
 {% endhighlight %}
+
+**Note**: ``splitbrain`` is currently *experimental* and has some known issues. I hope to
+stabilize it and incorporate it into the next release of RPyC (3.3). Meanwhile you can experiment 
+with it and open bug reports on github.
 
 

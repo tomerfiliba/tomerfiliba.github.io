@@ -133,21 +133,21 @@ div.menuitem a {
 #recent {
     font-size: 12px;
     padding: 30px 0 0 0;
-    color: #ccc;
+    color: #bbb;
 }
 
 #recent div.menuitem a {
-    color: #ccc;
+    color: #bbb;
 }
 
 #recent #recent-title {
     padding: 4px 0 4px 10px;
     font-weight: bold;
-    border-left: 2px solid #ccc;
+    border-left: 2px solid #bbb;
 }
 
 #recent div.menuitem {
-    border-left: 2px solid #ccc;
+    border-left: 2px solid #bbb;
     padding: 6px 0 6px 10px;
 }
 
@@ -347,14 +347,14 @@ div.menuitem a {
     }
 }
 
-@media only screen and (max-height:730px)
+@media only screen and (max-height:750px)
 {
     #sidebar #social {
         bottom: 0px;
     }
 }
 
-@media only screen and (max-height:640px)
+@media only screen and (max-height:660px)
 {
     #sidebar #recent {
         display: none;
@@ -365,7 +365,7 @@ div.menuitem a {
 
 }
 
-@media only screen and (max-height:490px)
+@media only screen and (max-height:510px)
 {
     #sidebar #social {
         display: none;
