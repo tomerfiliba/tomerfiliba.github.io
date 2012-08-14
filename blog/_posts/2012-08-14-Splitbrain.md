@@ -5,14 +5,14 @@ tags: [rpyc, python]
 description: "Monkey-patching platform-specific modules over RPyC, so that code can temporarily run on remote"
 ---
 
-<img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog-post-image" />
+<a href="http://rpyc.sf.net"><img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog-post-image" /></a>
 
 I was working together with a colleague on a complex distributed test-automation solution on top 
-of RPyC, and we looked for a way to make our existing codebase RPyC-friendly (without altering it).
-The design of the test framework called for a master machine and several slave machines, such that 
-tests actually *run* on the master, but "interface with reality" on the slaves. Basically, we
-wanted the test to use the master's CPU (and development environment), but perform all IO-related 
-actions on its slaves.
+of [RPyC](http://rpyc.sf.net), and we looked for a way to make our existing codebase RPyC-friendly 
+(without altering it). The design of the test framework called for a master machine and several 
+slave machines, such that tests actually *run* on the master, but "interface with reality" on the 
+slaves. Basically, we wanted the test to use the master's CPU (and development environment), but 
+perform all IO-related actions on its slaves.
 
 To illustrate this, suppose we have machine A, which runs our test, and machine B, which is 
 connected to the necessary hardware and testing equipment. The test was initially designed to run 
