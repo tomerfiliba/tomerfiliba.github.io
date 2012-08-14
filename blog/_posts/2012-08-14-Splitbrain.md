@@ -37,7 +37,7 @@ of changing our codebase to use RPyC -- why not use RPyC to monkey-patch our cod
 ``splitbrain`` is enabled (usually within a ``with`` block), all of Python's interfaces with the
 operating system (``os``, ``platform``, ``subprocess``, ...) are patched to go through RPyC, so 
 that any code that runs at this point "believes" it actually runs directly on the remote machine.
-It's easiest than it seems, actually.
+It's easier than it seems, actually.
 
 First, we import RPyC and install ``splitbrain``:
 {% highlight pycon %}
