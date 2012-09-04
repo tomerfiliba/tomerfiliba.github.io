@@ -477,6 +477,10 @@ div.menuitem a {
     #main .notebox {
         padding: 1px 20px;
     }
+
+    #main div.section {
+        padding: 0; 
+    }
     
     #content {
         width: auto;
