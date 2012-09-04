@@ -36,9 +36,21 @@ I am also available for giving Python and design **lectures/courses**, ranging f
 level to very advanced topics (probably only relevant within Israel).
 
 ## Contact ##
-<tomerfiliba@gmail.com> &bull;
-[resumé](http://tomerfiliba.com/about/resume.pdf) &bull;
-[github](http://github.com/tomerfiliba) &bull;
-[linkedin](http://il.linkedin.com/in/tomerfiliba) &bull;
+<tomerfiliba@gmail.com> &nbsp;&bull;&nbsp;
+[resumé](http://tomerfiliba.com/about/resume.pdf) &nbsp;&bull;&nbsp;
+[github](http://github.com/tomerfiliba) &nbsp;&bull;&nbsp;
+[linkedin](http://il.linkedin.com/in/tomerfiliba) &nbsp;&bull;&nbsp;
 [twitter](http://twitter.com/tomerfiliba)
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
