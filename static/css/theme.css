@@ -81,10 +81,9 @@ a img {
 }
 
 #tagline {
-    color: #ccc;
+    color: #777;
     padding: 10px 0 0px 4px;
-    font-family: 'Telex', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 div.menuitem {
