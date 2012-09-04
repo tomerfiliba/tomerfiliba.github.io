@@ -7,7 +7,7 @@ layout: nil
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>{{ page.title }} - tomerfiliba.com</title>
+    <title>{{ page.title }} / Tomer Filiba</title>
     <meta name="author" content="Tomer Filiba" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -54,7 +54,7 @@ layout: nil
             <a href="http://tomerfiliba.com/" title="Home">
             <img src="/static/logos/fish-logo.png"/><span id="sitename">tomer filiba</span>
             </a>
-            <div id="tagline">Tagline</div>
+            <div id="tagline">software developer & consultant</div>
         </div>
 
         <div id="navigation">
@@ -65,23 +65,18 @@ layout: nil
             <div class="menuitem">
             <a href="http://tomerfiliba.com/about" {% if page.section == "about" %}class="selected"{% endif %}>about</a></div>
             <div class="menuitem">
-            <a href="http://tomerfiliba.com/services" {% if page.section == "services" %}class="selected"{% endif %}>consulting</a></div>
-            <!--div class="menuitem expander"><div class="collapsed">...</div-->
-            
+            <a href="http://tomerfiliba.com/recipes" {% if page.section == "recipes" %}class="selected"{% endif %}>snippets</a></div>
             <div class="menuitem">
             <a href="http://tomerfiliba.com/etc" {% if page.section == "etc" %}class="selected"{% endif %}>etc</a></div>
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/recipes" {% if page.section == "recipes" %}class="selected"{% endif %}>snippets</a></div>
-        
         </div>
         
         <div id="recent">
             <div id="recent-title">recent posts</div>
-            {% for p in site.posts limit: 5%}
+            {% for p in site.posts limit: 6%}
             {% unless p.draft %}
-                <div class="menuitem">
-                    <span class="datebox">{{ p.date | date: '%B %d' }}</span>
-                    <a href="{{p.url}}" title="/{{p.categories | first}}">{{p.title}}</a>
+                <div class="menuitem fading{{forloop.index}}">
+                    <!--span class="datebox">{{ p.date | date: '%B %d' }}</span-->
+                    <a href="{{p.url}}" title="under /{{p.categories | first}}">{{p.title}}</a>
                 </div>
             {% endunless %}
             {% endfor %}

@@ -81,10 +81,10 @@ a img {
 }
 
 #tagline {
-    border-left: 2px solid #ccc;
     color: #ccc;
-    padding: 10px 0 0px 12px;
-    display: none;
+    padding: 10px 0 0px 4px;
+    font-family: 'Telex', sans-serif;
+    font-size: 13px;
 }
 
 div.menuitem {
@@ -159,22 +159,66 @@ div.menuitem a {
 #recent {
     font-size: 12px;
     padding: 30px 0 0 0;
-    color: #bbb;
-}
-
-#recent div.menuitem a {
-    color: #bbb;
+    color: #999;
 }
 
 #recent #recent-title {
     padding: 4px 0 4px 10px;
     font-weight: bold;
-    border-left: 2px solid #bbb;
+    border-left: 2px solid #999;
 }
 
 #recent div.menuitem {
-    border-left: 2px solid #bbb;
     padding: 6px 0 6px 10px;
+}
+
+#recent div.fading1 {
+    border-left: 2px solid #999;
+}
+#recent div.fading1 a {
+    color: #999;
+}
+
+#recent div.fading2 {
+    border-left: 2px solid #aaa;
+}
+#recent div.fading2 a {
+    color: #aaa;
+}
+
+#recent div.fading3 {
+    border-left: 2px solid #bbb;
+}
+#recent div.fading3 a {
+    color: #bbb;
+}
+
+#recent div.fading4 {
+    border-left: 2px solid #ccc;
+}
+#recent div.fading4 a {
+    color: #ccc;
+}
+
+#recent div.fading5 {
+    border-left: 2px solid #ddd;
+}
+#recent div.fading5 a {
+    color: #ddd;
+}
+
+#recent div.fading6 {
+    border-left: 2px solid #eee;
+}
+#recent div.fading6 a {
+    color: #eee;
+}
+
+#recent div.fading7 {
+    border-left: 2px solid #f8f8f8;
+}
+#recent div.fading7 a {
+    color: #f8f8f8;
 }
 
 #recent div.menuitem:hover {
@@ -373,14 +417,14 @@ div.menuitem a {
     }
 }
 
-@media only screen and (max-height:750px)
+@media only screen and (max-height:770px)
 {
     #sidebar #social {
         bottom: 0px;
     }
 }
 
-@media only screen and (max-height:660px)
+@media only screen and (max-height:680px)
 {
     #sidebar #recent {
         display: none;
