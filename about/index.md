@@ -42,15 +42,4 @@ level to very advanced topics (probably only relevant within Israel).
 [linkedin](http://il.linkedin.com/in/tomerfiliba) &nbsp;&bull;&nbsp;
 [twitter](http://twitter.com/tomerfiliba)
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+<br/><br/><br/><br/><br/><br/><br/><br/>
