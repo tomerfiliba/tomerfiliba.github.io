@@ -32,8 +32,8 @@ services. I work mainly within Israel (either in-office or from home), but I tak
 from overseas as well. My specialties include software design and system architecture, automation
 and testing tools, and server-side programming. 
 
-I am also available for giving Python and design lectures/courses, ranging from beginners' level 
-to very advanced topics (probably only relevant within Israel).
+I am also available for giving Python and design **lectures/courses**, ranging from beginners' 
+level to very advanced topics (probably only relevant within Israel).
 
 ## Contact ##
 <tomerfiliba@gmail.com> &bull;

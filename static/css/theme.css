@@ -461,6 +461,10 @@ div.menuitem a {
         padding: 20px 0 10px 0;
         border-bottom: 2px solid #ddd;
     }
+    
+    #tagline {
+        display: none;
+    }
 
     #main {
         position: static;
