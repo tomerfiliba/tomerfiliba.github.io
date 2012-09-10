@@ -5,7 +5,7 @@ published: false
 description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 3 of 3"
 ---
 
-<img src="http://tomerfiliba.com/static/res/2012-07-16-Callahans.jpg" class="blog_post_image" title="Over-logging"/>
+<img src="http://tomerfiliba.com/static/res/2012-09-18-Callahans.jpg" class="blog_post_image" title="Over-logging"/>
 
 > * [Part 1](http://tomerfiliba.com/blog/Javaism)
 > * [Part 2](http://tomerfiliba.com/blog/On-Exceptions)
