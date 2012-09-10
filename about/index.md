@@ -2,11 +2,19 @@
 layout: default
 title: About Me
 section: about
-description: About Me
+description: "A little about me and my freelancing/consulting services"
 ---
 
 <a href="http://www.facebook.com/ronsho" style="border: none;">
 <img src="http://tomerfiliba.com/static/logos/telaviv-ronsho.jpg" width="100%" title="A photograph of Tel Aviv by Ronsho, (C) 2011" /></a>
+
+<div id="contactbox" style="margin: 10px 0 30px 0; text-align: center;">
+<a href="mailto:tomerfiliba@gmail.com">email</a> &nbsp;&#9483;&nbsp;
+<a href="http://tomerfiliba.com/about/resume.pdf">resumé</a> &nbsp;&#9483;&nbsp;
+<a href="http://github.com/tomerfiliba">github</a> &nbsp;&#9483;&nbsp;
+<a href="http://il.linkedin.com/in/tomerfiliba">linkedin</a> &nbsp;&#9483;&nbsp;
+<a href="http://twitter.com/tomerfiliba">twitter</a>
+</div>
 
 I'm Tomer Filiba, 27 years old, living in Tel Aviv, Israel. I graduated in 2012 from Tel Aviv
 University, where I studied Computer Science and Generative Linguistics. I am a long-time Python 
@@ -35,11 +43,3 @@ and testing tools, and server-side programming.
 I am also available for giving Python and design **lectures/courses**, ranging from beginners' 
 level to very advanced topics (probably only relevant within Israel).
 
-## Contact ##
-<tomerfiliba@gmail.com> &nbsp;&bull;&nbsp;
-[resumé](http://tomerfiliba.com/about/resume.pdf) &nbsp;&bull;&nbsp;
-[github](http://github.com/tomerfiliba) &nbsp;&bull;&nbsp;
-[linkedin](http://il.linkedin.com/in/tomerfiliba) &nbsp;&bull;&nbsp;
-[twitter](http://twitter.com/tomerfiliba)
-
-<br/><br/><br/><br/><br/><br/><br/><br/>
