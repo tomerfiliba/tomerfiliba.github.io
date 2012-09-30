@@ -9,7 +9,7 @@ description: "An in-language DSL for generating HTML pages directly in Python, a
 <img src="http://tomerfiliba.com/static/res/2012-09-30-haml.gif" class="blog-post-image" />
 
 <div class="notebox">
-<a href="the-code">TL;DR: Just take me to the code</a>
+<a href="#the-code">TL;DR: Just take me to the code</a>
 </div>
 
 I recently got back to web development for some venture I'm working on, which reminded me just how
@@ -77,10 +77,29 @@ Enter [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py
 The idea of ``hypertext`` is to (1) make your code beautiful, (2) just let you write Python code
 and (3) take care of escaping and whatnot for you. Here's the deal:
 
-{% highlight python %}
-from hypertext import *
+{% highlight pycon %}
+>>> from hypertext import *
+>>>
+>>> print h1("Welcome", class_="highlight")
+<h1 class="highlight">Welcome</h1>
 
-print div(
+>>> print h1.highlight("Welcome")
+<h1 class="highlight">Welcome</h1>
+
+>>> print div.content(h1.highlight("Welcome"), "This is my page")
+<div class="content">
+    <h1 class="highlight">Welcome</h1>
+    This is my page
+</div>
+
+>>> with div.content:
+...     h1.content("Welcome")
+...     TEXT("This is my page")
+...
+<div class="content">
+    <h1 class="highlight">Welcome</h1>
+    This is my page
+</div>
 
 {% endhighlight %}
 
@@ -88,7 +107,6 @@ And
 
 {% highlight python %}
 from hypertext import *
-
 
 @contextmanager
 def base(page_title = "Hello world"):
