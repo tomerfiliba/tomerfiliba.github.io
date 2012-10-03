@@ -83,3 +83,16 @@ to the left generates the HTML code to the right:
 On the other hand, in case you missed ``<%= print_date %>``, Haml is *yet-another templating
 language*... Arrrgh. 
 
+## <a name="the-code">Hypertext</a> ##
+
+Enter [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py). 
+The idea behind ``hypertext`` is to 
+
+1. make your code beautiful, by making it reflect the structure of the HTML
+2. make exceptions easy to locate
+2. give you the full power of Python directly (and existing *lint* capabilities) without introducing
+   yet another limited templating language
+3. take care of escaping and whatnot for you. 
+
+The ultimate goal is to make your page *semantic*, but it will take some time to get there. 
+In the meanwhile, here's a simple demonstration of ``hypertext``'s power:
