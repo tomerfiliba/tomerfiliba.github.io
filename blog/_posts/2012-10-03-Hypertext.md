@@ -149,7 +149,7 @@ But the key-feature of ``hypertext`` is the use of elements as *context managers
 {% endhighlight %}
 
 This lets your procedural code reflect the structure of your document, while you can use 
-``for``-loops, ``if` statements, or call functions right inside it. 
+``for``-loops, ``if`` statements, or call functions right inside it. 
 
 It should be noted that ``hypertext`` is a **[DSL](http://en.wikipedia.org/wiki/Domain-specific_language) 
 within Python**, which puts wrist-handiness before implementation purity, so it cuts itself
