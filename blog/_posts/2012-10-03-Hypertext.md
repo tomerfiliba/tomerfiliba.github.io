@@ -58,3 +58,28 @@ def my_page(users):
         for user in users) + '</ul>')
     return base(my_part)
 {% endhighlight %}
+
+Okay, that's terrible, no question about it. Nonetheless, it should be clear by now that templates 
+are but degenerate functions.
+
+## Haml ##
+
+I like [Haml](http://haml.info/), even though it originated in the ruby world ;) In case you're
+not familiar with it, it's a more concise, to-the-point way to write HTML. Haml is basically a
+preprocessor that expands "macros" to their verbose HTML equivalent. For instance, the Haml code 
+to the left generates the HTML code to the right:
+
+    #profile                            |  <div id="profile">
+      .left.column                      |    <div class="left column">
+        #date= print_date               |      <div id="date"><%= print_date %></div>
+        #address= current_user.address  |      <div id="address"><%= current_user.address %></div>
+      .right.column                     |    </div>
+        #email= current_user.email      |    <div class="right column">
+        #bio= current_user.bio          |      <div id="email"><%= current_user.email %></div>
+                                        |      <div id="bio"><%= current_user.bio %></div>
+                                        |    </div>
+                                        |  </div>
+
+On the other hand, in case you missed ``<%= print_date %>``, Haml is *yet-another templating
+language*... Arrrgh. 
+
