@@ -1,7 +1,7 @@
 ---
 layout: blogpost
 title: "Hypertext: In-Python Haml"
-draft: true
+tags: [python]
 description: "An in-language DSL for generating HTML pages directly in Python, along the lines of Haml"
 ---
 
@@ -152,18 +152,19 @@ This lets your procedural code reflect the structure of your document, while you
 ``for``-loops, ``if` statements, or call functions right inside it. 
 
 It should be noted that ``hypertext`` is a **[DSL](http://en.wikipedia.org/wiki/Domain-specific_language) 
-within Python**, which puts wrist-handiness before implementation purity. Therefore it cuts itself
+within Python**, which puts wrist-handiness before implementation purity, so it cuts itself
 some slack when it comes to **magic**. For instance, ``div`` is a class, but ``div.content`` 
 actually translates to ``div().content`` through the use of metaclasses; the same goes for 
 ``with div:`` that translates ``with div():``. For convenience, ``div.foo.bar()`` is identical to 
-``div.foo().bar`` as well as ``div().foo.bar``. 
+``div.foo().bar`` as well as to ``div().foo.bar``. 
 
-Moreover, there's always a thread-local stack of elements behind the scenes, so when new elements 
+Moreover, there's a thread-local stack of elements behind the scenes, so when new elements 
 are created, they're automagically added as children of the top-of-stack element. This works the 
 same way as flask's [global request object](http://flask.pocoo.org/docs/quickstart/#context-locals).
-Likewise, ``TEXT`` is special function that appends some text to its parent.
+Utilizing the stack, ``TEXT`` appends some text to the ToS element; along with it are ``UNESCAPED``
+(which appends unescaped/raw text) and ``ATTR`` (which sets attributes of the ToS element).
 
-This sprinkle of magic lets us write idiomatic, well-structured and easy-to-debug code:
+This touch of magic lets us write idiomatic, well-structured and easy-to-debug code:
 
 {% highlight python %}
 from hypertext import body, head, div, title, a, img, h1, span, TEXT
@@ -179,7 +180,7 @@ def base_page(the_title, the_content):
                 a(img(src="/img/logo.png"), href="/")
             
             with div.content:
-                yield root      # it's a content manager
+                yield root      # it's a context manager
                 
             with div.footer:
                 TEXT("The content is published under ")
@@ -204,8 +205,11 @@ def blog_post(postid):
                 div.comment.text(comment.text)
 {% endhighlight %}
 
-Voila. As I explained, my real intent is to write semantic code and not worry about concrete HTML 
-elements, their classes or their IDs.
+**Voila**. As I explained, my real intent is to write semantic code and not worry about concrete 
+HTML elements, their classes or ensuring the uniqueness of their IDs. Besides, the way I see it, 
+displaying a blog post would be sending an HTML template + JavaScript code to the client once, 
+which would fetch individual posts over JSON APIs. This makes your site service-oriented and much
+easier to write unittests for.
 
 ----------
 
@@ -217,5 +221,7 @@ elements, their classes or their IDs.
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
    this way or the other... even something as innocent as ``<b>{{ "{{ user.username" }} }}</b>`` 
-   invokes an overridible ``__getattr__``. [^^](#foot2back)
+   invokes an overridible ``__getattr__``. As explained at the end of the post, using a 
+   service-oriented web site means you don't render templates but expose APIs, so there's no need 
+   to evaluate untrusted templates. [^^](#foot2back)
 
