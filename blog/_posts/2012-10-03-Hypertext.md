@@ -189,3 +189,16 @@ def blog_post(postid):
 
 Voila. As I explained, my real intent is to write semantic code and not worry about concrete HTML 
 elements, their classes or their IDs.
+
+----------
+
+1. <a name="foot1"></a>For the record, I tried to deal with these issues back in 2006: 
+   [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine,
+   and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
+   of HTML. [Back](#foot1back)
+
+2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
+   the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
+   this way or the other... even something as innocent as ``<b>{{ user.username }}</b>`` invokes 
+   a custom ``__getattr__``. [Back](#foot2back)
+
