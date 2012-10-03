@@ -1,8 +1,7 @@
 ---
 layout: blogpost
 title: "Hypertext: In-Python Haml"
-tags: [python]
-published: false
+draft: true
 description: "An in-language DSL for generating HTML pages directly in Python, along the lines of Haml"
 ---
 
@@ -19,7 +18,7 @@ stack of inferior technologies, held together by the forces of time, and the sad
 here to stay. Nobody's gonna kill HTTP or JavaScript, not even Google, at least not in the 
 foreseeable future. It's a hand we have to play. 
 
-This isn't new [\[#1\]](#foot1), of course. The last time I did serious web development was 
+This isn't new [\[#1\]](#foot1) <a name="foot1back"></a>, of course. The last time I did serious web development was 
 back in 2008, on pre-1.0 Django. HTTP requests came and went, but nothing really changed. My 
 desperation with the subject has led me to write the 
 [minima manifesto](https://github.com/tomerfiliba/minima/blob/master/README.md)
@@ -36,7 +35,7 @@ and you have to deal with escaping. I like to think of HTML as a serialization f
 ``pickler`` of web pages, rather than something you ought to be messing with directly.
 
 Moreover, I hate templating languages: they are always cumbersome, crippled-down versions of Python,
-while providing no added value [\[#2\]](#foot2). People never seem to realize templates are 
+while providing no added value [\[#2\]](#foot2) <a name="foot2back"></a>. People never seem to realize templates are 
 basically half-baked function application: they take parameters and "plant" them into placeholders 
 in the text. Well, that's called β-reduction, so why beat about the bush? Just let us have real 
 functions.
@@ -149,7 +148,7 @@ convenience, ``div.foo.bar()`` is identical to ``div.foo().bar`` as well as ``di
 Moreover, there's always a "stack" of elements behind the scenes, so when new elements are 
 created, they're automagically added as children of the top-of-stack element. This works in the 
 same spirit of [flask's request](http://flask.pocoo.org/docs/quickstart/#context-locals) object.
-Likewise, ``TEXT`` is special function that appends a text element to its parent.
+Likewise, ``TEXT`` is special function that appends some text to its parent.
 
 This sprinkle of magic lets us write idiomatic code:
 
@@ -182,33 +181,30 @@ def blog_post(postid):
     with base_page(post.title):
         h1(post.title)
         div.datebox(post.date.strftime("%Y-%m-%d"))
-        div.body(post.body)
+        with div.main:
+            UNESCAPED(post.body)
         
         for comment in post.comments:
             with div.comment_box:
                 div.comment.author(comment.author)
-                div.comment.text(comment.text)        
+                div.comment.text(comment.text)
 
 {% endhighlight %}
 
-Voila. 
+Voila. As I explained, my real intent is to write semantic code and not worry about concrete HTML 
+elements, their classes or their IDs.
 
-
-=========
+----------
 
 1. <a name="foot1"></a>For the record, I tried to deal with these issues back in 2006: 
    [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine,
    and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
-   of HTML.
+   of HTML. [Back](#foot1back)
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if necessary. Anyway, I won't evaluate untrusted templates 
    this way or another... even something as innocent as ``<b>{{ user.username }}</b>`` may invokes 
-   a custom ``__getattr__``.
-
-
-
-
+   a custom ``__getattr__``. [Back](#foot2back)
 
 
 
