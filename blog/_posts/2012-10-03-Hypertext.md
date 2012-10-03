@@ -83,10 +83,12 @@ to the left generates the HTML code to the right:
 On the other hand, in case you missed ``<%= print_date %>``, Haml is *yet-another templating
 language*... Arrrgh. 
 
-## <a name="the-code">Hypertext</a> ##
+<a name="the-code"></a>
 
-Enter [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py). 
-The idea behind ``hypertext`` is to 
+## Hypertext ##
+
+So I wrote [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py), aiming
+to   
 
 1. make your code beautiful, by making it reflect the structure of the HTML
 2. make exceptions easy to locate
@@ -95,4 +97,18 @@ The idea behind ``hypertext`` is to
 3. take care of escaping and whatnot for you. 
 
 The ultimate goal is to make your page *semantic*, but it will take some time to get there. 
-In the meanwhile, here's a simple demonstration of ``hypertext``'s power:
+In the meanwhile, here's a simple demonstration of ``hypertext``'s power. Generating HTML is easy:
+
+{% highlight pycon %}
+>>> from hypertext import *
+>>>
+>>> print h1("Welcome", class_="highlight", id="foo")
+<h1 class="highlight" id="foo">Welcome</h1>
+{% endhighlight %}
+
+And you've got Haml-style shortcuts for wrist-handiness - dot-notation can be used to add classes 
+to the element:
+{% highlight pycon %}
+>>> print h1.highlight("Welcome", id="foo")
+<h1 class="highlight" id="foo">Welcome</h1>
+{% endhighlight %}
