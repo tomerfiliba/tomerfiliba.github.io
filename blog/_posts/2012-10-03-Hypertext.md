@@ -98,7 +98,7 @@ language*... arrrgh!
 
 During my experimentation with ``minima``, I wrote 
 [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py) - a Pythonic a Hamlian
-way to generate HTML "templates". Hypertext aims to
+way to write "HTML functions". Hypertext aims to
 
 1. be (almost) as concise as Haml
 2. make your code beautiful and easy to read, by reflecting the structure of the HTML
@@ -108,7 +108,8 @@ way to generate HTML "templates". Hypertext aims to
 5. take care of escaping and whatnot for you
 
 The ultimate goal is to make your page *semantic*, but it will take some time to get there. 
-In the meanwhile, ``hypertext`` is like a hybrid solution for generating HTML:
+In the meanwhile, ``hypertext`` is like an intermediate representation. Anyhow, generating 
+HTML is really simple:
 
 {% highlight pycon %}
 >>> from hypertext import *
@@ -135,10 +136,10 @@ Naturally, elements may be nested:
 </div>
 {% endhighlight %}
 
-But the highlight of ``hypertext`` is the use of elements as *context managers*:
+But the key-feature of ``hypertext`` is the use of elements as *context managers*:
 {% highlight pycon %}
 >>> with div.content:
-...     h1.content("Welcome")
+...     h1.highlight("Welcome")
 ...     TEXT("This is my page")
 ...
 <div class="content">
@@ -147,12 +148,11 @@ But the highlight of ``hypertext`` is the use of elements as *context managers*:
 </div>
 {% endhighlight %}
 
-This lets your procedural code reflect the structure of your document, and you can use 
-``for``-loops, ``if``s or anything else in it. 
+This lets your procedural code reflect the structure of your document, while you can use 
+``for``-loops, ``if` statements, or call functions right inside it. 
 
-
-It should be noted that ``hypertext`` is a [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) 
-within Python, which puts wrist-handiness before implementation purity. Therefore it cuts itself
+It should be noted that ``hypertext`` is a **[DSL](http://en.wikipedia.org/wiki/Domain-specific_language) 
+within Python**, which puts wrist-handiness before implementation purity. Therefore it cuts itself
 some slack when it comes to **magic**. For instance, ``div`` is a class, but ``div.content`` 
 actually translates to ``div().content`` through the use of metaclasses; the same goes for 
 ``with div:`` that translates ``with div():``. For convenience, ``div.foo.bar()`` is identical to 
