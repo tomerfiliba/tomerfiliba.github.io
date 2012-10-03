@@ -41,8 +41,16 @@ realize templates are basically half-baked function application: they take param
 them into placeholders in the text. Well, that's called β-reduction, so why beat about the bush? 
 Just let us have real functions. Consider the following Jinja2 code:
 
-    foo
-    bar
+```
+{% extends 'base.html' %}
+{% block content %}
+  <ul>
+    {% for user in users %}
+      <li><a href="{{ user.url }}">{{ user.username }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+```
 
 Note that (1) you write the HTML boilerplate (and closing tags), (2) you have to take care of 
 quoting yourself (notice the quotes in ``href="{{ user.url }}"``), and (3), you use a ruby-flavor 
