@@ -135,3 +135,57 @@ But the pinnacle of ``hypertext`` is the use of elements as *context managers*:
     This is my page
 </div>
 {% endhighlight %}
+
+This lets your procedural code reflect the structure of your document. It should be noted that 
+``hypertext`` is a [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) within Python,
+and puts wrist-handiness before implementation purity, and therefore **it allows itself to use 
+some magic**. For instance, ``div`` is a class, but ``div.content`` actually translates to 
+``div().content``; the same goes for ``with div:`` that translates ``with div():``. For 
+convenience, ``div.foo.bar()`` is identical to ``div.foo().bar`` as well as ``div().foo.bar``.
+Moreover, there's always a "stack" of elements behind the scenes, so when new elements are 
+created, they're automagically added as children of the top-of-stack element. This works in the 
+same spirit of [flask's request](http://flask.pocoo.org/docs/quickstart/#context-locals) object.
+Likewise, ``TEXT`` is special function that appends some text to its parent.
+
+This sprinkle of magic lets us write idiomatic, well-structured and easy to debug code:
+
+{% highlight python %}
+from hypertext import body, head, div, title, a, img, h1, span, TEXT
+
+@contextmanager
+def base_page(the_title, the_content):
+    with html as root:
+        with head:
+            title(the_title)
+        
+        with body:
+            with div.header:
+                a(img(src="/img/logo.png"), href="/")
+            
+            with div.content:
+                yield root      # it's a content manager
+                
+            with div.footer:
+                TEXT("The content is published under ")
+                a("CC-Attribution Sharealike 2.5", href="http://creativecommons.org/licenses/by-sa/2.5/")
+    
+    return str(html)
+
+@app.route("/blog/<postid>")
+def blog_post(postid):
+    post = Post.get(postid)
+    
+    with base_page(post.title):
+        h1(post.title)
+        div.datebox(post.date.strftime("%Y-%m-%d"))
+        with div.main:
+            UNESCAPED(post.body)
+        
+        for comment in post.comments:
+            with div.comment_box:
+                div.comment.author(comment.author)
+                div.comment.text(comment.text)
+{% endhighlight %}
+
+Voila. As I explained, my real intent is to write semantic code and not worry about concrete HTML 
+elements, their classes or their IDs.
