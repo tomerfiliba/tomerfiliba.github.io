@@ -216,7 +216,7 @@ easier to write unittests for.
 1. <a name="foot1"></a>For the record, I tried to deal with these issues back in 2006: 
    [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine,
    and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
-   of HTML. [^^](#foot1back)
+   of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/) [^^](#foot1back)
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
