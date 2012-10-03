@@ -53,7 +53,7 @@ Just let us have real functions. Consider the following Jinja2 code:
 ```
 
 Note that (1) you write the HTML boilerplate (and closing tags), (2) you have to take care of 
-quoting yourself (notice the quotes in ``href="{{ user.url }}"``), and (3), you use a ruby-flavor 
+quoting yourself (notice the quotes in ``href="{{ "{{ user.url"}} }}"``), and (3), you use a ruby-flavor 
 of Python. What gives? Moreover, these elusive "blocks" and "extends" are all but function 
 composition. Here's the functional alternative:
 
@@ -207,6 +207,6 @@ elements, their classes or their IDs.
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
-   this way or the other... even something as innocent as ``<b>{{ user.username }}</b>`` invokes 
-   a custom ``__getattr__``. [Back](#foot2back)
+   this way or the other... even something as innocent as ``<b>{{ "{{ user.username" }} }}</b>`` 
+   invokes an overridible ``__getattr__``. [Back](#foot2back)
 
