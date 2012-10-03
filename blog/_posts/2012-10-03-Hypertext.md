@@ -108,7 +108,29 @@ In the meanwhile, here's a simple demonstration of ``hypertext``'s power. Genera
 
 And you've got Haml-style shortcuts for wrist-handiness - dot-notation can be used to add classes 
 to the element:
+
 {% highlight pycon %}
 >>> print h1.highlight("Welcome", id="foo")
 <h1 class="highlight" id="foo">Welcome</h1>
+{% endhighlight %}
+
+Naturally, elements may be nested:
+
+{% highlight pycon %}
+>>> print div.content(h1.highlight("Welcome"), "This is my page")
+<div class="content">
+    <h1 class="highlight">Welcome</h1>
+    This is my page
+</div>
+
+But the pinnacle of ``hypertext`` is the use of elements as *context managers*:
+{% highlight pycon %}
+>>> with div.content:
+...     h1.content("Welcome")
+...     TEXT("This is my page")
+...
+<div class="content">
+    <h1 class="highlight">Welcome</h1>
+    This is my page
+</div>
 {% endhighlight %}
