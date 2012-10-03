@@ -67,7 +67,7 @@ def my_page(users):
 Okay, that's ugly, but by now it should be clear that templates are but degenerate Python 
 functions, and I'd go with the real thing - thank you.
 
-## <a id="the-code">Hypertext</a> ##
+## <a name="the-code">Hypertext</a> ##
 
 I like [Haml](http://haml.info/) (even though it stemmed in the ruby world :) ). Of course it's 
 equivalent to HTML, but I like it's DRY and to-the-point approach. On the other hand, it's 
@@ -75,23 +75,32 @@ equivalent to HTML, but I like it's DRY and to-the-point approach. On the other 
 Enter [hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py)!
 
 The idea of ``hypertext`` is to (1) make your code beautiful, (2) just let you write Python code
-and (3) take care of escaping and whatnot for you. Here's the deal:
+and (3) take care of escaping and whatnot for you. The ultimate goal is to make your page 
+*semantic*, but that's not ready yet. Anyhow, here's a simple use case for ``hypertext``:
 
 {% highlight pycon %}
 >>> from hypertext import *
 >>>
 >>> print h1("Welcome", class_="highlight")
 <h1 class="highlight">Welcome</h1>
+{% endhighlight %}
 
+And you've got Haml-style shortcuts for wrist-handiness:
+{% highlight pycon %}
 >>> print h1.highlight("Welcome")
 <h1 class="highlight">Welcome</h1>
+{% endhighlight %}
 
+Of course you can nest elements:
+{% highlight pycon %}
 >>> print div.content(h1.highlight("Welcome"), "This is my page")
 <div class="content">
     <h1 class="highlight">Welcome</h1>
     This is my page
 </div>
 
+But the pinnacle is using them as *context managers*:
+{% highlight pycon %}
 >>> with div.content:
 ...     h1.content("Welcome")
 ...     TEXT("This is my page")
@@ -100,13 +109,15 @@ and (3) take care of escaping and whatnot for you. Here's the deal:
     <h1 class="highlight">Welcome</h1>
     This is my page
 </div>
-
 {% endhighlight %}
+
+This lets 
+
 
 And
 
 {% highlight python %}
-from hypertext import *
+from hypertext import body, head, div, title, a, img, TEXT, ul, li
 
 @contextmanager
 def base(page_title = "Hello world"):
