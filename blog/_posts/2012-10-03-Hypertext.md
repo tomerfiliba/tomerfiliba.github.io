@@ -41,11 +41,15 @@ realize templates are basically half-baked function application: they take param
 them into placeholders in the text. Well, that's called β-reduction, so why beat about the bush? 
 Just let us have real functions. Consider the following Jinja2 code:
 
-    \{% extends 'base.html' %}
-    \{% block content %}
+{% highlight %}
+    {% extends 'base.html' %}
+    {% block content %}
       <ul>
-        \{% for user in users %}
+        {% for user in users %}
           <li><a href="{{ user.url }}">{{ user.username }}</a></li>
         {% endfor %}
       </ul>
-    \{% endblock %}
+    {% endblock %}
+{% endhighlight %}
+
+
