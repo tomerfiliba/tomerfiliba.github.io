@@ -122,6 +122,7 @@ Naturally, elements may be nested:
     <h1 class="highlight">Welcome</h1>
     This is my page
 </div>
+{% endhighlight %}
 
 But the pinnacle of ``hypertext`` is the use of elements as *context managers*:
 {% highlight pycon %}
