@@ -17,3 +17,20 @@ wrong**. It's not an anecdotal thing I have against this or that -- it's every f
 stack of inferior technologies, held together by the forces of time, and the sad thing is, they are 
 here to stay. Nobody's gonna kill HTTP or JavaScript, not even Google, at least not in the 
 foreseeable future. It's a hand we have to play. 
+
+
+This isn't new [&#91;1&#93;](#foot1) <a name="foot1back"></a>, of course. The last time I did serious web development was 
+back in 2008, on pre-1.0 Django. HTTP requests came and went, but nothing really changed. My 
+desperation with the subject has led me to write the 
+[minima manifesto](https://github.com/tomerfiliba/minima/blob/master/README.md)
+almost a year ago, but due to my general lack of interest it remained a README file. Now that I'm
+back in the business, I thought of reviving my experimentations with it. It won't happen overnight,
+but I feel it's within reach.
+
+## Templates? Really?! ##
+
+My first objective is killing *templates* and *templating engines* - these just
+[drive me crazy](http://www.youtube.com/watch?v=-qTIGg3I5y8).
+I hate HTML: it's too low-level and too messy; forgetting to close tags properly is too easy, 
+and you have to deal with escaping. I like to think of HTML as a serialization format - the
+``pickler`` of web pages, rather than something you ought to be messing with directly.
