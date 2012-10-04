@@ -18,9 +18,9 @@ stack of inferior technologies, held together by the glues of time and legacy. A
 they are here to stay. Nobody's going to kill HTTP or JavaScript, not even Google (at least not 
 in the foreseeable future). It's a hand we have to play. 
 
-This isn't new [&#91;1&#93;](#foot1), <a name="foot1back"></a> of course. The last time I did serious
-web development was back in 2008, on pre-1.0 Django. HTTP requests came and went, but nothing really 
-changed. My desperation with the subject has led me to writing the 
+This isn't new<sup><a href="#foot1" name="foot1back">>&#91;1&#93;</a></sup>, of course. The last time I 
+did serious web development was back in 2008, on pre-1.0 Django. HTTP requests came and went, but 
+nothing really changed. My desperation with the subject has led me to writing the 
 [minima manifesto](https://github.com/tomerfiliba/minima/blob/master/README.md)
 almost a year ago, but due to my general lack of interest it remained just a README file. Now that 
 I'm back in the business, I returned to experiment with it... It won't happen overnight,
@@ -35,10 +35,10 @@ and you have to deal with escaping. I like to think of HTML as a serialization f
 ``pickler`` of web pages, rather than something you ought to be messing with directly.
 
 Moreover, I hate templating languages: they are always cumbersome, crippled-down versions of Python,
-while providing no added value [&#91;2&#93;](#foot2). <a name="foot2back"></a> People never seem to 
-realize templates are ultimately half-baked function application: they take parameters and "plant" 
-them into placeholders in the text. Well, that's called β-reduction, so why beat about the bush? 
-Just let us have real functions. Consider the following Jinja2 code:
+while providing no added value <sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
+seem to realize templates are ultimately half-baked function application: they take parameters 
+and "plant" them into placeholders in the text. Well, that's called β-reduction, so why beat about 
+the bush? Just let us have real functions. Consider the following Jinja2 code:
 
     {{ "{% extends 'base.html'" }} %}
     {{ "{% block content" }} %}
@@ -214,14 +214,15 @@ easier to write unittests for.
 ----------
 
 1. <a name="foot1"></a>For the record, I tried to deal with these issues back in 2006: 
-   [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine,
+   [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine
+   that has given rise to a [successor](http://www.joonis.de/content/TemplitePythonTemplatingEngine),
    and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
-   of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/) [^^](#foot1back)
+   of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/). <a href="#foot1back"><sup>^^</sup></a>
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
    this way or the other... even something as innocent as ``<b>{{ "{{ user.username" }} }}</b>`` 
    invokes an overridible ``__getattr__``. As explained at the end of the post, using a 
    service-oriented web site means you don't render templates but expose APIs, so there's no need 
-   to evaluate untrusted templates. [^^](#foot2back)
+   to evaluate untrusted templates. <a href="#foot2back"><sup>^^</sup></a>
 
