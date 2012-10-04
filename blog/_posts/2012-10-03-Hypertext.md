@@ -186,14 +186,12 @@ def base_page(the_title, the_content):
                 TEXT("The content is published under ")
                 a("CC-Attribution Sharealike 2.5", 
                     href="http://creativecommons.org/licenses/by-sa/2.5/")
-    
-    return str(html)
 
 @app.route("/blog/<postid>")
 def blog_post(postid):
     post = Post.get(postid)
     
-    with base_page(post.title):
+    with base_page(post.title) as root:
         h1(post.title)
         div.datebox(post.date.strftime("%Y-%m-%d"))
         with div.main:
@@ -203,6 +201,8 @@ def blog_post(postid):
             with div.comment_box:
                 div.comment.author(comment.author)
                 div.comment.text(comment.text)
+
+    return str(root)
 {% endhighlight %}
 
 **Voila**. As I explained, my real intent is to write semantic code and not worry about concrete 
