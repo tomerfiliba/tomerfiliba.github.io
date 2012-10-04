@@ -18,7 +18,7 @@ stack of inferior technologies, held together by the glues of time and legacy. A
 they are here to stay. Nobody's going to kill HTTP or JavaScript, not even Google (at least not 
 in the foreseeable future). It's a hand we have to play. 
 
-This isn't new<sup><a href="#foot1" name="foot1back">>&#91;1&#93;</a></sup>, of course. The last time I 
+This isn't new<sup><a href="#foot1" name="foot1back">&#91;1&#93;</a></sup>, of course. The last time I 
 did serious web development was back in 2008, on pre-1.0 Django. HTTP requests came and went, but 
 nothing really changed. My desperation with the subject has led me to writing the 
 [minima manifesto](https://github.com/tomerfiliba/minima/blob/master/README.md)
@@ -35,7 +35,7 @@ and you have to deal with escaping. I like to think of HTML as a serialization f
 ``pickler`` of web pages, rather than something you ought to be messing with directly.
 
 Moreover, I hate templating languages: they are always cumbersome, crippled-down versions of Python,
-while providing no added value <sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
+while providing no added value sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
 seem to realize templates are ultimately half-baked function application: they take parameters 
 and "plant" them into placeholders in the text. Well, that's called β-reduction, so why beat about 
 the bush? Just let us have real functions. Consider the following Jinja2 code:
