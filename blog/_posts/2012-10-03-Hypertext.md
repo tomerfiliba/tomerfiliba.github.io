@@ -35,7 +35,7 @@ and you have to deal with escaping. I like to think of HTML as a serialization f
 ``pickler`` of web pages, rather than something you ought to be messing with directly.
 
 Moreover, I hate templating languages: they are always cumbersome, crippled-down versions of Python,
-while providing no added value <sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
+while providing no added value<sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
 seem to realize templates are ultimately half-baked function application: they take parameters 
 and "plant" them into placeholders in the text. Well, that's called β-reduction, so why beat about 
 the bush? Just let us have real functions. Consider the following Jinja2 code:
@@ -218,7 +218,7 @@ easier to write unittests for.
    that has given rise to a [successor](http://www.joonis.de/content/TemplitePythonTemplatingEngine),
    and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
    of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/). 
-   <sup><a href="#foot1back" title="back">&#x21BA;</a></sup>
+   <sup><a href="#foot1back" title="back">&#x21D1;</a></sup>
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
@@ -226,5 +226,5 @@ easier to write unittests for.
    invokes an overridible ``__getattr__``. As explained at the end of the post, using a 
    service-oriented web site means you don't render templates but expose APIs, so there's no need 
    to evaluate untrusted templates. 
-   <sup><a href="#foot2back" title="back">&#x21BA;</a></sup>
+   <sup><a href="#foot2back" title="back">&#x21D1;</a></sup>
 
