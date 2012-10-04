@@ -35,7 +35,7 @@ and you have to deal with escaping. I like to think of HTML as a serialization f
 ``pickler`` of web pages, rather than something you ought to be messing with directly.
 
 Moreover, I hate templating languages: they are always cumbersome, crippled-down versions of Python,
-while providing no added value sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
+while providing no added value <sup><a href="#foot2" name="foot2back">&#91;2&#93;</a></sup>. People never 
 seem to realize templates are ultimately half-baked function application: they take parameters 
 and "plant" them into placeholders in the text. Well, that's called β-reduction, so why beat about 
 the bush? Just let us have real functions. Consider the following Jinja2 code:
