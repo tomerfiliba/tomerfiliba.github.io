@@ -217,12 +217,14 @@ easier to write unittests for.
    [templite](http://code.activestate.com/recipes/496702-templite/) - a 60-liner templating engine
    that has given rise to a [successor](http://www.joonis.de/content/TemplitePythonTemplatingEngine),
    and [HElement](http://code.activestate.com/recipes/496743-helement/) - programmatic representation
-   of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/). <sup><a href="#foot1back">^^</a></sup>
+   of HTML. See also [BlazeHtml](http://jaspervdj.be/blaze/). 
+   <sup><a href="#foot1back" title="back">&#x21BA;</a></sup>
 
 2. <a name="foot2"></a>A note on *sandboxing*: since Jinja2 compiles templates to Python bytecode, 
    the same mechanisms can be used here, if desired. Anyway, I won't evaluate untrusted templates 
    this way or the other... even something as innocent as ``<b>{{ "{{ user.username" }} }}</b>`` 
    invokes an overridible ``__getattr__``. As explained at the end of the post, using a 
    service-oriented web site means you don't render templates but expose APIs, so there's no need 
-   to evaluate untrusted templates. <sup><a href="#foot2back">^^</a></sup>
+   to evaluate untrusted templates. 
+   <sup><a href="#foot2back" title="back">&#x21BA;</a></sup>
 
