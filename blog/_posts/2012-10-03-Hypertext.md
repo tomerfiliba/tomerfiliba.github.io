@@ -97,8 +97,8 @@ language*... arrrgh!
 ## Hypertext ##
 
 During my experimentation with ``minima``, I wrote 
-[hypertext](https://github.com/tomerfiliba/minima/blob/master/hypertext.py) - a Pythonic a Hamlian
-way to write "HTML functions". Hypertext aims to
+[hypertext](https://github.com/tomerfiliba/minima/blob/2e7b0dacf056ff06c39966f970955910735a8260/hypertext.py)
+- a Pythonic a Hamlian way to write "HTML functions". Hypertext aims to:
 
 1. be (almost) as concise as Haml
 2. make your code beautiful and easy to read, by reflecting the structure of the HTML
