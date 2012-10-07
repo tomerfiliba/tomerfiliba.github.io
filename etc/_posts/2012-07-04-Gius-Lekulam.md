@@ -2,7 +2,6 @@
 layout: etc-page
 title: "כולם מדברים על גיוס, אף אחד לא מדבר בשכל"
 description: "A bit of politics regarding conscription of orthodox Jews (Hebrew)"
-draft: true
 rtl: true
 comments: true
 ---

@@ -59,12 +59,12 @@ sophisticated
 is opening a file and appending lines to it! It's far from rocket science, so the most important
 part is its software engineering.
 
-Back in the day, a friend of mine coined the derogatory term **oreror**, to refer to "every
-programming-related concept that ends with -er or -or", such as ``Adapter`` and ``Delegator``.
+Back in the day, a friend of mine coined the derogatory term **oreror**, to refer to "any
+programming-related concept that ends with -er or -or", such as ``Adapter`` or ``Delegator``.
 He wasn't referring to Java in particular, but to over-engineering in general and the introduction
-of way too many abstraction layers: you begin with an Adapter and end with an Adapterer.
-Note that there's **nothing inherently wrong** with such layers, but it usually suggests you're
-over-complicating the design, trying to be too generic.
+of way too many abstraction layers: you begin with an ``Adapter`` and end with an ``Adapterer``, 
+hence the name *oreror*. Note that there's **nothing inherently wrong** with such layers, but it 
+usually suggests you're over-complicating the design, trying to be too generic.
 
 Java lends itself to a great deal of such orerors, because of the way its OOP system works: it
 requires adapters everywhere, and basically encourages you to "design for the worst case" from the
