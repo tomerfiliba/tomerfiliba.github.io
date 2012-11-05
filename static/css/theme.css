@@ -87,6 +87,14 @@ a img {
     color: #1f1f1f;
 }
 
+#tagline a {
+    color: #1f1f1f;
+}
+
+#tagline a:hover {
+    color: #ED9D13;
+}
+
 #sitename {
     font-family: 'Telex', sans-serif;
     font-size: 44px;
