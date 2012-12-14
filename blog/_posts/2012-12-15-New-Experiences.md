@@ -5,7 +5,7 @@ description: "Becoming an entrepreneur"
 ---
 
 <a href="http://fakegrimlock.com/">
-<img src="http://tomerfiliba.com/static/res/2012-12-15-grimlock2.png" class="blog-post-image" title="BECAUSE AWESOME"/></a>
+<img src="http://tomerfiliba.com/static/res/2012-12-15-grimlock2.jpg" class="blog-post-image" title="BECAUSE AWESOME"/></a>
 
 Okay, I've been slacking off and I feel I've got some explaining to do... Allow me to start by
 admitting that I lied. If you remember, I said [I wanted an easy life](http://tomerfiliba.com/blog/New-Beginnings/), 
@@ -37,6 +37,7 @@ counters that follow it. We aim high, both technologically (and algorithmically)
 but we're starting out with more modest go-to-market strategies. 
 
 ## Lessons on Web Programming ##
+
 In case you've been reading my blog, you probably know by now that I'm no fan of web programming. 
 I always feel it's a conglomerate of unrelated or inferior technologies, hastefully stacked one 
 on the other. That's not to say that people don't do amazing stuff on the web, but the foundations 
@@ -54,8 +55,10 @@ you can, ignore errors and learn to live with partial data.
 
 I brought this realization to the mighty @FAKEGRIMLOCK, and he explained: 
 
+<div style="text-align: center;">
 <a href="https://twitter.com/FAKEGRIMLOCK/status/276686347270500353">
-<img src="http://tomerfiliba.com/static/res/2012-12-15-onerror.png" class="blog-post-image"/></a>
+<img src="http://tomerfiliba.com/static/res/2012-12-15-onerror.png" style="border: 2px solid black;"/></a>
+</div>
 
 I'm an enlightened person now.
 
