@@ -139,17 +139,14 @@ layout: nil
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
-    function respacer() {
-        visible = $("#content").outerHeight() + $("#footer").outerHeight();
-        remaining = $(window).height() - visible;
-        $("#spacer").height(remaining > 0 ? remaining : 0);
-    }
-    
-    $(document).ready(function(){
-        $(window).resize(respacer);
-        $("body").resize(respacer);        
-        respacer();
-    });
+        $(document).ready(function(){
+            $(window).resize(function(){
+                used = $("#content").outerHeight() + $("#footer").outerHeight();
+                remaining = $(window).height() - used;
+                $("#spacer").height(remaining > 0 ? remaining : 0);
+            });
+            $(window).resize();
+        });
     </script>
 
 </body>
