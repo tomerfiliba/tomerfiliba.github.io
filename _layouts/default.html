@@ -133,7 +133,7 @@ layout: nil
             <img title="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
                 alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
                 style="border: none;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
-            </a>. The design has been inspired by <a href="http://svbtle.com">svbtle</a>
+            </a>
         </div>
     </div>
 
@@ -142,7 +142,7 @@ layout: nil
     $(document).ready(function(){
         $(window).resize(function() {
             visible = $("#content").outerHeight() + $("#footer").outerHeight();
-            remaining = $(window).height() - visible - 5;
+            remaining = $(window).height() - visible - 1;
             $("#spacer").height(remaining > 0 ? remaining : 0);
         });
         $(window).resize()
