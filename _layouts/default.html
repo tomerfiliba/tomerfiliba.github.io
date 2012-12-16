@@ -142,7 +142,7 @@ layout: nil
     $(document).ready(function(){
         $(window).resize(function() {
             visible = $("#content").outerHeight() + $("#footer").outerHeight();
-            remaining = $(window).height() - visible - 1;
+            remaining = $(window).height() - visible;
             $("#spacer").height(remaining > 0 ? remaining : 0);
         });
         $(window).resize()
