@@ -1,10 +1,19 @@
+/*html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}*/
+
 body {
     font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
     font-size: 18px;
     font-weight: normal;
     color: #1f1f1f;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
+    /*width: 100%;
+    height: 100%;*/
     background-color: #f8f8f8;
 }
 
@@ -300,17 +309,13 @@ div.menuitem a {
 
 
 #main {
-    position: absolute;
-    left: 400px;
-    right: 0;
-    top: 0;
-    margin: 0;
+    /*position: relative;*/
+    margin: 0 0 0 400px;
     padding: 0;
     min-height: 100%;
     min-width: 100px;
     max-width: 800px;
     border-left: 2px solid #ddd;
-    /*border-right: 2px solid #ddd;*/
 }
 
 #content {
@@ -329,7 +334,7 @@ div.menuitem a {
     text-align: right;
 }
 
-#content #content a h1, #content a h2, #content a h3, #content a h4, #content a h5 {
+#content a h1, #content a h2, #content a h3, #content a h4, #content a h5 {
     border: none;
 }
 
@@ -341,6 +346,10 @@ div.menuitem a {
     width: 100%;
     padding: 10px 0 20px 0; 
     border-bottom: 1px solid #eee;
+}
+
+#main div.section:first-child {
+    padding-top: 5px; 
 }
 
 #main div.comments {
@@ -366,13 +375,14 @@ div.menuitem a {
 }
 
 #footer {
-    display: none;
-    position: absolute;
+    opacity: 0.5;
     bottom: 0;
-    color: #ccc;
     font-size: 12px;
-    text-align: center;
-    padding: 0 40px 10px 40px;
+    padding: 20px 0 20px 85px;
+}
+
+#footer:hover {
+    opacity: 1;
 }
 
 #main a.button {
@@ -426,12 +436,16 @@ div.menuitem a {
     }
 
     #main {
-        left: 300px;
+        margin-left: 300px;
         max-width: 100%;
     }
     
     #content {
         padding: 40px 40px 40px 60px;
+    }
+    
+    #footer {
+        padding: 20px 0 20px 60px;
     }
     
     #sidebar #social {
@@ -482,7 +496,7 @@ div.menuitem a {
     }
     
     #sidebar {
-        position: relative;
+        position: static;
         width: auto;
         padding: 20px 0 10px 0;
         border-bottom: 2px solid #ddd;
@@ -493,7 +507,8 @@ div.menuitem a {
     }
 
     #main {
-        position: static;
+        /*position: static;*/
+        margin-left: 0;
         border: none;
     }
 
@@ -511,6 +526,11 @@ div.menuitem a {
     #content {
         width: auto;
         padding: 20px 10px 40px 10px;
+    }
+
+    #footer {
+        /*position: static;*/
+        padding: 20px 0 20px 10px;
     }
 
     #navigation {
