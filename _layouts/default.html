@@ -140,13 +140,12 @@ layout: nil
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        handler = function() {
+        $(window).resize(function() {
             visible = $("#content").outerHeight() + $("#footer").outerHeight();
-            remaining = $(window).height() - visible;
+            remaining = $(window).height() - visible - 5;
             $("#spacer").height(remaining > 0 ? remaining : 0);
-        };
-        $(window).resize(handler);
-        handler();
+        });
+        $(window).resize()
     });
     </script>
 
