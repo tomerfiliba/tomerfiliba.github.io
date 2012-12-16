@@ -81,7 +81,8 @@ a img {
     width: 350px;
     margin: 0;
     padding: 50px 10px 0 40px;
-    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
+    border-right: 2px solid #ddd;
+    font-family: inherit;
 }
 
 #logobox {
@@ -309,13 +310,11 @@ div.menuitem a {
 
 
 #main {
-    /*position: relative;*/
     margin: 0 0 0 400px;
     padding: 0;
     min-height: 100%;
     min-width: 100px;
     max-width: 800px;
-    border-left: 2px solid #ddd;
 }
 
 #content {
@@ -324,7 +323,7 @@ div.menuitem a {
 }
 
 #content h1, #content h2, #content h3, #content h4, #content h5 {
-    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
+    font-family: inherit;
     text-align: left;
     color: #232;
     text-shadow: 0px 0px 2px #CCC;
@@ -375,10 +374,12 @@ div.menuitem a {
 }
 
 #footer {
-    opacity: 0.3;
+    opacity: 0.2;
     bottom: 0;
     font-size: 12px;
-    padding: 20px 0 20px 85px;
+    padding: 20px 0 43px 85px;
+    text-align: right;
+    margin-right: 40px;
 }
 
 #footer:hover {
@@ -445,7 +446,7 @@ div.menuitem a {
     }
     
     #footer {
-        padding: 20px 0 20px 60px;
+        padding-left: 60px;
     }
     
     #sidebar #social {
@@ -458,6 +459,9 @@ div.menuitem a {
     #sidebar #social {
         bottom: 0px;
     }
+    #footer {
+        padding-bottom: 13px;
+    }
 }
 
 @media only screen and (max-height:680px)
@@ -468,7 +472,9 @@ div.menuitem a {
     #sidebar #social {
         bottom: 30px;
     }
-
+    #footer {
+        padding-bottom: 43px;
+    }
 }
 
 @media only screen and (max-height:510px)
@@ -476,6 +482,10 @@ div.menuitem a {
     #sidebar #social {
         display: none;
     }
+    #footer {
+        padding-bottom: 43px;
+    }
+
 }
 
 @media print, handheld, only screen and (max-width:700px), only screen and (max-device-width: 700px)
@@ -511,9 +521,7 @@ div.menuitem a {
     }
 
     #main {
-        /*position: static;*/
         margin-left: 0;
-        border: none;
     }
 
     #main blockquote {
@@ -524,7 +532,7 @@ div.menuitem a {
     }
 
     #main div.section {
-        padding: 0; 
+        padding: 0;
     }
     
     #content {
@@ -533,8 +541,9 @@ div.menuitem a {
     }
 
     #footer {
-        /*position: static;*/
-        padding: 20px 0 20px 10px;
+        padding-left: 10px;
+        padding-bottom: 20px;
+        margin-right: 10px;
     }
 
     #navigation {
