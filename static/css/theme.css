@@ -513,6 +513,7 @@ div.menuitem a {
         height: auto;
         width: auto;
         padding: 20px 0 10px 0;
+        border-right: none;
         border-bottom: 2px solid #ddd;
     }
     
