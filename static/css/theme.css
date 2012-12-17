@@ -509,8 +509,8 @@ div.menuitem a {
     
     #sidebar {
         position: static;
-        min-height: auto;
-        height: auto;
+        min-height: auto !important;
+        height: auto !important;
         width: auto;
         padding: 20px 0 10px 0;
         border-right: none;
@@ -527,8 +527,8 @@ div.menuitem a {
 
     #main {
         margin-left: 0;
-        height: auto;
-        min-height: auto;
+        min-height: auto !important;
+        height: auto !important;
     }
 
     #main blockquote {
