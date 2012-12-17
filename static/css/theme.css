@@ -524,6 +524,11 @@ div.menuitem a {
     #spacer {
         display: none;
     }
+    
+    html, body {
+        height: auto !important;
+        min-height: auto !important;
+    }
 
     #main {
         margin-left: 0;
