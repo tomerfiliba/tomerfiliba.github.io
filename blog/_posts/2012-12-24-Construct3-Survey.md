@@ -20,8 +20,10 @@ Unlike most alternatives, these data structures can be used for **both packing a
 instance, once you define *what* a TCP packet is, you can analyze packets or construct ones on your own, with no 
 additional code.
 
-See also:
-* [Construct 2.06](http://pypi.python.org/pypi/construct) 
+### See also ###
+
+* [Construct 2](http://pypi.python.org/pypi/construct) 
+
 * [Pickler combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
 
 ## Basics ##
@@ -191,7 +193,7 @@ Bytes are easy to work with, but protocols and file formats often talk in differ
 switching between bits and bytes (octets). For instance, here's the SCSI CDB of ``READ6``:
 
 <a href="http://en.wikipedia.org/wiki/SCSI_Read_Commands">
-<img src="http://tomerfiliba.com/static/res/2012-12-24-read6.png" title="SCSI READ6" class="blog-post-image"/>
+<img src="http://tomerfiliba.com/static/res/2012-12-24-read6.png" title="SCSI READ6" />
 </a>
 
 The LUN component is 3 bits long and the ``LBA`` component is 21 bits long... what are we to do? Before we can
@@ -291,7 +293,57 @@ of data.
 
 
 ## Compilation ##
+**NOTE:** This is a work in progess; Construct 3.0 would probably come out with a very basic compiler, which
+would be optimized over time.
 
+One of the highlights about Construct is defining your data structures directly in Python. In fact, Construct is an 
+in-langaguge [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) in the form of packing combinators: 
+instead of expressing your data structures in XML or some 
+[proprietary language](https://developers.google.com/protocol-buffers/docs/proto), you just write them (and run them)
+as any other piece of code. 
+
+We used to have [psyco](http://psyco.sourceforge.net/), which was capable of speeding up Construct 2 by a tenfold,
+but it's been dead for the past four years. I first [had plans](https://sebulbasvn.googlecode.com/svn/trunk/ccon/) 
+to compile data structures to C/C++ (which would have made Construct NASA material :)), but I soon realized that its
+quite an impossible feat (due to the fact Adapters are Turing-complete).
+
+On the other hand, I now realized I can compile Constructs to Python! The compiler could inspect the whole data 
+structure in advance and generate optimized code. Whenever a convertion is not possible, it would just fall back
+to the current, interpretted scheme. Here's a sketch:
+
+{% highlight python %}
+ipaddr = IpAddress(byte[4])
+
+ipheader = Struct(
+    "destination" / ipaddr,
+    "source" / ipaddr,
+)
+{% endhighlight %}
+
+From this definition, we can generate these two functions: 
+
+{% highlight python %}
+def ipheader_unpack(stream):
+    obj = {}
+    obj["destination"] = IpAddress.decode([byte_unpack(1, stream), byte_unpack(1, stream), byte_unpack(1, stream), byte_unpack(1, stream)])
+    obj["source"] = IpAddress.decode([byte_unpack(1, stream), byte_unpack(1, stream), byte_unpack(1, stream), byte_unpack(1, stream)])
+    return obj
+
+def ipheader_pack(obj, stream):
+    out = IpAddress.encode(obj["destination"])
+    byte_pack(stream, out[0])
+    byte_pack(stream, out[1])
+    byte_pack(stream, out[2])
+    byte_pack(stream, out[3])
+    out = IpAddress.encode(obj["source"])
+    byte_pack(stream, out[0])
+    byte_pack(stream, out[1])
+    byte_pack(stream, out[2])
+    byte_pack(stream, out[3])
+{% endhighlight %}
+
+Notice there's not recursion and the stack depth remains relatively constant. As the compiler improves, it would 
+translate ``byte[4]`` to ``int32ub``, to spead up things.
 
 ## Computational Power ##
 Here's a semi-proof that Construct is stronger than Context Free languages (as well as 
