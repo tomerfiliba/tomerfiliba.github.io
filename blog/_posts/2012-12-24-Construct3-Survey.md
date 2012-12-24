@@ -45,8 +45,8 @@ that Construct is more powerful than context-free languages, making it probably 
 ## Basics ##
 
 Packers are objects that expose the two methods ``pack(obj)`` and ``unpack(data)``. Intuitively, ``pack`` takes an
-object suitable with that packer, and returns a binary representation of it; ``unpack`` is the inverse operation,
-which takes a binary representation and returns a Python object. Here's the most fundamental example:
+object suitable with that packer and returns a binary representation of it; ``unpack`` is the inverse operation,
+taking a binary representation and returning a Python object. Here's the most fundamental example:
 
 {% highlight pycon %}
 >>> from construct3 import byte
@@ -61,9 +61,9 @@ There's more than mere ``byte``, of course: the numeric family consists of ``int
 (e.g., ``int32ul``) and ``float(32|64)(b|l)``, where ``s`` = signed, ``u`` = unsigned, ``b`` = big endian and 
 ``l`` = little endian, but we will overlook those for now. By the way, ``byte`` is an alias for ``int8u``.
 
-But Construct is a library of *combinators*, i.e., it gains it's power by *combining* simple elements into more 
-complex one. The simplest combinator is ``Sequence``, which creates a new packer from smaller ones. In this example,
-we're going to define an IP address, which comprises of 4 bytes:
+These can be called *atoms*, but Construct is a library of *combinators*: it gains it's power from *combining* 
+simpler elements into more complex ones. The simplest combinator is ``Sequence``, which we'll explore it by 
+defining an IPv4 address as a sequence of 4 bytes:
 
 {% highlight pycon %}
 >>> from construct3 import Sequence
@@ -83,7 +83,7 @@ Naturally, we can created nested sequences (not that it makes sense right now, b
 [[65, 66], 67, 68]
 {% endhighlight %}
 
-As combining packers is our bread-and-butter here, why not make it shorter? We can use the *bind* operator,
+Since combining packers is our bread-and-butter here, let's try to make it shorter: we can use the *bind* operator,
 ``>>``, to concatenate packers and form sequences. Here's how it looks:
 
 {% highlight pycon %}
@@ -92,9 +92,9 @@ As combining packers is our bread-and-butter here, why not make it shorter? We c
 Sequence(int8u, int8u, int8u, int8u)
 {% endhighlight %}
 
-Sequences can be heterogeneous (consist of several kinds of packers), e.g., ``Sequence(byte, int16ul)``. However, 
-if the data we're dealing with is homogeneous, we can use ``Arrays`` instead. For instance, we can define ``ipaddr``
-as an array of 4 bytes:
+Sequences can be *heterogeneous* (consisting of several kinds of packers, e.g., ``Sequence(byte, int16ul)``), however, 
+if the data we're dealing with is homogeneous, we can use ``Arrays`` instead. Following the same example above, 
+we can define ``ipaddr`` as an array of 4 bytes:
 
 {% highlight pycon %}
 >>> from construct3 import Array
@@ -105,10 +105,10 @@ Range(4, 4, int8u)
 [127, 0, 0, 1]
 {% endhighlight %}
 
-Note that ``Array`` is actually a shorthand for ``Range``. We'll cover that later on.
+(Note that ``Array`` is actually a shorthand for ``Range``. We'll cover that later on)
 
-But as arrays themselves are a pretty common feature, let's simplify their construction: You can create arrays using 
-the subscript (``[]``) notation:
+But as arrays themselves are a pretty common feature, we may wish to simplify their construction: You can create 
+arrays using the subscript (``[]``) notation:
 
 {% highlight pycon %}
 >>> ipaddr = byte[4]
@@ -148,10 +148,10 @@ Container:
 > the notorious [Rename](https://construct.readthedocs.org/en/latest/misc.html#rename) construct. 
 > 
 > One of the most important cleanups of Construct 3 is dropping the name from packers and moving it to where it
-> makes sense - ``Struct``.
+> belongs - ``Struct``.
 
 Notice that unpacking a ``Struct`` breaks down the data into a ``Container`` object, which is simply a 
-convenience-wrapper around good old ``dict``. Likewise, given a dict-like object, you can pack it back into bytes: 
+convenience-wrapper around good-old ``dict``. Likewise, given a dict-like object, you can pack it back into bytes: 
 
 {% highlight pycon %}
 >>> ipaddr.pack({"a" : 192, "b" : 168, "c" : 2, "d" : 1})
