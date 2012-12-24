@@ -31,12 +31,12 @@ additional code.
 we build <strong>composite packers</strong> (Sequence, Array, and Struct), which also provide some <strong>syntactic 
 sugars</strong>, and discuss the changes from Construct 2.<br/>
 
-Next, we cover how Constructs handle data (<em>stream of units<em> approach) and how this helps us when working with
+Next, we cover how Constructs handle data (<em>stream of units</em> approach) and how this helps us when working with
 different data granularity (<strong>bits and bytes</strong>). We also introduce <strong>adapters</strong>, which 
 transform object representation for packing and unpacking, and <strong>macros</strong>, which enable us to easily 
 reuse existing constructs.<br/>
 
-Then we cover the <strong>context<strong> and the <code>this</code> object, which allow us to express dependencies 
+Then we cover the <strong>context</strong> and the <code>this</code> object, which allow us to express dependencies 
 in data structures. From there we move to <strong>code generation</strong>, a is a key feature of Construct 3: 
 constructs will be compiled to imperative Python code (and even Cython, one day). We finish with a semi-formal proof 
 that Construct is more powerful than context-free languages, making it probably the most powerful parser in existence!
