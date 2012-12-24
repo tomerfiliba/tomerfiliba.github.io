@@ -15,13 +15,12 @@ and with fancy words, but it dives into code right away.
 You can leave your feedback in the Disqus comments below, or join the new 
 [discussion group](https://groups.google.com/d/forum/construct3) dedicated to Construct (both 2 and 3).
 
-## Introduction ##
+**See Also**
 
-<div style="float: right; padding 5px; margin-left: 15px; background: #EAEDF3">
-<strong>See Also</strong><br/>
-&bull; <a href="http://pypi.python.org/pypi/construct">Construct 2</a><br/>
-&bull; <a href="http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf">Pickler Combinators</a><br/> 
-</div>
+&bull; [Construct 2](http://pypi.python.org/pypi/construct)  
+&bull; [Pickler Combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
+ 
+## Introduction ##
 
 Construct is a **binary packing combinators** library for Python, with which you can define rich **data structures**.
 Unlike most alternatives, these data structures can be used for **both packing and unpacking** of binary data; for 
