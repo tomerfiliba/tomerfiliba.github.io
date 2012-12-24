@@ -9,11 +9,11 @@ draft: true
 <img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" class="blog-post-image" />
 
 I'm working on [Construct 3](http://tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
-I wanted to share these ideas at this early stage to get feedback on them from users, to keep the project on track. 
-It starts a bit slow (and with fancy words) but it dives into code samples right away.
+I wanted to share these ideas at this early stage **to get feedback on them** from users, to keep the project on track. 
+It starts a bit slow (and with fancy words) but it dives into code right away.
 
 You can leave your feedback in the Disqus comments below, or join the new 
-[discussion group](https://groups.google.com/d/forum/construct3) dedicated to Construct (both 2 and 3).
+**[discussion group](https://groups.google.com/d/forum/construct3)** dedicated to Construct (both 2 and 3).
 
 **See Also**: [Construct 2](http://pypi.python.org/pypi/construct),
 [Pickler Combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
