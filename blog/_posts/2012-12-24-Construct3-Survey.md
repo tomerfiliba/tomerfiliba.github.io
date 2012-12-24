@@ -9,13 +9,13 @@ draft: true
 <img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" class="blog-post-image" />
 
 I'm working on [Construct 3](http://tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
-I wanted to share these ideas at this early stage to get feedback on them from users, to make sure . It starts slow
-and with fancy words, but it dives into code right away.
+I wanted to share these ideas at this early stage to get feedback on them from users, to keep the project on track. 
+It starts a bit slow (and with fancy words) but it dives into code samples right away.
 
 You can leave your feedback in the Disqus comments below, or join the new 
 [discussion group](https://groups.google.com/d/forum/construct3) dedicated to Construct (both 2 and 3).
 
-**See Also**: [Construct 2](http://pypi.python.org/pypi/construct),   
+**See Also**: [Construct 2](http://pypi.python.org/pypi/construct),
 [Pickler Combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
 
 ## Introduction ##
@@ -26,19 +26,20 @@ instance, once you define *what* a TCP packet is, you can analyze packets or con
 additional code.
 
 <div class="notebox">
-<p>**TL;DR box**</p>
-<p>We begin the discussion with the **atomic constructs**: bytes, integers, floats, etc. With these, we build 
-**composite packers** (Sequence, Array, and Struct), which also provide some **syntactic sugars**, and discuss 
-the changes from Construct 2.<br/>
+<p><strong>TL;DR box</strong></p>
+<p>We begin the discussion with the <strong>atomic constructs</strong>: bytes, integers, floats, etc. With these, 
+we build <strong>composite packers</strong> (Sequence, Array, and Struct), which also provide some <strong>syntactic 
+sugars</strong>, and discuss the changes from Construct 2.<br/>
 
-Next, we cover how Constructs handle data (*stream of units* approach) and how this helps us when working with
-different data granularity (**bits and bytes**). We also introduce **adapters**, which transform object 
-representation for packing and unpacking, and **macros**, which enable us to easily reuse existing constructs.<br/>
+Next, we cover how Constructs handle data (<em>stream of units<em> approach) and how this helps us when working with
+different data granularity (<strong>bits and bytes</strong>). We also introduce <strong>adapters</strong>, which 
+transform object representation for packing and unpacking, and <strong>macros</strong>, which enable us to easily 
+reuse existing constructs.<br/>
 
-Then we cover the **context** and the ``this`` object, which allow us to express dependencies in data structures
-From there we move to **code generation**, a is a key feature of Construct 3: constructs will be compiled to
-imperative Python code (and even Cython, one day). We finish with a semi-formal proof that Construct is more powerful
-than context-free languages, making it probably the most powerful parser in existence
+Then we cover the <strong>context<strong> and the <code>this</code> object, which allow us to express dependencies 
+in data structures. From there we move to <strong>code generation</strong>, a is a key feature of Construct 3: 
+constructs will be compiled to imperative Python code (and even Cython, one day). We finish with a semi-formal proof 
+that Construct is more powerful than context-free languages, making it probably the most powerful parser in existence!
 </p></div>
 
 ## Basics ##
