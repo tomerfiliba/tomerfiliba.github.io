@@ -1,6 +1,6 @@
 ---
 layout: blogpost
-title: "Survey of Construct 3"
+title: "A Survey of Construct 3"
 tags: []
 description: "Discussing the plans for Construct 3"
 draft: true
@@ -8,28 +8,37 @@ draft: true
 
 <img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" class="blog-post-image" />
 
-I'm working on [Construct3](http://tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
-I wanted to share these ideas and get feedback on them from users, so I won't end up with a mess. It starts slow
+I'm working on [Construct 3](http://tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
+I wanted to share these ideas at this early stage to get feedback on them from users, to make sure . It starts slow
 and with fancy words, but it dives into code right away.
 
-Note: because Construct 3 is incompatible with Construct 2, the name of the package has changed to ``construct3``.
+You can leave your feedback in the Disqus comments below, or join the new 
+[discussion group](https://groups.google.com/d/forum/construct3) dedicated to Construct (both 2 and 3).
 
 ## Introduction ##
+
+<div style="float: right; padding 5px; margin-left: 15px; background: #EAEDF3">
+<strong>See Also</strong><br/>
+&bull; <a href="http://pypi.python.org/pypi/construct">Construct 2</a><br/>
+&bull; <a href="http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf">Pickler Combinators</a><br/> 
+</div>
+
 Construct is a **binary packing combinators** library for Python, with which you can define rich **data structures**.
 Unlike most alternatives, these data structures can be used for **both packing and unpacking** of binary data; for 
 instance, once you define *what* a TCP packet is, you can analyze packets or construct ones on your own, with no 
 additional code.
 
-### See also ###
-
-* [Construct 2](http://pypi.python.org/pypi/construct) 
-
-* [Pickler combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
+> **TL;DR**
+>
+> Basics, Sequences, Arrays, Structs, Bits, Adapters, Macros, Code Generation, Computational Power
+> Syntactic sugars
+>
 
 ## Basics ##
+
 Packers are objects that expose the two methods ``pack(obj)`` and ``unpack(data)``. Intuitively, ``pack`` takes an
 object suitable with that packer, and returns a binary representation of it; ``unpack`` is the inverse operation,
-which takes a binary representation and returns a Python object. Here's the most basic example:
+which takes a binary representation and returns a Python object. Here's the most fundamental example:
 
 {% highlight pycon %}
 >>> from construct3 import byte
@@ -102,6 +111,7 @@ Range(4, 4, int8u)
 Isn't it cool?
 
 ## More Elaborate Structures ##
+
 So far we've only worked with data in the form of lists. However, many times we would like to give names to 
 the subcomponents that make up our data structure: enter ``Struct``. Named after the C ``struct`` statement, 
 ``Struct`` takes pairs of ``(name, packer)`` and returns a composite packer.
@@ -122,6 +132,15 @@ Container:
 >>> x["a"]
 192
 {% endhighlight %}
+
+> **Note**
+>
+> In Construct 2, all constructs took a [name parameter](http://construct.readthedocs.org/en/latest/basics.html#structs). 
+> While this approach works fine for Structs, it doesn't make much sense for Sequences, Arrays, etc., and also required
+> the notorious [Rename](https://construct.readthedocs.org/en/latest/misc.html#rename) construct. 
+> 
+> One of the most important cleanups of Construct 3 is dropping the name from packers and moving it to where it
+> makes sense - ``Struct``.
 
 Notice that unpacking a ``Struct`` breaks down the data into a ``Container`` object, which is simply a 
 convenience-wrapper around good old ``dict``. Likewise, given a dict-like object, you can pack it back into bytes: 
@@ -144,6 +163,8 @@ Struct(
     ("viking", int32sl),
 )
 {% endhighlight %}
+
+<img src="http://imgs.xkcd.com/comics/lisp_cycles.png" title="xkcd 297" />
 
 For this reason there's yet another syntactic sugar: the *slash* (``/``) operator. This operator is used as 
 ``"name" / packer``, and simply returns ``("name", packer)``. The code snippet above now becomes easier to read:
@@ -182,12 +203,15 @@ easy:
 Struct(('a', int8u), ('b', int8u), ('c', int8u), ('d', int8u))
 {% endhighlight %}
 
-### Note ###
-The "inline style" is appropriate for small Structs and Sequences (2-4 members). When dealing with
-larger structures, use the "multiline" version instead. Also note that these are all but syntactic sugars: If you 
-don't like their looks, you can always use the expanded form.
+> **Note**
+>
+> The "inline style" is appropriate for small Structs and Sequences (2-4 members). When dealing with
+> larger structures, use the "multiline version" instead. 
+> 
+> Also note that these are all but syntactic sugars: If you don't like their looks, you can always use the 
+> expanded form.
 
-## Bits: When Bytes are not Small Enough ##
+## Bytes and Bits and Units ##
 
 Bytes are easy to work with, but protocols and file formats often talk in different levels of granularity,
 switching between bits and bytes (octets). For instance, here's the SCSI CDB of ``READ6``:
@@ -196,10 +220,10 @@ switching between bits and bytes (octets). For instance, here's the SCSI CDB of 
 <img src="http://tomerfiliba.com/static/res/2012-12-24-read6.png" title="SCSI READ6" />
 </a>
 
-The LUN component is 3 bits long and the ``LBA`` component is 21 bits long... what are we to do? Before we can
-answer this question, it's time to talk a little about how Construct works under the hood - specifically, how
-Construct represents data. In short, Construct operates on a stream of *units*, which normally happen to be bytes. 
-When needed, this stream can be replaced to provide different units, say bits. Here's an example:
+The LUN component is 3 bits long and the ``LBA`` component is 21 bits long... what are we to do? Before answering 
+this question, it's important to understand a little how things work under the hood - specifically, how
+Construct represents data. In short, Construct operates on a **stream of arbitrary units**, which normally happen to 
+be bytes. When needed, this stream can be replaced to provide different units, e.g., bits. Here's an example:
 
 {% highlight python %}
 read6 = Struct(
@@ -214,30 +238,37 @@ read6 = Struct(
 {% endhighlight %}
 
 Note how we switch between bytes and bits: *opcode* is a byte, followed by *address* which operates on bits. The
-``Bitwise`` packer replaces the underlying byte-stream with a bit-stream, so the contained Struct operates on bits.
-The ``Bits`` packer reads that many bits from the stream and converts them to an integer; for convenience, there
-are also ``bit`` (a single bit), ``nibble`` (four bits) and ``octet`` (eight bits).
+``Bitwise`` packer replaces the underlying byte-stream with a bit-stream, so the contained Struct now operates on bits.
+The ``Struct`` itself nows nothing of it, and it's only required that the underlying packers could make sense of it.
+For instance, you *can* place an ``int32ul`` inside a ``Bitwise`` packer, but the result would meaningless: 
+``int32ul`` will read four bits and treat them as bytes, so a bitstring such as ``1001`` would be interpreted as 
+``0x01000001``.
 
-In theory, Construct could be operate on various other units, but practice shows byte streams and bit streams are 
-the most useful ones. Some exceptions are the processing of compressed or encoded data, but these are beyond the
-scope of this discussion.
+For this reason we have the``Bits`` packer, which reads that many bits and converts them to an integer (base 2); 
+for convenience, Construct provides ``bit`` (a single bit), ``nibble`` (four bits) and ``octet`` (eight bits) as well.
+
+In theory, Construct could be operate on various other units (e.g., Unicode characters), but practice shows byte 
+streams and bit streams are the most useful ones. Some exceptions are the processing of compressed or encoded data, 
+but these are beyond the scope of this discussion.
 
 ## Powering Up: Adapters ##
 
 So far we've looked at data in its raw form (e.g., ``[127, 0, 0, 1]``), but it is normally desirable to transform 
-data into easier to work with representations. For instance, we may prefer ``127.0.0.1`` to a list of numbers, and
-for that reason, we have **adapters**. The distinction between adapters and packers is actually quite clear:
-packers work at the *stream level* while adapters work at the *object level*; this lets you add power without 
-interfering with the low-level machinery.
+data into representations that are easier to work with. For instance, we may prefer ``127.0.0.1`` to a list of numbers.
+Enter **adapters**. The distinction between adapters and packers is quite clear: packers work at the *stream level* 
+while adapters work at the *object level*; this lets you add power without interfering with the low-level machinery.
 
+Here's an example:
 {% highlight python %}
 class IpAdapter(Adapter):
-    def decode(self, arr, ctx):                  # called by unpack()
-        return  ".".join(map(str, arr))
-    def encode(self, ipstr, ctx):                # called by pack()
-        return map(int, ipstr.split("."))
+    def decode(self, arr, ctx):              # called by unpack()
+        return  ".".join(map(str, arr))      # converts [x, y, z, w] to 'x.y.z.w'
+    
+    def encode(self, ipstr, ctx):            # called by pack()
+        return map(int, ipstr.split("."))    # converts 'x.y.z.w' to [x, y, z, w]
 {% endhighlight %}
 
+In action:
 {% highlight pycon %}
 >>> ipaddr = IpAdapter(byte[4])
 >>> ipaddr.unpack('\xc0\xa8\x02\x01')
@@ -257,10 +288,11 @@ ipaddr = IpAdapter(byte[4],
 
 At this point, adapters might seem quite trivial, but they can do much more than this. For instance, the integer
 packers we've used so far are actually adapters that transform bytes into numbers. They can insert computed values,
-encode/decode strings, validate input, etc. Essentially, adapters can carry out any transformation that you wish 
-your objects to undergo before packing and unpacking.
+encode/decode strings, validate input, etc. Essentially, adapters can transform objects in any way you wish, prior
+to packing/unpacking.
 
 ## Don't Repeat Yourself: Macros ##
+
 Many times you find yourself in need for a recurring pattern. You could write a full-blown packer/adapter from 
 scratch, but why bother? Your best option is to reuse existing building blocks. For instance, Construct attempts 
 to define the most general packers and special-case for them concrete usage. One such example is ``Array``, 
@@ -293,8 +325,11 @@ of data.
 
 
 ## Compilation ##
-**NOTE:** This is a work in progess; Construct 3.0 would probably come out with a very basic compiler, which
-would be optimized over time.
+
+> **Note**
+>
+> This is a work in progess; Construct 3.0 would probably come out with a very basic compiler, which
+> would be optimized over time.
 
 One of the highlights about Construct is defining your data structures directly in Python. In fact, Construct is an 
 in-langaguge [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) in the form of packing combinators: 
@@ -343,10 +378,11 @@ def ipheader_pack(obj, stream):
 {% endhighlight %}
 
 Notice there's not recursion and the stack depth remains relatively constant. As the compiler improves, it would 
-translate ``byte[4]`` to ``int32ub``, to spead up things.
+translate ``byte[4]`` to ``int32ub`` or (``Raw(4)``), to speed up things. Another option is to generate 
+[Cython](http://www.cython.org/) code with type annotations, but that won't happen in the near future.
 
 ## Computational Power ##
-Here's a semi-proof that Construct is stronger than Context Free languages (as well as 
+Here's a semi-formal proof that Construct is stronger than Context Free languages (as well as 
 [Mildly context-sensitive](http://en.wikipedia.org/wiki/Mildly_context-sensitive_language) languages), 
 which probably makes it the most powerful (although not the most efficient) parser:
 
@@ -364,12 +400,17 @@ construct3.packers.RangeError: Expected 4 items, found 0
 Underlying exception: ValidationError("'b' must be in ['c']",)
 {% endhighlight %}
 
-Here's a recognizer for the language <img src="http://latex.codecogs.com/gif.latex?na^nb^nc^n" title="na^nb^nc^n" />,
+Here's a recognizer for the language <img src="http://tomerfiliba.com/static/res/2012-12-24-nanbncn" title="na^nb^nc^n" />,
 which is not context free (assuming n is given in unary representation, it requires the recognition of 
-<img src="http://latex.codecogs.com/gif.latex?1^na^nb^nc^n" title="1^na^nb^nc^n" />). 
+<img src="http://tomerfiliba.com/static/res/2012-12-24-1nanbncn.gif" title="1^na^nb^nc^n" />). We can easily extend 
+this to <img src="http://tomerfiliba.com/static/res/2012-12-24-1nanbncndn.gif" title="1^na^nb^nc^nd^n" />
+to break out of mildly context-sensitive languages, and use ``While(this[-1] == '1', raw)`` instead of the first ``byte``, 
+so *n* won't be bounded from above.
 
-## Feedback ##
-As Construct 3 is under active development, it's important for me to get user feedback as early as possible. You can
-comment right here or drop me a line at <tomerfiliba@gmail.com>.
+
+
+
+
+
 
 
