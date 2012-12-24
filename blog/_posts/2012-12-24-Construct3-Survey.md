@@ -15,11 +15,9 @@ and with fancy words, but it dives into code right away.
 You can leave your feedback in the Disqus comments below, or join the new 
 [discussion group](https://groups.google.com/d/forum/construct3) dedicated to Construct (both 2 and 3).
 
-**See Also**
+**See Also**: [Construct 2](http://pypi.python.org/pypi/construct),   
+[Pickler Combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
 
-&bull; [Construct 2](http://pypi.python.org/pypi/construct)  
-&bull; [Pickler Combinators](http://research.microsoft.com/en-us/um/people/akenn/fun/picklercombinators.pdf)
- 
 ## Introduction ##
 
 Construct is a **binary packing combinators** library for Python, with which you can define rich **data structures**.
@@ -27,11 +25,21 @@ Unlike most alternatives, these data structures can be used for **both packing a
 instance, once you define *what* a TCP packet is, you can analyze packets or construct ones on your own, with no 
 additional code.
 
-> **TL;DR**
->
-> Basics, Sequences, Arrays, Structs, Bits, Adapters, Macros, Code Generation, Computational Power
-> Syntactic sugars
->
+<div class="notebox">
+<p>**TL;DR box**</p>
+<p>We begin the discussion with the **atomic constructs**: bytes, integers, floats, etc. With these, we build 
+**composite packers** (Sequence, Array, and Struct), which also provide some **syntactic sugars**, and discuss 
+the changes from Construct 2.<br/>
+
+Next, we cover how Constructs handle data (*stream of units* approach) and how this helps us when working with
+different data granularity (**bits and bytes**). We also introduce **adapters**, which transform object 
+representation for packing and unpacking, and **macros**, which enable us to easily reuse existing constructs.<br/>
+
+Then we cover the **context** and the ``this`` object, which allow us to express dependencies in data structures
+From there we move to **code generation**, a is a key feature of Construct 3: constructs will be compiled to
+imperative Python code (and even Cython, one day). We finish with a semi-formal proof that Construct is more powerful
+than context-free languages, making it probably the most powerful parser in existence
+</p></div>
 
 ## Basics ##
 
@@ -328,7 +336,7 @@ of data.
 > **Note**
 >
 > This is a work in progess; Construct 3.0 would probably come out with a very basic compiler, which
-> would be optimized over time.
+> grow smarter over time.
 
 One of the highlights about Construct is defining your data structures directly in Python. In fact, Construct is an 
 in-langaguge [DSL](http://en.wikipedia.org/wiki/Domain-specific_language) in the form of packing combinators: 
@@ -378,11 +386,11 @@ def ipheader_pack(obj, stream):
 
 Notice there's not recursion and the stack depth remains relatively constant. As the compiler improves, it would 
 translate ``byte[4]`` to ``int32ub`` or (``Raw(4)``), to speed up things. Another option is to generate 
-[Cython](http://www.cython.org/) code with type annotations, but that won't happen in the near future.
+[Cython](http://www.cython.org/) code with type annotations, but that would take some time.
 
 ## Computational Power ##
 Here's a semi-formal proof that Construct is stronger than Context Free languages (as well as 
-[Mildly context-sensitive](http://en.wikipedia.org/wiki/Mildly_context-sensitive_language) languages), 
+[mildly context-sensitive](http://en.wikipedia.org/wiki/Mildly_context-sensitive_language) ones), 
 which probably makes it the most powerful (although not the most efficient) parser:
 
 {% highlight python %}
@@ -399,7 +407,7 @@ construct3.packers.RangeError: Expected 4 items, found 0
 Underlying exception: ValidationError("'b' must be in ['c']",)
 {% endhighlight %}
 
-Here's a recognizer for the language <img src="http://tomerfiliba.com/static/res/2012-12-24-nanbncn" title="na^nb^nc^n" />,
+Here's a recognizer for the language <img src="http://tomerfiliba.com/static/res/2012-12-24-nanbncn.gif" title="na^nb^nc^n" />,
 which is not context free (assuming n is given in unary representation, it requires the recognition of 
 <img src="http://tomerfiliba.com/static/res/2012-12-24-1nanbncn.gif" title="1^na^nb^nc^n" />). We can easily extend 
 this to <img src="http://tomerfiliba.com/static/res/2012-12-24-1nanbncndn.gif" title="1^na^nb^nc^nd^n" />
