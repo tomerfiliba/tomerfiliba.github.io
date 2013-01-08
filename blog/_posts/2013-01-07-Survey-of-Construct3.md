@@ -312,16 +312,16 @@ encouraged to write ones on your own. Remember: *less code is great success*. As
 
 ## Putting things in Context ##
 
-So far we've seen simple (static) data structures, ones that could just as well be expressed using the built-in 
-[struct module](http://docs.python.org/2/library/struct.html). The key-feature of Construct is its ability to express 
-**dependencies within data structures**. One common dependency is that of length-value relations, where a number 
-specifies how many elements follow it. For instance, strings in Pascal were prefixed by a length byte, e.g., 
+Up until now, we've only seen simple (static) data structures, ones that could just as well be expressed using the 
+built-in [struct module](http://docs.python.org/2/library/struct.html). The key-feature of Construct is its ability 
+to express **dependencies within data structures**. One common dependency is that of length-value relations, where 
+a number specifies how many elements follow it. For instance, strings in Pascal were prefixed by a length byte, e.g., 
 ``"\x05hello"``... how do we express that relation?
 
-Generally speaking, we may require access to things we've previously encountered so far (e.g., *history*); for this 
+Generally speaking, we may require access to things we've previously encountered (e.g., the *history*); for this 
 reason, both packing and unpacking carry a **context dictionary** with them. This dictionary is mostly maintained by 
 composite packers such as ``Struct`` and ``Sequence``, but any packer along the way can both modify and access it,
-making decisions based on history. Here's an example:
+making decisions based on the history. Here's an example:
 
 {% highlight python %}
 >>> pstring = Struct(
