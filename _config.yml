@@ -1,4 +1,4 @@
 markdown: rdiscount
 pygments: true
 permalink: /:categories/:title
-exclude: [README.md, CNAME, favicon.ico]
+exclude: [README.md, CNAME]
