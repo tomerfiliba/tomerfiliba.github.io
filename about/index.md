@@ -19,7 +19,7 @@ description: "A little about me and my freelancing/consulting services"
 I'm Tomer Filiba, 27 years old, living in Tel Aviv, Israel. I graduated in 2012 from Tel Aviv
 University, where I studied Computer Science and Generative Linguistics. I am a long-time Python 
 developer and the author of multiple open source Python projects, most notable of which are 
-[RPyC](http://rpyc.sf.net), [Construct](http://construct.wikispaces.com) and 
+[RPyC](http://rpyc.sf.net), [Construct](http://construct.readthedocs.org) and 
 [Plumbum](http://plumbum.readthedocs.org).
 
 My areas of research include [domain specific languages](http://en.wikipedia.org/wiki/Domain-specific_language)
