@@ -10,6 +10,7 @@ description: "Javaism, Exceptions and Logging: Lessons from refactoring large co
 > * [Part 1](http://tomerfiliba.com/blog/Javaism)
 > * [Part 2](http://tomerfiliba.com/blog/On-Exceptions)
 
+Yes, it's been a while.
 In the third part of the series, I want to address *logging*, especially when it intersects with
 exceptions and exception handling.
 
