@@ -7,14 +7,14 @@ description: "Javaism, Exceptions and Logging: Lessons from refactoring large co
 
 <img src="http://tomerfiliba.com/static/res/2013-03-10-solkin_logging.jpg" class="blog-post-image" title="Over-logging"/>
 
-> * [Part 1: Javaism](http://tomerfiliba.com/blog/Javaism)
-> * [Part 2: On Exceptions](http://tomerfiliba.com/blog/On-Exceptions)
-
 Yes, it's been a while. This is the third (and last) installment of my series on "Javaism, Exceptions and Logging", 
 in which I criticize non-Pythonisms creeping into Python from other OO languages, most prominent on which is Java. 
 The first part introduced the "Java problem" (*in Python we can do better*), the second part tackled exceptions
 (*never hide exceptions, don't wrap exceptions, and in fact, don't handle exceptions*), and the third part
 covers lesson I've learned from logging in large-scale Python library (*less is more*).
+
+> * [Part 1: Javaism](http://tomerfiliba.com/blog/Javaism)
+> * [Part 2: On Exceptions](http://tomerfiliba.com/blog/On-Exceptions)
 
 ## Less is More ##
 
