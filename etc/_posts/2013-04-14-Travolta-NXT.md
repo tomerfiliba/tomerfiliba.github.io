@@ -67,8 +67,9 @@ component runtime was the "main loop" and the Escape button being handled extern
 both ``cmp`` and Java code) and required two days to implement and debug.
 
 I would also like to note that other projects done in the component language, like the Platoon robots,
-have one component with a "big state machine" to manage their state; it seems that control flow in the component
-language can hardly be modular, which has led me to the conclusion that it's simply not the right abstraction.
+have a single component with a "huge state machine" to manage their state; it seems that control flow in the 
+component language can hardly be modular, which has led me to the conclusion that it's simply not the 
+right abstraction for most projects.
 
 ## Issues with the Physical World ##
 
