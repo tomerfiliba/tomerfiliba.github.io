@@ -99,7 +99,7 @@ query times.
 
 ## The Algorithm ##
 
-The code is strikingly short, but that's not to mean it's easy to follow. The heard of it is
+The code is strikingly short, but that's not to mean it's easy to follow. The heart of it is
 two, recursively-nested for-loops:
 
 {% highlight python %}
