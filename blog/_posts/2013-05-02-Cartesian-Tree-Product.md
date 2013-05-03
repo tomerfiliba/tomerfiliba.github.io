@@ -63,8 +63,8 @@ mathematically-equivalent tree:
 the *leaves* of the original tree/expression)
 
 If you take a second look, it resembles Cartesian products where some "joints" (nodes) in the tree 
-duplicate the resulting tree. Intuitively, we "split" the tree for every internal `OR` and fork the
-continue with both copies. For instance, if we take `(x=5 OR y=6) AND (z=7 OR w=8)`, 
+duplicate the resulting tree. Intuitively, we "split" the tree for every internal `OR` and continue 
+with both copies. For instance, if we take `(x=5 OR y=6) AND (z=7 OR w=8)`, 
 we'll get 4 sub-trees 
     
     x=5 AND z=7
