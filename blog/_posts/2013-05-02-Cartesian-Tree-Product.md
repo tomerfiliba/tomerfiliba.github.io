@@ -192,8 +192,8 @@ would bring the system to the required state and then then run the test. Obvious
 a while to bring the system to a certain state. It could range from minutes to days. And we have 
 hundreds of tests!
 
-In this case, we are given a test suite (list of tests) and we want to find the most efficient 
-order to run the suite, meaning, we want to minimize the setup and teardown times when moving between
+In this case, we are given a list of tests and we want to find the most efficient 
+order to run them, meaning, we want to minimize the setup and teardown times when moving between
 different system states.
 
 {% highlight python %}
