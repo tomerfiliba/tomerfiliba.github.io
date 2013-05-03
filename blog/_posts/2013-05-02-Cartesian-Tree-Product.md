@@ -141,7 +141,7 @@ Trying to estimate the complexity of this beast may be futile, but it clearly se
 doing "more work" than a mere [SAT](http://en.wikipedia.org/wiki/Boolean_satisfiability_problem)
 problem: it doesn't just find one satisfying assignment, it looks for all satisfying assignments!
 This ought to put it in the NP-hard class. In fact, if we generate a binary expression of 
-alternating `AND`s and `OR`s, we can get much worse than exponentiation!
+alternating `AND`s and `OR`s, it can get much worse than exponential!
 
 Here's a little function that generates an interleaved binary expression:
 
