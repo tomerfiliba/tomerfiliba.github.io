@@ -32,10 +32,8 @@ Which is represented by the following expression tree:
 Now the problem is to produce all different sub-trees such that:
 
 * Each sub-tree consists only of `AND` internal nodes
-
 * Each sub-tree satisfies the original expression (any assignment that satisfies a sub-tree 
   must also satisfy the original tree)
-
 * `OR`-ing together all the sub-trees produces a tree that is mathematically-equivalent to the 
   original one (any assignment that satisfies the original tree must satisfy the reconstructed tree)
 
