@@ -190,7 +190,7 @@ div.menuitem a {
 
 #recent {
     font-size: 12px;
-    margin: 30px 0 0 0;
+    margin: 30px 10px 0 0;
     color: #999;
     max-height: 160px;
     overflow: hidden;
@@ -220,7 +220,8 @@ div.menuitem a {
 #recent #recent-title {
     padding: 4px 0 4px 10px;
     font-weight: bold;
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
+    color: #5d5d5d;
 }
 
 #recent div.menuitem {
@@ -234,10 +235,10 @@ div.menuitem a {
     color: #999;
 }
 #recent:hover div.fading1 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading1 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.fading2 {
@@ -247,10 +248,10 @@ div.menuitem a {
     color: #aaa;
 }
 #recent:hover div.fading2 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading2 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.fading3 {
@@ -260,10 +261,10 @@ div.menuitem a {
     color: #bbb;
 }
 #recent:hover div.fading3 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading3 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.fading4 {
@@ -273,10 +274,10 @@ div.menuitem a {
     color: #ccc;
 }
 #recent:hover div.fading4 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading4 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.fading5 {
@@ -286,10 +287,10 @@ div.menuitem a {
     color: #ddd;
 }
 #recent:hover div.fading5 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading5 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.fading6 {
@@ -299,14 +300,14 @@ div.menuitem a {
     color: #eee;
 }
 #recent:hover div.fading6 {
-    border-left: 2px solid #999;
+    border-left: 2px solid #5d5d5d;
 }
 #recent:hover div.fading6 a {
-    color: #999;
+    color: #5d5d5d;
 }
 
 #recent div.menuitem:hover {
-    border-left: 2px solid #086782;
+    border-left: 2px solid #ED9D13;
     padding: 6px 0 6px 14px;
 }
 
@@ -319,14 +320,7 @@ div.menuitem a {
 }
 
 #recent div.menuitem:hover a {
-    color: #086782;
-}
-
-#recent span.datebox {
-    font-style: italic;
-    float: right;
-    padding-left: 4px;
-    display: none;
+    color: #ED9D13;
 }
 
 /***/
