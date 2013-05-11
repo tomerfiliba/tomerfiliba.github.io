@@ -72,10 +72,13 @@ layout: nil
         
         <div id="recent">
             <div id="recent-title">recent posts</div>
-            {% for p in site.posts limit: 6%}
+            {% for p in site.posts limit: 30%}
             {% unless p.draft %}
+                {% if forloop.index < 6 %}
                 <div class="menuitem fading{{forloop.index}}">
-                    <!--span class="datebox">{{ p.date | date: '%B %d' }}</span-->
+                {% else %}
+                <div class="menuitem fading6">
+                {%endif %}
                     <a href="{{p.url}}" title="under /{{p.categories | first}}">{{p.title}}</a>
                 </div>
             {% endunless %}
