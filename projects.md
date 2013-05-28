@@ -7,18 +7,18 @@ description: A list of my active and inactive projects
 
 ## Ongoing Projects ##
 
-* [RPyC](http://rpyc.sf.net) - *Remote Python Call*, a transparent and symmetric RPC 
+* [RPyC](http://rpyc.readthedocs.org) - *Remote Python Call*, a transparent and symmetric RPC 
   framework for python, which can work either in service-oriented mode or 
   "contract-less" mode, where there's no predefined contract between the two parties. 
   RPyC excels in testing environments, where it enables you to keep the test logic located in 
   a central point, while allowing it to run on multiple systems and platforms.
 
-* [Construct](http://construct.wikispaces.com) - **Declarative** data-structure definition library,
+* [Construct](http://construct.readthedocs.org) - **Declarative** data-structure definition library,
   where complex constructs can be defined in terms of simpler ones. Since the data structure
   is declarative rather than procedural, it can be used for both parsing ("unpacking") and
   building ("packing"), making the library symmetric.
 
-* [Plumbum](http://plumbum.readthedocs.com) - *Shell combinators*, local and remote 
+* [Plumbum](http://plumbum.readthedocs.org) - *Shell combinators*, local and remote 
   command execution, and a programmatic CLI (handling of command-line switches) toolkit
 
 * [Agnos](http://agnos.sf.net) - The *Agnostic RPC framework*: a statically-generated 
