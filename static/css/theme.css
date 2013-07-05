@@ -697,6 +697,10 @@ div.menuitem a {
 	#disqus_thread {
        display: none;
 	}
+	
+	pre {
+	    border: none;
+	}
 }
 
 
