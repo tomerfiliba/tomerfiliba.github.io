@@ -403,9 +403,10 @@ div.menuitem a {
 }
 
 #main span.byline {
-	color: transparent;
+	/*color: transparent;*/
 	float: right;
-	font-size: 8px;
+    font-size: 12px;
+    display: block;
 }
 
 #main span.datebox {
@@ -687,3 +688,15 @@ div.menuitem a {
         margin-right: auto;
     }
 }
+
+@media print {
+	#sidebar {
+	   display: none;
+	}
+	
+	#disqus_thread {
+       display: none;
+	}
+}
+
+
