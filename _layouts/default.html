@@ -63,7 +63,7 @@ layout: nil
 <body>
     <div id="sidebar">
         <div id="logobox">
-            <a href="http://tomerfiliba.com/" title="Home">
+            <a href="http://tomerfiliba.com/" title="Home" id="sitelogo">
             <img src="/static/logos/fish-logo.png"/><span id="sitename">tomer filiba</span>
             </a>
             <div id="tagline">
@@ -73,11 +73,11 @@ layout: nil
             </div>
             <div id="social">
 	            <a href="{{feed_link}}" title="RSS feed"><i class="icon-rss-squared"></i></a>
-	            <a href="http://goo.gl/jbL7fX" title="Follow me on Twitter"><i class="icon-twitter-squared"></i></a>
-	            <a href="http://goo.gl/uZuisr" title="Linkedin Profile"><i class="icon-linkedin-squared"></i></a>
+	            <a href="http://goo.gl/jbL7fX" title="follow me on twitter"><i class="icon-twitter-squared"></i></a>
+	            <a href="http://goo.gl/uZuisr" title="linkedin profile"><i class="icon-linkedin-squared"></i></a>
 	            <!-- i class="icon-facebook-squared-1"></i-->
-                <a href="http://goo.gl/y9Rwe0" title="Open Source projects"><i class="icon-github-squared"></i></a>
-	            <a href="mailto:contact@tomerfiliba.com" title="Contact me"><i class="icon-mail-alt"></i></a>
+                <a href="http://goo.gl/y9Rwe0" title="open source projects"><i class="icon-github-squared"></i></a>
+	            <a href="mailto:contact@tomerfiliba.com" title="contact me"><i class="icon-mail-alt"></i></a>
             </div>
         </div>
 
@@ -114,9 +114,9 @@ layout: nil
         <div id="content" {% if page.rtl %}dir="rtl"{% endif %}>
             <!--div id="socialbox"></div-->
             
-            <div class="section">
             {% if page.title %}
             <h1>{{page.title}}</h1>
+            <div class="section">
             {% endif %}
             {% if page.date %}
             <span class="byline">By Tomer Filiba</span>

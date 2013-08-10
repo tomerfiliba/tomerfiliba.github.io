@@ -51,7 +51,7 @@ strong {
 }
 
 li code, p code {
-    background-color: #e5e5e5;
+    background-color: #DAF1DD;
 }
 
 a, a:active, a:visited, a:link {
@@ -85,15 +85,16 @@ a img {
     font-family: inherit;
 }
 
+#sitelogo {
+	display: inline-block;
+}
+
 #logobox {
-    padding-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 #logobox a {
     border: none;
-}
-
-#logobox a {
     color: #1f1f1f;
 }
 
@@ -119,24 +120,38 @@ a img {
 }
 
 #social {
-    padding: 12px 0 0 13px;
+    margin: 16px 0 16px -4px;
+    font-size: 32px;
 }
 
 #social a { 
     border: none;
     display: inline-block;
-    padding: 7px 12px 5px 12px;
-    -webkit-transition: 0.1s ease;
-    -moz-transition: 0.1s ease;
-    -o-transition: 0.1s ease;
-    -ms-transition: 0.1s ease;
-    transition: 0.1s ease;
+    padding: 0;
+    margin: 0;
+    color: black;
+    opacity: 0.5;
 }
 
 #social a:hover {
-    padding: 3px 12px 9px 12px;
+    opacity: 1.0;
 }
 
+#social a:hover i.icon-rss-squared {
+    color: #F49135
+}
+
+#social a:hover i.icon-twitter-squared {
+    color: #00ACEE;
+}
+
+#social a:hover i.icon-linkedin-squared {
+    color: #1683BB;
+}
+
+#social a:hover i.icon-mail-alt {
+    color: #E04A3F;
+}
 
 div.menuitem {
     -webkit-transition: 0.2s ease;
@@ -369,7 +384,12 @@ div.menuitem a {
 }
 
 #title-box {
+	padding: 10px 40px;
 	background-color: #E7E7E7;
+}
+
+#title-box h1 {
+	color: black;
 }
 
 #main div.section {
@@ -495,7 +515,7 @@ div.menuitem a {
     }
 }
 
-@media only screen and (max-height:680px)
+@media only screen and (max-height:800px)
 {
     #sidebar #recent {
         display: none;
