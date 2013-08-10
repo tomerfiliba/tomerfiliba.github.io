@@ -556,7 +556,12 @@ div.menuitem a {
         border-right: none;
         border-bottom: 2px solid #ddd;
     }
-    
+
+	#logobox {
+	    margin: 0;
+	    padding: 0;
+	}
+	
     #tagline {
         display: none;
     }

@@ -117,12 +117,12 @@ layout: nil
             {% if page.title %}
             <h1>{{page.title}}</h1>
             <div class="section">
-            {% endif %}
-            {% if page.date %}
-            <span class="byline">By Tomer Filiba</span>
-            <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
-            {% endif %}
+	            {% if page.date %}
+	            <span class="byline">By Tomer Filiba</span>
+	            <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
+	            {% endif %}
             </div>
+            {% endif %}
     
             {{ content }}
             
