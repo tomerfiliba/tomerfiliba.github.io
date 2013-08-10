@@ -56,6 +56,7 @@ li code, p code {
 
 a, a:active, a:visited, a:link {
     color: #2A9964;
+    word-wrap: break-word;
     text-decoration: none;
     border-bottom: 1px solid #ddd;
 }
@@ -556,10 +557,18 @@ div.menuitem a {
         border-right: none;
         border-bottom: 2px solid #ddd;
     }
+    
+    #title-box {
+        padding: 5px;
+    }
 
 	#logobox {
 	    margin: 0;
 	    padding: 0;
+	}
+	
+	#social {
+	   margin: 0;
 	}
 	
     #tagline {
