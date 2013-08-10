@@ -10,6 +10,9 @@ layout: nil
     <title>{{ page.title }} / Tomer Filiba</title>
     <meta name="author" content="Tomer Filiba" />
 
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->    
+
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,11 +24,15 @@ layout: nil
     <link rel="prerender" href="http://tomerfiliba.com/blog" />
     <link rel="prerender" href="http://tomerfiliba.com/projects" />
     <link rel="prerender" href="http://tomerfiliba.com/about" />
-    <link rel="prerender" href="http://tomerfiliba.com/snippets" />
+    <link rel="prerender" href="http://tomerfiliba.com/recipes" />
     <link rel="prerender" href="http://tomerfiliba.com/etc" />
     
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Telex|Ubuntu+Mono' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Telex|Ubuntu+Mono' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" href="/static/css/fontello.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="css/fontello-ie7.css"><![endif]-->
+    
     {% if page.feed_link %}
         {% assign feed_link = page.feed_link %}
     {% else %}
@@ -59,7 +66,19 @@ layout: nil
             <a href="http://tomerfiliba.com/" title="Home">
             <img src="/static/logos/fish-logo.png"/><span id="sitename">tomer filiba</span>
             </a>
-            <div id="tagline">software consultant</div>
+            <div id="tagline">
+                low-level python hacker and author of <a href="http://rpyc.readthedocs.com">RPyC</a>,
+                <a href="http://construct.readthedocs.com">Construct</a> and <a href="http://plumbum.readthedocs.com">Plumbum</a>.
+                writes about python, algorithms, software architecture and whatever else comes to mind.
+            </div>
+            <div id="social">
+	            <a href="{{feed_link}}" title="RSS feed"><i class="icon-rss-squared"></i></a>
+	            <a href="http://goo.gl/jbL7fX" title="Follow me on Twitter"><i class="icon-twitter-squared"></i></a>
+	            <a href="http://goo.gl/uZuisr" title="Linkedin Profile"><i class="icon-linkedin-squared"></i></a>
+	            <!-- i class="icon-facebook-squared-1"></i-->
+                <a href="http://goo.gl/y9Rwe0" title="Open Source projects"><i class="icon-github-squared"></i></a>
+	            <a href="mailto:contact@tomerfiliba.com" title="Contact me"><i class="icon-mail-alt"></i></a>
+            </div>
         </div>
 
         <div id="navigation">
@@ -79,22 +98,15 @@ layout: nil
             <div id="recent-title">recent posts</div>
             {% for p in site.posts limit: 30%}
             {% unless p.draft %}
-                {% if forloop.index < 6 %}
+                {% if forloop.index < 4 %}
                 <div class="menuitem fading{{forloop.index}}">
                 {% else %}
-                <div class="menuitem fading6">
+                <div class="menuitem fading4">
                 {%endif %}
                     <a href="{{p.url}}" title="under /{{p.categories | first}}">{{p.title}}</a>
                 </div>
             {% endunless %}
             {% endfor %}
-        </div>
-        
-        <div id="social">
-            <a href="/atom.xml"><img src="/static/logos/rss.png" title="rss feed"/></a>
-            <a href="http://twitter.com/tomerfiliba"><img src="/static/logos/twitter.png" title="twitter profile"/></a>
-            <a href="http://il.linkedin.com/in/tomerfiliba"><img src="/static/logos/linkedin.png" title="linkedin profile"/></a>
-            <a href="http://github.com/tomerfiliba"><img src="/static/logos/github24.png" title="github profile"/></a>
         </div>
     </div>
     
@@ -103,7 +115,9 @@ layout: nil
             <!--div id="socialbox"></div-->
             
             <div class="section">
+            {% if page.title %}
             <h1>{{page.title}}</h1>
+            {% endif %}
             {% if page.date %}
             <span class="byline">By Tomer Filiba</span>
             <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>

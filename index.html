@@ -1,10 +1,11 @@
 ---
 layout: default
 section: home
-title: Hi There!
-description: "Tomer Filiba's blog"
+description: "Tomer Filiba's homepage and blog"
 ---
 
+<div id="title-box">
+<h1>Hi There</h1>
 <p>I'm Tomer Filiba, the author of several open source Python projects (most notably 
 <a href="http://rpyc.sourceforge.net">RPyC</a>, <a href="http://construct.readthedocs.org/">Construct</a>,
 and <a href="http://plumbum.readthedocs.org">Plumbum</a>). After years of scattering my stuff 
@@ -14,6 +15,7 @@ around the web (the <a href="http://code.activestate.com/recipes/users/2520014/"
 I decided to "consolidate my portfolio" into a single website. This place is home to all of my 
 <a href="http://tomerfiliba.com/projects">projects</a> and my personal Python-oriented blog...
 I hope you'll find it interesting.</p>
+</div>
 
 {% for post in site.categories.blog limit: 4 %}
 {% unless post.draft %}

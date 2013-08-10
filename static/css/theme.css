@@ -6,8 +6,8 @@ html {
 }
 
 body {
-    font-family: 'Source Sans Pro', 'Trebuchet MS', sans-serif;
-    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
     font-weight: normal;
     color: #1f1f1f;
     padding: 0;
@@ -55,7 +55,7 @@ li code, p code {
 }
 
 a, a:active, a:visited, a:link {
-    color: #086782;
+    color: #2A9964;
     text-decoration: none;
     border-bottom: 1px solid #ddd;
 }
@@ -110,7 +110,6 @@ a img {
     font-size: 44px;
     letter-spacing: -3px;
     display: block;
-    text-shadow: 1px 1px 3px #ccc; 
 }
 
 #tagline {
@@ -118,6 +117,26 @@ a img {
     padding: 10px 0 0px 4px;
     font-size: 15px;
 }
+
+#social {
+    padding: 12px 0 0 13px;
+}
+
+#social a { 
+    border: none;
+    display: inline-block;
+    padding: 7px 12px 5px 12px;
+    -webkit-transition: 0.1s ease;
+    -moz-transition: 0.1s ease;
+    -o-transition: 0.1s ease;
+    -ms-transition: 0.1s ease;
+    transition: 0.1s ease;
+}
+
+#social a:hover {
+    padding: 3px 12px 9px 12px;
+}
+
 
 div.menuitem {
     -webkit-transition: 0.2s ease;
@@ -158,14 +177,6 @@ div.menuitem a {
 
 #navigation div.menuitem:hover a {
     color: #ED9D13;
-}
-
-#navigation div.expander {
-    /*-webkit-transition: 0;
-    -moz-transition: 0;
-    -o-transition: 0;
-    -ms-transition: 0;
-    transition: 0;*/
 }
 
 #navigation div.expander div.menuitem {
@@ -323,37 +334,7 @@ div.menuitem a {
     color: #ED9D13;
 }
 
-/***/
-
-#social {
-    position: fixed;
-    left: 27px;
-    bottom: 30px;
-    list-style-type: none;
-    margin:4px 0 0 0;
-    padding: 12px 0 0 13px;
-}
-
-#social a { 
-    border: none;
-}
-
-#social a img {
-    padding: 7px 12px 5px 12px;
-    -webkit-transition: 0.1s ease;
-    -moz-transition: 0.1s ease;
-    -o-transition: 0.1s ease;
-    -ms-transition: 0.1s ease;
-    transition: 0.1s ease;
-}
-
-#social a:hover img {
-    padding: 3px 12px 9px 12px;
-}
-
-
 /************************************************************************************************/
-
 
 #main {
     position: relative;
@@ -372,8 +353,7 @@ div.menuitem a {
 #content h1, #content h2, #content h3, #content h4, #content h5 {
     font-family: inherit;
     text-align: left;
-    color: #232;
-    text-shadow: 0px 0px 2px #CCC;
+    color: #2A9964;
 }
 
 #content[dir="rtl"] h1, #content[dir="rtl"] h2, #content[dir="rtl"] h3, #content[dir="rtl"] h4, #content[dir="rtl"] h5 {
@@ -386,6 +366,10 @@ div.menuitem a {
 
 #content img {
     max-width: 100%;
+}
+
+#title-box {
+	background-color: #E7E7E7;
 }
 
 #main div.section {
@@ -462,11 +446,10 @@ div.menuitem a {
 /************************************************************************************************/
 
 #main blockquote {
-    background: #F8F8DF;
+    background: #F7F0D6;
     padding: 1px 40px;
     margin: 0;
-    border-left: 2px solid #ddd;
-    border-right: 2px solid #ddd;
+    border-left: 6px solid #E2D7B0;
 }
 
 #main highlight {
@@ -503,17 +486,10 @@ div.menuitem a {
     #footer {
         left: 60px;
     }
-    
-    #sidebar #social {
-        left: 0px;
-    }
 }
 
 @media only screen and (max-height:770px)
 {
-    #sidebar #social {
-        bottom: 0px;
-    }
     #footer {
         bottom: 14px;
     }
@@ -524,9 +500,6 @@ div.menuitem a {
     #sidebar #recent {
         display: none;
     }
-    #sidebar #social {
-        bottom: 30px;
-    }
     #footer {
         bottom: 44px;
     }
@@ -534,9 +507,6 @@ div.menuitem a {
 
 @media only screen and (max-height:510px)
 {
-    #sidebar #social {
-        display: none;
-    }
     #footer {
         bottom: 44px;
     }
@@ -554,9 +524,6 @@ div.menuitem a {
     }
 
     #sidebar #recent {
-        display: none;
-    }
-    #sidebar #social {
         display: none;
     }
     
