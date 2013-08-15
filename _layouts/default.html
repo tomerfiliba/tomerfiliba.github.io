@@ -5,40 +5,35 @@ layout: nil
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>{{ page.title }} / Tomer Filiba</title>
+    <title>{{ page.title }}</title>
     <meta name="author" content="Tomer Filiba" />
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->    
-
     <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->  
     
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="canonical" href="http://tomerfiliba.com{{page.url}}" />
-    <link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/static/css/theme.css" type="text/css" media="all" />
-    <link rel="prerender" href="http://tomerfiliba.com/blog" />
-    <link rel="prerender" href="http://tomerfiliba.com/projects" />
-    <link rel="prerender" href="http://tomerfiliba.com/about" />
-    <link rel="prerender" href="http://tomerfiliba.com/recipes" />
-    <link rel="prerender" href="http://tomerfiliba.com/etc" />
+    <link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/static/css/fontello.css" type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Telex|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Telex|Ubuntu+Mono' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="/static/css/fontello.css">
     <!--[if IE 7]>
-    <link rel="stylesheet" href="css/fontello-ie7.css"><![endif]-->
-    
+    <link rel="stylesheet" href="/static/css/fontello-ie7.css">
+    <![endif]-->
+
     {% if page.feed_link %}
         {% assign feed_link = page.feed_link %}
     {% else %}
         {% assign feed_link = "/atom.xml" %}
     {% endif %}
-
+    
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ feed_link }}" />
 
     {% if page.description %}
@@ -61,71 +56,61 @@ layout: nil
     </script>
 </head>
 <body>
-    <div id="sidebar">
-        <div id="logobox">
-            <a href="http://tomerfiliba.com/" title="Home" id="sitelogo">
-            <img src="/static/logos/fish-logo.png"/><span id="sitename">tomer filiba</span>
-            </a>
+    <div id="sidebar-wrapper">
+        <div id="sidebar">
+            <div id="logobox">
+                <a href="http://tomerfiliba.com/" title="home" style="border:0;">
+                <img id="sitelogo" src="/static/logos/fish-logo.png"/></a>
+                <div id="sitename">tomer filiba</div>
+            </div>
+            <div id="short-tagline">Pythonista</div>
+            <div id="social-wrapper">
+                <table id="social">
+                    <tr>
+                    <td><a href="http://goo.gl/y9Rwe0" title="open source" class="icon-github"></a></td>
+                    <td><a href="http://goo.gl/jbL7fX" title="twitter" class="icon-twitter"></a></td>
+                    <td><a href="http://goo.gl/uZuisr" title="linkedin" class="icon-linkedin"></a></td>
+                    <td><a href="{{feed_link}}" title="rss feed" class="icon-rss"></a></td>
+                    <td><a href="mailto:contact@tomerfiliba.com" title="contact me" class="icon-mail"></a></td>
+                    </tr>
+                </table>
+            </div>  
             <div id="tagline">
-                low-level python hacker and author of <a href="http://rpyc.readthedocs.com">RPyC</a>,
-                <a href="http://construct.readthedocs.com">Construct</a> and <a href="http://plumbum.readthedocs.com">Plumbum</a>.
-                writes about python, algorithms, software architecture and whatever else comes to mind.
+                low-level python hacker and author of <a href="/">RPyC</a>, 
+                <a href="/">Construct</a> and <a href="/">Plumbum</a>. writes about python, algorithms, 
+                software architecture and whatever else comes to mind.
             </div>
-            <div id="social">
-	            <a href="{{feed_link}}" title="RSS feed"><i class="icon-rss-squared"></i></a>
-	            <a href="http://goo.gl/jbL7fX" title="follow me on twitter"><i class="icon-twitter-squared"></i></a>
-	            <a href="http://goo.gl/uZuisr" title="linkedin profile"><i class="icon-linkedin-squared"></i></a>
-	            <!-- i class="icon-facebook-squared-1"></i-->
-                <a href="http://goo.gl/y9Rwe0" title="open source projects"><i class="icon-github-squared"></i></a>
-	            <a href="mailto:contact@tomerfiliba.com" title="contact me"><i class="icon-mail-alt"></i></a>
-            </div>
-        </div>
-
-        <div id="navigation">
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/blog" {% if page.section == "blog" %}class="selected"{% endif %}>blog</a></div>
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/projects" {% if page.section == "projects" %}class="selected"{% endif %}>projects</a></div>
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/about" {% if page.section == "about" %}class="selected"{% endif %}>about</a></div>
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/recipes" {% if page.section == "recipes" %}class="selected"{% endif %}>snippets</a></div>
-            <div class="menuitem">
-            <a href="http://tomerfiliba.com/etc" {% if page.section == "etc" %}class="selected"{% endif %}>etc</a></div>
-        </div>
-        
-        <div id="recent">
-            <div id="recent-title">recent posts</div>
-            {% for p in site.posts limit: 30%}
-            {% unless p.draft %}
-                {% if forloop.index < 4 %}
-                <div class="menuitem fading{{forloop.index}}">
-                {% else %}
-                <div class="menuitem fading4">
-                {%endif %}
-                    <a href="{{p.url}}" title="under /{{p.categories | first}}">{{p.title}}</a>
+            <div id="menu-wrapper">
+                <div id="menu">
+                    <a href="http://tomerfiliba.com/blog" {% if page.section == "blog" %}class="current"{% endif %}><div class="expander"></div>blog</a>
+                    <a href="http://tomerfiliba.com/about" {% if page.section == "about" %}class="current"{% endif %}><div class="expander"></div>about</a>
+                    <a href="http://tomerfiliba.com/projects" {% if page.section == "projects" %}class="current"{% endif %}><div class="expander"></div>projects</a>
+                    <a href="http://tomerfiliba.com/recipes" {% if page.section == "recipes" %}class="current"{% endif %}><div class="expander"></div>recipes</a>
+                    <a href="http://tomerfiliba.com/etc" {% if page.section == "etc" %}class="current"{% endif %}><div class="expander"></div>etc</a>
                 </div>
-            {% endunless %}
-            {% endfor %}
+            </div>
+            <div id="recent">
+                <div id="recent-title">recent posts</div>
+                <div id="recent-content">
+		            {% for p in site.posts limit: 30 %}
+		            {% unless p.draft %}
+    		            <a href="http://tomerfiliba.com{{p.url}}" title="/{{p.categories | first}}"><div class="expander"></div>{{p.title}}</a>
+		            {% endunless %}
+		            {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
-    
-    <div id="main">
+
+    <div id="content-wrapper">
         <div id="content" {% if page.rtl %}dir="rtl"{% endif %}>
-            <!--div id="socialbox"></div-->
-            
+
             {% if page.title %}
-            <h1>{{page.title}}</h1>
-            <div class="section">
-	            {% if page.date %}
-	            <span class="byline">By Tomer Filiba</span>
-	            <span class="datebox">{{ page.date | date: '%B %d, %Y' }}</span>
-	            {% endif %}
-            </div>
+            <h1>{{page.title}} <div class="datebox">{{ page.date | date: '%B %d, %Y' }}</div></h1>
             {% endif %}
-    
-            {{ content }}
             
+            {{ content }}
+
             {% if page.comments %}
             {% unless page.draft %}
             <div class="section">
@@ -146,17 +131,14 @@ layout: nil
             </div>
             {% endunless %}
             {% endif %}
-        </div>
-    
-        <div id="footer">
-            The content of this site is published under &nbsp;
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-            <img title="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
-                alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" 
-                style="border: none;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
-            </a>
+
+            <div id="footer">
+                Content published under 
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+                <img title="Creative Commons Attribution-ShareAlike 3.0 Unported License" alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" style="border: none;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png"></a>
+            </div>      
+
         </div>
     </div>
 </body>
 </html>
-

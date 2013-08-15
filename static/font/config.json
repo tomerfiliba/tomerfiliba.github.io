@@ -5,40 +5,76 @@
   "hinting": true,
   "glyphs": [
     {
-      "uid": "ccc2329632396dc096bb638d4b46fb98",
-      "css": "mail-alt",
-      "code": 59395,
+      "uid": "f48ae54adfb27d8ada53d0fd9e34ee10",
+      "css": "trash",
+      "code": 59404,
       "src": "fontawesome"
     },
     {
-      "uid": "de5f0a564ccf8816325330e292e11533",
-      "css": "rss-squared",
-      "code": 59394,
+      "uid": "72b1277834cba5b7944b0a6cac7ddb0d",
+      "css": "rss",
+      "code": 59399,
       "src": "fontawesome"
     },
     {
-      "uid": "0ece9a12de796b8411f868d582bee678",
-      "css": "github-squared",
-      "code": 59392,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "1145676a91138011729fa2909997af66",
-      "css": "linkedin-squared",
+      "uid": "5bb103cd29de77e0e06a52638527b575",
+      "css": "wrench",
       "code": 59403,
       "src": "fontawesome"
     },
     {
-      "uid": "906348dc798a0d42715cc97c875e3ac6",
-      "css": "twitter-squared",
-      "code": 59393,
+      "uid": "48b87105bd38c20315f1b705b8c7b38c",
+      "css": "list",
+      "code": 59392,
       "src": "fontawesome"
     },
     {
-      "uid": "47bd87a650e95b97f947d275ed968efe",
-      "css": "facebook-squared-1",
+      "uid": "9755f76110ae4d12ac5f9466c9152031",
+      "css": "book",
       "code": 59401,
-      "src": "entypo"
+      "src": "fontawesome"
+    },
+    {
+      "uid": "e9107949dd6c9e8ab2b29ae07156e38c",
+      "css": "linkedin",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "627abcdb627cb1789e009c08e2678ef9",
+      "css": "twitter",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "77b3693facc3d803417105997b4ffe96",
+      "css": "facebook",
+      "code": 59398,
+      "src": "typicons"
+    },
+    {
+      "uid": "937f4db8b6ff3348a1d9fcd5e12fd2fe",
+      "css": "mail",
+      "code": 59397,
+      "src": "iconic"
+    },
+    {
+      "uid": "ccd52a22af21fbaa98a9c85fb50fca6b",
+      "css": "info",
+      "code": 59402,
+      "src": "iconic"
+    },
+    {
+      "uid": "cad619ef78a5500c1e5b3d021d2fdd65",
+      "css": "trash-3",
+      "code": 59405,
+      "src": "maki"
+    },
+    {
+      "uid": "9bba5df43e4e9419975336161e1810c3",
+      "css": "github",
+      "code": 59393,
+      "src": "zocial"
     }
   ]
 }

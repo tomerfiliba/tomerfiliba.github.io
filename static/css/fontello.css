@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?71299467');
-  src: url('../font/fontello.eot?71299467#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff?71299467') format('woff'),
-       url('../font/fontello.ttf?71299467') format('truetype'),
-       url('../font/fontello.svg?71299467#fontello') format('svg');
+  src: url('../font/fontello.eot?62595788');
+  src: url('../font/fontello.eot?62595788#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?62595788') format('woff'),
+       url('../font/fontello.ttf?62595788') format('truetype'),
+       url('../font/fontello.svg?62595788#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?71299467#fontello') format('svg');
+    src: url('../font/fontello.svg?62595788#fontello') format('svg');
   }
 }
 */
@@ -50,9 +50,15 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-mail-alt:before { content: '\e803'; } /* '' */
-.icon-rss-squared:before { content: '\e802'; } /* '' */
-.icon-github-squared:before { content: '\e800'; } /* '' */
-.icon-twitter-squared:before { content: '\e801'; } /* '' */
-.icon-linkedin-squared:before { content: '\e80b'; } /* '' */
-.icon-facebook-squared-1:before { content: '\e809'; } /* '' */
+.icon-github:before { content: '\e801'; } /* '' */
+.icon-info:before { content: '\e80a'; } /* '' */
+.icon-mail:before { content: '\e805'; } /* '' */
+.icon-facebook:before { content: '\e806'; } /* '' */
+.icon-trash:before { content: '\e80c'; } /* '' */
+.icon-list:before { content: '\e800'; } /* '' */
+.icon-trash-3:before { content: '\e80d'; } /* '' */
+.icon-twitter:before { content: '\e802'; } /* '' */
+.icon-rss:before { content: '\e807'; } /* '' */
+.icon-linkedin:before { content: '\e808'; } /* '' */
+.icon-book:before { content: '\e809'; } /* '' */
+.icon-wrench:before { content: '\e80b'; } /* '' */
