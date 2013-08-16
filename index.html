@@ -17,16 +17,22 @@ I decided to "consolidate my portfolio" into a single website. This place is hom
 I hope you'll find it interesting.</p>
 </div>
 
-{% for post in site.categories.blog limit: 4 %}
-{% unless post.draft %}
-
-{% include preview.html %}
-
-{% endunless %}
-{% endfor %}
-
-<br/>
-<hr/>
-<a href="/blog" style="float: right;" class="button">Older Posts »»»»</a>
-<div style="clear:both;"></div>
+<div class="section">
+	{% for post in site.categories.blog limit: 4 %}
+	{% unless post.draft %}
+	
+	<div class="short-preview">
+	    <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+	    {% if post.date %}
+	    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+	    {% endif %}
+	</div>
+	
+	{% endunless %}
+	{% endfor %}
+	
+	<div class="short-preview">
+	    <a href="/blog" class="readmore">»»»</a>
+	</div>
+</div>
 

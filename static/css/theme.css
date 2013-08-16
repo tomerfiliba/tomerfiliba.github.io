@@ -395,6 +395,11 @@ a img {
     margin-right: 20px;
 }
 
+#content .readmore {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 #content .preview-wrapper {
     border-left: 20px solid rgba(0, 0, 100, 0.1);
     border-bottom: 2px solid rgba(0, 0, 100, 0.1);
@@ -423,10 +428,6 @@ a img {
 #content .preview .title {
     font-size: 18px;
     font-weight: bold;
-}
-
-#content .preview .readmore {
-	padding: 0 10px 0 10px;
 }
 
 #content .preview .second a {
