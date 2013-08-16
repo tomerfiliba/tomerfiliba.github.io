@@ -1,0 +1,22 @@
+<div class="preview-wrapper"><div class="preview">
+    <div class="row" {% if post.rtl %}dir="rtl"{% endif %}>
+    <div class="first">
+        <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+        {% if post.date %}
+        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+        {% endif %}
+        <span class="text">
+        {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">{% if post.rtl %}המשך קריאה{%else%}read more{%endif%}</a>
+        </span>
+    </div>
+    {% if post.imagepreview %}
+    <div class="second">
+        <a href="{{ post.url }}"><img src="{{post.imagepreview}}" class="postimage" /></a>
+    </div>
+    {% elsif post.imageurl %}
+    <div class="second">
+        <a href="{{ post.url }}"><img src="{{post.imageurl}}" class="postimage" /></a>
+    </div>
+    {% endif %}
+    </div>
+</div></div>
