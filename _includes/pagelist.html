@@ -1,16 +1,23 @@
 <table style="border:none; width:100%;">
 {% for post in filtered_posts %}
 {% unless post.draft %}
-    <tr style="height: 4.5em;">
-        <td style="text-align:left"><a href="{{ post.url }}" class="blog-title">{{ post.title }}</a></td>
-        <td style="text-align:right"><em>posted on {{ post.date | date: '%B %d, %Y' }}</em></td>
-    </tr>
-    <tr>
-        <td colspan="2" {% if post.rtl %}dir="rtl"{% endif %} >
-        {{ post.content | strip_html | truncatewords: 30 }}
-        </td>
-    </tr>
+
+<div class="preview">
+    <table><tr>
+    <td {% if post.rtl %}dir="rtl"{% endif %}>
+    <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+    {% if post.date %}
+    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+    {% endif %}
+    <span class="text">
+    {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">read more</a>
+    </span>
+    </td>
+    <td>
+    <img src="http://tomerfiliba.com/static/res/2013-07-27-crang.jpg" class="postimage" />
+    </td>
+    </tr></table>
+</div>
+
 {% endunless %}
 {% endfor %}
-</table>
-

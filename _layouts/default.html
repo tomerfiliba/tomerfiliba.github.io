@@ -60,8 +60,8 @@ layout: nil
         <div id="sidebar">
             <div id="logobox">
                 <a href="http://tomerfiliba.com/" title="home" style="border:0;">
-                <img id="sitelogo" src="/static/logos/fish-logo.png"/></a>
-                <div id="sitename">tomer filiba</div>
+                <img id="sitelogo" src="/static/logos/fish-logo.png"/>
+                <div id="sitename">tomer filiba</div></a>
             </div>
             <div id="short-tagline">Pythonista</div>
             <div id="social-wrapper">
@@ -107,6 +107,10 @@ layout: nil
 
             {% if page.title %}
             <h1>{{page.title}} <div class="datebox">{{ page.date | date: '%B %d, %Y' }}</div></h1>
+            {% endif %}
+            
+            {% if page.imageurl %} 
+            <img src="{{page.imageurl}}" title="{{page.imagetitle}}" class="blog-post-image"></img>
             {% endif %}
             
             {{ content }}
