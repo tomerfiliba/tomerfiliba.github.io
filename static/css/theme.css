@@ -509,6 +509,16 @@ a img {
     padding-left: 10px;
 }
 
+#banner-text {
+	border-left: 20px solid rgba(0, 172, 237, 0.25); 
+	padding: 20px 0 20px 20px;
+}
+
+#banner-text h1 {
+	border: 0;
+	padding: 0;
+}
+
 @media only screen and (max-width:1000px) {
     #sidebar-wrapper {
         width: 300px;
@@ -536,6 +546,11 @@ a img {
 @media print, handheld, only screen and (max-width:750px), only screen and (max-device-width: 750px) {
     body {
         min-width: 310px;
+    }
+    
+    #banner-text {
+        padding: 0;
+        border-left: 0;
     }
     
     #sidebar-wrapper {
