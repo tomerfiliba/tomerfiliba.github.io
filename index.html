@@ -5,20 +5,13 @@ description: "Tomer Filiba's homepage and blog"
 hidefooter: true
 ---
 
-<div id="title-box">
-<h1>Hi There</h1>
-<p>I'm Tomer Filiba, the author of several open source Python projects (most notably 
-<a href="http://rpyc.sourceforge.net">RPyC</a>, <a href="http://construct.readthedocs.org/">Construct</a>,
-and <a href="http://plumbum.readthedocs.org">Plumbum</a>). After years of scattering my stuff 
-around the web (the <a href="http://code.activestate.com/recipes/users/2520014/">Python Cookbook</a>,
-<a href="http://sourceforge.net/users/gangesmaster">sourceforge</a>, 
-<a href="http://sebulbasvn.googlecode.com/svn/trunk/">google-code</a>, etc.), 
-I decided to "consolidate my portfolio" into a single website. This place is home to all of my 
-<a href="http://tomerfiliba.com/projects">projects</a> and my personal Python-oriented blog...
-I hope you'll find it interesting.</p>
+<div style="border-left: 20px solid rgba(0,100,100,0.1); padding: 0 0 20px 20px">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
+laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
+suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in 
+vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
 </div>
 
-<h2>recent posts</h2>
 {% for post in site.categories.blog limit: 3 %}
 {% unless post.draft %}
 
@@ -27,7 +20,13 @@ I hope you'll find it interesting.</p>
 {% endunless %}
 {% endfor %}
 
-<div style="text-align: right">
-    <a href="/blog" class="readmore">»»»</a>
-</div>
+<div class="preview-wrapper"><div class="preview">
+    <div class="row" {% if post.rtl %}dir="rtl"{% endif %}>
+    <div class="first">
+        <a href="/blog" class="title">All posts »»»</a>
+    </div>
+    </div>
+</div></div>
+
+<div style="margin-bottom: 60px;"></div>
 
