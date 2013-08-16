@@ -3,9 +3,9 @@ layout: blogpost
 title: "A Survey of Construct 3"
 tags: [python, construct]
 description: "Discussion of the new features in Construct 3"
+imageurl: http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png
+imagetitle: Construct
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png" title="Construct" class="blog-post-image" />
 
 I'm working on [Construct 3](http://tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
 I wanted to share these ideas at this early stage **to get feedback on them** from users, to keep the project on track. 

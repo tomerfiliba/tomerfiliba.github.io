@@ -3,9 +3,9 @@ layout: blogpost
 title: "Cartesian Tree-Product"
 tags: [python]
 description: "Producing all possibilities (Cartesian product) of expression trees"
+imageurl: http://tomerfiliba.com/static/res/2013-05-03-Graph-Cartesian-product2.png
+imagetitle: Graph Cartesian product
 ---
-
-<img src="http://tomerfiliba.com/static/res/2013-05-03-Graph-Cartesian-product2.png" title="Graph Cartesian product" class="blog-post-image" />
 
 I have to admit that my day-to-day life involves very little algorithmic problems, but here and
 there I get a chance to think. In this post, I'd like to discuss an interesting problem that I've met 

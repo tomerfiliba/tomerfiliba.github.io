@@ -3,9 +3,9 @@ layout: blogpost
 title: "Javaism, Exceptions, and Logging: Part 3"
 draft: true
 description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 3 of 3"
+imageurl: http://tomerfiliba.com/static/res/2013-03-10-solkin_logging.jpg
+imagetitle: Over-logging
 ---
-
-<img src="http://tomerfiliba.com/static/res/2013-03-10-solkin_logging.jpg" class="blog-post-image" title="Over-logging"/>
 
 Yes, it's been a while. This is the third (and last) installment of my series on "Javaism, Exceptions and Logging", 
 in which I criticize non-Pythonisms creeping into Python from other OO languages, most prominent on which is Java. 

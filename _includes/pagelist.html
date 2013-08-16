@@ -1,4 +1,3 @@
-<table style="border:none; width:100%;">
 {% for post in filtered_posts %}
 {% unless post.draft %}
 
@@ -13,9 +12,11 @@
     {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">read more</a>
     </span>
     </td>
+    {% if post.imageurl %}
     <td>
-    <img src="http://tomerfiliba.com/static/res/2013-07-27-crang.jpg" class="postimage" />
+    <img src="{{post.imageurl}}" class="postimage" />
     </td>
+    {% endif %}
     </tr></table>
 </div>
 
