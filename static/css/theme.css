@@ -654,9 +654,11 @@ a img {
     
     #content .preview .second {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
         margin-top: 15px;
+    }
+    
+    #content .preview img {
+        margin: 0 auto 0 auto;
     }
 
 }
