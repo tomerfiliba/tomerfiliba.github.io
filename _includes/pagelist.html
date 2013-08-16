@@ -14,11 +14,11 @@
     </div>
     {% if post.imagepreview %}
     <div class="second">
-        <img src="{{post.imagepreview}}" class="postimage" />
+        <a href="{{ post.url }}"><img src="{{post.imagepreview}}" class="postimage" /></a>
     </div>
     {% elsif post.imageurl %}
     <div class="second">
-        <img src="{{post.imageurl}}" class="postimage" />
+        <a href="{{ post.url }}"><img src="{{post.imageurl}}" class="postimage" /></a>
     </div>
     {% endif %}
     </div>

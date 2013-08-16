@@ -425,6 +425,11 @@ a img {
     font-weight: bold;
 }
 
+#content .preview .second a {
+	border: none;
+	background: none;
+}
+
 #content .preview img {
     display: block;
     max-width: 150px;
@@ -642,6 +647,13 @@ a img {
         margin-right: 0;
         margin-left: 0;
         overflow-x: auto;
+    }
+
+    #content .preview-wrapper {
+        padding: 0 0 20px 0;
+        margin-bottom: 0;
+        border-left: 0;
+        border-bottom: 5px solid rgba(0,0,100,0.1);
     }
 
     #content .preview .row {
