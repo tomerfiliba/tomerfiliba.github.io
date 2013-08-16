@@ -5,6 +5,7 @@ description: An outlines of simple yet expressive toolkit for constructing wizar
              separating the business logic from the presentation level, thus being able to
              run both in a terminal or a GUI environment.
 tags: [python]
+imageurl: http://tomerfiliba.com/static/res/2012-02-11-gandalf.jpg
 ---
 
 Following my [Deducible UI post](http://tomerfiliba.com/blog/Deducible-UI), and following some of the 
@@ -13,8 +14,6 @@ at my work place. You see, we have some "interactive wizards" that storage admin
 storage arrays to their hosts (say, a DB server). These wizards prompt you with questions like your 
 what's your username, the name of the pool/volume, whether it's an iSCSI or a Fiber Channel 
 connection, etc., and then they go and perform what you've asked for.
-
-<img src="http://tomerfiliba.com/static/res/2012-02-11-gandalf.jpg" class="blog-post-image" />
 
 These wizards operate in a terminal environment, but we've had thoughts to make GUI/web versions
 of them. This would be a considerable effort with the current design. Another issue they currently 

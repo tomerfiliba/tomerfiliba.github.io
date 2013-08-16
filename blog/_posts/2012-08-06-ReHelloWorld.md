@@ -2,6 +2,7 @@
 layout: blogpost
 title: "ReHelloWorld"
 description: "New site design and a heartwarming Windows story"
+imagepreview: http://tomerfiliba.com/static/res/2012-08-06-windows.png
 ---
 
 Tada! The new design is here. The previous one was based on some Drupal theme I once used

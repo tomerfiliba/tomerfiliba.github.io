@@ -2,14 +2,14 @@
 layout: blogpost
 title: Learning Me a Haskell
 description: Thoughts regarding Haskell and the implications on software development in general
+imageurl: http://nostarch.com/sites/default/files/imagecache/product_full/lyah.png
+imagetitle: LYAH
+imagelink: http://learnyouahaskell.com/
 ---
 
 *Phew!* Finally the semester's over (just submitted my last project), and it's time to clean 
 up my ever-so-long backlog. Here goes nothing: I'll start by posting something here, 
 after this long while of neglect. 
-
-<a href="http://learnyouahaskell.com/">
-<img src="http://nostarch.com/sites/default/files/imagecache/product_full/lyah.png" title="LYAH" class="blog-post-image" /></a>
 
 As I'm sure you already know, I'm a long-time Pythonista, and I'm confident enough in calling 
 myself a "native speaker" of that language. Although python is my expertise, I'd say I'm 

@@ -9,10 +9,14 @@
     <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
     {% endif %}
     <span class="text">
-    {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">read more</a>
+    {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">{% if post.rtl %}המשך קריאה{%else%}read more{%endif%}</a>
     </span>
     </td>
-    {% if post.imageurl %}
+    {% if post.imagepreview %}
+    <td>
+    <img src="{{post.imagepreview}}" class="postimage" />
+    </td>
+    {% elsif post.imageurl %}
     <td>
     <img src="{{post.imageurl}}" class="postimage" />
     </td>

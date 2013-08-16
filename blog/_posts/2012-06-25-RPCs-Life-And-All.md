@@ -2,9 +2,9 @@
 layout: blogpost
 title: RPCs, Life and All
 description: A response to Gavrie Philipson's "Why I Don't Like RPC" post
+imageurl: http://tomerfiliba.com/static/res/2012-06-25-duckface.jpg
+imagetitle: If it has the face of a duck...
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-06-25-duckface.jpg" class="blog-post-image" />
 
 A colleague of mine, [Gavrie Philipson](https://twitter.com/#!/gavrieph), has written an 
 interesting blog post titled [Why I Don't Like RPC](http://philipson.co.il/blog/2012/06/20/why-i-dont-like-rpc/), 

@@ -2,9 +2,9 @@
 layout: blogpost
 title: "New Beginnings"
 description: "Becoming a freelance developer"
+imageurl: http://tomerfiliba.com/static/res/2012-09-01-france.jpg
+imagetitle: Macarons in the city of Saint Malo, France
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-09-01-france.jpg" class="blog-post-image" title="Macarons in the city of Saint Malo, France"/>
 
 This is a time of change in my life. September marks the last month of me being a student at 
 [Tel Aviv University](http://english.tau.ac.il/), a position I've greatly enjoyed (and hated) 

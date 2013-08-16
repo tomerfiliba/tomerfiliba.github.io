@@ -3,6 +3,8 @@ layout: blogpost
 title: Infix Operators in Python
 description: Discussing a nice hack which adds support for infix operators in python
 tags: [python]
+imageurl: http://imgs.xkcd.com/comics/rps.png
+imagetitle: Thanks go to Oren Held; and XKCD, of course
 ---
 
 As you may already know, there are 3 kinds of operators calling-notations: **prefix** (`+ 3 5`), 
@@ -11,8 +13,6 @@ in languages like LISP/Scheme, and have the nice property of not requiring paren
 there’s only one way to read an expression like `3 5 + 2 *`, unlike `3 + 5 * 2`. 
 On the other hand, it reduces code readability and the locality of operators and their arguments.
 This is why we all love infix operators.
-
-<img src="http://imgs.xkcd.com/comics/rps.png" title="Thanks go to Oren Held; and XKCD, of course" class="blog-post-image" />
 
 Now imagine I have a function, `add(x,y)`, and I have an expression like `add(add(add(5,6),7),8)`...
 wouldn’t it be cool if I could use infix notation here? Sadly though, Python won’t allow you to 

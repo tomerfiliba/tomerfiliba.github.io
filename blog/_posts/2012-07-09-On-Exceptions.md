@@ -3,9 +3,9 @@ layout: blogpost
 title: "Javaism, Exceptions, and Logging: Part 2"
 description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 2 of 3"
 tags: [python]
+imageurl: http://tomerfiliba.com/static/res/2012-07-09-i-fixed2.jpg
+imagetitle: Nesting Exceptions...
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-07-09-i-fixed2.jpg" class="blog-post-image" title="Nesting Exceptions..." />
 
 Considering the reactions to the [previous post](http://tomerfiliba.com/blog/Javaism) in this 
 series, my intent was obviously misunderstood. Please allow me to clarify that **I was not 

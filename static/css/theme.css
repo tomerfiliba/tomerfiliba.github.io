@@ -125,6 +125,11 @@ code, pre {
 #menu a.current .expander {
     width: 12px;
     background-color: rgba(0,100,0,0.5);
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s;
 }
 
 #menu a:hover .expander {
@@ -387,7 +392,7 @@ a img {
     border-left: 20px solid rgba(0, 0, 100, 0.1);
     border-bottom: 2px solid rgba(0, 0, 100, 0.1);
     padding: 20px 0 20px 20px;
-    margin: 30px 0 30px 0;
+    margin: 30px 0 50px 0;
 }
 
 #content .preview .title {
@@ -481,7 +486,7 @@ a img {
 }
 
 #footer img {
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 @media only screen and (max-width:1000px) {

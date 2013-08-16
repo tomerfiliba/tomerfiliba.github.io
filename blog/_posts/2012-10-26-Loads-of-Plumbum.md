@@ -3,10 +3,10 @@ layout: blogpost
 title: "Loads of Plumbum"
 tags: [python]
 description: "Plumbum (shell combinators library) has got many new features"
+imageurl: http://tomerfiliba.com/static/res/2012-05-12-plumbum.png
+imagetitle: Plumbum
+imagelink: http://plumbum.readthedocs.org/ 
 ---
-
-<a href="http://plumbum.readthedocs.org/">
-<img src="http://tomerfiliba.com/static/res/2012-05-12-plumbum.png" title="Plumbum" class="blog-post-image" /></a>
 
 It's kind of funny how things turn out. I haven't done any work on [Plumbum](http://plumbum.readthedocs.org/) 
 almost since it was released, back in May, and all of the sudden everything's happening at fast pace.

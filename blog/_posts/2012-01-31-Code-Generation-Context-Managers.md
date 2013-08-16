@@ -4,9 +4,8 @@ title: Code Generation using Context Managers
 description: Introducing a code generation toolkit that achieves correlation between the
              generator code and the generated code, using context managers
 tags: [python]
+imageurl: http://tomerfiliba.com/static/res/2012-01-31-code.jpg
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-01-31-code.jpg" class="blog-post-image" />
 
 When I was working on [Agnos](http://agnos.sourceforge.net), a cross-language RPC framework,
 I had a lot of code-generation to do in a variety of languages (Python, Java, C#, and C++). 

@@ -3,9 +3,9 @@ layout: blogpost
 title: "Hypertext: In-Python Haml"
 tags: [python]
 description: "An in-language DSL for generating HTML pages directly in Python, along the lines of Haml"
+imageurl: http://tomerfiliba.com/static/res/2012-10-03-haml.gif
+imagelink: http://haml.info
 ---
-
-<a href="http://haml.info"><img src="http://tomerfiliba.com/static/res/2012-10-03-haml.gif" class="blog-post-image" /></a>
 
 <div class="notebox">
 <a href="#the-code"><strong>TL;DR: Just show me the code</strong></a>

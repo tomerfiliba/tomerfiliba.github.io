@@ -3,9 +3,9 @@ layout: blogpost
 title: "Splitbrain Python"
 tags: [rpyc, python]
 description: "Monkey-patching platform-specific modules over RPyC, so that code can temporarily run on remote"
+imageurl: http://rpyc.readthedocs.org/en/latest/_static/banner.png
+imagetitle: RPyC
 ---
-
-<a href="http://rpyc.sf.net"><img src="http://rpyc.sourceforge.net/_static/rpyc3-logo-medium.png" title="RPyC logo" class="blog-post-image" /></a>
 
 I was working together with a colleague on a complex distributed test-automation solution on top 
 of [RPyC](http://rpyc.sf.net), and we looked for a way to make our existing codebase RPyC-friendly 

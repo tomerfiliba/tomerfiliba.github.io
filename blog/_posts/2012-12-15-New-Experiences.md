@@ -2,10 +2,10 @@
 layout: blogpost
 title: "New Experiences"
 description: "Becoming an entrepreneur"
+imageurl: http://tomerfiliba.com/static/res/2012-12-15-grimlock2.jpg
+imagetitle: BECAUSE AWESOME
+imagelink: http://fakegrimlock.com/
 ---
-
-<a href="http://fakegrimlock.com/">
-<img src="http://tomerfiliba.com/static/res/2012-12-15-grimlock2.jpg" class="blog-post-image" title="BECAUSE AWESOME"/></a>
 
 Okay, I've been slacking off and I feel I've got some explaining to do... Allow me to start by
 admitting that I lied. If you remember, I said [I wanted an easy life](http://tomerfiliba.com/blog/New-Beginnings/), 

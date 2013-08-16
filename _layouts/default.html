@@ -109,9 +109,9 @@ layout: nil
             <h1>{{page.title}} <div class="datebox">{{ page.date | date: '%B %d, %Y' }}</div></h1>
             {% endif %}
             
-            {% if page.imageurl %} 
-            <img src="{{page.imageurl}}" title="{{page.imagetitle}}" class="blog-post-image"></img>
-            {% endif %}
+            {% if page.imagelink %}<a href="page.imagelink}}">{% endif %}
+            {% if page.imageurl %}<img src="{{page.imageurl}}" title="{{page.imagetitle}}" class="blog-post-image" />{% endif %}
+            {% if page.imagelink %}</a>{% endif %}
             
             {{ content }}
 
