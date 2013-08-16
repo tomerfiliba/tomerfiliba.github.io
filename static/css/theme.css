@@ -425,9 +425,14 @@ a img {
     font-weight: bold;
 }
 
+#content .preview .readmore {
+	padding: 0 10px 0 10px;
+}
+
 #content .preview .second a {
 	border: none;
 	background: none;
+	display: block;
 }
 
 #content .preview img {

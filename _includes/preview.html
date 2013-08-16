@@ -6,7 +6,7 @@
         <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
         {% endif %}
         <span class="text">
-        {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">{% if post.rtl %}המשך קריאה{%else%}read more{%endif%}</a>
+        {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}" class="readmore">{% if post.rtl %}«««{%else%}»»»{%endif%}</a>
         </span>
     </div>
     {% if post.imagepreview %}
