@@ -1,28 +1,28 @@
 {% for post in filtered_posts %}
 {% unless post.draft %}
 
-<div class="preview">
-    <table><tr>
-    <td {% if post.rtl %}dir="rtl"{% endif %}>
-    <a href="{{ post.url }}" class="title">{{ post.title }}</a>
-    {% if post.date %}
-    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
-    {% endif %}
-    <span class="text">
-    {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">{% if post.rtl %}המשך קריאה{%else%}read more{%endif%}</a>
-    </span>
-    </td>
+<div class="preview-wrapper"><div class="preview">
+    <div class="row" {% if post.rtl %}dir="rtl"{% endif %}>
+    <div class="first">
+	    <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+	    {% if post.date %}
+	    <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+	    {% endif %}
+	    <span class="text">
+	    {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}">{% if post.rtl %}המשך קריאה{%else%}read more{%endif%}</a>
+	    </span>
+    </div>
     {% if post.imagepreview %}
-    <td>
-    <img src="{{post.imagepreview}}" class="postimage" />
-    </td>
+    <div class="second">
+        <img src="{{post.imagepreview}}" class="postimage" />
+    </div>
     {% elsif post.imageurl %}
-    <td>
-    <img src="{{post.imageurl}}" class="postimage" />
-    </td>
+    <div class="second">
+        <img src="{{post.imageurl}}" class="postimage" />
+    </div>
     {% endif %}
-    </tr></table>
-</div>
+    </div>
+</div></div>
 
 {% endunless %}
 {% endfor %}
