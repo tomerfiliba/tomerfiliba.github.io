@@ -379,6 +379,7 @@ a img {
     float: right;
     max-width: 250px;
     margin: 10px 0 10px 20px;
+    box-shadow: 3px 3px 6px #ccc;
 }
 
 #content .datebox {
@@ -441,6 +442,7 @@ a img {
     max-width: 150px;
     max-height: 150px;
     margin-left: 20px;
+    box-shadow: 3px 3px 6px #ccc;
 }
 
 #content .preview .datebox {
