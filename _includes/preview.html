@@ -1,5 +1,5 @@
-<div class="preview-wrapper"><div class="preview">
-    <div class="row" {% if post.rtl %}dir="rtl"{% endif %}>
+<div class="preview-wrapper" {% if post.rtl %}dir="rtl"{% endif %}><div class="preview">
+    <div class="row">
     <div class="first">
         <a href="{{ post.url }}" class="title">{{ post.title }}</a>
         {% if post.date %}

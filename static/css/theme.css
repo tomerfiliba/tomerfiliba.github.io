@@ -438,6 +438,7 @@ a img {
 #content .preview .second {
     display: table-cell;
     vertical-align: bottom;
+    width: 170px;
 }
 
 #content .preview .title {
@@ -449,13 +450,15 @@ a img {
 	border: none;
 	background: none;
 	display: block;
+	height: 150px;
+    overflow: hidden;
+    margin: 0 10px;
 }
 
 #content .preview img {
     display: block;
     max-width: 150px;
-    max-height: 150px;
-    margin-left: 20px;
+    margin: 0 auto;
     box-shadow: 3px 3px 6px #ccc;
 }
 
@@ -701,6 +704,7 @@ a img {
     #content .preview .second {
         display: block;
         margin-top: 15px;
+        width: auto;
     }
     
     #content .preview img {
