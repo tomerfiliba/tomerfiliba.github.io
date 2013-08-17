@@ -5,33 +5,27 @@
   "hinting": true,
   "glyphs": [
     {
-      "uid": "f48ae54adfb27d8ada53d0fd9e34ee10",
-      "css": "trash",
-      "code": 59404,
-      "src": "fontawesome"
+      "uid": "c64623255a4a7c72436b199b05296c4f",
+      "css": "emo-happy",
+      "code": 59406,
+      "src": "fontelico"
+    },
+    {
+      "uid": "1ba44825e5f10920b4e3f1d0c73f79a2",
+      "css": "emo-wink",
+      "code": 59396,
+      "src": "fontelico"
+    },
+    {
+      "uid": "4bb2045a2aca451705fe8a23c4a576ab",
+      "css": "emo-wink2",
+      "code": 59395,
+      "src": "fontelico"
     },
     {
       "uid": "72b1277834cba5b7944b0a6cac7ddb0d",
       "css": "rss",
       "code": 59399,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "5bb103cd29de77e0e06a52638527b575",
-      "css": "wrench",
-      "code": 59403,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "48b87105bd38c20315f1b705b8c7b38c",
-      "css": "list",
-      "code": 59392,
-      "src": "fontawesome"
-    },
-    {
-      "uid": "9755f76110ae4d12ac5f9466c9152031",
-      "css": "book",
-      "code": 59401,
       "src": "fontawesome"
     },
     {
@@ -57,18 +51,6 @@
       "css": "mail",
       "code": 59397,
       "src": "iconic"
-    },
-    {
-      "uid": "ccd52a22af21fbaa98a9c85fb50fca6b",
-      "css": "info",
-      "code": 59402,
-      "src": "iconic"
-    },
-    {
-      "uid": "cad619ef78a5500c1e5b3d021d2fdd65",
-      "css": "trash-3",
-      "code": 59405,
-      "src": "maki"
     },
     {
       "uid": "9bba5df43e4e9419975336161e1810c3",
