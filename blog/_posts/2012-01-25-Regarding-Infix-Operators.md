@@ -3,7 +3,7 @@ layout: blogpost
 title: Regarding Infix Operators
 description: Some more thoughts regarding the 'infix operators' post
 tags: [python]
-imageurl: http://2.bp.blogspot.com/-dKF7ujI_yN0/TgWIk8mccWI/AAAAAAAAACI/hONGw2EoW24/s320/Funny+orkut+scraps+funny+dog+pictures+teeths.jpg
+imageurl: http://tomerfiliba.com/static/res/2012-01-25-dog.jpg
 ---
 
 I got some reactions to the [Infix Operators](http://tomerfiliba.com/blog/Infix-Operators) post, and wanted to point

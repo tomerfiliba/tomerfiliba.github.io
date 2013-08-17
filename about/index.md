@@ -2,13 +2,13 @@
 layout: default
 title: About
 section: about
-description: "A little about me and my freelancing/consulting services"
+description: "A little about me and my consulting services"
 ---
 
-<a href="http://www.facebook.com/ronsho" style="border: none;">
-<img src="http://tomerfiliba.com/static/logos/telaviv-ronsho.jpg" width="100%" title="A photograph of Tel Aviv by Ronsho, (C) 2011" /></a>
+<a href="http://www.facebook.com/ronsho" style="border: none; box-shadow: 3px 3px 6px #ccc;">
+<img src="http://tomerfiliba.com/static/logos/telaviv-ronsho.jpg" title="A photograph of Tel Aviv by Ronsho, (C) 2011" /></a>
 
-I'm Tomer Filiba, 27 years old, living in Tel Aviv, Israel. I graduated in 2012 from Tel Aviv
+I'm Tomer Filiba, 28 years old, living in Tel Aviv, Israel. I graduated in 2012 from Tel Aviv
 University, where I studied Computer Science and Generative Linguistics. I am a long-time Python 
 developer and the author of multiple open source Python projects, most notable of which are 
 [RPyC](http://rpyc.sf.net), [Construct](http://construct.readthedocs.org) and 
@@ -27,13 +27,4 @@ wandering for hours on Wikipedia and my lovely wife. This site is both my person
 professional blog, so don't be surprised to find a mix of technical posts next to opinions or the 
 occasional venting.
 
-<!--
-## Freelance & Consulting Services ##
-As of September 2012, I am a freelance developer, offering software/web development and consulting 
-services. I work mainly within Israel (either in-office or from home), but I take contracting jobs 
-from overseas as well. My specialties include software design and system architecture, automation
-and testing tools, and server-side programming. 
 
-I am also available for giving Python and design **lectures/courses**, ranging from beginners' 
-level to very advanced topics (probably only relevant within Israel).
--->
