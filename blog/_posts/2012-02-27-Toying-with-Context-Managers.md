@@ -3,9 +3,8 @@ layout: blogpost
 title: Toying with Context Managers
 description: Highlights some rather surprising use-cases of context managers
 tags: [python]
-imageurl: http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg
+imageurl: http://tomerfiliba.com/static/res/2012-02-27-context.jpg
 imagetitle: Very Demotivational
-imagelink: http://verydemotivational.files.wordpress.com/2010/12/demotivational-posters-context.jpg 
 ---
 
 As I promised in the [code-generation using context managers post](http://tomerfiliba.com/blog/Code-Generation-Context-Managers),
