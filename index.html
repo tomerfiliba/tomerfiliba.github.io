@@ -8,24 +8,61 @@ hidetagline: true
 
 <div id="banner-text">
 <h1>Hi There</h1>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+I'm Tomer Filiba, a freelancing software expert and author of numerous open source projects,
+most notable of which are <a href="http://goo.gl/U8iiWL">RPyC</a>, 
+<a href="http://goo.gl/Ytd5x8">Construct</a> and <a href="http://goo.gl/DD50AN">Plumbum</a>. 
+I mess mostly with Python, but my skill set ranges from low-level, resource-constrained environments
+to large-scale servers, and from the mechanics of computers, networks and kernels to 
+theoretical aspects like algorithms and advanced type systems.
+<br/>
+This is my personal site and blog, where I write about my work, open source projects and even
+politics, occasionally, so don't get scared.
 </div>
 
 {% for post in site.categories.blog %}
 {% unless post.draft %}
 
-   {% include preview.html %}
+	<div class="preview-wrapper" {% if post.rtl %}dir="rtl"{% endif %}><div class="preview">
+        <div class="row">
+        <div class="first">
+            <div style="font-size: 18px; font-weight: bold;">Latest post</div>
+        </div>
+        </div>
+
+	    <div class="row">
+	    <div class="first">
+	        <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+	        {% if post.date %}
+	        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
+	        {% endif %}
+	        <span class="text">
+	        {% if post.summary %}
+	        {{ post.summary }}
+	        {% else %}
+	        {{ post.content | strip_html | truncatewords: 50 }}
+	        {% endif %}
+	        <a href="{{ post.url }}" class="readmore">»»»</a>
+	        </span>
+	    </div>
+	    {% if post.imagepreview %}
+	    <div class="second">
+	        <a href="{{ post.url }}"><img src="{{post.imagepreview}}" class="postimage" /></a>
+	    </div>
+	    {% elsif post.imageurl %}
+	    <div class="second">
+	        <a href="{{ post.url }}"><img src="{{post.imageurl}}" class="postimage" /></a>
+	    </div>
+	    {% endif %}
+	    </div>
+        <div class="row">
+        <div class="first">
+            <a href="/blog" class="title" style="margin-top: 30px;">More posts...</a>
+        </div>
+        </div>
+	</div></div>
    
    {% break %}
 
 {% endunless %}
 {% endfor %}
-
-<div class="preview-wrapper"><div class="preview">
-    <div class="row">
-    <div class="first">
-        <a href="/blog" class="title">More posts »»»</a>
-    </div>
-    </div>
-</div></div>
 
