@@ -3,31 +3,29 @@ layout: default
 section: home
 description: "Tomer Filiba's homepage and blog"
 hidefooter: true
+hidetagline: true
 ---
 
 <div id="banner-text">
 <h1>Hi There</h1>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper 
-suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in 
-vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
 </div>
 
-<!-- 
-{% for post in site.categories.blog limit: 3 %}
+{% for post in site.categories.blog %}
 {% unless post.draft %}
 
    {% include preview.html %}
+   
+   {% break %}
 
 {% endunless %}
 {% endfor %}
 
 <div class="preview-wrapper"><div class="preview">
-    <div class="row" {% if post.rtl %}dir="rtl"{% endif %}>
+    <div class="row">
     <div class="first">
-        <a href="/blog" class="title">All posts »»»</a>
+        <a href="/blog" class="title">More posts »»»</a>
     </div>
     </div>
 </div></div>
--->
 

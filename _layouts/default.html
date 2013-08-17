@@ -63,7 +63,6 @@ layout: nil
                 <img id="sitelogo" src="/static/logos/fish-logo.png"/>
                 <div id="sitename">tomer filiba</div></a>
             </div>
-            <div id="short-tagline">Pythonista</div>
             <div id="social-wrapper">
                 <table id="social">
                     <tr>
@@ -74,12 +73,14 @@ layout: nil
                     <td><a href="mailto:contact@tomerfiliba.com" title="contact me" class="icon-mail"></a></td>
                     </tr>
                 </table>
-            </div>  
+            </div>
+            {% unless page.hidetagline %}
             <div id="tagline">
                 low-level python hacker and author of <a href="/">RPyC</a>, 
                 <a href="/">Construct</a> and <a href="/">Plumbum</a>. writes about python, algorithms, 
                 software architecture and whatever else comes to mind.
             </div>
+            {% endunless %}
             <div id="menu-wrapper">
                 <div id="menu">
                     <a href="http://tomerfiliba.com/blog" {% if page.section == "blog" %}class="current"{% endif %}><div class="expander"></div>blog</a>
