@@ -6,7 +6,12 @@
         <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
         {% endif %}
         <span class="text">
-        {{ post.content | strip_html | truncatewords: 50 }} <a href="{{ post.url }}" class="readmore">{% if post.rtl %}«««{%else%}»»»{%endif%}</a>
+        {% if post.summary %}
+        {{ post.summary }}
+        {% else %}
+        {{ post.content | strip_html | truncatewords: 50 }}
+        {% endif %}
+        <a href="{{ post.url }}" class="readmore">»»»</a>
         </span>
     </div>
     {% if post.imagepreview %}

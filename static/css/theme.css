@@ -25,6 +25,10 @@ code, pre {
     line-height: 1;
 }
 
+img {
+    max-width: 100%;
+}
+
 #sidebar-wrapper {
     position: fixed;
     width: 400px;
@@ -371,7 +375,17 @@ a img {
     text-align: left;
 }
 
-#content[dir="rtl"] h1, #content[dir="rtl"] h2, #content[dir="rtl"] h3 {
+#content[dir="rtl"] h1 {
+    border-right: 20px solid rgba(0, 100, 0, 0.3);
+    border-left: 0;
+    padding: 20px 20px 20px 0px;
+    text-align: right;
+}
+
+#content[dir="rtl"] h2, #content[dir="rtl"] h3 {
+    border-right: 20px solid rgba(0, 100, 0, 0.1);
+    border-left: 0;
+    padding: 20px 20px 20px 0px;
     text-align: right;
 }
 
@@ -494,6 +508,7 @@ a img {
     padding: 40px 0 40px 0;
     text-align: right;
     font-size: 12px;
+    direction: ltr;
 }
 
 #footer:hover {
@@ -627,10 +642,6 @@ a img {
         width: 100%;
     }
     
-    img {
-        max-width: 95%;
-    }
-    
     #menu a {
         /*display: inline-block;*/
         display: table-cell;
@@ -660,8 +671,8 @@ a img {
     }
     
     #footer {
-        margin: 0;
-        padding: 0;
+        margin-top: 0;
+        padding: 20px 0 10px 0;
         text-align: left;
     }
         

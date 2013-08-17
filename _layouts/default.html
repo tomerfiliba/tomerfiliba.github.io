@@ -110,7 +110,7 @@ layout: nil
             {% endif %}
             
             {% if page.imagelink %}<a href="page.imagelink}}">{% endif %}
-            {% if page.imageurl %}<img src="{{page.imageurl}}" title="{{page.imagetitle}}" class="blog-post-image" />{% endif %}
+            {% if page.imageurl %}<img src="{{page.imageurl}}" title="{{page.imagetitle}}" style="{{page.imagestyle}}" class="blog-post-image" />{% endif %}
             {% if page.imagelink %}</a>{% endif %}
             
             {{ content }}

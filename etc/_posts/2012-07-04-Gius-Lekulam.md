@@ -4,9 +4,10 @@ title: "כולם מדברים על גיוס, אף אחד לא מדבר בשכל"
 description: "A bit of politics regarding conscription of orthodox Jews (Hebrew)"
 rtl: true
 comments: true
+imageurl: http://tomerfiliba.com/static/res/2012-07-04-bitch.png
+imagetitle: 10gag.co.il
+imagestyle: "width: 180px;"
 ---
-
-<img src="http://tomerfiliba.com/static/res/2012-07-04-bitch.png" class="blog-post-image" style="width: 180px;" title="10gag.co.il"/>
 
 ## כלבתא במטותא ##
 

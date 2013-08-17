@@ -2,6 +2,7 @@
 layout: etc-page
 title: Travolta NXT
 description: University Lego NXT project
+imagepreview: http://tomerfiliba.com/static/res/2013-04-14-lego.png
 ---
 
 ## Abstract ##
