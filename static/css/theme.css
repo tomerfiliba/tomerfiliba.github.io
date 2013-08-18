@@ -599,10 +599,10 @@ a img {
     #content-wrapper {
         min-width: 0;
         margin:0;
-}
+	}
     
     #sidebar {
-        margin: 0px;
+        margin: 0 auto;
         max-width: 500px;
     }
 
@@ -641,7 +641,7 @@ a img {
     }
 
     #social-wrapper {
-        margin: 4px auto 0 auto;
+        margin-top: 4px;
     }
     
     #menu-wrapper {
