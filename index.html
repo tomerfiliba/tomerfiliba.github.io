@@ -10,7 +10,7 @@ hidetagline: true
 <h1>Hi There</h1>
 <p>
 I'm Tomer Filiba, a <a href="http://goo.gl/uZuisr">freelancing</a> software expert and author of numerous 
-<a href="http://goo.gl/y9Rwe0">open source</a> projects, most notable of which are <a href="http://goo.gl/U8iiWL">RPyC</a>, 
+<a href="http://goo.gl/y9Rwe0">open source</a> projects, most notable of which are <a href="http://goo.gl/U8iiWL">RPyC,</a> 
 <a href="http://goo.gl/Ytd5x8">Construct</a> and <a href="http://goo.gl/DD50AN">Plumbum</a>. 
 I mess mostly with Python, but my skill set ranges from low-level, resource-constrained environments
 to large-scale servers, and from the mechanics of computers, networks and kernels to 
@@ -25,53 +25,3 @@ as well as my open source project. You can find out more about what I do in the 
 </p>
 </div>
 
-<!-- 
-{% for post in site.categories.blog %}
-{% unless post.draft %}
-
-	<div class="preview-wrapper"><div class="preview">
-        <div class="row">
-        <div class="first">
-            <div style="font-size: 18px; font-weight: bold; margin-top: 30px;">Latest post</div>
-        </div>
-        </div>
-
-	    <div class="row">
-	    <div class="first">
-	        <a href="{{ post.url }}" class="title">{{ post.title }}</a>
-	        {% if post.date %}
-	        <span class="datebox">{{ post.date | date: '%B %d, %Y' }}</span>
-	        {% endif %}
-	        <span class="text">
-	        {% if post.summary %}
-	        {{ post.summary }}
-	        {% else %}
-	        {{ post.content | strip_html | truncatewords: 50 }}
-	        {% endif %}
-	        <a href="{{ post.url }}" class="readmore">»»»</a>
-	        </span>
-	    </div>
-	    {% if post.imagepreview %}
-	    <div class="second">
-	        <a href="{{ post.url }}"><img src="{{post.imagepreview}}" class="postimage" /></a>
-	    </div>
-	    {% elsif post.imageurl %}
-	    <div class="second">
-	        <a href="{{ post.url }}"><img src="{{post.imageurl}}" class="postimage" /></a>
-	    </div>
-	    {% endif %}
-	    </div>
-	    
-        <div class="row">
-        <div class="first">
-            <a href="/blog" class="title" style="margin-top: 30px;">More posts...</a>
-        </div>
-        </div>
-	</div></div>
-   
-   {% break %}
-
-{% endunless %}
-{% endfor %}
-
--->

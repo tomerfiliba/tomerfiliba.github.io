@@ -537,7 +537,7 @@ a img {
 	padding: 0;
 }
 
-@media only screen and (max-width:1000px) {
+@media only screen and (max-width:1200px) {
     #sidebar-wrapper {
         width: 300px;
     }
@@ -558,6 +558,24 @@ a img {
 @media only screen and (max-height:800px) {
     #recent {
         display: none;
+    }
+}
+
+@media only screen and (max-height:700px) {
+    #menu a {
+    	font-size: 18px;
+    }
+    
+    #tagline {
+    	font-size: 12px;
+    }
+
+    #sidebar {
+        margin-top: 30px;
+    }
+    
+    #content {
+        margin-top: 30px;
     }
 }
 
