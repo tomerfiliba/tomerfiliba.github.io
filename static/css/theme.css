@@ -597,7 +597,7 @@ a img {
     }
 
     #content-wrapper {
-        min-width: none;
+        min-width: 0;
         max-width: none;
         margin:0;
 	}
