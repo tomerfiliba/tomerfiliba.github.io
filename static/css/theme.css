@@ -597,7 +597,8 @@ a img {
     }
 
     #content-wrapper {
-        min-width: 0;
+        min-width: none;
+        max-width: none;
         margin:0;
 	}
     
@@ -630,7 +631,6 @@ a img {
         font-size: 32px;
         padding-left: 10px;
     }
-
 
     #content img.blog-post-image {
         display: block;
