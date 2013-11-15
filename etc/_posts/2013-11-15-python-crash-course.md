@@ -8,104 +8,103 @@ imageurl: http://tomerfiliba.com/static/res/2013-11-15-ouroboros.png
 imagetitle: Ouroboros
 ---
 
+Python is a multi-paradigm (hybrid) language. It's fully object-oriented, but has strong functional roots.
+
+If you had taken any academic course that involves programming, Python will most likely resemble pseudo code to you
+
+{% highlight python %}
+def factorial(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# or
+
+def factorial(n):
+    res = 1
+    while n:
+        res *= n
+        n -= 1
+    return res
+
+{% endhighlight %}
+
+You'll see inheritance and class diagrams along side with constructs imported from Haskell and LISP.
+
+Python is dynamically-typed (as opposed to statically-typed) but has strong-typing 
+(as opposed to WTF^H^H^H Perl or Javascript) 
+
+> <img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
+
 ## Hello Snake ##
-
-* Python is a multi-paradigm (hybrid) language. It's object-oriented, but has strong functional roots.
-  * If you had taken any academic course that involves programming, Python will most likely resemble pseudo code to you
-
-    {% highlight python %}
-    def factorial(n):
-        if n <= 1:
-            return 1
-        else:
-            return n * factorial(n - 1)
-    
-    # or
-    
-    def factorial(n):
-        res = 1
-        while n:
-            res *= n
-            n -= 1
-        return res
-
-    {% endhighlight %}
-
-  * You'll see inheritance and class diagrams along side with constructs imported from Haskell and LISP.
-
-* Python is dynamically-typed (as opposed to statically-typed) but has strong-typing 
-  (as opposed to Perl or Javascript) 
-
-<img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
-
-## Getting Around ##
 
 * The interactive interpreter is your friend
 
 ```
-    $ python
-    Python 2.7.5 (default, May 15 2013, 22:43:36) [MSC v.1500 32 bit (Intel)] on win32
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> 5 + 6
-    11
+$ python
+Python 2.7.5 (default, May 15 2013, 22:43:36) [MSC v.1500 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 5 + 6
+11
 ```
 
 * Languages basics (syntax reference)
 
 ```
-    import MODULE
-    from MODULE import NAME
-    
-    
-    print EXPR
-    
-    
-    VAR = EXPR
-    
-    
-    if COND:
-        SUITE
-    [elif COND:
-        SUITE]
-    ...
-    [else:
-        SUITE]
-    
-    
-    for VAR in ITERABLE:
-        SUITE
-        [break]
-        [continue]
-    
-    
-    while COND:
-        SUITE
-        [break]
-        [continue]
-    
-    
-    try:
-        SUITE
-    except EXCEPTION [as ex]:
-        SUITE
-    ...
-    [else:                      # code gets here only when there was no exception
-        SUITE] 
-    [finally:                   # this code will always be performed
-        SUITE]
-    
-    
-    raise EXCEPTION(...)
-    
-    
-    def NAME(a, b, c, ..., *args, **kwargs):     # *positional arguments and **keyword arguments
-        SUITE
-        [return EXPR]
-        [yield EXPR]
-    
-    
-    class NAME([BASE, ...]):
-        SUITE
+import MODULE
+from MODULE import NAME
+
+
+print EXPR
+
+
+VAR = EXPR
+
+
+if COND:
+    SUITE
+[elif COND:
+    SUITE]
+...
+[else:
+    SUITE]
+
+
+for VAR in ITERABLE:
+    SUITE
+    [break]
+    [continue]
+
+
+while COND:
+    SUITE
+    [break]
+    [continue]
+
+
+try:
+    SUITE
+except EXCEPTION [as ex]:
+    SUITE
+...
+[else:                      # code gets here only when there was no exception
+    SUITE] 
+[finally:                   # this code will always be performed
+    SUITE]
+
+
+raise EXCEPTION(...)
+
+
+def NAME(a, b, c, ..., *args, **kwargs):     # *positional arguments and **keyword arguments
+    SUITE
+    [return EXPR]
+    [yield EXPR]
+
+
+class NAME([BASE, ...]):
+    SUITE
 ```
 
 * For people with a C background:
