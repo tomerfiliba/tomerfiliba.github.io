@@ -33,9 +33,9 @@ def factorial(n):
 You'll see inheritance and class diagrams along side with constructs imported from Haskell and LISP.
 
 Python is dynamically-typed (as opposed to statically-typed) but has strong-typing 
-(as opposed to WTF^H^H^H Perl or Javascript) 
+(as opposed to -WTF- Perl or Javascript) 
 
-> <img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
+<img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
 
 ## Hello Snake ##
 
