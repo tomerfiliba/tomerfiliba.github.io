@@ -42,14 +42,17 @@ imagetitle: Ouroboros
 
 * The interactive interpreter is your friend
 
+```
     $ python
     Python 2.7.5 (default, May 15 2013, 22:43:36) [MSC v.1500 32 bit (Intel)] on win32
     Type "help", "copyright", "credits" or "license" for more information.
     >>> 5 + 6
     11
+```
 
 * Languages basics (syntax reference)
 
+```
     import MODULE
     from MODULE import NAME
     
@@ -103,6 +106,7 @@ imagetitle: Ouroboros
     
     class NAME([BASE, ...]):
         SUITE
+```
 
 * For people with a C background:
   * Python doesn't have ``do ... while`` (use ``while``) nor does it have ``switch`` (use ``if``s or 
@@ -297,7 +301,7 @@ If the implementation is easy to explain, it may be a good idea.
 
 ## And No Python Tutorial Can Go Without ##
 
-<a href="http://xkcd.com/353/" title="Antigravity><img src="http://imgs.xkcd.com/comics/python.png"></a>
+<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
 
 
 
