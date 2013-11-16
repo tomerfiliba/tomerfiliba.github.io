@@ -480,7 +480,7 @@ Yo comprendo!
 
 </section><section>
 
-Lighten up! Let's be lazy
+Chillex! Be more lazy
 
 {% highlight pycon %}
 >>> def myfunc():
