@@ -7,6 +7,7 @@ imageurl: http://tomerfiliba.com/static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
 
+<section>
 Python is a multi-paradigm (hybrid) language. It's fully object-oriented but has strong functional roots.
 Note that this isn't a [beginner's tutorial](http://learnpython.org/) but a quick reference for the language
 and its features that should allow you to write basic Python ASAP.
@@ -31,7 +32,7 @@ def factorial(n):
 
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 You'll see inheritance and class diagrams along side with constructs imported from [Haskell](http://www.haskell.org) 
 and [LISP](http://en.wikipedia.org/wiki/Lisp_%28programming_language%29).
@@ -41,7 +42,7 @@ Python is dynamically-typed (as opposed to statically-typed) but has strong-typi
 
 <img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
 
-<break/>
+</section><section>
 
 Syntax reference (1)
 
@@ -74,7 +75,7 @@ while COND:
     [continue]
 ```
 
-<break/>
+</section><section>
 
 Syntax reference (2)
 
@@ -108,7 +109,7 @@ class NAME([BASE, [...]]):
     SUITE
 ```
 
-<break/>
+</section><section>
 
 The interactive interpreter is your friend! I mapped ``F11`` on my keyboard to fire up an interpreter... 
 it's better than any calculator you'll ever have
@@ -120,7 +121,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 5 + 6
 11
 ```
-<break/>
+</section><section>
+
 
 For people with a C background:
 
@@ -137,7 +139,7 @@ For people with a C++/Java background:
 * There are no privates, only conventions. Members that start with ``_`` are not to be manipulated directly.
 * There's no ``new``, just *invoke* the class like a function.
 
-<break/>
+</section><section>
 
 Duck Typing goes Nuclear
 
@@ -160,7 +162,7 @@ Being an interpreted language, Python gives up on type-checking and instead adop
 'helloworldhelloworld'
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Python comes with lots of useful built-in types
 
@@ -191,7 +193,7 @@ Python comes with lots of useful built-in types
 set([8, 2, 6, 7])
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 String manipulation is a pleasure with Python 
 
@@ -221,7 +223,7 @@ False
 ['th', 's ', 's a s', 'ngle l', 'ne str', 'ng']
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Encoding strings like a boss
 
@@ -252,7 +254,7 @@ And joining strings is surprisingly useful
 'AA:BB:CC'
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Multi-line strings
 
@@ -266,7 +268,7 @@ Multi-line strings
 ['this is', 'a multi', 'line string']
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 If I had time to show you only three functions, they will be ``help()``, ``dir()`` and ``type()``.
 Everything else you can discover on your own.
@@ -295,7 +297,7 @@ index', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'start
 <type 'str'>
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Next, let's meet some types and learn how to convert (not **cast**) values from one type to the other
 
@@ -317,7 +319,7 @@ Next, let's meet some types and learn how to convert (not **cast**) values from 
 ['h', 'e', 'l', 'l', 'o']
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Types matter
 
@@ -346,7 +348,7 @@ Hello foo
 Hello 'foo\n\tbar'
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Lists
 
@@ -375,7 +377,7 @@ Lists
 'thing'
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Slicing
 
@@ -395,7 +397,7 @@ Slicing
 [10, 11, 12, 13, 14, 15, 16]
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Lambda functions
 
@@ -411,7 +413,7 @@ Lambda functions
 [0, 2, 4, 6, 8]
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Working with files
 
@@ -432,7 +434,7 @@ Working with files
  '    if [ -f /etc/bash.bashrc ]; then\n']
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 List comprehension: remember ``map`` and ``filter``? Well, it's time to forget about them
 
@@ -447,7 +449,7 @@ List comprehension: remember ``map`` and ``filter``? Well, it's time to forget a
 [0, 4, 8, 12, 16]
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Yo comprendo!
 
@@ -476,7 +478,7 @@ Yo comprendo!
  10  20  30  40  50  60  70  80  90 100
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Lighten up! Let's be lazy
 
@@ -501,7 +503,7 @@ Traceback (most recent call last):
 StopIteration
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Generators let us be as general as we wish while paying only for what we're actually using (lazy computation)
 
@@ -531,7 +533,7 @@ The ``itertools`` module has some nifty utilities that we can use
 [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 Remember list comprehensions? Forget them too. Generator comprehensions are the new black!
 
@@ -553,7 +555,7 @@ Huh? Of course you won't see anything... you have to consume the generator in or
 
 In fact, list comprehensions are a syntactic sugar for ``list(``generator comprehension``)``
 
-<break/>
+</section><section>
 
 List comprehensions, as the name suggests, **build a list**. This can be expensive some times, 
 especially when you don't need the intermediate values. E.g., if you just want to get the sum of the elements,
@@ -569,13 +571,13 @@ MemoryError
 499999999500000000L
 {% endhighlight %}
 
-<break/>
+</section><section>
 
 And no Python tutorial can go without
 
 <a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
 
-<break/>
+</section><section>
 
 ## Under the Hood ##
 
@@ -584,7 +586,7 @@ programming background understand how the magic happens. So: the secret to the e
 
 Python is an interpreted language. Code is evaluated when the module is imported
 
-<break/>
+</section><section>
 
 ## When in Doubt ##
 
@@ -614,4 +616,4 @@ If the implementation is easy to explain, it may be a good idea.
 
 <img src="http://tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
 
-
+</section>
