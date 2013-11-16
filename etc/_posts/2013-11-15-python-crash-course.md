@@ -270,7 +270,12 @@ Multi-line strings
 
 </section><section>
 
-If I had time to show you only three functions, they will be ``help()``, ``dir()`` and ``type()``.
+If I had time to show you only three functions, they will be 
+
+* ``help()``
+* ``dir()``
+* ``type()``
+
 Everything else you can discover on your own.
 
 {% highlight pycon %}
@@ -460,8 +465,11 @@ Yo comprendo!
 [[1, 2, 3, 4], [2, 4, 6, 8], [3, 6, 9, 12], [4, 8, 12, 16]]
 >>> [" ".join(["%3d" % (i * j,) for i in range(1,5)]) 
 ...     for j in range(1,5)]
-['  1   2   3   4', '  2   4   6   8', '  3   6   9  12', '  4   8  12  16']
+['  1   2   3   4', '  2   4   6   8', '  3   6   9  12',
+ '  4   8  12  16']
 {% endhighlight %}
+
+And the whole multiplication table in just one line!
 
 {% highlight pycon %}
 >>> print "\n".join([" ".join(["%3d" % (i * j,) for i in range(1,11)])
@@ -480,7 +488,7 @@ Yo comprendo!
 
 </section><section>
 
-Chillex! Be more lazy
+Chillex! Be lazy
 
 {% highlight pycon %}
 >>> def myfunc():
@@ -505,7 +513,7 @@ StopIteration
 
 </section><section>
 
-Generators let us be as general as we wish while paying only for what we're actually using (lazy computation)
+Generators let us be as general as we wish while paying only for what we're actually using (lazy evaluation)
 
 {% highlight pycon %}
 >>> def fib():
@@ -525,6 +533,9 @@ The ``itertools`` module has some nifty utilities that we can use
 >>> import itertools
 >>> list(itertools.islice(fib(),10))
 [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+>>>
+>>> list(itertools.takewhile(lambda x: x < 50, fib))
+[1, 1, 2, 3, 5, 8, 13, 21, 34]
 >>>
 >>> list(itertools.combinations([1,2,3,4],2))
 [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
@@ -573,18 +584,161 @@ MemoryError
 
 </section><section>
 
-And no Python tutorial can go without
+## Object Oriented, Too ##
 
-<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
+Don't worry though. Python isn't all geared for functional programming. We have classes too!
+
+{% highlight pycon %}
+>>> class Animal(object):
+...     def __init__(self, name):
+...         self.name = name
+...     def drink(self):
+...         print "*Gulp gulp gulp*"
+...
+>>> class Dog(Animal):
+...     def drink(self):
+...         Animal.drink(self)         # or super(Dog, self).drink()
+...         print "*Tongue drips*"
+...     def bark(self):
+...         print "Woof woof woof"
+...
+>>> rex = Dog("Rex t3h Dawg")
+>>> rex.drink()
+*Gulp gulp gulp*
+*Tongue drips*
+>>> rex.bark()
+Woof woof woof
+{% endhighlight %}
 
 </section><section>
 
-## Under the Hood ##
+Some notes for Java folks:
 
-This might be too advanced for newcomers, but I find that explaining the mechanics helps people with previous 
-programming background understand how the magic happens. So: the secret to the execution model is dictionaries.
+* Constructors are inherited! Why wouldn't they?! 
+  * You can implement an exception class in Python in just one line: ``class MyException(Exception): pass``
+  * In Java/C# you have to reimplement all constructors as well
+* Python doesn't have function/method overloading
+  * But given that most of the code is duck-typed anyway (and can introspect the received object at runtime) 
+    it doesn't make a real difference
 
-Python is an interpreted language. Code is evaluated when the module is imported
+</section><section>
+
+But if we stopped here you'd think it's just a variation of Java. We're way cooler than Java!
+
+For example, instances (such as ``rex`` above) are actually just dictionaries that hold the instance's attributes.
+
+{% highlight pycon %}
+>>> rex.__dict__
+{'name' : 'Rex t3h Dawg'}
+{% endhighlight %}
+
+That's why we can add attributes on the fly
+
+{% highlight pycon %}
+>>> rex.__dict__
+{'name' : 'Rex t3h Dawg'}
+{% endhighlight %}
+
+</section><section>
+
+But classes ain't no different! They are just dictionaries of their methods
+
+{% highlight pycon %}
+>>> Animal.__dict__.keys()
+['__module__', 'drink', '__dict__', '__init__', '__weakref__', '__doc__']
+>>>
+>>> def sleep(self):
+...     print "Zzzzzz"
+...
+>>> Animal.sleep = sleep      # monkey-patching
+>>> rex.sleep()
+Zzzzzz
+{% endhighlight %}
+
+</section><section>
+
+Now it's time to discuss **special methods**. You've seen them already when we invoked ``dir("hello")`` -- they
+take the form of ``__xxx__``, and surprisingly or not, they make up most of what we've seen so far.
+
+Virtually all language constructs map to special methods underneath:
+
+* ``a + b`` is actually ``a.__add__(b)``
+* ``a[x]`` maps to ``a.__getitem__(x)``
+* ``str(a)`` invokes ``a.__str__()``
+* ``a.b`` translates to ``a.__getattr__("b")``
+* ``f(a,b,c)`` runs ``f.__call__(a, b, c)``
+  * So yes, ``f.__call__.__call__.__call__(a, b, c)`` as well
+* ``Dog("foo")`` creates the instance using ``__new__`` and initializes it in ``__init__``
+
+You can invoke them yourself, of course, they're just methods:
+
+{% highlight pycon %}
+>>> (5).__add__(6)
+11
+{% endhighlight %}
+
+But why would you do that? Don't be silly.
+
+</section><section>
+
+Remember I said **everything** is an object? Well, I meant it.   
+
+{% highlight pycon %}
+>>> Animal.__base__
+<type 'object'>
+>>> Dog.__base__
+<class '__main__.Animal'>
+>>> Dog.__mro__
+(<class '__main__.Dog'>, <class '__main__.Animal'>, <type 'object'>)
+>>> type(Dog)
+<type 'type'>
+{% endhighlight %}
+
+And it does gets mindboggling
+
+{% highlight pycon %}
+>>> type
+<type 'type'>
+>>> type.__base__
+<type 'object'>
+>>> type(type)
+<type 'type'>
+>>> type(object)
+<type 'type'>
+{% endhighlight %}
+
+</section><section>
+
+The MRO (method resolution order) is actually very important. It determines what happens when you resolve 
+attributes (``__getattr__``) on an object. For instance, ``rex.foo`` will first try ``rex.__dict__``, move up
+to ``Dog.__dict__`` and then to ``Animal.__dict__``, until we reach ``object.__dict__`` where we'll fail.
+And that's the whole object model.
+
+Dictionaries are also crucial to functions. A function is basically just code that evaluates in a local 
+scope and has access to a global scope (module-level). Each of these scopes is... a dictionary. When you assign
+a variable, you basically insert an element into the scope dictionary.
+
+{% highlight pycon %}
+>>> globals()
+{'__builtins__': <module '__builtin__' (built-in)>}
+>>> def f(a, b):
+...     print locals()
+...     c = a+b
+...     print locals()
+...
+>>> globals()
+{'__builtins__': <module '__builtin__' (built-in)>, 'f': <function f at 0x028CEEB0>}
+>>>
+>>> f(6,7)
+{'a': 6, 'b': 7}
+{'a': 6, 'c': 13, 'b': 7}
+{% endhighlight %}
+
+</section><section>
+
+And no Python tutorial can do without
+
+<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
 
 </section><section>
 
@@ -613,6 +767,8 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 {% endhighlight %}
+
+</section><section>
 
 <img src="http://tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
 
