@@ -354,7 +354,11 @@ a img {
 
 #content section:hover {
 	background-color: rgba(253, 255, 207, 0.8);
-	font-size: 110% !important;
+	font-size: 110%;
+}
+
+#content section pre:hover {
+    font-size: 110% !important;
 }
 
 #content a, #content a:visited, #content a:active, #content a:link {
