@@ -7,8 +7,6 @@ imageurl: http://tomerfiliba.com/static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
 
-<style type="text/css">break{display:block;height:0px;margin: 130px 80px;border-top: 5px dashed rgba(100,100,100,0.2);}</style>
-
 Python is a multi-paradigm (hybrid) language. It's fully object-oriented, but has strong functional roots.
 
 If you had taken any academic course that involves programming, Python will most likely resemble pseudo code to you
@@ -122,6 +120,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <break/>
 
 For people with a C background:
+
 * Python doesn't have ``do-while`` (use ``while``) nor does it have ``switch`` (use ``if``s or 
    dispatch tables)
 * Assignment is a statement, **not an expression**. 
@@ -129,6 +128,7 @@ For people with a C background:
 * There's no such thing as passing by-value. It's always by-reference.
 
 For people with a C++/Java background:
+
 * **Everything** is a first-class object
   * Integers, functions, types, stack frames, tracebacks, etc.
 * There are no privates, only conventions. Members that start with ``_`` are not to be manipulated directly.
@@ -465,19 +465,6 @@ Comprehensions galore!
 
 ## Loopy De Loop ##
 
-{% highlight pycon %}
->>> for i in range(4):
-...     print i * 3
-...
-0
-3
-6
-9
->>> [i * 3 for i in range(4)]
-[0, 3, 6, 9]
->>> [i * 3 for i in range(4) if i % 2 == 0]
-[0, 6]
-{% endhighlight %}
 
 ## Execution Model ##
 
