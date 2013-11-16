@@ -7,7 +7,9 @@ imageurl: http://tomerfiliba.com/static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
 
-Python is a multi-paradigm (hybrid) language. It's fully object-oriented, but has strong functional roots.
+Python is a multi-paradigm (hybrid) language. It's fully object-oriented but has strong functional roots.
+Note that this isn't a [beginner's tutorial](http://learnpython.org/) but a quick reference for the language
+and its features that should allow you to write basic Python ASAP.
 
 If you had taken any academic course that involves programming, Python will most likely resemble pseudo code to you
 
@@ -31,7 +33,8 @@ def factorial(n):
 
 <break/>
 
-You'll see inheritance and class diagrams along side with constructs imported from Haskell and LISP.
+You'll see inheritance and class diagrams along side with constructs imported from [Haskell](http://www.haskell.org) 
+and [LISP](http://en.wikipedia.org/wiki/Lisp_%28programming_language%29).
 
 Python is dynamically-typed (as opposed to statically-typed) but has strong-typing 
 (as opposed to Perl or Javascript) 
@@ -132,7 +135,30 @@ For people with a C++/Java background:
 * **Everything** is a first-class object
   * Integers, functions, types, stack frames, tracebacks, etc.
 * There are no privates, only conventions. Members that start with ``_`` are not to be manipulated directly.
-* There's no ``new``, just *invokes* the class like a function.
+* There's no ``new``, just *invoke* the class like a function.
+
+<break/>
+
+Duck Typing goes Nuclear
+
+<img src="http://www.haaretz.com/polopoly_fs/1.416769.1331009149!/image/2349077637.jpg_gen/derivatives/landscape_640/2349077637.jpg"> 
+
+In low-level programming languages, types dictate a **memory layout**. 
+In high-level languages, on the other hand, compile-time types are merely **constraints** 
+on what you're allowed to do with an object.
+
+Being an interpreted language, Python gives up on type-checking and instead adopts the spirit of
+"it's easier to ask for forgiveness than permission". Just try and see what happens.
+
+{% highlight pycon %}
+>>> def foo(this, that):
+...     return (this + that) * 2
+...
+>>> foo(3, 5)
+16
+>>> foo("hello", "world")
+'helloworldhelloworld'
+{% endhighlight %}
 
 <break/>
 
@@ -408,9 +434,7 @@ Working with files
 
 <break/>
 
-## ¿Comprendes? ##
-
-Remember ``map`` and ``filter``? Well, it's time to forget them
+List comprehension: remember ``map`` and ``filter``? Well, it's time to forget about them
 
 {% highlight pycon %}
 >>> [x for x in range(10)]
@@ -425,16 +449,21 @@ Remember ``map`` and ``filter``? Well, it's time to forget them
 
 <break/>
 
-Comprehensions galore!
+Yo comprendo!
 
 {% highlight pycon %}
 >>> [i * j for i in range(1,5) for j in range(1,5)]
 [1, 2, 3, 4, 2, 4, 6, 8, 3, 6, 9, 12, 4, 8, 12, 16]
 >>> [[i * j for i in range(1,5)] for j in range(1,5)]
 [[1, 2, 3, 4], [2, 4, 6, 8], [3, 6, 9, 12], [4, 8, 12, 16]]
->>> [" ".join(["%3d" % (i * j,) for i in range(1,5)]) for j in range(1,5)]
+>>> [" ".join(["%3d" % (i * j,) for i in range(1,5)]) 
+...     for j in range(1,5)]
 ['  1   2   3   4', '  2   4   6   8', '  3   6   9  12', '  4   8  12  16']
->>> print "\n".join([" ".join(["%3d" % (i * j,) for i in range(1,11)]) for j in range(1,11)])
+{% endhighlight %}
+
+{% highlight pycon %}
+>>> print "\n".join([" ".join(["%3d" % (i * j,) for i in range(1,11)])
+...     for j in range(1,11)])
   1   2   3   4   5   6   7   8   9  10
   2   4   6   8  10  12  14  16  18  20
   3   6   9  12  15  18  21  24  27  30
@@ -449,35 +478,115 @@ Comprehensions galore!
 
 <break/>
 
+Lighten up! Let's be lazy
 
+{% highlight pycon %}
+>>> def myfunc():
+...     yield 1
+...     yield 2
+...     yield 3
+...
+>>> g=myfunc()
+>>> g
+<generator object myfunc at 0x02A3A8F0>
+>>> g.next()
+1
+>>> g.next()
+2
+>>> g.next()
+3
+>>> g.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+{% endhighlight %}
 
-* enumerate, xrange, zip, generators
+<break/>
 
+Generators let us be as general as we wish while paying only for what we're actually using (lazy computation)
 
+{% highlight pycon %}
+>>> def fib():
+...     a = b = 1
+...     while True:
+...         yield a
+...         a, b = b, a + b
+...
+>>> g = fib()
+>>> g.next(), g.next(), g.next(), g.next(), g.next(), g.next(), g.next()
+(1, 1, 2, 3, 5, 8, 13)
+{% endhighlight %}
 
-> Skills: How to read a traceback
->
->
->
->
->
+The ``itertools`` module has some nifty utilities that we can use
 
+{% highlight pycon %}
+>>> import itertools
+>>> list(itertools.islice(fib(),10))
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+>>>
+>>> list(itertools.combinations([1,2,3,4],2))
+[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+>>>
+>>> list(itertools.permutations([1,2,3]))
+[(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+{% endhighlight %}
 
-## Loopy De Loop ##
+<break/>
 
+Remember list comprehensions? Forget them too. Generator comprehensions are the new black!
 
-## Execution Model ##
+{% highlight pycon %}
+>>> (x for x in range(10))
+<generator object <genexpr> at 0x02A37F30>
+>>> (x * 2 for x in range(10))
+<generator object <genexpr> at 0x02A34670>
+>>> (x * 2 for x in range(10) if x % 2 == 0)
+<generator object <genexpr> at 0x02A37918>
+{% endhighlight %}
+
+Huh? Of course you won't see anything... you have to consume the generator in order for it to produce values.
+
+{% highlight pycon %}
+>>> list(x * 2 for x in range(10) if x % 2 == 0)
+[0, 4, 8, 12, 16]
+{% endhighlight %}
+
+In fact, list comprehensions are a syntactic sugar for ``list(``generator comprehension``)``
+
+<break/>
+
+List comprehensions, as the name suggests, **build a list**. This can be expensive some times, 
+especially when you don't need the intermediate values. E.g., if you just want to get the sum of the elements,
+there's no need to actually hold all of them in memory. Generators are the key to efficient programming. 
+For example, ``xrange`` is like ``range`` but returns a generator instead.
+
+{% highlight pycon %}
+>>> sum(range(1000000000))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+MemoryError
+>>> sum(xrange(1000000000))
+499999999500000000L
+{% endhighlight %}
+
+<break/>
+
+And no Python tutorial can go without
+
+<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
+
+<break/>
+
+## Under the Hood ##
 
 This might be too advanced for newcomers, but I find that explaining the mechanics helps people with previous 
 programming background understand how the magic happens. So: the secret to the execution model is dictionaries.
 
 Python is an interpreted language. Code is evaluated when the module is imported
 
-And No Python Tutorial Can Go Without
+<break/>
 
-<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
-
-When in Doubt
+## When in Doubt ##
 
 {% highlight pycon %}
 >>> import this
@@ -503,12 +612,6 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 {% endhighlight %}
 
-<break/>
-
 <img src="http://tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
-
-
-
-
 
 

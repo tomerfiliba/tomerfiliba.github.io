@@ -349,7 +349,7 @@ a img {
     display:block;
     height:0px;
     margin: 130px 80px;
-    border-top: 5px dashed rgba(100,100,100,0.2);
+    border-top: 5px dashed rgba(100,100,100,0.05);
 }
 
 #content a, #content a:visited, #content a:active, #content a:link {
