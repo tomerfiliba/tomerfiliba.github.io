@@ -347,12 +347,14 @@ a img {
 
 #content section {
     display: block;
-    margin: 60px 0px;
+    margin: 0;
+    padding: 60px 0 60px 0;
     border-bottom: 5px dashed rgba(100,100,100,0.05);
 }
 
 #content section:hover {
-	background-color: rgba(255,255,0, 0.2);
+	background-color: rgba(253, 255, 207, 0.8);
+	font-size: 110% !important;
 }
 
 #content a, #content a:visited, #content a:active, #content a:link {
