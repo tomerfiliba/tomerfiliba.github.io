@@ -357,7 +357,7 @@ a img {
 	font-size: 110%;
 }
 
-#content section pre:hover {
+#content section:hover pre {
     font-size: 110% !important;
 }
 

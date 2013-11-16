@@ -1,8 +1,7 @@
 ---
 layout: etc-page
 title: A Python Crash Course for the Statically Typed Programmer
-draft: true
-description: Python crash-course
+description: A Python crash-course
 imageurl: http://tomerfiliba.com/static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
