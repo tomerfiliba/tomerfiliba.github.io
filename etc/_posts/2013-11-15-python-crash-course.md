@@ -125,11 +125,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 For people with a C background:
 
+* You don't declare variables - you just assign them
+  * And you can reassign them to different types
 * Python doesn't have ``do-while`` (use ``while``) nor does it have ``switch`` (use ``if``s or 
    dispatch tables)
 * Assignment is a statement, **not an expression**. 
   * You cannot write ``if (a = foo()) == 5:``
 * There's no such thing as passing by-value. It's always by-reference.
+  * So you might need to explicitly **copy** objects some times
+  * Or (preferably) create new objects from existing ones
 
 For people with a C++/Java background:
 
@@ -137,6 +141,7 @@ For people with a C++/Java background:
   * Integers, functions, types, stack frames, tracebacks, etc.
 * There are no privates, only conventions. Members that start with ``_`` are not to be manipulated directly.
 * There's no ``new``, just *invoke* the class like a function.
+  * ``inst = MyClass(1, 2, 3)``
 
 </section><section>
 
@@ -436,7 +441,28 @@ Working with files
  '    # The file bash.bashrc already sets the default PS1.\n', 
  "    # PS1='\\h:\\w\\$ '\n", 
  '    if [ -f /etc/bash.bashrc ]; then\n']
+>>> f.close()
 {% endhighlight %}
+
+</section><section>
+
+</section><section>
+
+Working with resources
+
+{% highlight pycon %}
+>>> with open("/etc/profile") as f:
+...     f.read(100)
+...
+'# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))\n# and Bourne compatible shell'
+{% endhighlight %}
+
+The ``with`` block automatically closes the file. It's more general than this, of course, as it's
+not limited to files. It simply ensures that the necessary cleanup that's associated with the object
+will be performed when you finish the ``with`` block.
+
+For example, you can use ``with`` to commit a transaction to a DB or do a rollback on failure,
+etc. It's a very useful pattern.
 
 </section><section>
 
@@ -634,8 +660,9 @@ For example, instances (such as ``rex`` above) are actually just dictionaries th
 That's why we can add attributes on the fly
 
 {% highlight pycon %}
+>>> rex.tail = "recursion"
 >>> rex.__dict__
-{'name' : 'Rex t3h Dawg'}
+{'name' : 'Rex t3h Dawg', 'tail' : 'recursion'}
 {% endhighlight %}
 
 </section><section>
