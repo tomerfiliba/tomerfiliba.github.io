@@ -16,30 +16,31 @@ Construct is at least context-sensitive a formalism (I showed in an
 [earlier post](http://tomerfiliba.com/blog/Survey-of-Construct3/) that it recognizes the languages like ``a^nb^nc^n...z^n``),
 which limits one's ability to reason about it (or in my case, embed it in a strongly-type language), but subsets of
 Construct are "weak enough" for that. These are known as *Pickler Combinators*, first described (as far as I can tell)
-in Andrew Kennedy's [seminal paper] (http://research.microsoft.com/pubs/64036/picklercombinators.pdf). 
+in Andrew Kennedy's [seminal paper](http://research.microsoft.com/pubs/64036/picklercombinators.pdf). 
 
 The problem I set to solve was that of a time-and-space efficient, statically-typed RPC between Python and C++.
-One approach is to encode the types into the data, such as JSON or [msgpack](http://msgpack.org/).
-Another project of mine, [RPyC](http://rpyc.readthedocs.org/en/latest/), utilizes this method too, and for dynamic
-language it's the most intuitive way to tackle the issue. But in a richly-typed static language like C++ it would
+One approach is to encode types into the data, such as JSON, pickle, or [msgpack](http://msgpack.org/).
+Another project of mine, [RPyC](http://rpyc.readthedocs.org/en/latest/), utilizes this method too, and for a dynamic
+language that's the most sensible thing to do. But in a richly-typed static language like C++ it would
 be a pity to waste both bandwidth and CPU cycles to encode that. It also makes memory management a headache, since 
-there's no way to tell in advance how much memory would be need, requires recursion for nested types, and last but
-certainly not least -- makes you dynamically-typed when there's no need for that.
+there's no way to tell in advance how much memory would be need (and what types follow). It also requires recursion 
+(for nested types), and last but certainly not least -- forces you to be dynamically-typed.
 
-The second approach is to have a well-defined IDL, such as [protobuf](https://code.google.com/p/protobuf/). However,
-this approach code generation, putting more stress on the build system, and, you know -- another DSL to work with
-and keep in sync with the code. 
+The second approach is to have a well-defined IDL, such as [protobuf](https://code.google.com/p/protobuf/) or 
+[Apache Thrift](http://thrift.apache.org/). This approach, however, requires code generation to run during the 
+build process (an extra toolchain), and, you know -- another ugly DSL to learn and maintain. 
 
 What I'm about to demonstrate here is a serialization mechanism for C++ that relies only on the type system in order
-to produce efficient encoding of arbitrarily-complicated objects -- all well-typed and resolves at compile time.
-Protobuf without code generation, if you wish.
+to produce efficient encoding of arbitrarily-complicated objects -- all well-typed and resolved in compile time.
+*Protobuf without code generation*, if you wish.
+
 Besides, I've been planning to make use of the new features of [C++11](http://www.stroustrup.com/C++11FAQ.html) 
 for a while now, so let's bring in the heavy guns! 
 
 ## Construct++ ##
 The basic idea is to have two overloaded template functions for the general case:
- * ``void pack(std::ostream&, const T&)`` 
- * ``void unpack(std::istream&, T&)``
+* ``void pack(std::ostream&, const T&)`` 
+* ``void unpack(std::istream&, T&)``
 
 And have them specialized for concrete and high-order types. If you're not comfortable with C++11, be sure to 
 read through the new features because it gets a little scary. Here's how we begin:
@@ -67,9 +68,12 @@ int16_t v;
 unpack(stream, v);
 {% endhighlight %}
 
+Big deal.
+
 ## Arrays ##
 
-Since we're already dealing with fixed-size data, let's also handle fixed-size arrays of packable objects:
+Since we're already dealing with fixed-size data, let's also handle the case of fixed-size arrays 
+of packable objects:
 
 {% highlight cpp %}
 template<typename T, std::size_t N> 
@@ -125,24 +129,24 @@ void unpack(std::istream& stream, std::vector<T>& vec) {
 }
 {% endhighlight %}
 
-It just prefixes the vector with a length field (``uint8_t``, but you can specify a different type), followed by
-that many items. Now we can write:
+It just adds a prefixes of the vector's length (as ``uint8_t``, but you can specify a different type), followed by
+the vector's items. Now we can write:
 
 {% highlight cpp %}
 vector<uint16_t> vec;
 unpack(stream, vec);
-
-// "\x03aabbcc" --> [0x6161, 0x6262, 0x6363]
 {% endhighlight %}
+
+Which takes ``"\x03aabbcc"`` and spews out ``[0x6161, 0x6262, 0x6363]``. Nice already.
 
 ## Tuples ##
 
-[Tuples](http://en.cppreference.com/w/cpp/utility/tuple) are a new feature of C++11. They are can hold a well-typed, 
-heterogeneous sequence of objects, e.g., ``std::tuple<int, char*, float> t(5, "hello", 1.414)``. You can think
-of them as a light-weight ``structs``, where fields have indexes instead of names.
+[Tuples](http://en.cppreference.com/w/cpp/utility/tuple) are a new feature of C++11 that holds a strongly-typed 
+heterogeneous sequence of objects, as in ``std::tuple<int, char*, float> t(5, "hello", 1.414)``. You can think
+of tuples as a light-weight ``structs``, where fields have indexes instead of names.
 
-Iterating over tuples in compile time is a bitch, I know, so I'll skip the full implementation (hint: it uses 
-recursion) and just say that we have:
+Iterating over tuples in compile time is a bitch, trust me on that, so I'll skip the full implementation 
+(hint: it requires recursion) and just say that we have:
 
 {% highlight cpp %}
 template<typename... Types> void pack(std::ostream& stream, const std::tuple<Types...>& tup) {
@@ -158,8 +162,10 @@ Why do I even bother to show that? The answer will be clear in a moment.
 ## Structs ##
 
 Structs pose a rather impossible problem for our packing combinators. First of all, not all structs are
-packable: they may hold pointers to other data or internal state that might not be transferable. But more importantly,
-every struct is different... If you wish, "vector<T> are all alike; every struct is a struct in its own way". 
+packable: they may hold pointers or some internal state that might be transient. But worse, from our perspective,
+is the fact that every struct is different... If you wish, "``vector<T>`` are all alike; every struct is a struct in 
+its own way".
+
 So there's nothing we can do but (a) mark packable structs explicitly and (b) implement a custom pack()/unpack()
 semantics for every struct (using inheritance, for example).
 
@@ -203,9 +209,9 @@ my_struct s;
 unpack(stream, s);
 {% endhighlight %}
 
-But notice how mechanical the ``_pack_self``/``_unpack_self`` methods are -- we really wish to auto-generate 
-them somehow. We can use a preprocessor macro, but we can't run a for-loop in them. We can, however, use some 
-witchcraft... remember tuples?
+But notice how mechanical the ``_pack_self``/``_unpack_self`` methods are -- we'd really wish to auto-generate 
+them somehow. We can use a preprocessor macro, but how could we generate a line for each member? 
+We don't have meta-for-loops after all... or do we? Enter tuples!
 
 {% highlight cpp %}
 #define PACKED(...) \
@@ -219,8 +225,11 @@ witchcraft... remember tuples?
     }
 {% endhighlight %}
 
-``std::tie`` builds a strongly-typed tuple of references, which utlimately expands to something like the 
-first version given above thanks to the power of template programming. And here's the whole deal:
+``std::tie`` builds a strongly-typed tuple of references, meaning they refer to the member variables instead of
+holding a copy. Thanks to the power of template programming, packing/unpacking this tuple utlimately boils down 
+to something like the first version given above -- a line for each member. 
+
+So here's the whole deal:
 
 {% highlight cpp %}
 struct first_struct : packable {
@@ -245,7 +254,7 @@ struct second_struct : packable {
 };
 {% endhighlight %}
 
-## And it even Works ##
+Ain't that cool? And it even works!
 
 {% highlight cpp %}
 std::stringstream ss;
