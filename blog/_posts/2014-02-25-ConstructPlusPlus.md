@@ -1,7 +1,7 @@
 ---
 layout: blogpost
 title: "Construct Plus Plus"
-draft: true
+tags: [python, construct]
 description: "Implementing surprisingly efficient Pickler Combinators in C++"
 imageurl: http://tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png
 imagetitle: Construct
@@ -264,10 +264,11 @@ unpack(ss, x);
 
 std::cout << "a=" << (int)x.a << "," << "b=" << x.b << "," 
           << "c=" << x.c[0][0] << ".." << x.c[2][1] << ","  
-          << "d=(" << x.d.x << "," << x.d.y << ")," << "e=" << x.e << std::endl;
-
-// prints a=65,b=hello,c=12385..12390,d=(B,12391),e=2
+          << "d=(" << x.d.x << "," << x.d.y << ")," 
+          << "e=" << x.e << std::endl;
 {% endhighlight %}
+
+Which prints ``a=65,b=hello,c=12385..12390,d=(B,12391),e=2``.
 
 The full code snippet [is available here](https://gist.github.com/tomerfiliba/9216420), tested with ``g++4.8`` 
 and ``clang++3.4`` with ``-std=c++11``.
