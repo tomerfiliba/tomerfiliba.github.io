@@ -553,6 +553,34 @@ a img {
 	padding: 0;
 }
 
+#share_post {
+    display: none;
+    width: 100%;
+    font-size: 30px;
+    padding: 10px;
+}
+
+#share_post a.icon-twitter {
+    color: #00ACED;
+    border: 0;
+    background: transparent;
+    padding: 10px;
+}
+
+#share_post a.icon-facebook {
+    color: #3b5998;
+    border: 0;
+    background: transparent;
+    padding: 10px;
+}
+
+#share_post a.icon-google-plus {
+    color: #dd4b39;
+    border: 0;
+    background: transparent;
+    padding: 10px;
+}
+
 @media only screen and (max-width:1200px) {
     #sidebar-wrapper {
         width: 300px;
