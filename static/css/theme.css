@@ -554,13 +554,17 @@ a img {
 }
 
 #share_post {
-    display: none;
     width: 100%;
-    padding: 0 10px;
+    margin: 30px 0px 40px 0;
+    padding: 10px 0;
+    display: block;
+    border-top: 2px solid rgba(0, 100, 0, 0.1);
+    border-bottom: 2px solid rgba(0, 100, 0, 0.1);
 }
 
 #share_post a {
-    font-size: 30px;
+    /*display: inline;*/
+    font-size: 36px;
 }
 
 #share_post a.icon-twitter-squared {
@@ -763,6 +767,11 @@ a img {
     
     #content .preview img {
         margin: 0 auto 0 auto;
+    }
+
+    #share_post .centerer {
+        margin: 0 auto;
+        width: 160px;
     }
 
 }
