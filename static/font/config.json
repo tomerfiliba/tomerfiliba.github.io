@@ -3,6 +3,8 @@
   "css_prefix_text": "icon-",
   "css_use_suffix": false,
   "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
   "glyphs": [
     {
       "uid": "c64623255a4a7c72436b199b05296c4f",
@@ -29,9 +31,21 @@
       "src": "fontawesome"
     },
     {
+      "uid": "4743b088aa95d6f3b6b990e770d3b647",
+      "css": "facebook-squared",
+      "code": 59402,
+      "src": "fontawesome"
+    },
+    {
       "uid": "e9107949dd6c9e8ab2b29ae07156e38c",
       "css": "linkedin",
       "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "906348dc798a0d42715cc97c875e3ac6",
+      "css": "twitter-squared",
+      "code": 59401,
       "src": "fontawesome"
     },
     {
@@ -57,6 +71,12 @@
       "css": "github",
       "code": 59393,
       "src": "zocial"
+    },
+    {
+      "uid": "626fb97a7c0c0db53a1853fb9e96e223",
+      "css": "googleplus-rect",
+      "code": 59392,
+      "src": "brandico"
     }
   ]
 }
