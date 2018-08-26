@@ -74,13 +74,84 @@ The algorithm is indeed very simple, and *correct* (as far as I can tell), but i
 
 As long as the queue is "sparse" (meaning it hadn't filled up and conusumers are on par with producers), `writeIndex < readIndex + N` holds (*), so producers push sequentially (modulo N) so that no gaps are created. When there are no gaps, consumers will pop items one after another and will never need to skip slots. In this case the queue is as efficient as the standard implementations, and even preserves order. (*) There is a caveat here, since the consumer will first increment the read index, and only then swap; if the thread context-switches between the two instructions, the condition above may no longer hold, but producers will not be able to use that slot until it's freed.
 
-Things get complicated when the queue fills up. Again, this is something you'd want to avoid anyway. In this case producers will block, incrementing the write index until they find an empty slot. This may cause `writeIndex > readIndex+N`, so gaps may occur. For example, suppose an 8 element queue is full like so `[10, 20, 30, 40, 50, 60, 70, 80]; N=8, readIndex=0, writeIndex=8`, and two producers are racing to push, idling until the there's room, bringing `writeIndex` to 698 in the process. Now the two producers are preempted, and a consumer thread pops 5 items. Now the consumer is preemted, and the queue looks like so: `[E, E, E, E, E, 60, 70, 80], readIndex=5, writeIndex=698`. One of the producers gets to run, it first increments the write index to 699, `699 % 8 = 3`, so it will try to `arr[3]`. This slot is empty, and it occupies it. Once the consumer wraps around, it will have to skip 3 empty slots before finding an item. But this is only true if the slots remain empty... in the meantime, other producers may be able to find and use them, so by the time the consumer gets around it will not need to skip.
+Things get complicated when the queue fills up. Again, this is something you'd want to avoid anyway. In this case producers will block, incrementing the write index until they find an empty slot. This may cause `writeIndex > readIndex+N`, so gaps may occur. For example, suppose an 8 element queue is full like so `[10, 20, 30, 40, 50, 60, 70, 80]; N=8, readIndex=0, writeIndex=8`, and two producers are racing to push, idling until the there's room, bringing `writeIndex` to 698 in the process. Now the two producers are preempted, and a consumer thread pops 5 items. Now the consumer is preemted, and the queue looks like so: `[E, E, E, E, E, 60, 70, 80], readIndex=5, writeIndex=698`. One of the producers gets to run, it first increments the write index to 699, `699 % 8 = 3`, so it will try to occupy `arr[3]` and succeed. Once the consumer wraps around, it will have to skip 3 empty slots before finding an item. But this is only true if the slots remain empty -- in the meantime, other producers may be able to find and use them, so by the time the consumer gets around it will not need to skip.
 
-So gaps may only occur when producers outrun consumers, but then again, the same producers will find the gaps *before* consumers will, and fill them up. It is very unlikely for a consumer to find *many* gaps in such cases. Pathological cases may exist of course, but even then it's only a performance penalty, not a deadlock.
+So gaps may only occur when producers outrun consumers, but then again, the same producers will find the gaps *before* consumers will, and use them. It is thus very unlikely for a consumer to find *many* gaps. Pathological cases may exist of course, but even then it's only a performance penalty, not a deadlock, and the benefit in the average case is more significant.
 
 ## Reducing Contention ##
 
-So this nifty algorithm is great, but any queue that uses read and write indices inherently creates memory hotspots: the indices themselves and the queue's write-head and read-tail. These cache-lines are tossed around different threads (cores) every time an *attempt* to push or pop is made, which leads to heavy contention. The penalty of this gets considerably worse when multiple NUMA nodes are present, as the cost of invalidating cache lines all the time is much higher.
+So this nifty algorithm is great, but any queue that uses read and write indices inherently creates memory hotspots: the indices themselves and the queue's write-head and read-tail. The cache-lines holding them are tossed around different threads (cores) every time an *attempt* to push or pop is made, which leads to heavy contention. The penalty of these hotspots gets considerably higher when multiple NUMA nodes are involved, as the cost of invalidating cache lines across NUMA boundaries is huge.
 
-My tests proved, as expected, that memory contention is by far the dominating factor, so I made it a goal to minimize it. Since the problem is inherent to having a shared head and tail, it is clear we must let go of them. The solution I came up with is rather trivial -- spread the producers and consumers all over the array, and have each work with a local set of indices.
+My testing proved that memory contention is by far the dominating factor here, and I began thinking for ways to minimize it. Essentially, we need to "spread the load" across as many cache lines as possible, to achieve better core/NUMA locallity, so the solution was quite trivial: make producers and consumers stateful, each holding its internal state locally, and randomize them across the array.
+
+{% highlight d %}
+struct ConcurrentQueue(size_t N)  {
+    private enum ulong invalid = -1;
+
+    shared ulong numPushed;
+    shared ulong numPopped;
+    shared ulong[N] arr = invalid;
+
+    static struct Producer {
+        shared ulong[] arr;
+        shared ulong* pushed;
+        ulong wi;
+
+        void push(ulong value) nothrow @nogc {
+            assert(value != invalid);
+            while (true) {
+                if (cas(arr[wi++ % N], invalid, value)) {
+                    atomicOp!"+="(*pushed, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+    static struct Consumer {
+        shared ulong[] arr;
+        shared ulong* pushed;
+        shared ulong* popped;
+        ulong ri;
+
+        ulong pop() nothrow @nogc {
+            while (*pushed > *popped) {
+                ulong res = xchg(arr[ri++ % N], invalid);
+                if (res != invalid) {
+                    atomicOp!"+="(*popped, 1);
+                    return res;
+                }
+            }
+            return invalid;
+        }
+    }
+
+    auto getProducer() {
+        import std.random: uniform;
+        return Producer(arr, &pushed, uniform(0, N));
+    }
+
+    auto getConsumer() {
+        import std.random: uniform;
+        return Consumer(arr, &pushed, &popped, uniform(0, N));
+    }
+}
+{% endhighlight %}
+
+As you can see, producers and consumers hold all their state locally, and they start off at random offsets. The only things they synchonize on are `numPushed`, `numPopped` and the array elements themselves. The correctness of the new algorithm is follows along the same lines of the previous one, so it's the efficiency we're after.
+
+From a hotspot point of view, the contention here is clearly lower, as each thread attempts to push/pop from different places.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
