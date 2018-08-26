@@ -138,20 +138,37 @@ struct ConcurrentQueue(size_t N)  {
 }
 {% endhighlight %}
 
-As you can see, producers and consumers hold all their state locally, and they start off at random offsets. The only things they synchonize on are `numPushed`, `numPopped` and the array elements themselves. The correctness of the new algorithm is follows along the same lines of the previous one, so it's the efficiency we're after.
+As you can see, producers and consumers hold all their state locally, and they start off at random offsets. The only things they synchonize on are `numPushed`, `numPopped` and the array slots. The correctness of the revised algorithm goes along the same lines of the previous one, so it's the efficiency we're after.
 
-From a hotspot point of view, the contention here is clearly lower, as each thread attempts to push/pop from different places.
+From a contention point of view, the heat map is very different now as each thread touches different cache lines. This algorithm has inherent gaps, so a consumer may have to scan for a while until it finds the next item, but the expected gap is up to `N / numProducers`, and once it hits an item, it will likely hit a streak since producers will fill slots sequentially as well.
+
+## Real World Numbers ##
+
+I ran my tests on my laptop (i7-6560U, 4 logical cores, single NUMA node), a desktop (i7-4770, 8 logical cores, single NUMA node), and `x1.32xlarge` instance on AWS (Xeon E7-8880, 128 logical cores, 4 NUMA nodes). In the test, each producer pushes 1 million ulongs, which the consumers pop and sum up (in a local accumulator). When the test ends, we sum up all the accumulators and expect to reach the right sum. Summation was chosen because it is not sensitive to order and is very fast. The results below are in seconds; lower is better.
+
+```
+Classical Algorithm:
+
+   Producers | Consumers | Queue Size | Laptop | Desktop | x1.32xlarge
+   ----------+-----------+------------+--------+---------+-------------
+    1        | 32        | 4096       |        |         |
+    32       | 1         | 4096       |        |         |
 
 
+First Algorithm:
 
 
+Reduced-Contention Algorithm:
 
 
+```
+
+Note that this test the queues under extreme contention -- all threads are basically busy-waiting on the queue. The numbers may be different when contention is lower (e.g., consumers pulling *tasks* and executing them, which may take time). Also, the implementation does not sleep in the kernel on purpose -- this can be implemented as a layer on top.
 
 
+## Further Directions ##
 
+I would really like to drop `numPushed` and `numPopped` altogether, in an attempt to reduce contention to the bare minimum -- synchronizing only on the array slots. A promising way would be to segment the array into "blocks" of, say, 8 cache lines (64 items), and have producers first allocate a block and fill it up. This reduces the contention by factor of 64, but introduces more complexities to popping -- we must allow popping from an incomplete block, but we should delay that as much as possible. Also, it is not possible to know if the queue is empty without *some* scanning.
 
-
-
-
+However, my intent was to come up with a *fast and simple* concurrent queue; complicating the algorithm beyond some point defeats the purpose. It may prove super-fast, but that's a different blog post.
 
