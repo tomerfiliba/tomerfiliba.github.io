@@ -1,6 +1,7 @@
 ---
 layout: blogpost
 title: "Rethinking Concurrent Queues"
+tags: [dlang]
 description: "Designing a simple and fast multi-producer-multi-consumer queue"
 imageurl: http://tomerfiliba.com/static/res/2018-08-25-producer.jpg
 imagetitle: "A single producer"
@@ -21,6 +22,8 @@ It may very well be that some algorithms rely on the monotonicity that I demonst
 Second, we need to discuss the nature of the *items* in the queue. Many queues are *templated* on an arbitrary item-type, which may very well be quite big. I claim an `intptr_t/void*` is all you ever need to push and pop. In the case of multiple threads, which all share the same address space, you can simply pass pointers to objects. In the case of multiple processes, which have different address spaces, you can pass indices to an array of elements/offsets into a shared-memory arena. This observation is important since it allows us to work in 8-byte-aligned QWORDs, which are inherently atomic (at least on x86-64).
 
 Third, we'll need an invalid value. A natural such value is `null` if we're talking about `void*` items, or maybe `MAP_FAILED` (which is `(void*)-1`); it doesn't really matter. Since we're using pointers/indices/offsets and not arbitrary data types, we can safely sacrifice one value from the 64-bit range.
+
+Last but not least, the queue I need doesn't have to sleep in the kernel; I'm perfectly content with it spinning in usermode until there's room to push (the queue can be large enough to ensure such stalls are extremely rare); popping, on the other hand, must return immediately should the queue be empty. Putting the thread to sleep is possible of course, but out of the scope of this discussion.
 
 ## A Simple Queue ##
 
@@ -64,19 +67,19 @@ struct ConcurrentQueue(size_t N) {
 
 ## Correctness ##
 
-This is D code, I hope it's readable by any C/C++ coder as well (at least as pseudo-code). Let's do an informal analysis of the algorithm: it's quite obvious it can't deadlock, since pushing will scan the whole array until an empty slot is found. The same goes for popping, which will iterate until a non-empty slot is found. The `numPushed > numPopped` condition of `pop()` is *eventually-consistent*, so a pop() right after a push might return `invalid`, but *eventually* calling `pop` would succeed. We will never override non-empty slots, so we will never drop items or overwrite unconsumed ones, and since popping scans sequentially, we'll never neglect an item in the queue (an item can't stay in the queue for more than a whole round, i.e., `N` pops).
+This is D code, I hope it's readable by any C/C++ coder as well (at least as pseudo-code). Let's do an informal analysis of the algorithm: it's quite obvious it can't deadlock, since pushing will scan the whole array until an empty slot is found. The same goes for popping, which will iterate until a non-empty slot is found. The `numPushed > numPopped` condition of `pop()` is *eventually-consistent*, so a pop() right after a push might return `invalid`, but *eventually* calling `pop` would succeed. We will never override non-empty slots, so we will never drop items or overwrite unconsumed ones, and since popping scans sequentially, we'll never neglect an item in the queue (an item can't stay in the queue for more than `N` pops).
 
-The only location we're synchronizing on is the array slots themselves, which are 8-byte aligned and 8-byte in size -- we either compare-and-swap or do an uncondition swap (`xchg`). The read/write index we get are "not important" for the correctness -- we don't even have to increment them atomically. If we hadn't, we might repeat the same index several times, but the compare-and-swap protects us. Making it atomic is an optimization, actually. The last bit we're relying on is incrementing `numPushed` and `numPopped`, and these have to be atomic or we'd lose track of the number of items queued, and `pop` will fail. But if we allowed pop to block on an empty queue (or make a whole round before giving up), we wouldn't need these either.
+The only location we're synchronizing on is the array slots themselves, which are 8-byte aligned and 8-byte in size -- we either compare-and-swap or do an unconditional swap (`xchg`). The read/write index we get are "not important" for the correctness -- we don't even have to increment them atomically. If we hadn't, we might repeat the same index several times, but the compare-and-swap protects us. Making it atomic is an optimization, actually. The last bit we're relying on is incrementing `numPushed` and `numPopped`, and these have to be atomic or we'd lose track of the number of items queued, and `pop` will fail. But if we allowed pop to block on an empty queue (or make a whole round before giving up), we wouldn't need these either.
 
 ## Efficiency ##
 
-The algorithm is indeed very simple, and *correct* (as far as I can tell), but it may seems highly inefficient as it might scan the whole array each time before finding a slot. First of all, the queue's size is expected to be "big enough" to prevent stalls (i.e., at least double the expected number of queued items). It's a good rule of thumb in any implementation I've checked. To further talk about efficiency, let's discuss two cases -- a sparse queue and a full queue.
+The algorithm is indeed very simple, and *correct* (as far as I can tell), but it may seems highly inefficient as it might scan the whole array each time before finding a slot. First of all, the queue's size is expected to be "big enough" to prevent stalls (i.e., at least double the expected number of queued items). It's a good rule of thumb in any implementation I've checked. To further talk about efficiency, we need to look at two distinct cases: a sparse queue and a full queue.
 
-As long as the queue is "sparse" (meaning it hadn't filled up and conusumers are on par with producers), `writeIndex < readIndex + N` holds (*), so producers push sequentially (modulo N) so that no gaps are created. When there are no gaps, consumers will pop items one after another and will never need to skip slots. In this case the queue is as efficient as the standard implementations, and even preserves order. (*) There is a caveat here, since the consumer will first increment the read index, and only then swap; if the thread context-switches between the two instructions, the condition above may no longer hold, but producers will not be able to use that slot until it's freed.
+As long as the queue is "sparse" (meaning it hadn't filled up and conusumers are on par with producers), `writeIndex < readIndex + N` holds, so producers push sequentially (modulo N) so that no gaps are created. When there are no gaps, consumers will pop items one after another and will never need to skip slots. In this case the queue is as efficient as the standard implementations, and even preserves order. There is a caveat here, since the consumer will first increment the read index, and only then swap; if the thread context-switches between the two instructions, the condition above may no longer hold, but producers will not be able to use that slot until it's marked free.
 
-Things get complicated when the queue fills up. Again, this is something you'd want to avoid anyway. In this case producers will block, incrementing the write index until they find an empty slot. This may cause `writeIndex > readIndex+N`, so gaps may occur. For example, suppose an 8 element queue is full like so `[10, 20, 30, 40, 50, 60, 70, 80]; N=8, readIndex=0, writeIndex=8`, and two producers are racing to push, idling until the there's room, bringing `writeIndex` to 698 in the process. Now the two producers are preempted, and a consumer thread pops 5 items. Now the consumer is preemted, and the queue looks like so: `[E, E, E, E, E, 60, 70, 80], readIndex=5, writeIndex=698`. One of the producers gets to run, it first increments the write index to 699, `699 % 8 = 3`, so it will try to occupy `arr[3]` and succeed. Once the consumer wraps around, it will have to skip 3 empty slots before finding an item. But this is only true if the slots remain empty -- in the meantime, other producers may be able to find and use them, so by the time the consumer gets around it will not need to skip.
+Things get complicated when the queue fills up. Again, this is something you'd want to avoid anyway. In this case producers will block, incrementing the write index until they find an empty slot. This may cause `writeIndex > readIndex+N`, so gaps may occur. For example, suppose an 8 element queue is full like so `[10, 20, 30, 40, 50, 60, 70, 80]; N=8, readIndex=0, writeIndex=8`, and two producers are racing to push, idling until the there's room, bringing `writeIndex` to 698 in the process. Now the two producers are preempted, and a consumer thread pops 5 items before being preempted as well. So far the queue looks like so: `[E, E, E, E, E, 60, 70, 80]`. One of the producers gets to run, increments the write index to 699 (`699 % 8 = 3`) and will successfully occupy `arr[3]`, resulting in `[E, E, E, 90, E, 60, 70, 80]`. Once the consumer wraps around, it will have to skip 3 empty slots before finding an item. Bummer... but this is only the case if the slots remain empty. In the meantime, other producers may find and use these gaps, so by the time the consumer gets around it will not need to skip at all.
 
-So gaps may only occur when producers outrun consumers, but then again, the same producers will find the gaps *before* consumers will, and use them. It is thus very unlikely for a consumer to find *many* gaps. Pathological cases may exist of course, but even then it's only a performance penalty, not a deadlock, and the benefit in the average case is more significant.
+To sum it up, gaps may only occur when producers outrun consumers, but then again, the same producers will find the gaps *before* consumers will, and use them. It is thus very unlikely for a consumer to find *many* gaps. Pathological cases may exist of course, but even then it's only a performance degradation, not a deadlock, and the benefit in the average case is more significant.
 
 ## Reducing Contention ##
 
@@ -147,13 +150,12 @@ From a contention point of view, the heat map is very different now as each thre
 I ran my tests on my laptop (i7-6560U, 4 logical cores, single NUMA node), a desktop (i7-4770, 8 logical cores, single NUMA node), and `x1.32xlarge` instance on AWS (Xeon E7-8880, 128 logical cores, 4 NUMA nodes). In the test, each producer pushes 1 million ulongs, which the consumers pop and sum up (in a local accumulator). When the test ends, we sum up all the accumulators and expect to reach the right sum. Summation was chosen because it is not sensitive to order and is very fast. The results below are in seconds; lower is better.
 
 ```
-Classical Algorithm:
+Classical Algorithm (as a reference):
 
    Producers | Consumers | Queue Size | Laptop | Desktop | x1.32xlarge
    ----------+-----------+------------+--------+---------+-------------
     1        | 32        | 4096       |        |         |
     32       | 1         | 4096       |        |         |
-
 
 First Algorithm:
 
@@ -163,7 +165,7 @@ Reduced-Contention Algorithm:
 
 ```
 
-Note that this test the queues under extreme contention -- all threads are basically busy-waiting on the queue. The numbers may be different when contention is lower (e.g., consumers pulling *tasks* and executing them, which may take time). Also, the implementation does not sleep in the kernel on purpose -- this can be implemented as a layer on top.
+Note that this test the queues under extreme contention -- all threads are basically busy-waiting on the queue. The numbers may be different when contention is lower (e.g., consumers pulling *tasks* and executing them, which may take time), but I believe the only way to test the implementa
 
 
 ## Further Directions ##
