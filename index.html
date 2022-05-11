@@ -1,27 +1,13 @@
 ---
 layout: default
-section: home
+section: blog
 description: "Tomer Filiba's homepage and blog"
-hidefooter: true
-hidetagline: true
+title: Blog Posts
+feed_link: http://tomerfiliba.com/blog/atom.xml
 ---
 
-<div id="banner-text">
-<h1>Hi There</h1>
-<p>
-I'm Tomer Filiba, a <a href="http://goo.gl/uZuisr">freelancing</a> software expert and author of numerous 
-<a href="http://goo.gl/y9Rwe0">open source</a> projects, most notable of which are <a href="http://goo.gl/U8iiWL">RPyC,</a> 
-<a href="http://goo.gl/Ytd5x8">Construct</a> and <a href="http://goo.gl/DD50AN">Plumbum</a>. 
-I mess mostly with Python, but my skill set ranges from low-level, resource-constrained environments
-to large-scale servers, and from the mechanics of computers, networks and kernels to 
-the more theoretical aspects of algorithms or advanced type systems.
-</p><p>
-This is my personal site and <a href="/blog">blog</a>, where I write about my work, open source projects 
-and even politics (occasionally, don't get scared <i class="icon-emo-happy"></i>).
-</p><p>
-I'm currently doing projects for several companies, which keep me busy, but feel free to 
-<a href="mailto:tomerfiliba@gmail.com">contact me</a> regarding projects or job opportunities,
-as well as my open source project. You can find out more about what I do in the <a href="/about">about page</a>.
-</p>
-</div>
+{% assign filtered_posts = site.categories.blog %}
+
+{% include pagelist.html %}
+
 
