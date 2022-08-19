@@ -5,10 +5,10 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Tomer Filiba's Blog</title>
- <link href="https://www.tomerfiliba.com/blog/atom.xml" rel="self"/>
- <link href="https://www.tomerfiliba.com/blog/"/>
+ <link href="https://tomerfiliba.com/blog/atom.xml" rel="self"/>
+ <link href="https://tomerfiliba.com/blog/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>https://www.tomerfiliba.com/blog/</id>
+ <id>https://tomerfiliba.com/blog/</id>
  <author>
    <name>Tomer Filiba</name>
    <email>tomerfiliba@gmail.com</email>
@@ -18,9 +18,9 @@ layout: nil
  {% unless post.draft %}
  <entry>
    <title>{{ post.title }}</title>
-   <link href="https://www.tomerfiliba.com{{ post.url }}"/>
+   <link href="https://tomerfiliba.com{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>https://www.tomerfiliba.com{{ post.id }}</id>
+   <id>https://tomerfiliba.com{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endunless %}
