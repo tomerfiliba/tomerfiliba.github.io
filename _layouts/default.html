@@ -18,7 +18,7 @@ layout: nil
     <![endif]-->
 
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="canonical" href="https://www.tomerfiliba.com{{page.url}}" />
+    <link rel="canonical" href="https://tomerfiliba.com{{page.url}}" />
     <link rel="stylesheet" href="/static/css/theme.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/static/css/syntax.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/static/css/fontello.css" type='text/css'>
@@ -59,7 +59,7 @@ layout: nil
     <div id="sidebar-wrapper">
         <div id="sidebar">
             <div id="logobox">
-                <a href="https://www.tomerfiliba.com/" title="home" style="border:0;">
+                <a href="/" title="home" style="border:0;">
                 <img id="sitelogo" src="/static/logos/fish-logo.png"/>
                 <div id="sitename">tomer filiba</div></a>
             </div>
@@ -83,10 +83,10 @@ layout: nil
             {% endunless %}
             <div id="menu-wrapper">
                 <div id="menu">
-                    <a href="https://www.tomerfiliba.com/blog" class='{{page.section}} {%if page.section == "blog" %}current{% endif %}'><div class="expander"></div>blog</a>
-                    <a href="https://www.tomerfiliba.com/projects" class='{{page.section}} {%if page.section == "projects" %}current{% endif %}'><div class="expander"></div>projects</a>
-                    <a href="https://www.tomerfiliba.com/recipes" class='{{page.section}} {%if page.section == "recipes" %}current{% endif %}'><div class="expander"></div>code</a>
-                    <a href="https://www.tomerfiliba.com/etc" class='{{page.section}} {%if page.section == "etc" %}current{% endif %}'><div class="expander"></div>etc</a>
+                    <a href="/blog" class='{{page.section}} {%if page.section == "blog" %}current{% endif %}'><div class="expander"></div>blog</a>
+                    <a href="/projects" class='{{page.section}} {%if page.section == "projects" %}current{% endif %}'><div class="expander"></div>projects</a>
+                    <a href="/recipes" class='{{page.section}} {%if page.section == "recipes" %}current{% endif %}'><div class="expander"></div>code</a>
+                    <a href="/etc" class='{{page.section}} {%if page.section == "etc" %}current{% endif %}'><div class="expander"></div>etc</a>
                 </div>
             </div>
             <div id="recent">
@@ -94,7 +94,7 @@ layout: nil
                 <div id="recent-content">
 		            {% for p in site.posts limit: 30 %}
 		            {% unless p.draft %}
-    		            <a href="https://www.tomerfiliba.com{{p.url}}" title="/{{p.categories | first}}"><div class="expander"></div>{{p.title}}</a>
+    		            <a href="{{p.url}}" title="/{{p.categories | first}}"><div class="expander"></div>{{p.title}}</a>
 		            {% endunless %}
 		            {% endfor %}
                 </div>
