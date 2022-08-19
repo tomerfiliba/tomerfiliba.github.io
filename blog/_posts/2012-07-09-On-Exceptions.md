@@ -3,11 +3,11 @@ layout: blogpost
 title: "Javaism, Exceptions, and Logging: Part 2"
 description: "Javaism, Exceptions and Logging: Lessons from refactoring large codebases. Part 2 of 3"
 tags: [python]
-imageurl: https://www.tomerfiliba.com/static/res/2012-07-09-i-fixed2.jpg
+imageurl: /static/res/2012-07-09-i-fixed2.jpg
 imagetitle: Nesting Exceptions...
 ---
 
-Considering the reactions to the [previous post](https://www.tomerfiliba.com/blog/Javaism) in this
+Considering the reactions to the [previous post](/blog/Javaism) in this
 series, my intent was obviously misunderstood. Please allow me to clarify that **I was not
 attacking Java or Python**: Java is popular and has proven to be productive,
 both as a language and as an ecosystem; the stylistic and semantic choices it makes are none of my

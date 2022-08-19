@@ -3,7 +3,7 @@ layout: blogpost
 title: Solving Systems of Linear Equations
 tags: [python]
 description: A simple and complete solver for systems of linear equations
-imageurl: https://www.tomerfiliba.com/static/res/2012-03-25-gauss.png
+imageurl: /static/res/2012-03-25-gauss.png
 imagetitle: Carl Friedrich
 ---
 

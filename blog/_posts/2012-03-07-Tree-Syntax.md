@@ -3,7 +3,7 @@ layout: blogpost
 title: Easy Syntax for Representing Trees
 tags: [python]
 description: Demonstrates a quick and readable way to represents trees in python code
-imageurl: https://www.tomerfiliba.com/static/res/2012-03-07-tag.jpg
+imageurl: /static/res/2012-03-07-tag.jpg
 imagetitle: TAG trees
 ---
 

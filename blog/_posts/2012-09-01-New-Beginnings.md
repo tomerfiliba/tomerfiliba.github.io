@@ -2,7 +2,7 @@
 layout: blogpost
 title: "New Beginnings"
 description: "Becoming a freelance developer"
-imageurl: https://www.tomerfiliba.com/static/res/2012-09-01-france.jpg
+imageurl: /static/res/2012-09-01-france.jpg
 imagetitle: Macarons in the city of Saint Malo, France
 ---
 

@@ -3,7 +3,7 @@ layout: blogpost
 title: "Construct Plus Plus"
 tags: [python, construct]
 description: "Implementing surprisingly efficient Pickler Combinators in C++"
-imageurl: https://www.tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png
+imageurl: /static/res/2012-05-16-construct-logo-small.png
 imagetitle: Construct
 ---
 
@@ -13,7 +13,7 @@ a way write a statically-typed version of [Construct](http://construct.readthedo
 Haskell, but quickly gave up when my brain overheated with category theory.
 
 Construct is at least context-sensitive a formalism (I showed in an
-[earlier post](https://www.tomerfiliba.com/blog/Survey-of-Construct3/) that it recognizes the languages like ``a^nb^nc^n...z^n``),
+[earlier post](/blog/Survey-of-Construct3/) that it recognizes the languages like ``a^nb^nc^n...z^n``),
 which limits one's ability to reason about it (or in my case, embed it in a strongly-type language), but subsets of
 Construct are "weak enough" for that. These are known as *Pickler Combinators*, first described (as far as I can tell)
 in Andrew Kennedy's [seminal paper](http://research.microsoft.com/pubs/64036/picklercombinators.pdf).

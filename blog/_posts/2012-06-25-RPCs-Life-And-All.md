@@ -2,7 +2,7 @@
 layout: blogpost
 title: RPCs, Life and All
 description: A response to Gavrie Philipson's "Why I Don't Like RPC" post
-imageurl: https://www.tomerfiliba.com/static/res/2012-06-25-duckface.jpg
+imageurl: /static/res/2012-06-25-duckface.jpg
 imagetitle: If it has the face of a duck...
 ---
 
@@ -137,7 +137,7 @@ application seeks to start at square one. Of course, done this way, it only hand
 it finds relevant... doing network programming at the socket level is analogous to rewriting
 the kernel for every desktop application. It doesn't make sense.
 
-I've started (and abandoned) an ambitious project called [layer5](https://www.tomerfiliba.com/projects),
+I've started (and abandoned) an ambitious project called [layer5](/projects),
 which aimed to concentrate all the network-related sorcery in a single place, so that programs on
 top of it wouldn't have to care. It originated from my frustration with network programming in
 general (and in RPyC in particular)... things like handling timeouts, reconnects, authentication,

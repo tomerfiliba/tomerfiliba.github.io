@@ -4,7 +4,7 @@ title: "An Unexpected Journey"
 description: "Peter Jackson has become George Lucas. Stop him before it's too late"
 ---
 
-<img src="https://www.tomerfiliba.com/static/res/2013-01-14-jarjar.jpg" class="blog-post-image" title="Silly sidekicks"/>
+<img src="/static/res/2013-01-14-jarjar.jpg" class="blog-post-image" title="Silly sidekicks"/>
 
 The Hobbit: *An Unexpected Journey in which Peter Jackson officially becomes George Lucas*.
 

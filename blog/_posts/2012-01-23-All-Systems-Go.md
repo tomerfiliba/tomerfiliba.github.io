@@ -2,7 +2,7 @@
 layout: blogpost
 title: All Systems are Go
 description: The new site is up and running!
-imageurl: https://www.tomerfiliba.com/static/res/2012-01-23-systems.jpg
+imageurl: /static/res/2012-01-23-systems.jpg
 imagelink: http://cheezburger.com/View/2825781504
 ---
 

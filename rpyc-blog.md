@@ -3,7 +3,7 @@ layout: default
 section: blog
 title: RPyC Development Blog
 description: RPyC Development Blog
-feed_link: https://www.tomerfiliba.com/blog/rpyc-atom.xml
+feed_link: /blog/rpyc-atom.xml
 ---
 
 {% assign filtered_posts = site.categories.blog %}

@@ -2,7 +2,7 @@
 layout: etc-page
 title: A Python Crash Course for the Statically Typed Programmer
 description: A Python crash-course
-imageurl: https://www.tomerfiliba.com/static/res/2013-11-15-biglogo.png
+imageurl: /static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
 
@@ -39,7 +39,7 @@ and [LISP](http://en.wikipedia.org/wiki/Lisp_%28programming_language%29).
 Python is dynamically-typed (as opposed to statically-typed) but has strong-typing
 (as opposed to Perl or Javascript)
 
-<img src="https://www.tomerfiliba.com/static/res/2013-11-15-perl.png">
+<img src="/static/res/2013-11-15-perl.png">
 
 </section><section>
 
@@ -764,7 +764,7 @@ a variable, you basically insert an element into the scope dictionary.
 
 And no Python tutorial can do without
 
-<a href="http://xkcd.com/353/" title="Antigravity"><img src="https://www.tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
+<a href="http://xkcd.com/353/" title="Antigravity"><img src="/static/res/2013-11-15-xkcd.png"></a>
 
 </section><section>
 
@@ -796,6 +796,6 @@ If the implementation is easy to explain, it may be a good idea.
 
 </section><section>
 
-<img src="https://www.tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
+<img src="/static/res/2013-11-15-iknow.jpg">
 
 </section>

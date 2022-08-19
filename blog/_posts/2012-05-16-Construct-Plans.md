@@ -3,7 +3,7 @@ layout: blogpost
 title: The Future of Construct
 tags: [construct]
 description: Discussing future plans for Construct
-imageurl: https://www.tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png
+imageurl: /static/res/2012-05-16-construct-logo-small.png
 imagetitle: Construct
 ---
 
@@ -108,8 +108,8 @@ connect the Bytes' ``count`` field to the source construct), etc. And most impor
 try it out live on a data sample, and see how it breaks it up. I made this sketch here (click to
 download the PowerPoint slides) to demonstrate how it might look:
 
-<a href="https://www.tomerfiliba.com/static/res/2012-05-16-sketch.ppt">
-<img src="https://www.tomerfiliba.com/static/res/2012-05-16-designer.png" title="Construct Designer" width="580px" />
+<a href="/static/res/2012-05-16-sketch.ppt">
+<img src="/static/res/2012-05-16-designer.png" title="Construct Designer" width="580px" />
 </a>
 
 I think it would be very powerful.

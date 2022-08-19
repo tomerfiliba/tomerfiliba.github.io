@@ -3,11 +3,11 @@ layout: blogpost
 title: "A Survey of Construct 3"
 tags: [python, construct]
 description: "Discussion of the new features in Construct 3"
-imageurl: https://www.tomerfiliba.com/static/res/2012-05-16-construct-logo-small.png
+imageurl: /static/res/2012-05-16-construct-logo-small.png
 imagetitle: Construct
 ---
 
-I'm working on [Construct 3](https://www.tomerfiliba.com/blog/Construct-Plans) again and I'm exploring lots of new ideas.
+I'm working on [Construct 3](/blog/Construct-Plans) again and I'm exploring lots of new ideas.
 I wanted to share these ideas at this early stage **to get feedback on them** from users, to keep the project on track.
 This survey starts a bit slow (as I'm not counting on users being familiar with Construct) but it dives into
 code right away.
@@ -209,7 +209,7 @@ Bytes are easy to work with, but protocols and file formats often talk at differ
 switching between bits and bytes. For instance, here's the SCSI CDB of ``READ6``:
 
 <a href="http://en.wikipedia.org/wiki/SCSI_Read_Commands">
-<img src="https://www.tomerfiliba.com/static/res/2012-12-24-read6.png" title="SCSI READ6" />
+<img src="/static/res/2012-12-24-read6.png" title="SCSI READ6" />
 </a>
 
 The LUN component is 3 bits long and the ``LBA`` component is 21 bits long... how can we handle this? Before we get
@@ -304,7 +304,7 @@ def BitStruct(*members):
     return Bitwise(Struct(*members))
 {% endhighlight %}
 
-<img src="https://www.tomerfiliba.com/static/res/2012-12-24-great.jpg" class="blog-post-image"/>
+<img src="/static/res/2012-12-24-great.jpg" class="blog-post-image"/>
 
 Macros have many more uses; you can explore the implementation of Construct to see some examples, and you're
 encouraged to write ones on your own. Remember: *less code is great success*. As we'll see later on, using macros
@@ -481,10 +481,10 @@ construct3.packers.RangeError: Expected 4 items, found 0
 Underlying exception: ValidationError("'b' must be in ['c']",)
 {% endhighlight %}
 
-Here's a recognizer for the language <img src="https://www.tomerfiliba.com/static/res/2012-12-24-nanbncn.gif" title="na^nb^nc^n" />,
+Here's a recognizer for the language <img src="/static/res/2012-12-24-nanbncn.gif" title="na^nb^nc^n" />,
 which is not context free (assuming n is given in unary representation, it requires the recognition of
-<img src="https://www.tomerfiliba.com/static/res/2012-12-24-1nanbncn.gif" title="1^na^nb^nc^n" />). We can easily extend
-this to <img src="https://www.tomerfiliba.com/static/res/2012-12-24-1nanbncndn.gif" title="1^na^nb^nc^nd^n" />
+<img src="/static/res/2012-12-24-1nanbncn.gif" title="1^na^nb^nc^n" />). We can easily extend
+this to <img src="/static/res/2012-12-24-1nanbncndn.gif" title="1^na^nb^nc^nd^n" />
 to break out of mildly context-sensitive languages, and use ``While(this[-1] == '1', Raw(1))`` instead of the first ``byte``,
 so *n* won't be bounded from above.
 

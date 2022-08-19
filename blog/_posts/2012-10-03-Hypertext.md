@@ -3,7 +3,7 @@ layout: blogpost
 title: "Hypertext: In-Python Haml"
 tags: [python]
 description: "An in-language DSL for generating HTML pages directly in Python, along the lines of Haml"
-imageurl: https://www.tomerfiliba.com/static/res/2012-10-03-haml.gif
+imageurl: /static/res/2012-10-03-haml.gif
 imagelink: http://haml.info
 ---
 

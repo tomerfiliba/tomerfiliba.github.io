@@ -3,10 +3,10 @@ layout: blogpost
 title: Regarding Infix Operators
 description: Some more thoughts regarding the 'infix operators' post
 tags: [python]
-imageurl: https://www.tomerfiliba.com/static/res/2012-01-25-dog.jpg
+imageurl: /static/res/2012-01-25-dog.jpg
 ---
 
-I got some reactions to the [Infix Operators](https://www.tomerfiliba.com/blog/Infix-Operators) post, and wanted to point
+I got some reactions to the [Infix Operators](/blog/Infix-Operators) post, and wanted to point
 out some things. First of all, I'm not the one who came up with it -- it's a recipe from the
 Python Cookbook that's been posted in 2005. I'm not taking credit for it or anything, I just
 said I loved the idea and I adapted the code a little.

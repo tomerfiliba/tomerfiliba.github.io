@@ -3,11 +3,11 @@ layout: blogpost
 title: Toying with Context Managers
 description: Highlights some rather surprising use-cases of context managers
 tags: [python]
-imageurl: https://www.tomerfiliba.com/static/res/2012-02-27-context.jpg
+imageurl: /static/res/2012-02-27-context.jpg
 imagetitle: Very Demotivational
 ---
 
-As I promised in the [code-generation using context managers post](https://www.tomerfiliba.com/blog/Code-Generation-Context-Managers),
+As I promised in the [code-generation using context managers post](/blog/Code-Generation-Context-Managers),
 I wanted to review some more, rather surprising, examples where context managers prove handy.
 So we all know we can use context managers for resource life-time management: before entering the
 `with`-suite we allocate (open) the resource, and when we leave the suite, we free (close) it --

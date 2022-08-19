@@ -11,7 +11,7 @@ more succinct form of logic; the concept was later successfully employed and ext
 Curry. A combinator is basically a higher-order function (function that operates on functions) that
 does not use free variables; again, the idea is to [eliminate variables](http://en.wikipedia.org/wiki/Tacit_programming).
 
-<a href="http://www.cksinfo.com/sports/skiing/index.html"><img src="https://www.tomerfiliba.com/static/res/ski.png"
+<a href="http://www.cksinfo.com/sports/skiing/index.html"><img src="/static/res/ski.png"
 style="float:right; width:250px;"></a>
 
 Instead of going [deeper into the mathematics](http://en.wikipedia.org/wiki/Combinatory_logic#Combinatory_calculi)

@@ -3,7 +3,7 @@ layout: blogpost
 title: "Loads of Plumbum"
 tags: [python]
 description: "Plumbum (shell combinators library) has got many new features"
-imageurl: https://www.tomerfiliba.com/static/res/2012-05-12-plumbum.png
+imageurl: /static/res/2012-05-12-plumbum.png
 imagetitle: Plumbum
 imagelink: http://plumbum.readthedocs.org/
 ---

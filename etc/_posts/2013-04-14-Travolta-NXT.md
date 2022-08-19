@@ -2,7 +2,7 @@
 layout: etc-page
 title: Travolta NXT
 description: University Lego NXT project
-imagepreview: https://www.tomerfiliba.com/static/res/2013-04-14-lego.png
+imagepreview: /static/res/2013-04-14-lego.png
 ---
 
 ## Abstract ##
@@ -34,7 +34,7 @@ Due to the difficulties with the component language (see discussion below), Trav
 as I had hoped. It consists of the main ("brain") component, which holds all of the "business logic", and several
 components for sensors and motors. The brain employs an internal state machine to do its work in iterations.
 
-![Component model](https://www.tomerfiliba.com/static/res/2013-04-14-model.gif)
+![Component model](/static/res/2013-04-14-model.gif)
 
 I aimed for a more modular design, where a Reader component would read the instruction, a Dancer component would
 carry them out, etc., but it proved too complicated to implement.

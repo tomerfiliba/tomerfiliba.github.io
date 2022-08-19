@@ -13,7 +13,7 @@ find the most useful. Although design patterns go hand-in-hand with the object-o
 which I think less of, they are useful on their own as they tend to capture generalizations.
 
 <a href="http://dryicons.com/free-graphics/preview/flower-pattern/">
-<img src="https://www.tomerfiliba.com/static/res/2012-03-03-flower_pattern.jpg" style="float: right; width: 250px;" title="Flower pattern" /></a>
+<img src="/static/res/2012-03-03-flower_pattern.jpg" style="float: right; width: 250px;" title="Flower pattern" /></a>
 
 ## Null, State, Strategy and RAII ##
 

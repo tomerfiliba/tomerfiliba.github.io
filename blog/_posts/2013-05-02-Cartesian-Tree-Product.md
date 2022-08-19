@@ -3,7 +3,7 @@ layout: blogpost
 title: "Cartesian Tree-Product"
 tags: [python]
 description: "Producing all possibilities (Cartesian product) of expression trees"
-imageurl: https://www.tomerfiliba.com/static/res/2013-05-03-Graph-Cartesian-product2.png
+imageurl: /static/res/2013-05-03-Graph-Cartesian-product2.png
 imagetitle: Graph Cartesian product
 ---
 

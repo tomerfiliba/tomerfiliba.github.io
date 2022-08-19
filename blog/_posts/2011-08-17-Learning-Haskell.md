@@ -2,7 +2,7 @@
 layout: blogpost
 title: Learning Me a Haskell
 description: Thoughts regarding Haskell and the implications on software development in general
-imageurl: https://www.tomerfiliba.com/static/res/2011-08-17-lyah.png
+imageurl: /static/res/2011-08-17-lyah.png
 imagetitle: LYAH
 imagelink: http://learnyouahaskell.com/
 ---

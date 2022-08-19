@@ -2,13 +2,13 @@
 layout: blogpost
 title: "New Experiences"
 description: "Becoming an entrepreneur"
-imageurl: https://www.tomerfiliba.com/static/res/2012-12-15-grimlock2.jpg
+imageurl: /static/res/2012-12-15-grimlock2.jpg
 imagetitle: BECAUSE AWESOME
 imagelink: http://fakegrimlock.com/
 ---
 
 Okay, I've been slacking off and I feel I've got some explaining to do... Allow me to start by
-admitting that I lied. If you remember, I said [I wanted an easy life](https://www.tomerfiliba.com/blog/New-Beginnings/),
+admitting that I lied. If you remember, I said [I wanted an easy life](/blog/New-Beginnings/),
 but then the opportunity came and I knew I had to take it: I've joined two friends to co-found
 [Touchbase](http://www.touchbase.it/). Yes, I said it won't happen to me, but heck, it did.
 
@@ -57,7 +57,7 @@ I brought this realization to the mighty @FAKEGRIMLOCK, and he explained:
 
 <div style="text-align: center;">
 <a href="https://twitter.com/FAKEGRIMLOCK/status/276686347270500353">
-<img src="https://www.tomerfiliba.com/static/res/2012-12-15-onerror.png" style="border: 2px solid black;"/></a>
+<img src="/static/res/2012-12-15-onerror.png" style="border: 2px solid black;"/></a>
 </div>
 
 I'm an enlightened person now.

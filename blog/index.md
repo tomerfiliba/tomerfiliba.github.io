@@ -2,7 +2,7 @@
 layout: default
 section: blog
 title: Blog Posts
-feed_link: https://www.tomerfiliba.com/blog/atom.xml
+feed_link: /blog/atom.xml
 ---
 
 {% assign filtered_posts = site.categories.blog %}

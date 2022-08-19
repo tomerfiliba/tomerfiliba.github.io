@@ -2,7 +2,7 @@
 layout: blogpost
 title: "ReHelloWorld"
 description: "New site design and a heartwarming Windows story"
-imagepreview: https://www.tomerfiliba.com/static/res/2012-08-06-windows.png
+imagepreview: /static/res/2012-08-06-windows.png
 ---
 
 Tada! The new design is here. The previous one was based on some Drupal theme I once used
@@ -15,13 +15,13 @@ If you have any feedback or insights, please share them in the comments below --
 in progress and I'd love to improve.
 
 I'm still working on the last installment of the *Javaism, Exceptions and Logging* series,
-but I'm buried in work on University projects (my [watermarking](https://www.tomerfiliba.com/blog/ReedSolo)
+but I'm buried in work on University projects (my [watermarking](/blog/ReedSolo)
 project turned out quite interesting, I'll elaborate on it when I get the chance) and my
 day job, so it'll have to wait.
 
 ## A Windows Story ##
 
-<img src="https://www.tomerfiliba.com/static/res/2012-08-06-windows.png" class="blog-post-image" />
+<img src="/static/res/2012-08-06-windows.png" class="blog-post-image" />
 
 Instead, I wanted to share a debugging experience I had today at work (together with the excellent
 [@RoyRothenberg](https://twitter.com/RoyRothenberg)) of an enigmatic bug that appeared all of the

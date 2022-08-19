@@ -5,10 +5,10 @@ description: An outlines of simple yet expressive toolkit for constructing wizar
              separating the business logic from the presentation level, thus being able to
              run both in a terminal or a GUI environment.
 tags: [python]
-imageurl: https://www.tomerfiliba.com/static/res/2012-02-11-gandalf.jpg
+imageurl: /static/res/2012-02-11-gandalf.jpg
 ---
 
-Following my [Deducible UI post](https://www.tomerfiliba.com/blog/Deducible-UI), and following some of the
+Following my [Deducible UI post](/blog/Deducible-UI), and following some of the
 criticism it had received, I'd like to share something I've been working on (read: *experimenting with*)
 at my work place. You see, we have some "interactive wizards" that storage admins use to connect
 storage arrays to their hosts (say, a DB server). These wizards prompt you with questions like your
@@ -90,13 +90,13 @@ we'll use the `TerminalDialogRunner`.
 
 And how does it look like? When running on a terminal:
 
-<a href="https://www.tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png">
-<img src="https://www.tomerfiliba.com/static/res/2012-02-11-wizard-terminal.png" title="Running in a terminal" width="100%" /></a>
+<a href="/static/res/2012-02-11-wizard-terminal.png">
+<img src="/static/res/2012-02-11-wizard-terminal.png" title="Running in a terminal" width="100%" /></a>
 
 And with a single command-line switch, we run as a GTK application:
 
-<a href="https://www.tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png">
-<img src="https://www.tomerfiliba.com/static/res/2012-02-11-wizard-gtk.png" title="Running as a GTK application" width="100%" /></a>
+<a href="/static/res/2012-02-11-wizard-gtk.png">
+<img src="/static/res/2012-02-11-wizard-gtk.png" title="Running as a GTK application" width="100%" /></a>
 
 So of course it's far from perfect, but then again, it's a small research project I've only put
 ~15 hours into. It suffers from some of the problems I've listed in the deducible UI post, for

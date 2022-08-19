@@ -3,7 +3,7 @@ layout: blogpost
 title: Deducible UI
 description: A sketch of how to automatically deduce a good-enough user interface,
              given a programmatic API and some extra metadata
-imageurl: https://www.tomerfiliba.com/static/res/2012-01-27-sketch.jpg
+imageurl: /static/res/2012-01-27-sketch.jpg
 imagelink: https://ccrma.stanford.edu/~sangwlee/256a/SharePhone/
 ---
 
@@ -93,7 +93,7 @@ class Person {
 
 would turn into
 
-<img src="https://www.tomerfiliba.com/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
+<img src="/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
 
 <!--
     +-----------------------------------------+

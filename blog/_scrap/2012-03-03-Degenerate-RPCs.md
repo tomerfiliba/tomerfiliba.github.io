@@ -10,7 +10,7 @@ I talked the other day with a friend of mine who's into web development. At some
 he found HTTP to be good enough a protocol, which has sparked a long discussion that I promised
 I'd summaries in a blog post. So here I am now, a man of my word.
 
-<img src="https://www.tomerfiliba.com/static/res/2012-02-17-http.jpg" style="float: right; with: 250px" />
+<img src="/static/res/2012-02-17-http.jpg" style="float: right; with: 250px" />
 
 I've been thinking about the subject of network protocols for some time now. It all began when
 I started working on [RPyC](http://rpys.sf.net) some six years ago; since then I've become

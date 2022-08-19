@@ -27,7 +27,7 @@ description: A list of my active and inactive projects
 ## Research/Toy Projects ##
 
 * [Reedsolo](http://pypi.python.org/pypi/reedsolo) - A pure-python Reed-Solomon (error-correcting
-  code) codec; more info [on the blog post](https://www.tomerfiliba.com/blog/ReedSolo).
+  code) codec; more info [on the blog post](/blog/ReedSolo).
 
 * [Microactor](https://github.com/tomerfiliba/microactor) - A micro-reactor framework that makes
   use of coroutines instead of callbacks. Similar to
