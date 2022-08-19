@@ -3,8 +3,8 @@ layout: blogpost
 title: Deducible UI
 description: A sketch of how to automatically deduce a good-enough user interface,
              given a programmatic API and some extra metadata
-imageurl: http://tomerfiliba.com/static/res/2012-01-27-sketch.jpg
-imagelink: https://ccrma.stanford.edu/~sangwlee/256a/SharePhone/ 
+imageurl: https://www.tomerfiliba.com/static/res/2012-01-27-sketch.jpg
+imagelink: https://ccrma.stanford.edu/~sangwlee/256a/SharePhone/
 ---
 
 ### A Brief History ###
@@ -93,7 +93,7 @@ class Person {
 
 would turn into
 
-<img src="http://tomerfiliba.com/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
+<img src="https://www.tomerfiliba.com/static/res/2012-01-27-render.png" title="Created using http://ditaa.org/ditaa/"/>
 
 <!--
     +-----------------------------------------+
@@ -183,5 +183,3 @@ in a future post. Fully deducing a UI is quite a challenge, as a detailed above,
 nonetheless, and the added-value is huge! I'll get back to it some day, perhaps after I have
 better UI combinators... but in the meantime, is there anyone in the audience who's willing to
 pick it up?
-
-

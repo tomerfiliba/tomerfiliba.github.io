@@ -2,7 +2,7 @@
 layout: etc-page
 title: A Python Crash Course for the Statically Typed Programmer
 description: A Python crash-course
-imageurl: http://tomerfiliba.com/static/res/2013-11-15-biglogo.png
+imageurl: https://www.tomerfiliba.com/static/res/2013-11-15-biglogo.png
 imagelink: http://www.python.org/
 ---
 
@@ -33,13 +33,13 @@ def factorial(n):
 
 </section><section>
 
-You'll see inheritance and class diagrams along side with constructs imported from [Haskell](http://www.haskell.org) 
+You'll see inheritance and class diagrams along side with constructs imported from [Haskell](http://www.haskell.org)
 and [LISP](http://en.wikipedia.org/wiki/Lisp_%28programming_language%29).
 
-Python is dynamically-typed (as opposed to statically-typed) but has strong-typing 
-(as opposed to Perl or Javascript) 
+Python is dynamically-typed (as opposed to statically-typed) but has strong-typing
+(as opposed to Perl or Javascript)
 
-<img src="http://tomerfiliba.com/static/res/2013-11-15-perl.png">
+<img src="https://www.tomerfiliba.com/static/res/2013-11-15-perl.png">
 
 </section><section>
 
@@ -110,7 +110,7 @@ class NAME([BASE, [...]]):
 
 </section><section>
 
-The interactive interpreter is your friend! I mapped ``F11`` on my keyboard to fire up an interpreter... 
+The interactive interpreter is your friend! I mapped ``F11`` on my keyboard to fire up an interpreter...
 it's better than any calculator you'll ever have
 
 ```
@@ -127,9 +127,9 @@ For people with a C background:
 
 * You don't declare variables - you just assign them
   * And you can reassign them to different types
-* Python doesn't have ``do-while`` (use ``while``) nor does it have ``switch`` (use ``if``s or 
+* Python doesn't have ``do-while`` (use ``while``) nor does it have ``switch`` (use ``if``s or
    dispatch tables)
-* Assignment is a statement, **not an expression**. 
+* Assignment is a statement, **not an expression**.
   * You cannot write ``if (a = foo()) == 5:``
 * There's no such thing as passing by-value. It's always by-reference.
   * So you might need to explicitly **copy** objects some times
@@ -147,10 +147,10 @@ For people with a C++/Java background:
 
 Duck Typing goes Nuclear
 
-<img src="http://www.haaretz.com/polopoly_fs/1.416769.1331009149!/image/2349077637.jpg_gen/derivatives/landscape_640/2349077637.jpg"> 
+<img src="http://www.haaretz.com/polopoly_fs/1.416769.1331009149!/image/2349077637.jpg_gen/derivatives/landscape_640/2349077637.jpg">
 
-In low-level programming languages, types dictate a **memory layout**. 
-In high-level languages, on the other hand, compile-time types are merely **constraints** 
+In low-level programming languages, types dictate a **memory layout**.
+In high-level languages, on the other hand, compile-time types are merely **constraints**
 on what you're allowed to do with an object.
 
 Being an interpreted language, Python gives up on type-checking and instead adopts the spirit of
@@ -199,7 +199,7 @@ set([8, 2, 6, 7])
 
 </section><section>
 
-String manipulation is a pleasure with Python 
+String manipulation is a pleasure with Python
 
 {% highlight pycon %}
 >>> "hello" + "world"
@@ -243,7 +243,7 @@ Encoding strings like a boss
 String interpolation
 
 {% highlight pycon %}
->>> "My name is %s. You %s, prepare to %s" % ("Inigo Montoya", 
+>>> "My name is %s. You %s, prepare to %s" % ("Inigo Montoya",
 ... "killed my father", "die")
 'My name is Inigo Montoya. You killed my father, prepare to die'
 >>>
@@ -274,7 +274,7 @@ Multi-line strings
 
 </section><section>
 
-If I had time to show you only three functions, they will be 
+If I had time to show you only three functions, they will be
 
 * ``help()``
 * ``dir()``
@@ -437,9 +437,9 @@ Working with files
 >>> f.readline()
 'if [ "$PS1" ]; then\n'
 >>> list(f)[:4]
-['  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then\n', 
- '    # The file bash.bashrc already sets the default PS1.\n', 
- "    # PS1='\\h:\\w\\$ '\n", 
+['  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then\n',
+ '    # The file bash.bashrc already sets the default PS1.\n',
+ "    # PS1='\\h:\\w\\$ '\n",
  '    if [ -f /etc/bash.bashrc ]; then\n']
 >>> f.close()
 {% endhighlight %}
@@ -488,7 +488,7 @@ Yo comprendo!
 [1, 2, 3, 4, 2, 4, 6, 8, 3, 6, 9, 12, 4, 8, 12, 16]
 >>> [[i * j for i in range(1,5)] for j in range(1,5)]
 [[1, 2, 3, 4], [2, 4, 6, 8], [3, 6, 9, 12], [4, 8, 12, 16]]
->>> [" ".join(["%3d" % (i * j,) for i in range(1,5)]) 
+>>> [" ".join(["%3d" % (i * j,) for i in range(1,5)])
 ...     for j in range(1,5)]
 ['  1   2   3   4', '  2   4   6   8', '  3   6   9  12',
  '  4   8  12  16']
@@ -593,9 +593,9 @@ In fact, list comprehensions are a syntactic sugar for ``list(``generator compre
 
 </section><section>
 
-List comprehensions, as the name suggests, **build a list**. This can be expensive some times, 
+List comprehensions, as the name suggests, **build a list**. This can be expensive some times,
 especially when you don't need the intermediate values. E.g., if you just want to get the sum of the elements,
-there's no need to actually hold all of them in memory. Generators are the key to efficient programming. 
+there's no need to actually hold all of them in memory. Generators are the key to efficient programming.
 For example, ``xrange`` is like ``range`` but returns a generator instead.
 
 {% highlight pycon %}
@@ -639,11 +639,11 @@ Woof woof woof
 
 Some notes for Java folks:
 
-* Constructors are inherited! Why wouldn't they?! 
+* Constructors are inherited! Why wouldn't they?!
   * You can implement an exception class in Python in just one line: ``class MyException(Exception): pass``
   * In Java/C# you have to reimplement all constructors as well
 * Python doesn't have function/method overloading
-  * But given that most of the code is duck-typed anyway (and can introspect the received object at runtime) 
+  * But given that most of the code is duck-typed anyway (and can introspect the received object at runtime)
     it doesn't make a real difference
 
 </section><section>
@@ -707,7 +707,7 @@ But why would you do that? Don't be silly.
 
 </section><section>
 
-Remember I said **everything** is an object? Well, I meant it.   
+Remember I said **everything** is an object? Well, I meant it.
 
 {% highlight pycon %}
 >>> Animal.__base__
@@ -735,12 +735,12 @@ And it does gets mindboggling
 
 </section><section>
 
-The MRO (method resolution order) is actually very important. It determines what happens when you resolve 
+The MRO (method resolution order) is actually very important. It determines what happens when you resolve
 attributes (``__getattr__``) on an object. For instance, ``rex.foo`` will first try ``rex.__dict__``, move up
 to ``Dog.__dict__`` and then to ``Animal.__dict__``, until we reach ``object.__dict__`` where we'll fail.
 And that's the whole object model.
 
-Dictionaries are also crucial to functions. A function is basically just code that evaluates in a local 
+Dictionaries are also crucial to functions. A function is basically just code that evaluates in a local
 scope and has access to a global scope (module-level). Each of these scopes is... a dictionary. When you assign
 a variable, you basically insert an element into the scope dictionary.
 
@@ -764,7 +764,7 @@ a variable, you basically insert an element into the scope dictionary.
 
 And no Python tutorial can do without
 
-<a href="http://xkcd.com/353/" title="Antigravity"><img src="http://tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
+<a href="http://xkcd.com/353/" title="Antigravity"><img src="https://www.tomerfiliba.com/static/res/2013-11-15-xkcd.png"></a>
 
 </section><section>
 
@@ -796,6 +796,6 @@ If the implementation is easy to explain, it may be a good idea.
 
 </section><section>
 
-<img src="http://tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
+<img src="https://www.tomerfiliba.com/static/res/2013-11-15-iknow.jpg">
 
 </section>
