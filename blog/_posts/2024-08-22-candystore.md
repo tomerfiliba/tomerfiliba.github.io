@@ -145,8 +145,32 @@ and for inserts it's less than 2us (a `read` plus a `write`). If the data needs 
 rather than the page-cache, you can expect a couple of tens of microseconds on top of that, of course, but generally
 speaking, this is as fast as it could get.
 
-## Roadmap
-* Background compactions
-* Generations for TTL and compression
-* Consistent-hash on top for a distributed protocol
+## Lists and Queues
+As mentioned above, hash tables are great so long as you don't require relative order or prefix search. Instead of
+imposing a relative order on keys, CandyStore provies a linked-list-like structure. You can add an item to a *list*, 
+and it gets pushed to the list's tail. You can lookup/update/remove the item in O(1) time, just like any key, 
+but you can also iterate over the items in list in O(n).
 
+On top of lists, CandyStore also provides *queues* (or actually, *deques*), where you push elements to the head
+or the tail of the queue, and pop elements from either side as well. 
+
+## Roadmap
+CandyStore is deployed on thousands of nodes in production (part of Sweet's sensor) and we offload more and more
+use cases from in-memory tables or queues to disk-based ones. 
+
+That being said, it's important to understand that CandyStore is **very new** -- less than a month old at the 
+time of this writing! The **file format is unstable**, and for our use cases, we're happy with just clearing the 
+DB and starting over. 
+
+One thing that we work on is background (non-blocking) compactions, so compations won't block access of the 
+shard file as they do at the moment. 
+
+We might add TTL support later on, in the form of *generations*: we'll create a new store every interval,
+and once we have two generations of the same "size" (e.g., 10:00-11:00 and 11:00-12:00), we would compact 
+them together into a "longer" generation (10:00-12:00), and so on, creating an LSM-inspired structure. Since entries
+that survived for so long are less likely to be modified, we can also compress these shards. TTL can be efficiently
+implemented on top of that, where we just delete entire generations as they age.
+
+It's also possible to use a protocol like Cassandra's, where we take some more bits from the hash to determine the
+"node shard", which would map a node for this key based on a consistent hash. This would also come with a
+*replication factor* and *read consistency* level for redundancy.
