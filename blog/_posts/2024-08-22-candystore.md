@@ -10,7 +10,7 @@ imagetitle: "Tasty bytes!"
 *Sweet Security* has just released [CandyStore](https://github.com/sweet-security/candystore) - a **very fast Key-Value 
 Store** in Rust with negligible memory overhead and unique features like lists and queues. 
 The library is meant to be used an *embedded database*, but in the future we may release a server and C bindings.
-It's based on a novel algorith, not one based on LSMs or B-Trees, and does not require any journal/WAL while still 
+It's based on a novel algorithm, not one based on LSMs or B-Trees, and does not require any journal/WAL while still 
 being atomic and crash-safe.
 
 ## Life, the Universe and Everything
@@ -101,9 +101,9 @@ selector. Initially, we started with a shard file covering the shard range `[0..
 one shard file covering `[0..32768)` and the other shard file covering `[32768..65536)`. Now every entry whose MSB 
 is 0 goes to the bottom shard, and every entry with an MSB of 1 goes to the top shard. Assuming hashes are uniformly
 distributed, each shard will contain half of the entries of the original one, and we can rest assured the resulting 
-shard-file tree will be *balanced*, as we can expect the tree ot be [complete](https://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees).
+shard-file tree will be *balanced*, as we can expect the tree to be [complete](https://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees).
 
-Note that it's possible to incease the efficienty using a method similar to 
+Note that it's possible to increase the efficiency using a method similar to 
 [Cuckoo hashing](https://en.wikipedia.org/wiki/Cuckoo_hashing), where we try a second possible row. While this seemed 
 promising, simulations show it only increases the fill-level from ~90% to ~94% and comes with a cost of two lookups 
 every time a key is not found, so the benefits are unclear.
