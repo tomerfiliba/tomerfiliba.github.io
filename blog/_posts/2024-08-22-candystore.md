@@ -7,6 +7,9 @@ imagetitle: "Tasty bytes!"
 ---
 
 ## TL;DR
+
+Note: here is [Part 2](/blog/consistent-candystore)
+
 *Sweet Security* has just released [CandyStore](https://github.com/sweet-security/candystore) - a **very fast Key-Value 
 Store** in Rust with negligible memory overhead and unique features like lists and queues. 
 The library is meant to be used an *embedded database*, but in the future we may release a server and C bindings.
